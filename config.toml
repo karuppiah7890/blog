@@ -1,0 +1,5 @@
+baseURL = "https://karuppiah7890.github.io/blog"
+languageCode = "en-us"
+title = "Karuppiah's Blog"
+theme = "ananke"
+publishDir = "docs"
