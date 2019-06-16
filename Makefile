@@ -1,5 +1,5 @@
 build:
-	HUGO_ENV=production hugo build
+	HUGO_ENV=production hugo
 
 dev:
 	hugo serve -D
