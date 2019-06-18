@@ -1,6 +1,6 @@
 ---
 title: "Helm 3 Charts and OCI registries"
-date: 2019-06-16T19:40:09+05:30
+date: 2019-06-18T22:00:00+05:30
 ---
 
 Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
