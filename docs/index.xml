@@ -6,10 +6,22 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Jun 2019 12:44:09 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 16 Jun 2019 19:40:09 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Helm 3 Charts and OCI registries</title>
+      <link>https://karuppiah7890.github.io/blog/posts/helm-3-charts-and-oci-registries/</link>
+      <pubDate>Sun, 16 Jun 2019 19:40:09 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/helm-3-charts-and-oci-registries/</guid>
+      <description>Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
+With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
+ The commands being used in the video:
+$ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.</description>
+    </item>
     
     <item>
       <title>My Open Source Journey</title>
