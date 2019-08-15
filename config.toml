@@ -5,6 +5,7 @@ theme = "ananke"
 publishDir = "docs"
 googleAnalytics = "UA-142197984-1"
 disqusShortname = "karuppiahn"
+staticDir = ["static"]
 
 [params]
   twitter = "https://twitter.com/karuppiah7890"
