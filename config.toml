@@ -4,7 +4,7 @@ title = "Karuppiah's Blog"
 theme = "ananke"
 publishDir = "docs"
 googleAnalytics = "UA-142197984-1"
-disqusShortname = "karuppiahn"
+disqusShortname = "karuppiah-blog"
 staticDir = ["static"]
 
 [params]
