@@ -4,8 +4,10 @@ title = "Karuppiah's Blog"
 theme = "ananke"
 publishDir = "docs"
 googleAnalytics = "UA-142197984-1"
+disqusShortname = "karuppiahn"
 
 [params]
   twitter = "https://twitter.com/karuppiah7890"
   github = "https://github.com/karuppiah7890"
   youtube = "https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg"
+  commentoEnable = true
