@@ -17,7 +17,7 @@
       <pubDate>Thu, 15 Aug 2019 07:56:34 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/debugging-go-in-intellij-idea-or-goland/</guid>
-      <description>Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓to parse the command line values.</description>
+      <description>Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values.</description>
     </item>
     
     <item>

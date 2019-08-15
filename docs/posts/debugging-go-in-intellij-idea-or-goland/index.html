@@ -26,25 +26,25 @@
     
 
     <meta property="og:title" content="Debugging Go in Intellij IDEA / GoLand" />
-<meta property="og:description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓to parse the command line values." />
+<meta property="og:description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/debugging-go-in-intellij-idea-or-goland/" />
 <meta property="article:published_time" content="2019-08-15T07:56:34+05:30" />
 <meta property="article:modified_time" content="2019-08-15T07:56:34+05:30" />
 <meta itemprop="name" content="Debugging Go in Intellij IDEA / GoLand">
-<meta itemprop="description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓to parse the command line values.">
+<meta itemprop="description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values.">
 
 
 <meta itemprop="datePublished" content="2019-08-15T07:56:34&#43;05:30" />
 <meta itemprop="dateModified" content="2019-08-15T07:56:34&#43;05:30" />
-<meta itemprop="wordCount" content="554">
+<meta itemprop="wordCount" content="555">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Debugging Go in Intellij IDEA / GoLand"/>
-<meta name="twitter:description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓to parse the command line values."/>
+<meta name="twitter:description" content="Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values."/>
 
       
 <script type="application/javascript">
@@ -142,7 +142,7 @@ if (!doNotTrack) {
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Recently me and a friend were trying to debug a <a href="https://github.com/helm/helm/issues/6116">stackoverflow error</a> in <a href="https://github.com/helm/helm/issues">helm</a>. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓to parse the command line values. And we were working in one of the most powerful IDEs - Intellij IDEA. And I was like “let’s just use the power of the IDE for debugging!” and I searched online and found how to do it. We just had to create a configuration. Here are the steps that we followed :</p>
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Recently me and a friend were trying to debug a <a href="https://github.com/helm/helm/issues/6116">stackoverflow error</a> in <a href="https://github.com/helm/helm/issues">helm</a>. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values. And we were working in one of the most powerful IDEs - Intellij IDEA. And I was like “let’s just use the power of the IDE for debugging!” and I searched online and found how to do it. We just had to create a configuration. Here are the steps that we followed :</p>
 
 <p>Prerequisite - Make sure you have a Golang plugin installed in Intellij IDEA or you are in GoLand. The below steps are accurate for Intellij IDEA. For GoLand, it looks quite similar, you can check the goland blog at the end.</p>
 
