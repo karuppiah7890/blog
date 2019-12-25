@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Karuppiah&#39;s Blog</title>
@@ -38,7 +38,7 @@ $ docker run -dp 5000:5000 --restart=always --name registry registry $ helm crea
       <pubDate>Sun, 16 Jun 2019 12:44:09 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/my-open-source-journey/</guid>
-      <description>I think the first time I heard the term &amp;ldquo;Open Source&amp;rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I&amp;rsquo;m able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.</description>
+      <description>I think the first time I heard the term &amp;ldquo;Open Source&amp;rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I&#39;m able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.</description>
     </item>
     
     <item>

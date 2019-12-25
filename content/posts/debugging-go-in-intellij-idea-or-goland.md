@@ -11,19 +11,19 @@ Steps:
 
 In the top right, there will be a drop down to see the list of configurations
 
-<img src="/blog/img/debugging-go-in-intellij/top-right.png" title="top right in intelllij">
+![top right in intelllij](/blog/img/debugging-go-in-intellij/top-right.png "top right in intelllij")
 
 Use edit configurations in the drop down
 
-<img src="/blog/img/debugging-go-in-intellij/edit-configs.png" title="edit configs">
+![edit configs](/blog/img/debugging-go-in-intellij/edit-configs.png "edit configs")
 
 Now add a window will open. In this add a Go Build configuration
 
-<img src="/blog/img/debugging-go-in-intellij/go-build-config.png" title="go build config">
+![go build config](/blog/img/debugging-go-in-intellij/go-build-config.png "go build config")
 
 Now you can fill in the configuration based on your program.
 
-<img src="/blog/img/debugging-go-in-intellij/config-example.png" title="configs example">
+![configs example](/blog/img/debugging-go-in-intellij/config-example.png "configs example")
 
 Some field are mandatory, some are optional. For example you need choose the file / package / directory where the program starts (has main function). You can also give build arguments, for example people give `ldflags` and set variables to set versions etc. And then you can provide the program arguments like in the above example I used it to debug a [linting issue](https://github.com/helm/helm/issues/6079) hence the lint subcommand, so Intellij will run something like
 
@@ -33,29 +33,29 @@ $ helm lint /Users/karuppiahoss/helm-stable-repo/apm-server-2.1.4.tgz /Users/kar
 
 Now, once the configuration is done, you need to apply it and say ok, and then choose the configuration that you just created in the top right configurations list
 
-<img src="/blog/img/debugging-go-in-intellij/choose-config.png" title="choose config">
+![choose config](/blog/img/debugging-go-in-intellij/choose-config.png "choose config")
 
 Now you can run it with the play icon button or debug it with the bug icon button. Before debugging you need to add breakpoints to your program code - wherever you want to stop the program and see the data present in the variables and you can evaluate expressions too! And while debugging you can add breakpoints on the go and you can add breakpoints anywhere in the program execution! Like even in the standard library code execution! See below for examples of putting breakpoints and how I have put breakpoints in the [template golang stdblib](https://golang.org/pkg/text/template/) and also an example of how the debug window looks like
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-1.png" title="breakpoint-1">
+![breakpoint-1](/blog/img/debugging-go-in-intellij/breakpoint-1.png "breakpoint-1")
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-2.png" title="breakpoint-2">
+![breakpoint-2](/blog/img/debugging-go-in-intellij/breakpoint-2.png "breakpoint-2")
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-3.png" title="breakpoint-3">
+![breakpoint-3](/blog/img/debugging-go-in-intellij/breakpoint-3.png "breakpoint-3")
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-4.png" title="breakpoint-4">
+![breakpoint-4](/blog/img/debugging-go-in-intellij/breakpoint-4.png "breakpoint-4")
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-5.png" title="breakpoint-5">
+![breakpoint-5](/blog/img/debugging-go-in-intellij/breakpoint-5.png "breakpoint-5")
 
 If you notice the image below (the intellij title bar path), I have a breakpoint in the golang standard library packages [text/template](https://golang.org/pkg/text/template) and [internal/fmtsort](https://golang.org/pkg/internal/fmtsort)
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-6.png" title="breakpoint-6">
+![breakpoint-6](/blog/img/debugging-go-in-intellij/breakpoint-6.png "breakpoint-6")
 
-<img src="/blog/img/debugging-go-in-intellij/breakpoint-7.png" title="breakpoint-7">
+![breakpoint-7](/blog/img/debugging-go-in-intellij/breakpoint-7.png "breakpoint-7")
 
 Here's how the debug window looks like when on a breakpoint. This is the breakpoint in the [text/template](https://golang.org/pkg/text/template) library. There are some watches for values in it, the value is not present in this context so it doesn't show up here, but other values show up
 
-<img src="/blog/img/debugging-go-in-intellij/debug-window.png" title="debug window">
+![debug window](/blog/img/debugging-go-in-intellij/debug-window.png "debug window")
 
 <br>
 
