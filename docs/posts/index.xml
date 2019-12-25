@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Aug 2019 07:56:34 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 14:03:03 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Conference Story</title>
+      <link>https://karuppiah7890.github.io/blog/posts/a-conference-story/</link>
+      <pubDate>Wed, 25 Dec 2019 14:03:03 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/a-conference-story/</guid>
+      <description>Arvind is attending KubeCon for the first time. He&#39;s on his own.
+Arvind: Wow, this is all so grand! Let&#39;s find a place to sit and enjoy the day and find new friends maybe!
+Arvind finds his place. He finds himself surrounded by a lot of people.
+There&#39;s a constant buzz around him. People talking about life and work.
+The Conference starts with the keynote and the talks follow.
+After some talks, it&#39;s break time.</description>
+    </item>
     
     <item>
       <title>Debugging Go in Intellij IDEA / GoLand</title>
