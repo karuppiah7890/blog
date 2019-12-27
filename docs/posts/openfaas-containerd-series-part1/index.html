@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog </title>
+    <title>Karuppiah&#39;s Blog  | Openfaas Containerd Series Part 1</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="generator" content="Hugo 0.61.0" />
     
@@ -24,19 +24,27 @@
     
 
     
-      <link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-    
 
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
-<meta property="og:updated_time" content="2019-12-27T19:49:59+05:30" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+    <meta property="og:title" content="Openfaas Containerd Series Part 1" />
+<meta property="og:description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/openfaas-containerd-series-part1/" />
+<meta property="article:published_time" content="2019-12-27T19:49:59+05:30" />
+<meta property="article:modified_time" content="2019-12-27T19:49:59+05:30" />
+<meta itemprop="name" content="Openfaas Containerd Series Part 1">
+<meta itemprop="description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.">
+<meta itemprop="datePublished" content="2019-12-27T19:49:59&#43;05:30" />
+<meta itemprop="dateModified" content="2019-12-27T19:49:59&#43;05:30" />
+<meta itemprop="wordCount" content="1135">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Openfaas Containerd Series Part 1"/>
+<meta name="twitter:description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM."/>
 
       
 <script type="application/javascript">
@@ -56,9 +64,11 @@ if (!doNotTrack) {
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -110,129 +120,277 @@ if (!doNotTrack) {
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height nested-img">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Openfaas Containerd Series Part 1</h1>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/openfaas-containerd-series-part1/" class="link black dim">
-        Openfaas Containerd Series Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is one of the posts in a series where I'm going to write about openfaas and containerd working together. If you haven't tried openfaas before, it's interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I'll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.
-    </div>
-  </div>
-</div>
-</div>
+      <time class="f6 mv4 dib tracked" datetime="2019-12-27T19:49:59&#43;05:30">December 27, 2019</time>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/a-conference-story/" class="link black dim">
-        A Conference Story
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Arvind is attending KubeCon for the first time. He's on his own.
-Arvind: Wow, this is all so grand! Let's find a place to sit and enjoy the day and find new friends maybe!
-Arvind finds his place. He finds himself surrounded by a lot of people.
-There's a constant buzz around him. People talking about life and work.
-The Conference starts with the keynote and the talks follow.
-After some talks, it's break time.
-    </div>
-  </div>
-</div>
-</div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/debugging-go-in-intellij-idea-or-goland/" class="link black dim">
-        Debugging Go in Intellij IDEA / GoLand
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values.
-    </div>
-  </div>
-</div>
-</div>
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This is one of the posts in a series where I'm going to write about
+<a href="https://www.openfaas.com/">openfaas</a> and containerd working together.
+If you haven't tried openfaas before, it's interesting, give it a try!
+This is one of the posts which you can use to try openfaas!</p>
+<p>In this first post, I'll just show you what I tried out recently. This
+is me showing you how to just run openfaas along with containerd in one
+VM. I'm not going to explain the details about how it works and sorts.
+I haven't digged deep into the details. I usually like to see something
+work before getting into the details of how it works. Without much ado,
+I'll start!</p>
+<p>First, we need a Linux VM. I chose to run an Ubuntu VM using
+<a href="https://github.com/canonical/multipass/">multipass</a>. You can use any
+Linux VM.</p>
+<p>I use MacOS, so I installed <code>multipass</code> with <code>brew</code>. Other OS users follow
+<a href="https://github.com/canonical/multipass#install-multipass">this</a></p>
+<pre><code>$ brew cask install multipass
+</code></pre><p>Next spin up a VM named <code>faas</code> using <code>multipass</code></p>
+<pre><code>$ multipass launch -n faas
+</code></pre><p>Wait for it to start. The logs are clear and tell what's going on and
+if the VM has started.</p>
+<p>Now ssh into the VM</p>
+<pre><code>$ multipass exec faas bash
+</code></pre><p>Once inside the VM, install <code>containerd</code></p>
+<pre><code>$ export VER=1.3.2
+$ curl -sLSf https://github.com/containerd/containerd/releases/download/v$VER/containerd-$VER.linux-amd64.tar.gz &gt; /tmp/containerd.tar.gz \
+  &amp;&amp; sudo tar -xvf /tmp/containerd.tar.gz -C /usr/local/bin/ --strip-components=1
+</code></pre><p>Check if it works</p>
+<pre><code>$ containerd --version
+containerd github.com/containerd/containerd v1.3.2 ff48f57fc83a8c44cf4ad5d672424a98ba37ded6
+</code></pre><p>Now enable portfowarding and made the setting permanent</p>
+<pre><code>$ sudo /sbin/sysctl -w net.ipv4.conf.all.forwarding=1
+$ echo &quot;net.ipv4.conf.all.forwarding=1&quot; | sudo tee -a /etc/sysctl.conf
+</code></pre><p>Next install <code>runc</code> and check the installation</p>
+<pre><code>$ sudo apt update &amp;&amp; \
+  sudo apt install -qy runc \
+$ runc --version
+runc version spec: 1.0.1-dev
+</code></pre><p>Next install <code>netns</code></p>
+<pre><code>$ sudo curl -fSLs &quot;https://github.com/genuinetools/netns/releases/download/v0.5.3/netns-linux-amd64&quot; \
+   -o &quot;/usr/local/bin/netns&quot; \
+   &amp;&amp; sudo chmod a+x &quot;/usr/local/bin/netns&quot;
+</code></pre><p>Check if it works</p>
+<pre><code>$ netns version
+netns:
+ version     : v0.5.3
+ git hash    : 9b103a1
+ go version  : go1.10.7
+ go compiler : gc
+ platform    : linux/amd64
+</code></pre><p>And then install <code>faas-containerd</code></p>
+<pre><code>$ sudo curl -fSLs &quot;https://github.com/alexellis/faas-containerd/releases/download/0.3.0/faas-containerd&quot; \
+   -o &quot;/usr/local/bin/faas-containerd&quot; \
+   &amp;&amp; sudo chmod a+x &quot;/usr/local/bin/faas-containerd&quot;
+</code></pre><p>Next put some configuration in some files</p>
+<pre><code>$ sudo mkdir -p /etc/cni/net.d
+$ sudo vi /etc/cni/net.d/10-mynet.conf
+</code></pre><p>Put the below content and write it into the file</p>
+<pre><code>{
+    &quot;cniVersion&quot;: &quot;0.3.0&quot;,
+    &quot;name&quot;: &quot;mynet&quot;,
+    &quot;type&quot;: &quot;bridge&quot;,
+    &quot;bridge&quot;: &quot;cni0&quot;,
+    &quot;isGateway&quot;: true,
+    &quot;ipMasq&quot;: true,
+    &quot;ipam&quot;: {
+        &quot;type&quot;: &quot;host-local&quot;,
+        &quot;subnet&quot;: &quot;10.244.1.0/24&quot;,
+        &quot;routes&quot;: [
+            { &quot;dst&quot;: &quot;0.0.0.0/0&quot;  }
+        ]
+    }
+}
+</code></pre><p>Now run <code>containerd</code></p>
+<pre><code>$ sudo containerd
+</code></pre><p>Let <code>containerd</code> run in this shell. Now open another shell, ssh into
+the VM and run <code>faas-containerd</code></p>
+<pre><code>$ multipass exec faas bash
+$ sudo faas-containerd
+</code></pre><p>Again open another shell 😅 and ssh into the VM. This time we are going
+to deploy functions. The functions will run in containers. We will use
+<code>faas</code> CLI to deploy the functions. Get the <code>faas</code> CLI first</p>
+<pre><code>$ multipass exec faas bash
+$ curl -sLfS https://cli.openfaas.com | sudo sh
+</code></pre><p>Next let's deploy our function! 😁</p>
+<pre><code>$ faas store deploy figlet -g 127.0.0.1:8081 --update=true --replace=false
+</code></pre><p>You will notice the output like this</p>
+<pre><code>WARNING! Communication is not secure, please consider using HTTPS. Letsencrypt.org offers free SSL/TLS certificates.
+Function figlet already exists, attempting rolling-update.
+
+Deployed. 200 OK.
+URL: http://127.0.0.1:8081/function/figlet
+</code></pre><p>Now check the <code>containerd</code> logs and <code>faas-containerd</code> logs to see some
+action behind the scenes and to know that there are no errors and that
+everything is working fine and the deployment went through. Now that
+out function is deployed, let's see if it's running and what's the
+output it gives</p>
+<p>Invoke it using this</p>
+<pre><code>$ echo &quot;openfaas&quot; | faas invoke figlet -g 127.0.0.1:8081
+                         __
+  ___  _ __   ___ _ __  / _| __ _  __ _ ___
+ / _ \| '_ \ / _ \ '_ \| |_ / _` |/ _` / __|
+| (_) | |_) |  __/ | | |  _| (_| | (_| \__ \
+ \___/| .__/ \___|_| |_|_|  \__,_|\__,_|___/
+      |_|
+</code></pre><p>You can see how the &ldquo;openfaas&rdquo; string comes as a cool art!
+You can try out more strings other than &ldquo;openfaas&rdquo; as input 😄</p>
+<p>To list all your functions, use</p>
+<pre><code>$ faas list -g 127.0.0.1:8081
+
+Function                        Invocations     Rep
+figlet                          0               0
+</code></pre><p>Let's deploy more functions! 😉</p>
+<p>Now a function that pings using <code>ping</code> command</p>
+<pre><code>$ faas deploy --image alexellis2/ping:0.1 \
+  -g 127.0.0.1:8081 --update=true --replace=false --name ping
+</code></pre><p>Let's invoke the function</p>
+<pre><code>$ echo &quot;-c 1 8.8.8.8&quot; | faas invoke ping -g 127.0.0.1:8081
+
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=52 time=5.10 ms
+
+--- 8.8.8.8 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 5.095/5.095/5.095/0.000 ms
+</code></pre><p>You can see how the ping function gives output! We are basically
+running the <code>ping</code> command as a function, and the input here is
+<code>-c 1 8.8.8.8</code>. So, it's the same as running the below command</p>
+<pre><code>$ ping -c 1 8.8.8.8
+
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=53 time=30.8 ms
+
+--- 8.8.8.8 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 30.842/30.842/30.842/0.000 ms
+</code></pre><p>More functions? 😉Let's deploy a <code>nodeinfo</code> function which gives node
+information</p>
+<pre><code>$ faas store deploy nodeinfo \
+  -g 127.0.0.1:8081 --update=true --replace=false
+</code></pre><p>Let's invoke it!</p>
+<pre><code>$ echo &quot;&quot; | faas-cli invoke nodeinfo -g 127.0.0.1:8081
+
+Hostname: localhost
+
+Platform: linux
+Arch: x64
+CPU count: 1
+Uptime: 4105
+</code></pre><p>You can see some information about the VM. For verbose information like
+the model of CPUs and the networks interfaces, use <code>verbose</code> as input
+like this</p>
+<pre><code>Hostname: localhost
+
+Platform: linux
+Arch: x64
+CPU count: 1
+Uptime: 4158
+[ { model: 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz',
+    speed: 2193,
+    times:
+     { user: 230300, nice: 15800, sys: 127800, idle: 40662100, irq: 0 } } ]
+{ lo:
+   [ { address: '127.0.0.1',
+       netmask: '255.0.0.0',
+       family: 'IPv4',
+       mac: '00:00:00:00:00:00',
+       internal: true,
+       cidr: '127.0.0.1/8' },
+     { address: '::1',
+       netmask: 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+       family: 'IPv6',
+       mac: '00:00:00:00:00:00',
+       scopeid: 0,
+       internal: true,
+       cidr: '::1/128' } ],
+  eth0:
+   [ { address: '172.19.0.5',
+       netmask: '255.255.0.0',
+       family: 'IPv4',
+       mac: 'c6:43:d5:16:c3:9a',
+       internal: false,
+       cidr: '172.19.0.5/16' },
+     { address: 'fe80::c443:d5ff:fe16:c39a',
+       netmask: 'ffff:ffff:ffff:ffff::',
+       family: 'IPv6',
+       mac: 'c6:43:d5:16:c3:9a',
+       scopeid: 10,
+       internal: false,
+       cidr: 'fe80::c443:d5ff:fe16:c39a/64' } ] }
+</code></pre><p>Now that we have many functions, let's see how it runs as containers</p>
+<p>So, we have three functions</p>
+<pre><code>$ faas list -g 127.0.0.1:8081
+
+Function                        Invocations     Replicas
+figlet                          0               0
+ping                            0               0
+nodeinfo                        0               0
+</code></pre><p>We can use the <code>ctr</code> command to see the running containers</p>
+<pre><code>$ sudo ctr -n openfaas-fn containers list
+
+CONTAINER    IMAGE                                  RUNTIME
+figlet       docker.io/functions/figlet:0.13.0      io.containerd.runc.v2
+nodeinfo     docker.io/functions/nodeinfo:latest    io.containerd.runc.v2
+ping         docker.io/alexellis2/ping:0.1          io.containerd.runc.v2
+</code></pre><p>So, those are your containers. That's it for this post. I have shown
+you how to run the cool openfaas in a VM.</p>
+<p>You can check more about openfaas and
+containerd <a href="https://blog.alexellis.io/faas-containerd-serverless-without-kubernetes/">here</a>
+and about why it's fascinating, even though there are other ways to run
+openfaas, like running it on Kubernetes.</p>
+<p>Lookout for more posts about openfaas while I try it out! 😁</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/helm-3-charts-and-oci-registries/" class="link black dim">
-        Helm 3 Charts and OCI registries
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
-With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
- The commands being used in the video:
-$ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.
-    </div>
-  </div>
-</div>
-</div>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-open-source-journey/" class="link black dim">
-        My Open Source Journey
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I think the first time I heard the term &ldquo;Open Source&rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I'm able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.
-    </div>
-  </div>
-</div>
-</div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-first-post/" class="link black dim">
-        My First Post!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Now that you are reading this post, it means I finally created another blog and hosted it too 😛 Yay! 🎉
-My previous blogs that I hosted using Blogger during college -
-https://semlabs.blogspot.com/
-https://semlectures.blogspot.com/
-And now I have created this blog. I use these to create and host it:
- Hugo static site generator GitHub Pages Visual Studio Code Editor Markdown Emoji to put the awesome emojis in markdown 😁  Hoping to write tons of posts 😉 Stay tuned!
-    </div>
-  </div>
-</div>
-</div>
-      
+      </div>
     </section>
 
-</article>
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
