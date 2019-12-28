@@ -15,7 +15,7 @@ I haven't digged deep into the details. I usually like to see something
 work before getting into the details of how it works. Without much ado,
 I'll start!
 
-First, we need a Linux VM. I chose to run an Ubuntu VM using
+First, we need a Linux VM. I chose to run an Ubuntu VM in my local using
 [multipass](https://github.com/canonical/multipass/). You can use any
 Linux VM. 
 
