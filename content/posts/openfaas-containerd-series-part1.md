@@ -1,5 +1,5 @@
 ---
-title: "Openfaas Containerd Series Part 1"
+title: "OpenFaaS with containerd Series Part 1"
 date: 2019-12-27T19:49:59+05:30
 ---
 
