@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog </title>
+    <title>Karuppiah&#39;s Blog  | Helm values schema gen Plugin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="generator" content="Hugo 0.61.0" />
     
@@ -24,19 +24,30 @@
     
 
     
-      <link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-    
 
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
-<meta property="og:updated_time" content="2019-12-28T17:31:50+05:30" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+    <meta property="og:title" content="Helm values schema gen Plugin" />
+<meta property="og:description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
+In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
+The What Recently, helm released their version 3 which was a big thing. It has some really cool features and you can expect more in the v3 series" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/helm-values-schema-gen-plugin/" />
+<meta property="article:published_time" content="2019-12-28T17:31:50+05:30" />
+<meta property="article:modified_time" content="2019-12-28T17:31:50+05:30" />
+<meta itemprop="name" content="Helm values schema gen Plugin">
+<meta itemprop="description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
+In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
+The What Recently, helm released their version 3 which was a big thing. It has some really cool features and you can expect more in the v3 series">
+<meta itemprop="datePublished" content="2019-12-28T17:31:50&#43;05:30" />
+<meta itemprop="dateModified" content="2019-12-28T17:31:50&#43;05:30" />
+<meta itemprop="wordCount" content="1120">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Helm values schema gen Plugin"/>
+<meta name="twitter:description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
+In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
+The What Recently, helm released their version 3 which was a big thing. It has some really cool features and you can expect more in the v3 series"/>
 
       
 <script type="application/javascript">
@@ -56,9 +67,11 @@ if (!doNotTrack) {
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -110,146 +123,177 @@ if (!doNotTrack) {
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height nested-img">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Helm values schema gen Plugin</h1>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/helm-values-schema-gen-plugin/" class="link black dim">
-        Helm values schema gen Plugin
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
-In this post I'm going to tell the story behind the plugin. First the what, then the why, and a bit of how.
-The What Recently, helm released their version 3 which was a big thing. It has some really cool features and you can expect more in the v3 series
-    </div>
-  </div>
-</div>
-</div>
+      <time class="f6 mv4 dib tracked" datetime="2019-12-28T17:31:50&#43;05:30">December 28, 2019</time>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/openfaas-containerd-series-part1/" class="link black dim">
-        OpenFaaS with containerd Series Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is one of the posts in a series where I'm going to write about openfaas and containerd working together. If you haven't tried openfaas before, it's interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I'll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.
-    </div>
-  </div>
-</div>
-</div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/a-conference-story/" class="link black dim">
-        A Conference Story
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Arvind is attending KubeCon for the first time. He's on his own.
-Arvind: Wow, this is all so grand! Let's find a place to sit and enjoy the day and find new friends maybe!
-Arvind finds his place. He finds himself surrounded by a lot of people.
-There's a constant buzz around him. People talking about life and work.
-The Conference starts with the keynote and the talks follow.
-After some talks, it's break time.
-    </div>
-  </div>
-</div>
-</div>
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="tldr">tldr</h3>
+<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
+$ helm schem-gen &lt;values-yaml-file&gt;
+</code></pre><h3 id="longer-version">Longer version</h3>
+<p>Today I finally created a <a href="https://helm.sh">Helm</a> plugin that I wanted
+to for so long. The repo is <a href="https://github.com/karuppiah7890/helm-schema-gen">here</a></p>
+<p>In this post I'm going to tell the story behind the plugin. First the
+what, then the why, and a bit of how.</p>
+<h4 id="the-what">The What</h4>
+<p>Recently, helm released their <a href="https://github.com/helm/helm/releases/tag/v3.0.0">version 3</a>
+which was a <a href="https://www.cncf.io/announcement/2019/11/13/helm-reaches-version-3/">big</a>
+<a href="https://www.youtube.com/watch?v=afCRt5Gd6Rk">thing</a>. It has some
+really cool features and you can expect more in the v3 series</p>
+<p>One of the features in v3 is, checking the schema of <code>values.yaml</code>
+using <a href="https://json-schema.org/">json schema</a>. The schema is present
+inside the helm chart as a file called <code>values.schema.json</code> which
+contains the json schema. So, now if you make mistakes in the
+<code>values.yaml</code> you will know it if you have the schema file with proper
+schema definition. Schema validation check happens whenever you run
+<code>lint</code>, <code>template</code>, <code>install</code> or <code>upgrade</code>. You can read more about it
+<a href="https://helm.sh/docs/topics/charts/#schema-files">here</a></p>
+<p>Now that you know about this feature, I can tell about the helm plugin
+I created. As you can already see in the title, I created a plugin to
+generate a values schema json for a given <code>values.yaml</code>.</p>
+<h4 id="the-why">The Why</h4>
+<p>The why might look very obvious. But I actually have multiple whys and
+not all of them are obvious I think. The first reason for creating the
+plugin is - ease of use. So, when I saw this feature in Helm v3, I was
+quite excited to check it out. I wanted to try it out with the
+default chart that comes with this command:</p>
+<pre><code>$ helm create test
+</code></pre><p>But when I saw the big <code>values.yaml</code> in the <code>test</code> chart, I was
+confused as to how I would write a very big schema file for it.
+I was also thinking why the default chart did not have a schema
+file too, so that I could try it out. I
+<a href="https://github.com/helm/helm/issues/6985">asked the maintainers about this</a>
+and they felt that it's better to keep the advanced features out of the
+default helm chart, so that it doesn't confuse the first time users.
+So, I set out to try the feature by writing the schema file by hand
+and by checking the docs on <a href="https://json-schema.org/">json schema</a>
+and the
+<a href="https://helm.sh/docs/topics/charts/#schema-files">example in the helm docs</a>.
+I didn't write the whole schema file for the given <code>values.yaml</code>. I had
+just written the schema for some keys and checked how it works while
+linting and templating.</p>
+<p>And then suddenly I had this idea! Why do I have to write this big
+thing by hand? It's so tedious and not easy. Also, I have the
+<code>values.yaml</code>, why can't I detect the type of each and every key and
+value and create the json schema? And that's how it all started.</p>
+<p>Also, there are other reasons to create the plugin - many might still
+be using helm v2, and it will take some time to move to helm v3. But
+the migration to helm v3 should be really easy. That's why the
+maintainers created <a href="https://github.com/helm/helm-2to3">helm-2to3</a>
+plugin for the easy migration. People migrate to new versions for the
+features and support. If you don't know, Helm v2 support will stop at
+<a href="https://helm.sh/blog/2019-10-22-helm-2150-released/#helm-2-support-plan">some point</a>.
+And Helm v3 has really good features like values schema json, support
+for pushing charts to OCI (<a href="https://www.opencontainers.org">https://www.opencontainers.org</a>) registries,
+removal of tiller and <a href="https://github.com/helm/helm/releases/tag/v3.0.0">some more!</a>.
+Now, some of these features might need some work before you use the
+feature. This the amount of work needed to adopt a feature a sofware
+offers. In the case of the values schema json, this is the work where
+you sit down and write the whole schema by hand, which will take a lot
+of time if you maintain a lot of charts. Also, why do by hand when a
+computer can do it for you? 😉 So yeah, that's another motivation and
+the why for creating the plugin. Easy adoption of new features. It's
+pretty important - because, marketing the new version of a software is
+one thing, which leads to people seeing it. And when more people see
+it, it means good marketing has been done. And then when people use
+the new version of the software, then that's conversion, and that's
+what matters. And that happens only when adoption of the new version
+of the software is easy. Adoption includes being able to migrate to
+the new version easily and also being able to use the new features
+easily, which is usually the reason to even upgrade, apart from
+support. So, this plugin will help people move to Helm v3 and be able
+to use one new feature easily - the value schema json check feature.</p>
+<h4 id="the-how">The How</h4>
+<p>I'll tell a bit of the how I created the plugin.</p>
+<p>When I got the idea, I immediately started checking out golang
+libraries that can help me with finding the type of an unstructured
+object (<code>values.yaml</code> data). I
+found <a href="https://github.com/mcuadros/go-jsonschema-generator">one good library</a>,
+but it worked for structured data like many others. I was
+meddling with it to make it work for unstructured data. And then I left
+it at some point. And then after a month, I recently started working on
+it. I finally made the library work
+<a href="https://github.com/karuppiah7890/go-jsonschema-generator">in my fork</a>.
+And then created a separate repo for the command line tool for the helm
+plugin. Now I spent hours checking how it's all done by checking code
+of other helm plugins. And I had decided to use <a href="https://github.com/urfave/cli">urfave/cli</a>
+at first, but the UI for it seemed a bit different, compared to the
+natural UI of <a href="https://github.com/spf13/cobra">cobra</a> which I saw in
+other plugins. It felt like I had to customize quite a bit in
+<code>urfave/cli</code> library, so I just stopped and switched to <code>cobra</code>.
+And then I chose to build the simple binary for the plugin. I ran it
+a few times and it worked. And then I wanted to create a release
+strategy, so that people can install the plugin and use it. I used
+<a href="https://goreleaser.com/"><code>goreleaser</code></a> to release the binary, and
+for CI/CD I used <a href="https://github.com/features/actions">GitHub Actions</a>.
+I had to create a shell script for installing the plugin. I noticed
+many other plugins using a script that they had written or copied from
+another plugin. I didn't want to copy it or maintain it really, and I
+knew <a href="https://github.com/goreleaser/godownloader"><code>godownloader</code></a> is
+cool, so I just used it and wrote a two liner script on top of it for
+customization. And then I released it finally!</p>
+<p>I tried out the plugin and everything worked really smooth! And then
+I decided to write a small blog post about it, and it turned out to be
+this big 👆! 😛</p>
+<p>That's all! Have fun trying out the plugin!</p>
+<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
+$ helm schem-gen &lt;values-yaml-file&gt;
+</code></pre><ul class="pa0">
+  
+</ul>
+<div class="mt6">
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/debugging-go-in-intellij-idea-or-goland/" class="link black dim">
-        Debugging Go in Intellij IDEA / GoLand
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values.
-    </div>
-  </div>
-</div>
-</div>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/helm-3-charts-and-oci-registries/" class="link black dim">
-        Helm 3 Charts and OCI registries
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
-With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
- The commands being used in the video:
-$ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.
-    </div>
-  </div>
-</div>
-</div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-open-source-journey/" class="link black dim">
-        My Open Source Journey
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I think the first time I heard the term &ldquo;Open Source&rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I'm able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-first-post/" class="link black dim">
-        My First Post!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Now that you are reading this post, it means I finally created another blog and hosted it too 😛 Yay! 🎉
-My previous blogs that I hosted using Blogger during college -
-https://semlabs.blogspot.com/
-https://semlectures.blogspot.com/
-And now I have created this blog. I use these to create and host it:
- Hugo static site generator GitHub Pages Visual Studio Code Editor Markdown Emoji to put the awesome emojis in markdown 😁  Hoping to write tons of posts 😉 Stay tuned!
-    </div>
-  </div>
-</div>
-</div>
-      
+      </div>
     </section>
 
-</article>
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
