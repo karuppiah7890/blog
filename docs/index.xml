@@ -17,9 +17,10 @@
       <pubDate>Sat, 28 Dec 2019 17:31:50 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/helm-values-schema-gen-plugin/</guid>
-      <description>tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &amp;lt;values-yaml-file&amp;gt; Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
+      <description>tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &amp;lt;values-yaml-file&amp;gt; GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
+Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
 In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
-The What Recently, helm released their version 3 which was a big thing. It has some really cool features and you can expect more in the v3 series</description>
+The What Recently, helm released their version 3 which was a big thing.</description>
     </item>
     
     <item>

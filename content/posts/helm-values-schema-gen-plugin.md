@@ -10,6 +10,8 @@ $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
 $ helm schem-gen <values-yaml-file>
 ```
 
+GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
+
 ### Longer version
 
 Today I finally created a [Helm](https://helm.sh) plugin that I wanted
