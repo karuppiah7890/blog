@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Dec 2019 17:31:50 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 17:40:02 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Different Ways to Contribute to Open Source</title>
+      <link>https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/</link>
+      <pubDate>Wed, 29 Jan 2020 17:40:02 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/</guid>
+      <description>This is not an exhaustive list
+ Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&#39;s an issue with the software.</description>
+    </item>
     
     <item>
       <title>Helm values schema gen Plugin</title>

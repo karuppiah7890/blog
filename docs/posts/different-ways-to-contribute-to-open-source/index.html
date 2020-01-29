@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog  | Helm values schema gen Plugin</title>
+    <title>Karuppiah&#39;s Blog  | Different Ways to Contribute to Open Source</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="generator" content="Hugo 0.61.0" />
     
@@ -25,32 +25,26 @@
 
     
 
-    <meta property="og:title" content="Helm values schema gen Plugin" />
-<meta property="og:description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
-Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
-In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
-The What Recently, helm released their version 3 which was a big thing." />
+    <meta property="og:title" content="Different Ways to Contribute to Open Source" />
+<meta property="og:description" content="This is not an exhaustive list
+ Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&#39;s an issue with the software." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/helm-values-schema-gen-plugin/" />
-<meta property="article:published_time" content="2019-12-28T17:31:50+05:30" />
-<meta property="article:modified_time" content="2019-12-28T17:31:50+05:30" />
-<meta itemprop="name" content="Helm values schema gen Plugin">
-<meta itemprop="description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
-Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
-In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
-The What Recently, helm released their version 3 which was a big thing.">
-<meta itemprop="datePublished" content="2019-12-28T17:31:50&#43;05:30" />
-<meta itemprop="dateModified" content="2019-12-28T17:31:50&#43;05:30" />
-<meta itemprop="wordCount" content="1127">
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/" />
+<meta property="article:published_time" content="2020-01-29T17:40:02+05:30" />
+<meta property="article:modified_time" content="2020-01-29T17:40:02+05:30" />
+<meta itemprop="name" content="Different Ways to Contribute to Open Source">
+<meta itemprop="description" content="This is not an exhaustive list
+ Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&#39;s an issue with the software.">
+<meta itemprop="datePublished" content="2020-01-29T17:40:02&#43;05:30" />
+<meta itemprop="dateModified" content="2020-01-29T17:40:02&#43;05:30" />
+<meta itemprop="wordCount" content="1259">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Helm values schema gen Plugin"/>
-<meta name="twitter:description" content="tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &lt;values-yaml-file&gt; GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
-Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
-In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
-The What Recently, helm released their version 3 which was a big thing."/>
+<meta name="twitter:title" content="Different Ways to Contribute to Open Source"/>
+<meta name="twitter:description" content="This is not an exhaustive list
+ Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&#39;s an issue with the software."/>
 
       
 <script type="application/javascript">
@@ -141,126 +135,42 @@ if (!doNotTrack) {
           
         POSTS
       </p>
-      <h1 class="f1 athelas mb1">Helm values schema gen Plugin</h1>
+      <h1 class="f1 athelas mb1">Different Ways to Contribute to Open Source</h1>
       
-      <time class="f6 mv4 dib tracked" datetime="2019-12-28T17:31:50&#43;05:30">December 28, 2019</time>
+      <time class="f6 mv4 dib tracked" datetime="2020-01-29T17:40:02&#43;05:30">January 29, 2020</time>
       
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="tldr">tldr</h3>
-<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
-$ helm schem-gen &lt;values-yaml-file&gt;
-</code></pre><p>GitHub repo for the plugin - <a href="https://github.com/karuppiah7890/helm-schema-gen">https://github.com/karuppiah7890/helm-schema-gen</a></p>
-<h3 id="longer-version">Longer version</h3>
-<p>Today I finally created a <a href="https://helm.sh">Helm</a> plugin that I wanted
-to for so long. The repo is <a href="https://github.com/karuppiah7890/helm-schema-gen">here</a></p>
-<p>In this post I'm going to tell the story behind the plugin. First the
-what, then the why, and a bit of how.</p>
-<h4 id="the-what">The What</h4>
-<p>Recently, helm released their <a href="https://github.com/helm/helm/releases/tag/v3.0.0">version 3</a>
-which was a <a href="https://www.cncf.io/announcement/2019/11/13/helm-reaches-version-3/">big</a>
-<a href="https://www.youtube.com/watch?v=afCRt5Gd6Rk">thing</a>. It has some
-really cool features and you can expect more in the v3 series</p>
-<p>One of the features in v3 is, checking the schema of <code>values.yaml</code>
-using <a href="https://json-schema.org/">json schema</a>. The schema is present
-inside the helm chart as a file called <code>values.schema.json</code> which
-contains the json schema. So, now if you make mistakes in the
-<code>values.yaml</code> you will know it if you have the schema file with proper
-schema definition. Schema validation check happens whenever you run
-<code>lint</code>, <code>template</code>, <code>install</code> or <code>upgrade</code>. You can read more about it
-<a href="https://helm.sh/docs/topics/charts/#schema-files">here</a></p>
-<p>Now that you know about this feature, I can tell about the helm plugin
-I created. As you can already see in the title, I created a plugin to
-generate a values schema json for a given <code>values.yaml</code>.</p>
-<h4 id="the-why">The Why</h4>
-<p>The why might look very obvious. But I actually have multiple whys and
-not all of them are obvious I think. The first reason for creating the
-plugin is - ease of use. So, when I saw this feature in Helm v3, I was
-quite excited to check it out. I wanted to try it out with the
-default chart that comes with this command:</p>
-<pre><code>$ helm create test
-</code></pre><p>But when I saw the big <code>values.yaml</code> in the <code>test</code> chart, I was
-confused as to how I would write a very big schema file for it.
-I was also thinking why the default chart did not have a schema
-file too, so that I could try it out. I
-<a href="https://github.com/helm/helm/issues/6985">asked the maintainers about this</a>
-and they felt that it's better to keep the advanced features out of the
-default helm chart, so that it doesn't confuse the first time users.
-So, I set out to try the feature by writing the schema file by hand
-and by checking the docs on <a href="https://json-schema.org/">json schema</a>
-and the
-<a href="https://helm.sh/docs/topics/charts/#schema-files">example in the helm docs</a>.
-I didn't write the whole schema file for the given <code>values.yaml</code>. I had
-just written the schema for some keys and checked how it works while
-linting and templating.</p>
-<p>And then suddenly I had this idea! Why do I have to write this big
-thing by hand? It's so tedious and not easy. Also, I have the
-<code>values.yaml</code>, why can't I detect the type of each and every key and
-value and create the json schema? And that's how it all started.</p>
-<p>Also, there are other reasons to create the plugin - many might still
-be using helm v2, and it will take some time to move to helm v3. But
-the migration to helm v3 should be really easy. That's why the
-maintainers created <a href="https://github.com/helm/helm-2to3">helm-2to3</a>
-plugin for the easy migration. People migrate to new versions for the
-features and support. If you don't know, Helm v2 support will stop at
-<a href="https://helm.sh/blog/2019-10-22-helm-2150-released/#helm-2-support-plan">some point</a>.
-And Helm v3 has really good features like values schema json, support
-for pushing charts to OCI (<a href="https://www.opencontainers.org">https://www.opencontainers.org</a>) registries,
-removal of tiller and <a href="https://github.com/helm/helm/releases/tag/v3.0.0">some more!</a>.
-Now, some of these features might need some work before you use the
-feature. This the amount of work needed to adopt a feature a sofware
-offers. In the case of the values schema json, this is the work where
-you sit down and write the whole schema by hand, which will take a lot
-of time if you maintain a lot of charts. Also, why do by hand when a
-computer can do it for you? 😉 So yeah, that's another motivation and
-the why for creating the plugin. Easy adoption of new features. It's
-pretty important - because, marketing the new version of a software is
-one thing, which leads to people seeing it. And when more people see
-it, it means good marketing has been done. And then when people use
-the new version of the software, then that's conversion, and that's
-what matters. And that happens only when adoption of the new version
-of the software is easy. Adoption includes being able to migrate to
-the new version easily and also being able to use the new features
-easily, which is usually the reason to even upgrade, apart from
-support. So, this plugin will help people move to Helm v3 and be able
-to use one new feature easily - the value schema json check feature.</p>
-<h4 id="the-how">The How</h4>
-<p>I'll tell a bit of the how I created the plugin.</p>
-<p>When I got the idea, I immediately started checking out golang
-libraries that can help me with finding the type of an unstructured
-object (<code>values.yaml</code> data). I
-found <a href="https://github.com/mcuadros/go-jsonschema-generator">one good library</a>,
-but it worked for structured data like many others. I was
-meddling with it to make it work for unstructured data. And then I left
-it at some point. And then after a month, I recently started working on
-it. I finally made the library work
-<a href="https://github.com/karuppiah7890/go-jsonschema-generator">in my fork</a>.
-And then created a separate repo for the command line tool for the helm
-plugin. Now I spent hours checking how it's all done by checking code
-of other helm plugins. And I had decided to use <a href="https://github.com/urfave/cli">urfave/cli</a>
-at first, but the UI for it seemed a bit different, compared to the
-natural UI of <a href="https://github.com/spf13/cobra">cobra</a> which I saw in
-other plugins. It felt like I had to customize quite a bit in
-<code>urfave/cli</code> library, so I just stopped and switched to <code>cobra</code>.
-And then I chose to build the simple binary for the plugin. I ran it
-a few times and it worked. And then I wanted to create a release
-strategy, so that people can install the plugin and use it. I used
-<a href="https://goreleaser.com/"><code>goreleaser</code></a> to release the binary, and
-for CI/CD I used <a href="https://github.com/features/actions">GitHub Actions</a>.
-I had to create a shell script for installing the plugin. I noticed
-many other plugins using a script that they had written or copied from
-another plugin. I didn't want to copy it or maintain it really, and I
-knew <a href="https://github.com/goreleaser/godownloader"><code>godownloader</code></a> is
-cool, so I just used it and wrote a two liner script on top of it for
-customization. And then I released it finally!</p>
-<p>I tried out the plugin and everything worked really smooth! And then
-I decided to write a small blog post about it, and it turned out to be
-this big 👆! 😛</p>
-<p>That's all! Have fun trying out the plugin!</p>
-<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
-$ helm schem-gen &lt;values-yaml-file&gt;
-</code></pre><ul class="pa0">
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This is not an exhaustive list</p>
+<ol>
+<li>Donate Money</li>
+<li>Write code - bug fixes, features, security issue fixes, performance improvements</li>
+<li>Write docs, Fix docs</li>
+<li>Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue</li>
+<li>Report bugs that you notice while using the software</li>
+<li>Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it's an issue with the software. Usually people confirm it in comments or by labelling it bug. Sometimes people label it bug, even if it's not confirmed. It really depends on the project and how they work 😅</li>
+<li>Debug issues - first step to fix a bug is to debug it and find the root cause. Use print statements and logs or debugger to find root cause. After finding root cause, you may or may not find it easy to fix the issue. Like, it's possible you don't know why it's happening but know which part of the code is causing it. Put all the debugging details into the issue as a comment so that someone looking at the issue might find it useful to work further on it. I have done this a few times. I did this when I tried to fix the issue, but found it hard to comprehend. But I could find the root cause, so I just posted that</li>
+<li>At some point you will know you won't be contributing to the project for a long time, you might wanna try some other projects. Or you might wanna just continue with the same. In any case, one awesome thing you can do is, mentor and help more contributors to contribute. It's basically scaling contributions. As a single person, you can only do so much. Now think what multiple people can do, if you help them contribute like how the maintainers helped you. Different ways to help - after you have some context on the project, you will know some of the issues that are very easy to fix. DONT pick them. Let some new contributors pick it up. Also, usually there's no authority or hierarchy. Everyone is usually very friendly. So, you are basically helping friends. If you find bad conduct, report to maintainers for further action. That's a different story.</li>
+<li>Anyways, so, now you have left the easy issue alone, is that enough? No, not exactly. It's a good start, there are other things too. Now the problem with easy issues is that, many people try to fix it. And open source also has communication issues. Some people not communicating that they are working on fixing an issue, and then raising PRs directly, and multiple people doing that - it's basically wasted effort because only one PR will get accepted. Unfortunately there's no one silver bullet to this. But have this in mind and help people communicate. Also, if someone says they are working on something, and someone new comes and says they also work on it very soon after the other person, you can help by saying that the first person could try it. Also, there might be cases where a person might just block the issue by saying they will work on it, and they might even get assigned. It's good to get help from maintainers to decide what can be done when there's an issue that's been blocked and with no progress. It happens. Unfortunately I have done it too a few times. So these days I don't commit very easily these days. I first analyze and see how much time I have and then commit. Recently I have committed to very few and very small issues only</li>
+<li>Now once the PRs are created for these easy issues, help review them. Some basic things that I did was - do small and simple checks - like check if the pipeline for the PR is passing, check if there is test code for the PR - always advocate for test code. And then you can read the code and give your opinions. And remember, be friendly. The other person is just trying to help the project by spending time and effort. For tests, I know you all know it's very important, I still want to give one example from my experience - so, there was one issue in helm for which a person raised PR and fixed it. Now he didn't write a test for it and it was actually a very very small and simple fix. Now, later, like quite after some time, someone else was working on fixing something else and changed the fix code of the other PR and this introduced the old bug again. Now the person who fixed that old bug came and reported again. Now this time I saw this and said that tests can help prevent this. He thoughtfully wrote a really good test that the maintainers appreciated, but I didn't see it, mostly because I had no idea about that part of the code and so didn't check. But the good thing that happened is, the next time someone changes that fix code, the tests will fail and we'll know. Always advocate for tests for bug fixes, security fixes and features too. For performance - Idk if people write test and how they do. I know people do benchmarks. Not sure if people have a test to make sure performance doesn't go down the previous one. May be someone talk about that sometime, if they know about it</li>
+<li>Pair with people in office and contribute. This helps some people to get started. A lot of people just have trouble in getting started. But if you pair once or a few times. Then they might get comfortable with contributing and will be on their own. This is also one way to scale contributions from a single person, that is you, to multiple people.</li>
+<li>Talk about open source when you talk tech. This is anywhere - just random tech conversations, or a session like this, or meetup talk, or a workshop, or a conference. Anywhere. Just talk about open source project - it's basically creating awareness and yeah, marketing :p</li>
+<li>Write tutorials in your blog on open source projects</li>
+<li>Create video tutorials about open source projects</li>
+<li>Write experiences about open source and open source projects in your blog. (This can be a general thing, or about a particular open source project)</li>
+<li>Answer questions about open source and open source projects in the community. Many projects have its own community - which includes physical meetups and digital forums too - like slack, discord, discourse, and more. Open source in general also has lot of general meetups, conferences, and digital communities where people talk about multiple projects from different domains</li>
+</ol>
+<p>Just ending this with a thing - did you know there's open source hardware? Did you know there's open source art? Also, I'm thinking open source knowledge could also be a term. I mean, most of the Internet is just open knowledge! Blogs, articles, videos, what not.</p>
+<p>By the way, a lot of this was based on experience, and for many open source
+contributors it's kind of obvious I think. Generally, I believe that - anything
+open source we do, that is, anything related to open source, then it's contributing
+to open source.</p>
+<p>Some (or all? I don't know 😅) of these are also mentioned here -</p>
+<p><a href="https://github.com/openfaas/faas/blob/master/CONTRIBUTING.md#how-can-i-get-involved">https://github.com/openfaas/faas/blob/master/CONTRIBUTING.md#how-can-i-get-involved</a></p>
+<p>I think the above is the only place where I saw a lot of diverse ways
+to contribute, unlike a lot of other contributing.md files</p>
+<ul class="pa0">
   
 </ul>
 <div class="mt6">
