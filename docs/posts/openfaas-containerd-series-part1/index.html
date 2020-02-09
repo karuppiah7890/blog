@@ -6,7 +6,7 @@
     
     <title>Karuppiah&#39;s Blog  | OpenFaaS with containerd Series Part 1</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="generator" content="Hugo 0.64.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -26,15 +26,15 @@
     
 
     <meta property="og:title" content="OpenFaaS with containerd Series Part 1" />
-<meta property="og:description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM." />
+<meta property="og:description" content="This is one of the posts in a series where I&rsquo;m going to write about openfaas and containerd working together. If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/openfaas-containerd-series-part1/" />
 <meta property="article:published_time" content="2019-12-27T19:49:59+05:30" />
 <meta property="article:modified_time" content="2019-12-27T19:49:59+05:30" />
 <meta itemprop="name" content="OpenFaaS with containerd Series Part 1">
-<meta itemprop="description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.">
+<meta itemprop="description" content="This is one of the posts in a series where I&rsquo;m going to write about openfaas and containerd working together. If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.">
 <meta itemprop="datePublished" content="2019-12-27T19:49:59&#43;05:30" />
 <meta itemprop="dateModified" content="2019-12-27T19:49:59&#43;05:30" />
 <meta itemprop="wordCount" content="1138">
@@ -43,8 +43,8 @@ In this first post, I&#39;ll just show you what I tried out recently. This is me
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenFaaS with containerd Series Part 1"/>
-<meta name="twitter:description" content="This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM."/>
+<meta name="twitter:description" content="This is one of the posts in a series where I&rsquo;m going to write about openfaas and containerd working together. If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM."/>
 
       
 <script type="application/javascript">
@@ -142,16 +142,16 @@ if (!doNotTrack) {
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This is one of the posts in a series where I'm going to write about
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This is one of the posts in a series where I&rsquo;m going to write about
 <a href="https://www.openfaas.com/">openfaas</a> and containerd working together.
-If you haven't tried openfaas before, it's interesting, give it a try!
+If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try!
 This is one of the posts which you can use to try openfaas!</p>
-<p>In this first post, I'll just show you what I tried out recently. This
+<p>In this first post, I&rsquo;ll just show you what I tried out recently. This
 is me showing you how to just run openfaas along with containerd in one
-VM. I'm not going to explain the details about how it works and sorts.
-I haven't digged deep into the details. I usually like to see something
+VM. I&rsquo;m not going to explain the details about how it works and sorts.
+I haven&rsquo;t digged deep into the details. I usually like to see something
 work before getting into the details of how it works. Without much ado,
-I'll start!</p>
+I&rsquo;ll start!</p>
 <p>First, we need a Linux VM. I chose to run an Ubuntu VM in my local using
 <a href="https://github.com/canonical/multipass/">multipass</a>. You can use any
 Linux VM.</p>
@@ -160,7 +160,7 @@ Linux VM.</p>
 <pre><code>$ brew cask install multipass
 </code></pre><p>Next spin up a VM named <code>faas</code> using <code>multipass</code></p>
 <pre><code>$ multipass launch -n faas
-</code></pre><p>Wait for it to start. The logs are clear and tell what's going on and
+</code></pre><p>Wait for it to start. The logs are clear and tell what&rsquo;s going on and
 if the VM has started.</p>
 <p>Now ssh into the VM</p>
 <pre><code>$ multipass exec faas bash
@@ -225,7 +225,7 @@ to deploy functions. The functions will run in containers. We will use
 <code>faas</code> CLI to deploy the functions. Get the <code>faas</code> CLI first</p>
 <pre><code>$ multipass exec faas bash
 $ curl -sLfS https://cli.openfaas.com | sudo sh
-</code></pre><p>Next let's deploy our function! 😁</p>
+</code></pre><p>Next let&rsquo;s deploy our function! 😁</p>
 <pre><code>$ faas store deploy figlet -g 127.0.0.1:8081 --update=true --replace=false
 </code></pre><p>You will notice the output like this</p>
 <pre><code>WARNING! Communication is not secure, please consider using HTTPS. Letsencrypt.org offers free SSL/TLS certificates.
@@ -236,7 +236,7 @@ URL: http://127.0.0.1:8081/function/figlet
 </code></pre><p>Now check the <code>containerd</code> logs and <code>faas-containerd</code> logs to see some
 action behind the scenes and to know that there are no errors and that
 everything is working fine and the deployment went through. Now that
-out function is deployed, let's see if it's running and what's the
+out function is deployed, let&rsquo;s see if it&rsquo;s running and what&rsquo;s the
 output it gives</p>
 <p>Invoke it using this</p>
 <pre><code>$ echo &quot;openfaas&quot; | faas invoke figlet -g 127.0.0.1:8081
@@ -253,11 +253,11 @@ You can try out more strings other than &ldquo;openfaas&rdquo; as input 😄</p>
 
 Function                        Invocations     Rep
 figlet                          0               0
-</code></pre><p>Let's deploy more functions! 😉</p>
+</code></pre><p>Let&rsquo;s deploy more functions! 😉</p>
 <p>Now a function that pings using <code>ping</code> command</p>
 <pre><code>$ faas deploy --image alexellis2/ping:0.1 \
   -g 127.0.0.1:8081 --update=true --replace=false --name ping
-</code></pre><p>Let's invoke the function</p>
+</code></pre><p>Let&rsquo;s invoke the function</p>
 <pre><code>$ echo &quot;-c 1 8.8.8.8&quot; | faas invoke ping -g 127.0.0.1:8081
 
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
@@ -268,7 +268,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 rtt min/avg/max/mdev = 5.095/5.095/5.095/0.000 ms
 </code></pre><p>You can see how the ping function gives output! We are basically
 running the <code>ping</code> command as a function, and the input here is
-<code>-c 1 8.8.8.8</code>. So, it's the same as running the below command</p>
+<code>-c 1 8.8.8.8</code>. So, it&rsquo;s the same as running the below command</p>
 <pre><code>$ ping -c 1 8.8.8.8
 
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
@@ -277,11 +277,11 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 30.842/30.842/30.842/0.000 ms
-</code></pre><p>More functions? 😉Let's deploy a <code>nodeinfo</code> function which gives node
+</code></pre><p>More functions? 😉Let&rsquo;s deploy a <code>nodeinfo</code> function which gives node
 information</p>
 <pre><code>$ faas store deploy nodeinfo \
   -g 127.0.0.1:8081 --update=true --replace=false
-</code></pre><p>Let's invoke it!</p>
+</code></pre><p>Let&rsquo;s invoke it!</p>
 <pre><code>$ echo &quot;&quot; | faas-cli invoke nodeinfo -g 127.0.0.1:8081
 
 Hostname: localhost
@@ -331,7 +331,7 @@ Uptime: 4158
        scopeid: 10,
        internal: false,
        cidr: 'fe80::c443:d5ff:fe16:c39a/64' } ] }
-</code></pre><p>Now that we have many functions, let's see how it runs as containers</p>
+</code></pre><p>Now that we have many functions, let&rsquo;s see how it runs as containers</p>
 <p>So, we have three functions</p>
 <pre><code>$ faas list -g 127.0.0.1:8081
 
@@ -346,11 +346,11 @@ CONTAINER    IMAGE                                  RUNTIME
 figlet       docker.io/functions/figlet:0.13.0      io.containerd.runc.v2
 nodeinfo     docker.io/functions/nodeinfo:latest    io.containerd.runc.v2
 ping         docker.io/alexellis2/ping:0.1          io.containerd.runc.v2
-</code></pre><p>So, those are your containers. That's it for this post. I have shown
+</code></pre><p>So, those are your containers. That&rsquo;s it for this post. I have shown
 you how to run the cool openfaas in a VM.</p>
 <p>You can check more about openfaas and
 containerd <a href="https://blog.alexellis.io/faas-containerd-serverless-without-kubernetes/">here</a>
-and about why it's fascinating, even though there are other ways to run
+and about why it&rsquo;s fascinating, even though there are other ways to run
 openfaas, like running it on Kubernetes.</p>
 <p>Lookout for more posts about openfaas while I try it out! 😁</p>
 <ul class="pa0">

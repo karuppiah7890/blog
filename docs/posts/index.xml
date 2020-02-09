@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jan 2020 17:40:02 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 22:34:02 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>In a Class</title>
+      <link>https://karuppiah7890.github.io/blog/posts/in-a-class/</link>
+      <pubDate>Sun, 09 Feb 2020 22:34:02 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/in-a-class/</guid>
+      <description>This is a story by me :)
+ We are in a grade 10 class in AllCool School. Students are studying chemistry and their professor has asked them to solve a problem
+Aman has finished the problem and he is acting as though he&amp;rsquo;s not done and is pretending he&amp;rsquo;s thinking about the problem and is looking around to pretend he wants help. While looking around he is thinking &amp;ldquo;Damn, I wish I could keep looking at Rahul.</description>
+    </item>
     
     <item>
       <title>Different Ways to Contribute to Open Source</title>
@@ -18,7 +29,7 @@
       
       <guid>https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/</guid>
       <description>This is not an exhaustive list
- Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&#39;s an issue with the software.</description>
+ Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&amp;rsquo;s an issue with the software.</description>
     </item>
     
     <item>
@@ -29,7 +40,7 @@
       <guid>https://karuppiah7890.github.io/blog/posts/helm-values-schema-gen-plugin/</guid>
       <description>tldr $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen $ helm schem-gen &amp;lt;values-yaml-file&amp;gt; GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
 Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
-In this post I&#39;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
+In this post I&amp;rsquo;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
 The What Recently, helm released their version 3 which was a big thing.</description>
     </item>
     
@@ -39,8 +50,8 @@ The What Recently, helm released their version 3 which was a big thing.</descrip
       <pubDate>Fri, 27 Dec 2019 19:49:59 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/openfaas-containerd-series-part1/</guid>
-      <description>This is one of the posts in a series where I&#39;m going to write about openfaas and containerd working together. If you haven&#39;t tried openfaas before, it&#39;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I&#39;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.</description>
+      <description>This is one of the posts in a series where I&amp;rsquo;m going to write about openfaas and containerd working together. If you haven&amp;rsquo;t tried openfaas before, it&amp;rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
+In this first post, I&amp;rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.</description>
     </item>
     
     <item>
@@ -49,12 +60,12 @@ In this first post, I&#39;ll just show you what I tried out recently. This is me
       <pubDate>Wed, 25 Dec 2019 14:03:03 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/a-conference-story/</guid>
-      <description>Arvind is attending KubeCon for the first time. He&#39;s on his own.
-Arvind: Wow, this is all so grand! Let&#39;s find a place to sit and enjoy the day and find new friends maybe!
+      <description>Arvind is attending KubeCon for the first time. He&amp;rsquo;s on his own.
+Arvind: Wow, this is all so grand! Let&amp;rsquo;s find a place to sit and enjoy the day and find new friends maybe!
 Arvind finds his place. He finds himself surrounded by a lot of people.
-There&#39;s a constant buzz around him. People talking about life and work.
+There&amp;rsquo;s a constant buzz around him. People talking about life and work.
 The Conference starts with the keynote and the talks follow.
-After some talks, it&#39;s break time.</description>
+After some talks, it&amp;rsquo;s break time.</description>
     </item>
     
     <item>
@@ -84,7 +95,7 @@ $ docker run -dp 5000:5000 --restart=always --name registry registry $ helm crea
       <pubDate>Sun, 16 Jun 2019 12:44:09 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/my-open-source-journey/</guid>
-      <description>I think the first time I heard the term &amp;ldquo;Open Source&amp;rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I&#39;m able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.</description>
+      <description>I think the first time I heard the term &amp;ldquo;Open Source&amp;rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I&amp;rsquo;m able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.</description>
     </item>
     
     <item>
