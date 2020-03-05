@@ -62,5 +62,3 @@ Here's how the debug window looks like when on a breakpoint. This is the breakpo
 So that's how you debug a Go program. That's all folks! If you have any questions shoot them below! 😄
 
 Extra resource to read more on debugging in Intellij / GoLand - https://blog.jetbrains.com/go/2019/02/06/debugging-with-goland-getting-started/ . It mentions GoLand, but you can use the info to do the same things in Intellij
-
-{{<twitter-share>}}
