@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Mar 2020 13:00:35 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 01 Mar 2020 15:55:00 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Debugging Go in Visual Studio Code</title>
+      <link>https://karuppiah7890.github.io/blog/posts/debugging-go-in-visual-studio-code/</link>
+      <pubDate>Sun, 01 Mar 2020 15:55:00 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/debugging-go-in-visual-studio-code/</guid>
+      <description>Long ago, in one post I wrote about how to debug Go program in Intellij IDEA / Goland. I realized not everyone uses IDEA ecosystem though, as they are paid. You could check out the IDEA community edition though, which is free. And you can install the Go plugin from here. In my case I used to use IDEA Ultimate and evaluate it (Evaluator version) for free, now I use a company license.</description>
+    </item>
     
     <item>
       <title>Mission Crusader 2020</title>
