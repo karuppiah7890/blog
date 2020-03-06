@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Mar 2020 15:55:00 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 06 Mar 2020 11:16:25 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis CLI lolwut Command</title>
+      <link>https://karuppiah7890.github.io/blog/posts/redis-cli-lolwut-command/</link>
+      <pubDate>Fri, 06 Mar 2020 11:16:25 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/redis-cli-lolwut-command/</guid>
+      <description>So, today I found something funny and interesting. Someone in our slack #tech-reads channel shared a tech read by antirez, the creator of redis software. This is the link that they shared -
+http://antirez.com/news/123
+I immediately tried out the command in my terminal and it was cool! See the recording here -
+ The commands used in the recording are below
+$ redis-cli 127.0.0.1:6379&amp;gt; lolwut 127.0.0.1:6379&amp;gt; lolwut 10 1 4 127.</description>
+    </item>
     
     <item>
       <title>Debugging Go in Visual Studio Code</title>
