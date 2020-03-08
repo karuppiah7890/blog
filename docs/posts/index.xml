@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Mar 2020 10:47:01 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 08 Mar 2020 15:10:08 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OSS Stories Part 1: Write Tests to Fix That Bug!</title>
+      <link>https://karuppiah7890.github.io/blog/posts/oss-stories-part-1-write-tests-to-fix-that-bug/</link>
+      <pubDate>Sun, 08 Mar 2020 15:10:08 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/oss-stories-part-1-write-tests-to-fix-that-bug/</guid>
+      <description>I recently thought I should share some of my Open Source Stories! Stories about how I contributed, what happened, some learnings, swags and what not. Anything that happened with respect to Open Source for me. I think I&amp;rsquo;ll try to write as much stories as possible! Not all of them will have technical stuff. It&amp;rsquo;s a story :P It could have anything. So, today I have one story to tell ;)</description>
+    </item>
     
     <item>
       <title>asciinema to record your terminal</title>
