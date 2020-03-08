@@ -43,10 +43,20 @@ do something else
 I would recommend everyone to start being a bit lazy and more productive. Spend less time. Give yourself a
 bit less time, make it scarce and see how you use it ;) 
 
-I usually think of doing some investments - for the better future. Write some automation to make things
-faster. Write tools to speed yourself up, to speed up whatever your build is running. Use your cache, but
-wisely! ;) Try to see how you can fail fast. When you have a bug, Write tests for your bugs. Make your error
-messages easier to read and understand. Make your tests fail in a good manner so that the failure can be 
-understood. Whatever that makes your life easier. Just don't accept things as they are when they are 
-annoying you :) If you can do something about it, at least have a thought about it. May be when you have 
-time, you could act on it to make your life easier :)
+I usually think of doing some investments - for the better future. 
+
+* Write some automation to make things faster
+* Write tools to speed yourself up, to speed up whatever your build is running
+* Use your cache, but wisely! ;)
+* Try to see how you can fail fast
+* When you have a bug, Write tests for your bugs
+* Make your error messages easier to read and understand
+* When your tests fails, make your tests fail in a good manner so that the failure can be understood, so
+that it's easier to fix whatever is causing the failure. 
+* Use your debugger to debug easily? Seriously, debuggers are the best. It's like magic :P
+
+I'll keep adding to the above list I think. Or write another post later. ;)
+
+Just whatever that makes your life easier, think about it. Just don't accept things as they are when they 
+are annoying you :) If you can do something about it, at least have a thought about it. May be when you 
+have time, you could act on it to make your life easier :)
