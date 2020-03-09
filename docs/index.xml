@@ -6,10 +6,21 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Mar 2020 15:10:08 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 09:30:21 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubectl commands</title>
+      <link>https://karuppiah7890.github.io/blog/posts/kubectl-commands/</link>
+      <pubDate>Mon, 09 Mar 2020 09:30:21 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/kubectl-commands/</guid>
+      <description>Some of the commands that I use in my day to day work when interacting with kubernetes clusters
+Exec / execute into a pod If you have kube-fzf, you can use execpod which is an interactive way to exec into a pod&amp;rsquo;s container
+$ # exec into a pod in the default namespace $ execpod $ # exec into a pod in a particular namespace $ execpod -n &amp;lt;namespace-name&amp;gt; $ # exec into a pod in any namespace by seeing all namespace pods $ execpod -a Or if you don&amp;rsquo;t have kube-fzf, you can use the below</description>
+    </item>
     
     <item>
       <title>OSS Stories Part 1: Write Tests to Fix That Bug!</title>
