@@ -6,10 +6,20 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Mar 2020 09:30:21 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2020 21:32:35 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>No Cash and Digital Transactions</title>
+      <link>https://karuppiah7890.github.io/blog/posts/no-cash-and-digital-transactions/</link>
+      <pubDate>Wed, 11 Mar 2020 21:32:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/no-cash-and-digital-transactions/</guid>
+      <description>So today I was planning to travel in a van to a metro station and then in metro, go to the metro station near my house and then walk to my house which is close by
+Unfortunately my van didn&amp;rsquo;t come. I then walked to a bus station and got a bus to the metro station. Now I had to pay, in cash for the bus fare. And I realized that I might not have cash in my wallet.</description>
+    </item>
     
     <item>
       <title>kubectl commands</title>
