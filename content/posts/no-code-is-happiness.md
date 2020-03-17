@@ -20,8 +20,8 @@ simplicity is key for more people to contribute to the code! Less code means les
 bugs cannot exist if code doesn't exist :p But hey, don't over do this and write unreadable succinct code!
 🙈😅Probably that's a blog post for another day 😂 
 
-So, how can you follow these? Let's say you maintain an open source tool - a small tool that does something
-- it has some core functionality. People come and say - it could do more and that it would be the tool's
+So, how can you follow these? Let's say you maintain an open source tool - a small tool that does something -
+it has some core functionality. People come and say - it could do more and that it would be the tool's
 responsibility to do it, that it's best to put that code in your tool. The reality is - it depends. On a
 lot of factors. Let's say this feature is really something useful for a very small fraction of users of the
 tool - but that's just a small fraction. You don't bring in extra features - meaning extra code - to
