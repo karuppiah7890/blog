@@ -6,10 +6,20 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2020 19:22:28 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 19:46:29 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>No Code Is Happiness</title>
+      <link>https://karuppiah7890.github.io/blog/posts/no-code-is-happiness/</link>
+      <pubDate>Mon, 16 Mar 2020 19:46:29 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/no-code-is-happiness/</guid>
+      <description>Like, really, don&amp;rsquo;t you think no code is awesome? Kelsey Hightower created this repo - https://github.com/kelseyhightower/nocode where he says there&amp;rsquo;s no code, nothing to deploy, and that it is the best way to write secure and reliable applications
+Wow right? :P I mean, if you are a software engineer, and you get paid for writing no code, that would be awesome right? 😂🤣 Well, not gonna happen I guess. You Will write code.</description>
+    </item>
     
     <item>
       <title>Test Test Test Code</title>
