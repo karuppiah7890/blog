@@ -6,10 +6,20 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Mar 2020 14:10:35 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 20 Mar 2020 18:09:41 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Creating Dummy Files</title>
+      <link>https://karuppiah7890.github.io/blog/posts/creating-dummy-files/</link>
+      <pubDate>Fri, 20 Mar 2020 18:09:41 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/creating-dummy-files/</guid>
+      <description>I have created dummy files two times or so now. Now, what do I mean when I say a dummy file? In my case, I mean a file which doesn&amp;rsquo;t have any actual content, instead it has more like some random dummy data. Similar to the lorem ipsum content that people use for placeholder text during development when they don&amp;rsquo;t have actual content ready yet
+Before telling the reasons for why I needed a dummy file, I&amp;rsquo;ll first tell how I created a dummy file.</description>
+    </item>
     
     <item>
       <title>VSCode Golang Programming</title>
