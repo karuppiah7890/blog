@@ -7,16 +7,18 @@ I usually use IntelliJ when I'm working on company projects. These days I have
 been trying to use VS Code. Recently I have realized that VS Code's Golang
 extension has a lot of new features to offer. I think a lot of credit goes to
 gopls ("go please") - https://github.com/golang/tools/tree/master/gopls . I have
-been using VS Code with repos that have go modules (without vendoring). Most of
-the features present in IntelliJ are now available in VS Code too for Golang.
-Below are the things that I usually use while programming in Golang, so,
-disclaimer - it is **NOT** an exhaustive list of features present in VS Cocde. My
-intention of this blog post is to show that a lot of things are now possible in
-VS Code too :D I have **not** mentioned how to do the same in IntelliJ. I will
-however mention what features are missing in VS Code but are present in IntelliJ
-and some downsides of IntelliJ that I have seen. Let's get started with the
-features present in VS Code and how to use them. I have recorded a video to show
-the demo and also written about it :)
+been using VS Code with repos that have go modules (without vendoring). With
+vendoring on and go v1.14 there's
+[an open issue](https://github.com/golang/go/issues/37629) so I can't use it in
+that case yet. Most of the features present in IntelliJ are now available in VS
+Code too for Golang. Below are the things that I usually use while programming
+in Golang so, disclaimer - it is **NOT** an exhaustive list of features present
+in VS Cocde. My intention of this blog post is to show that a lot of things are
+now possible in VS Code too :D I have **not** mentioned how to do the same in
+IntelliJ. I will however mention what features are missing in VS Code but are
+present in IntelliJ and some downsides of IntelliJ that I have seen. Let's get
+started with the features present in VS Code and how to use them. I have
+recorded a video to show the demo and also written about it :)
 
 Note: The shortcuts are based on MacOS keyboard. Lots of the commands don't
 have shortcuts by default - you can assign custom keyboard shortcuts to them
