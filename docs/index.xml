@@ -6,10 +6,20 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Mar 2020 18:09:41 +0530</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 16:24:08 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Contributing to Open Source: Efforts and Rework</title>
+      <link>https://karuppiah7890.github.io/blog/posts/contributing-to-open-source-efforts-and-rework/</link>
+      <pubDate>Sat, 21 Mar 2020 16:24:08 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/contributing-to-open-source-efforts-and-rework/</guid>
+      <description>Sometimes, the craziest thing for me is - the amount of effort I put into something, some work, but how I do it all wrong because I don&amp;rsquo;t know some of the expectations of the work. It&amp;rsquo;s very crazy.
+In terms of Open Source, it has happened quite a lot of times for me I think. I&amp;rsquo;ll be working on a Pull Request to fix an issue. I&amp;rsquo;ll take an approach and then maintainers feel that the approach can be changed totally.</description>
+    </item>
     
     <item>
       <title>Creating Dummy Files</title>
