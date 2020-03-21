@@ -6,10 +6,19 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Mar 2020 16:24:08 +0530</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 18:56:27 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why Blog? Why Open Source? Why Learning Log?</title>
+      <link>https://karuppiah7890.github.io/blog/posts/why-blog-why-open-source-why-learning-log/</link>
+      <pubDate>Sat, 21 Mar 2020 18:56:27 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/why-blog-why-open-source-why-learning-log/</guid>
+      <description>Recently I wrote about how I write for myself and mostly because I forget stuff. I think I can find more reasons to write - the more, the better. It&amp;rsquo;ll make me write more! So, I remember reading this concept of Learning in Public, but I just remembered the phrase not the whole concept later, until recently when I read this post about learning in public - and few other posts related to it</description>
+    </item>
     
     <item>
       <title>Contributing to Open Source: Efforts and Rework</title>
