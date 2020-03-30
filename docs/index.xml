@@ -6,10 +6,22 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2020 19:31:37 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 08:03:52 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>uff Tool</title>
+      <link>https://karuppiah7890.github.io/blog/posts/uff-tool/</link>
+      <pubDate>Mon, 30 Mar 2020 08:03:52 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/uff-tool/</guid>
+      <description>tldr Install uff and check it out! Below is an example!
+$ go get -u -v github.com/karuppiah7890/uff $ git clone https://github.com/fishworks/fish-food $ cd fish-food $ uff Food/helm.lua 2.14.2 existing food version: 2.14.1 upgrading fish food Food/helm.lua to version 2.14.2 ... done! 🐠 GitHub repo for the plugin - https://github.com/karuppiah7890/uff
+Longer version Sometime ago I created a tool called uff. The repo is here
+In this post I&amp;rsquo;m going to tell the story behind the tool.</description>
+    </item>
     
     <item>
       <title>Installing Prometheus Operator, Prometheus, Alertmanager and Grafana</title>
