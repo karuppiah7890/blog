@@ -43,7 +43,7 @@ Before we install prometheus operator or anything, we need a kubernetes cluster
 to install it in. Since I don't have any cloud based kubernetes cluster, I'm
 going to run a local kubernete cluser using `minikube`. You can install
 `minikube` by using the binary from their [releases](https://github.com/kubernetes/minikube/releases)
-page. I installed it using (`gofish`)[https://gofi.sh]
+page. I installed it using [`gofish`](https://gofi.sh)
 
 ```bash
 $ gofish install minikube
