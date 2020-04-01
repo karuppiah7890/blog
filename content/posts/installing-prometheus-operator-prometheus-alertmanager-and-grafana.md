@@ -9,6 +9,11 @@ In this blog post I'm going to teach about how to install
 [Alertmanager](https://github.com/prometheus/alertmanager) and
 [Grafana](https://github.com/grafana/grafana)
 
+If you want to checkout the video version of this blog which shows a demo, you
+can see the below video
+
+{{<youtube agpRm3sKBlo>}}
+
 This blog post has written in response to a message here - 
 https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don't like to give
 away answers easily, but sometimes it feels like - why do things have to be
