@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2020 08:03:52 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2020 08:48:01 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Code Is About People</title>
+      <link>https://karuppiah7890.github.io/blog/posts/code-is-about-people/</link>
+      <pubDate>Wed, 01 Apr 2020 08:48:01 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/code-is-about-people/</guid>
+      <description>Actually, everything is about people. Including code. I remember reading about this in Twitter. Since then and up until now, I have seen multiple instances where I can clearly say everything is about people, including code. I mean, I guess we have made ourselves the centre of the Earth 😅 If we should be inclusive, I think the phrasing should be - everything is about living organisms. For this article, I&amp;rsquo;ll limit myself to talking about just code.</description>
+    </item>
     
     <item>
       <title>uff Tool</title>
