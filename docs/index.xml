@@ -6,10 +6,19 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Apr 2020 19:54:07 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2020 07:35:13 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloning All Git Repos From GitLab Group</title>
+      <link>https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/</link>
+      <pubDate>Sun, 19 Apr 2020 07:35:13 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/</guid>
+      <description>tldr; $ curl -H &amp;quot;PRIVATE-TOKEN: $GITLAB_TOKEN&amp;quot; \ &amp;quot;https://&amp;lt;gitlab-url&amp;gt;/api/v4/groups/&amp;lt;group-id&amp;gt;/projects?per_page=100&amp;quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &amp;quot;.[].http_url&amp;quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &amp;quot;.[].ssh_url&amp;quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&amp;rsquo;s GitLab group.</description>
+    </item>
     
     <item>
       <title>The Pot</title>
