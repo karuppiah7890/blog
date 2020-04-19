@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Apr 2020 18:16:33 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2020 18:20:07 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Obscure Javascript</title>
+      <link>https://karuppiah7890.github.io/blog/posts/obscure-javascript/</link>
+      <pubDate>Sun, 19 Apr 2020 18:20:07 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/obscure-javascript/</guid>
+      <description>Many front end javascript files are bundled into one file usually, and all the spaces removed, all function and variable names changed - minified. I don&amp;rsquo;t know what else they do as part of &amp;ldquo;minification&amp;rdquo; process and bundling process. Finally you get that obscure JavaScript file. This also reduces the size of the file and hence the amount of data to be downloaded, which makes a big difference, especially for people with low network bandwidth or bad Internet.</description>
+    </item>
     
     <item>
       <title>Prettified JSON in HTTP Response</title>
