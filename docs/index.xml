@@ -6,10 +6,19 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2020 18:31:50 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2020 18:50:39 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>I Chose Simplicity. I Chose Empathy</title>
+      <link>https://karuppiah7890.github.io/blog/posts/i-chose-simplicity-i-chose-empathy/</link>
+      <pubDate>Wed, 20 May 2020 18:50:39 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/i-chose-simplicity-i-chose-empathy/</guid>
+      <description>Recently I was writing this code for a JSON REST API. We were adding an extra field to our API structure, for a resource. For the sake of simplicity let&amp;rsquo;s assume we were building an API to store rich text in our database. The size of this rich text was small, like 500 characters, that&amp;rsquo;s it. And let&amp;rsquo;s say we came up with some simple solutions on how to store the rich text.</description>
+    </item>
     
     <item>
       <title>What&#39;s a Software?</title>
