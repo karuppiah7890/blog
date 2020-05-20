@@ -1,5 +1,5 @@
 ---
-title: "What's Software"
+title: "What's a Software?"
 date: 2020-05-20T18:31:50+05:30
 ---
 
