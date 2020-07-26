@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Karuppiah's Blog"
 theme = "ananke"
 publishDir = "docs"
-googleAnalytics = "UA-142197984-1"
 disqusShortname = "karuppiah-blog"
 staticDir = ["static"]
 

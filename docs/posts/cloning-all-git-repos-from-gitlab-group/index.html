@@ -44,17 +44,6 @@
 <meta name="twitter:description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."/>
 
       
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-142197984-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
     
   </head>
 
