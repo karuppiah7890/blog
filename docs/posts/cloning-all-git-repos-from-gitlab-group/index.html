@@ -6,7 +6,7 @@
     
     <title>Cloning All Git Repos From GitLab Group | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.74.1" />
+    <meta name="generator" content="Hugo 0.74.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -33,13 +33,14 @@
 <meta property="article:modified_time" content="2020-04-19T07:35:13+05:30" />
 <meta itemprop="name" content="Cloning All Git Repos From GitLab Group">
 <meta itemprop="description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group.">
-<meta itemprop="datePublished" content="2020-04-19T07:35:13&#43;05:30" />
-<meta itemprop="dateModified" content="2020-04-19T07:35:13&#43;05:30" />
+<meta itemprop="datePublished" content="2020-04-19T07:35:13+05:30" />
+<meta itemprop="dateModified" content="2020-04-19T07:35:13+05:30" />
 <meta itemprop="wordCount" content="653">
 
 
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloning All Git Repos From GitLab Group"/>
 <meta name="twitter:description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."/>
 
