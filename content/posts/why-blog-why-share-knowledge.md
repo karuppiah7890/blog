@@ -104,3 +104,23 @@ sharing knowledge is - To Teach.
 I mentioned other reasons or purposes to blog or just write
 [here](https://karuppiah7890.github.io/blog/posts/why-blog-why-open-source-why-learning-log/) and
 [here](https://karuppiah7890.github.io/blog/posts/i-like-to-write-things-down/)
+
+With respect to my field - Software / IT industry, there are
+lot of communities that help kids and people to learn tech through
+talks, events, workshops, hackathons. Below are just some links that
+I know of or have seen:
+
+https://www.freecodecamp.org/
+https://www.blacksintechnology.net/
+https://shelovesdata.com/
+https://www.codeinthecommunity.com/
+https://www.blackgirlscode.com/
+https://anitab.org/
+https://www.womenwhocode.com/
+https://codingforcommunity.org/
+https://codingandcommunity.org/
+https://www.womentechmakers.com/
+https://witchat.github.io/
+https://girlswhocode.com/
+https://www.codenewbie.org/
+https://codeclub.org/en
