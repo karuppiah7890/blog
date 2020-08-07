@@ -6,10 +6,19 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2020 21:06:17 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2020 21:17:48 +0530</lastBuildDate>
     
 	<atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BitBucket Cloud doesn&#39;t support Git commit signing?</title>
+      <link>https://karuppiah7890.github.io/blog/posts/bitbucket-cloud-no-git-commit-sign/</link>
+      <pubDate>Fri, 07 Aug 2020 21:17:48 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/bitbucket-cloud-no-git-commit-sign/</guid>
+      <description>Really? I understand it&amp;rsquo;s a less used feature. I have not seen many people talk about it or use it, but hey, it&amp;rsquo;s an important security feature - as anyone can masquerade as someone else! I mean, ideally it won&amp;rsquo;t happen, in a company or organization where everyone is trusted. It&amp;rsquo;s still a good thing. Also, if some open source community is using it, it&amp;rsquo;s still good. I don&amp;rsquo;t know what&amp;rsquo;s the deal, but BitBucket Cloud doesn&amp;rsquo;t support Git commit signing as of this writing</description>
+    </item>
     
     <item>
       <title>My Python and Data Analysis Journey</title>
