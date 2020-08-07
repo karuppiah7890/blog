@@ -98,3 +98,6 @@ An [old video](https://youtu.be/MZNjmfx4LMc).
 I also found out lots of stuff from that video by just seeing half of it. It
 was not easy to get my head around some of the things. But I became aware of a
 lot of new stuff like some research papers, some encodings ;)
+
+I think it's all about being curious and trying to learn something new everyday.
+And I usually learn to teach or write about it :)
