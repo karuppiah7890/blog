@@ -21,7 +21,18 @@ This is not an exhaustive list
 14. Create video tutorials about open source projects
 15. Write experiences about open source and open source projects in your blog. (This can be a general thing, or about a particular open source project)
 16. Answer questions about open source and open source projects in the community. Many projects have its own community - which includes physical meetups and digital forums too - like slack, discord, discourse, and more. Open source in general also has lot of general meetups, conferences, and digital communities where people talk about multiple projects from different domains
-
+17. When checking the different issues (bugs, features etc),
+it's very possible that the same issue has been reported more than once.
+If you notice this, report this to the maintainers. If you are a maintainer and
+have permissions to close issues, comment on the issue mentioning it's a duplicate
+and close it. Usually people close newer issues and keep older ones (first
+reported) till it's fixed. This is a common problem that I have noticed. I think
+in the future, the source code hosting platforms can help provide tools or there
+will be other third party tools to help find duplicate issues with the help of
+Machine Learning maybe. Currently I have seen GitHub use string match to show
+the user reporting issues about how the user's issue might be similar to an
+existing issue that's reported - it's shown as a suggestion to the user as the
+user types out the issue title in GitHub issues
 
 Just ending this with a thing - did you know there's open source hardware? Did you know there's open source art? Also, I'm thinking open source knowledge could also be a term. I mean, most of the Internet is just open knowledge! Blogs, articles, videos, what not. 
 
