@@ -5,6 +5,8 @@ date: 2020-09-17T21:05:08+05:30
 
 # tldr;
 
+`step` GitHub repo - https://github.com/smallstep/cli
+
 ```bash
 $ # Reading from keyboard / standard input after running command.
 $ # Run command and then paste the JWT token as input and press Enter.
