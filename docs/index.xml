@@ -6,7 +6,16 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2020 21:17:48 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Sep 2020 21:05:08 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Step CLI to decode JWT tokens</title>
+      <link>https://karuppiah7890.github.io/blog/posts/step-cli/</link>
+      <pubDate>Thu, 17 Sep 2020 21:05:08 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/step-cli/</guid>
+      <description>tldr; $ # Reading from keyboard / standard input after running command. $ # Run command and then paste the JWT token as input and press Enter. $ step crypto jwt inspect --insecure eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c { &amp;#34;header&amp;#34;: { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; }, &amp;#34;payload&amp;#34;: { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34;, &amp;#34;iat&amp;#34;: 1516239022 }, &amp;#34;signature&amp;#34;: &amp;#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&amp;#34; } $ # Reading from file $ cat jwt-token.txt | step crypto jwt inspect --insecure { &amp;#34;header&amp;#34;: { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; }, &amp;#34;payload&amp;#34;: { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34;, &amp;#34;iat&amp;#34;: 1516239022 }, &amp;#34;signature&amp;#34;: &amp;#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&amp;#34; } $ # Reading from environment variables $ echo $JWT_TOKEN | step crypto jwt inspect --insecure { &amp;#34;header&amp;#34;: { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; }, &amp;#34;payload&amp;#34;: { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34;, &amp;#34;iat&amp;#34;: 1516239022 }, &amp;#34;signature&amp;#34;: &amp;#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&amp;#34; } Recently I was trying to decode the information present in a JWT token to understand what&amp;rsquo;s the information in it.</description>
+    </item>
+    
     <item>
       <title>BitBucket Cloud doesn&#39;t support Git commit signing?</title>
       <link>https://karuppiah7890.github.io/blog/posts/bitbucket-cloud-no-git-commit-sign/</link>
