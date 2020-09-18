@@ -6,7 +6,18 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Sep 2020 21:05:08 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Sep 2020 08:46:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx as Gateway</title>
+      <link>https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/</link>
+      <pubDate>Fri, 18 Sep 2020 08:46:20 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/</guid>
+      <description>In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
+Given we have all this, initially we were exposing these through the same URL but with different ports
+ Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -</description>
+    </item>
+    
     <item>
       <title>Step CLI to decode JWT tokens</title>
       <link>https://karuppiah7890.github.io/blog/posts/step-cli/</link>
