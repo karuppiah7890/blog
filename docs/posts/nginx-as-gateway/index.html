@@ -204,22 +204,22 @@ between the path based differentiation vs sub domain based differentiation.
 Probably a blog post for another day after some research ;)</p>
 <p>Now, given we had these expectations, we understood that we need some sort of
 gateway to do routing for us, based on the URL / URI path.</p>
-<p><code>/auth</code> -&gt; Keycloak
-<code>/api</code> -&gt; backend
-<code>/</code> -&gt; web app</p>
+<p><code>/auth</code> -&gt; Keycloak</p>
+<p><code>/api</code> -&gt; backend</p>
+<p><code>/</code> -&gt; web app</p>
 <p>Notice that these are prefixes match and not exact paths for the routing we expect,
 as Keycloak can have it&rsquo;s own path and it&rsquo;s a webapp with a backend too. For
 it to work properly, the path, parameters everything has to be intact for it
 to work - fetch html, css, js and other resources and also connect with it&rsquo;s
 Keycloak backend.</p>
 <p>Given these are prefixes, what this means is that, taking some examples</p>
-<p><code>/auth/index.html</code> should go to Keycloak
-<code>/auth/css/index.css</code> should go to Keycloak
-<code>/auth/js/index.css</code> should go to Keycloak</p>
+<p><code>/auth/index.html</code> should go to Keycloak</p>
+<p><code>/auth/css/index.css</code> should go to Keycloak</p>
+<p><code>/auth/js/index.css</code> should go to Keycloak</p>
 <p><code>/api/resource</code> should go to backend</p>
-<p><code>/index.html</code> should go to web app
-<code>/css/some.css</code> should go to web app
-<code>/js/some.js</code> should go to web app</p>
+<p><code>/index.html</code> should go to web app</p>
+<p><code>/css/some.css</code> should go to web app</p>
+<p><code>/js/some.js</code> should go to web app</p>
 <p>The web app is kind of like the fallback - when it&rsquo;s <strong>not</strong> <code>/auth</code> or <code>/api</code> ,
 it goes to web app. As <code>/</code> prefix match can match all URLs, as all paths start
 with <code>/</code>. So, it&rsquo;s like a switch case in a programming language - you try to

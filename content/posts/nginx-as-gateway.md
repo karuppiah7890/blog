@@ -41,7 +41,9 @@ Now, given we had these expectations, we understood that we need some sort of
 gateway to do routing for us, based on the URL / URI path.
 
 `/auth` -> Keycloak
+
 `/api` -> backend
+
 `/` -> web app
 
 Notice that these are prefixes match and not exact paths for the routing we expect,
@@ -53,13 +55,17 @@ Keycloak backend.
 Given these are prefixes, what this means is that, taking some examples
 
 `/auth/index.html` should go to Keycloak
+
 `/auth/css/index.css` should go to Keycloak
+
 `/auth/js/index.css` should go to Keycloak
 
 `/api/resource` should go to backend
 
 `/index.html` should go to web app
+
 `/css/some.css` should go to web app
+
 `/js/some.js` should go to web app
 
 The web app is kind of like the fallback - when it's **not** `/auth` or `/api` ,
