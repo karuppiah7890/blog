@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Sep 2020 08:46:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Sep 2020 08:29:02 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using CI/CD Artifacts for Faster Docker Image Builds</title>
+      <link>https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/</link>
+      <pubDate>Sat, 19 Sep 2020 08:29:02 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/</guid>
+      <description>Disclaimer: This blog post is very context specific, so please consider your application and it&amp;rsquo;s context, and accordingly see if you can use this strategy.
+ Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&amp;rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.</description>
+    </item>
+    
     <item>
       <title>Nginx as Gateway</title>
       <link>https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/</link>
