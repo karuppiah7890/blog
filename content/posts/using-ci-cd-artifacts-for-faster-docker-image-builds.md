@@ -111,6 +111,21 @@ pushing code
 
 You can read more about making pipeline faster and it's benefits online :)
 
+## Will this strategy always help?
+
+I have put a disclaimer on the top - this strategy is very context specific.
+
+For example, nodejs based services, ruby based services, python based services,
+and few other similar interpreted languages - they require that the source code
+be present in the Docker image for it to run at run time. Also, when it comes to
+dependencies / modules / packages / libraries, we install only the ones that are
+required for running the app in production. In case of your pipeline stages,
+you might be installing all dependencies - test related dependencies too, so
+that you can run tests in your pipeline. So, these artifacts might not help at all.
+You will have to run a lot of steps to do your Docker image build in such cases,
+and build artifacts or other pipeline stage artifacts might not be able to help
+you.
+
 ## Squeeze out the performance
 
 Another thing that can make your Docker image build slow is - the time taken for
@@ -339,12 +354,14 @@ and keep things simple.
 
 By the way, there are also many tools in the Docker ecosystem.  For example, I
 have seen so many tools (surely great ones!) to help with building Docker images -
-* https://buildpacks.io with support for different languages
+* [buildpacks](https://buildpacks.io) with support for different languages
 * Spring Boot v2.3.2 docs for building Docker image with
 [gradle](https://docs.spring.io/spring-boot/docs/2.3.2.RELEASE/gradle-plugin/reference/html/#build-image)
 or [maven](https://docs.spring.io/spring-boot/docs/2.3.2.RELEASE/maven-plugin/reference/html/#build-image). It internally uses [buildpacks](https://buildpacks.io/) and [paketo](https://paketo.io/)
 * [jib](https://github.com/GoogleContainerTools/jib) - Building container images
 for Java applications
+* [packer](https://www.packer.io/) - supports Docker images and also Virtual
+Machine images, and has support for many cloud platform related services too
 
 There are probably more! These were just a few that I noticed when I was
 checking out about building images for our Spring Boot Java application. The

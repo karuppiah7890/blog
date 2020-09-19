@@ -37,7 +37,7 @@
  Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
 <meta itemprop="datePublished" content="2020-09-19T08:29:02+05:30" />
 <meta itemprop="dateModified" content="2020-09-19T08:29:02+05:30" />
-<meta itemprop="wordCount" content="2410">
+<meta itemprop="wordCount" content="2580">
 
 
 
@@ -258,6 +258,18 @@ latest commit on the branch has passed the pipeline with a green status.</li>
 pushing code</li>
 </ul>
 <p>You can read more about making pipeline faster and it&rsquo;s benefits online :)</p>
+<h2 id="will-this-strategy-always-help">Will this strategy always help?</h2>
+<p>I have put a disclaimer on the top - this strategy is very context specific.</p>
+<p>For example, nodejs based services, ruby based services, python based services,
+and few other similar interpreted languages - they require that the source code
+be present in the Docker image for it to run at run time. Also, when it comes to
+dependencies / modules / packages / libraries, we install only the ones that are
+required for running the app in production. In case of your pipeline stages,
+you might be installing all dependencies - test related dependencies too, so
+that you can run tests in your pipeline. So, these artifacts might not help at all.
+You will have to run a lot of steps to do your Docker image build in such cases,
+and build artifacts or other pipeline stage artifacts might not be able to help
+you.</p>
 <h2 id="squeeze-out-the-performance">Squeeze out the performance</h2>
 <p>Another thing that can make your Docker image build slow is - the time taken for
 the build to even start. This is a common problem for anyone starting out new in
@@ -432,12 +444,14 @@ and keep things simple.</p>
 <p>By the way, there are also many tools in the Docker ecosystem.  For example, I
 have seen so many tools (surely great ones!) to help with building Docker images -</p>
 <ul>
-<li><a href="https://buildpacks.io">https://buildpacks.io</a> with support for different languages</li>
+<li><a href="https://buildpacks.io">buildpacks</a> with support for different languages</li>
 <li>Spring Boot v2.3.2 docs for building Docker image with
 <a href="https://docs.spring.io/spring-boot/docs/2.3.2.RELEASE/gradle-plugin/reference/html/#build-image">gradle</a>
 or <a href="https://docs.spring.io/spring-boot/docs/2.3.2.RELEASE/maven-plugin/reference/html/#build-image">maven</a>. It internally uses <a href="https://buildpacks.io/">buildpacks</a> and <a href="https://paketo.io/">paketo</a></li>
 <li><a href="https://github.com/GoogleContainerTools/jib">jib</a> - Building container images
 for Java applications</li>
+<li><a href="https://www.packer.io/">packer</a> - supports Docker images and also Virtual
+Machine images, and has support for many cloud platform related services too</li>
 </ul>
 <p>There are probably more! These were just a few that I noticed when I was
 checking out about building images for our Spring Boot Java application. The
