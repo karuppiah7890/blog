@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Sep 2020 08:29:02 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Sep 2020 21:17:46 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Keycloak, Open Source Identity and Access Management System</title>
+      <link>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</link>
+      <pubDate>Sat, 19 Sep 2020 21:17:46 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</guid>
+      <description>In my current project, there was a decision made to use Keycloak for Identity and Access Management (IAM). People said that &amp;ldquo;You don&amp;rsquo;t need to write code to do authentication and authorization and reinvent the wheel, it&amp;rsquo;s already done by a lot of people. Keycloak is just really good, it just works, use it&amp;rdquo;.
+Now, I am pretty new to almost every technology in the project. So I&amp;rsquo;m still learning a lot of things.</description>
+    </item>
+    
     <item>
       <title>Using CI/CD Artifacts for Faster Docker Image Builds</title>
       <link>https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/</link>
