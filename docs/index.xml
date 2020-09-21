@@ -6,7 +6,19 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Sep 2020 21:17:46 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Sep 2020 08:05:21 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started With Keycloak</title>
+      <link>https://karuppiah7890.github.io/blog/posts/getting-started-with-keycloak/</link>
+      <pubDate>Mon, 21 Sep 2020 08:05:21 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/getting-started-with-keycloak/</guid>
+      <description>For me, usually the fastest way to getting started with any big software - server side software, with other components (backend, proxy etc) is using docker and/ docker-compose.
+Keycloak&amp;rsquo;s basic setup would be a Keycloak server with a database. It supports many databases actually.
+The quickest way to get started with Keycloak would be to run Keycloak with H2 database, like this using docker
+$ docker run -d --name keycloak -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin jboss/keycloak It will take a few seconds or a minute to bootup.</description>
+    </item>
+    
     <item>
       <title>Introduction to Keycloak, Open Source Identity and Access Management System</title>
       <link>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</link>

@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</loc>
-    <lastmod>2020-09-19T21:17:46+05:30</lastmod>
+    <loc>https://karuppiah7890.github.io/blog/posts/getting-started-with-keycloak/</loc>
+    <lastmod>2020-09-21T08:05:21+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
-    <lastmod>2020-09-19T21:17:46+05:30</lastmod>
+    <lastmod>2020-09-21T08:05:21+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
+    <lastmod>2020-09-21T08:05:21+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</loc>
     <lastmod>2020-09-19T21:17:46+05:30</lastmod>
   </url>
   
