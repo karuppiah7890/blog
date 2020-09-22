@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Introduction to One Time Passwords (OTPs) | Karuppiah&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+    
+      <link href="/blog/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Introduction to One Time Passwords (OTPs)" />
+<meta property="og:description" content="Disclaimer: I&rsquo;m no security expert. The post is more from a techy user&rsquo;s perspective, with little research.
+ I&rsquo;m usually always into guessing what goes on behind the scenes of some technology and then checking online more about it and then understanding how it&rsquo;s actually done.
+So, in this post, I&rsquo;m going to be talking about One Time Passwords (OTPs) and going to try to take a crack at how it is probably implemented behind the scenes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/" />
+<meta property="article:published_time" content="2020-09-22T21:02:50+05:30" />
+<meta property="article:modified_time" content="2020-09-22T21:02:50+05:30" />
+<meta itemprop="name" content="Introduction to One Time Passwords (OTPs)">
+<meta itemprop="description" content="Disclaimer: I&rsquo;m no security expert. The post is more from a techy user&rsquo;s perspective, with little research.
+ I&rsquo;m usually always into guessing what goes on behind the scenes of some technology and then checking online more about it and then understanding how it&rsquo;s actually done.
+So, in this post, I&rsquo;m going to be talking about One Time Passwords (OTPs) and going to try to take a crack at how it is probably implemented behind the scenes.">
+<meta itemprop="datePublished" content="2020-09-22T21:02:50+05:30" />
+<meta itemprop="dateModified" content="2020-09-22T21:02:50+05:30" />
+<meta itemprop="wordCount" content="2897">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to One Time Passwords (OTPs)"/>
+<meta name="twitter:description" content="Disclaimer: I&rsquo;m no security expert. The post is more from a techy user&rsquo;s perspective, with little research.
+ I&rsquo;m usually always into guessing what goes on behind the scenes of some technology and then checking online more about it and then understanding how it&rsquo;s actually done.
+So, in this post, I&rsquo;m going to be talking about One Time Passwords (OTPs) and going to try to take a crack at how it is probably implemented behind the scenes."/>
+
+      
+    
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
+      Karuppiah&#39;s Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/&amp;text=Introduction%20to%20One%20Time%20Passwords%20%28OTPs%29" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/&amp;title=Introduction%20to%20One%20Time%20Passwords%20%28OTPs%29" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Introduction to One Time Passwords (OTPs)</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-09-22T21:02:50&#43;05:30">September 22, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p>Disclaimer: I&rsquo;m no security expert. The post is more from a techy user&rsquo;s
+perspective, with little research.</p>
+</blockquote>
+<p>I&rsquo;m usually always into guessing what goes on behind the scenes of some
+technology and then checking online more about it and then understanding how
+it&rsquo;s actually done.</p>
+<p>So, in this post, I&rsquo;m going to be talking about One Time Passwords (OTPs) and going to
+try to take a crack at how it is probably implemented behind the scenes. I have
+learned a bit about it before, but not implemented a complete end to end
+solution - I mostly used libraries or existing services to implement the
+feature, and I haven&rsquo;t learned all there&rsquo;s about to learn about OTPs. But I&rsquo;m
+going to take a shot at trying to explain from a user&rsquo;s point of view - a user
+who is a techy and has been using OTPs for quite some time now.</p>
+<p>With that said, let&rsquo;s dive into the topic straight. I&rsquo;m sure a lot of you must
+have used OTPs, given you already have access to the Internet and are reading
+this post, written in English. So you are well read and have enough money to
+use the Internet, so it&rsquo;s very possible that you have used OTPs somewhere on
+some site or some mobile app.</p>
+<p>So, where all is OTP used? What does OTP help in? What&rsquo;s so special about it?
+Let&rsquo;s start by answering these questions.</p>
+<p>From my experience, I have seen OTPs being used in multiple places -</p>
+<ul>
+<li>For bank transactions - apart from the debit card details, banks additionally
+use OTP as a 2nd factor authentication</li>
+<li>For easy signup and login for users of an application, using their mobile
+number, instead of using email ID</li>
+<li>For verifying your phone number, similar to how applications verify your email
+ID. More like a one time thing for phone verification</li>
+<li>For 2nd or nth factor authentication as part of any standard authentication
+flow</li>
+</ul>
+<p>The usage of OTPs is just booming. You will see OTPs being used in a lot of
+applications if you are using the modern day applications (websites and mobile
+apps)</p>
+<p>Let&rsquo;s dig deep and understand the different ways OTP helps in.</p>
+<p>OTPs as the name says is a One Time thing. Actually, the word &ldquo;One Time&rdquo; can be
+tricky as it&rsquo;s really based on the implementation. It can be configured in such
+a way that, once the password is used, it cannot be used again at all. There is
+also a time factor to OTP at times, depending upon the implementation - where a
+person can use the OTP any number of times in the given time frame. Usually the
+time frame is very small, depending upon the use case - like 1 minute,
+5 minutes, 15 minutes, 30 minutes etc. I don&rsquo;t think I have seen anything more
+than 20 or 30 minutes. This time factor helps the user to have enough time to
+receive the OTP and type in the OTP. If you want to keep the system very very
+secure, reduce the OTP expiration time to a very low value, but still a good
+enough value to let the user experience be good - you don&rsquo;t want to timeout
+so soon that the user has no time to input the OTP :P</p>
+<p>So we see that OTPs are pretty secure as they are one time thing with a short
+expiration usually. So, that&rsquo;s really helpful! It&rsquo;s surely something special
+about OTP, as usual passwords are set once and it stays the same forever, unless
+the user changes it. Only in some cases, some systems prompt / force the user to
+change the password once in every few months, and have some strict policies for
+not reusing old passwords. The expiration for the password is pretty high
+compared to OTP.</p>
+<p>Each kind of password has it&rsquo;s own use case, but I have noticed in some systems
+where OTPs are used to replace the standard passwords and not augment it as
+part of 2nd factor authentication.</p>
+<p>What else can an OTP help in? OTPs can help in verifying mobile numbers, or
+even emails for that matter. Usually we get those verification emails to verify
+our email ID right? It has a special link, which you click and voila, your
+email is verified! The link usually has some special code in it, which is
+similar to an OTP. And a similar mechanism is used to verify phone numbers.</p>
+<p>The flow goes something like this</p>
+<blockquote>
+<p><strong>Application</strong>: Hey, I want to verify your phone number. Give me your phone
+number.</p>
+<p><strong>User</strong>: Okay, here you go <code>+1234567890</code></p>
+</blockquote>
+<blockquote>
+<p><strong>Application</strong>: Okay, I&rsquo;m sending the One Time Password to your phone through SMS</p>
+<p><strong>User</strong>: Okay</p>
+</blockquote>
+<p>Application creates a OTP, say <code>908196</code>. Creates a text message with the OTP.
+Application remembers that, for number <code>+1234567890</code> , the OTP created is
+<code>908196</code>.</p>
+<blockquote>
+<p><strong>Application</strong>: Hey Network Provider, send this SMS to <code>+1234567890</code></p>
+<p><strong>Network Provider</strong>: Sure thing. It will be done!</p>
+</blockquote>
+<p>User receives the SMS, sees the OTP <code>908196</code></p>
+<blockquote>
+<p><strong>User</strong>: Hey, this is the OTP - 908196</p>
+<p><strong>Application</strong>: Let me verify it</p>
+</blockquote>
+<p>Application verifies based on it&rsquo;s memory, if the OTP is right.</p>
+<blockquote>
+<p><strong>Application thinks</strong>:</p>
+<p>This user mentioned their phone number is <code>+1234567890</code>.
+The OTP I created for the number <code>+1234567890</code> is <code>908196</code>, and I sent it
+through SMS. User gave the input as <code>908196</code>.</p>
+<p><code>908196</code> (OTP I created) is equal to <code>908196</code> (User input) ✅</p>
+<p>Cool! The user does have access to this phone number!</p>
+</blockquote>
+<blockquote>
+<p><strong>Application</strong>: Hey, the OTP is right. Your mobile number has been verified!</p>
+<p><strong>User</strong>: Yay! Thanks!</p>
+</blockquote>
+<p>That&rsquo;s how a basic OTP flow looks like for mobile number verification and it&rsquo;s
+similar for few other use cases too.</p>
+<p>Now, let&rsquo;s look at some possible tweaks or configurations here</p>
+<ul>
+<li>
+<p>What is the format for an OTP? Is it all numbers? How long can it be? - I have
+seen a lot of OTPs in the form of pure numbers. Especially the ones that are
+sent through SMS. And it&rsquo;s usually 4 digits or 6 digits. But it doesn&rsquo;t stop
+you from implementing a version which uses alpha numeric characters - alphabets
+and numbers together. I think numbers are easier for the user to see and type.
+Sometimes, if the application has access to SMS and can read from the SMS, then
+that can be done too. In which case, you can use any format for your OTP as the
+app is going to automatically read from SMS. But if user denies access to the
+app to read SMS, it will be hard for the user to read and type alpha numeric
+OTPs <em>I think</em>. I would <em>think twice</em> to use special characters like <code>,</code>, <code>*</code>
+etc or even special language characters like <code>á</code> etc in OTPs. That&rsquo;s more like
+a proper password with lots of crazy characters, rather than a simple OTP.</p>
+</li>
+<li>
+<p>How is the OTP sent to the user? In which channel? - I have noticed applications
+following different ways to do this. In the above case, it&rsquo;s an SMS. It can also
+be over email. I have noticed bank applications send OTPs for transactions to
+both mobile number and email. Some people prefer to use email as it&rsquo;s
+<strong>faster</strong>, in such cases, where the bank transactions have a particular
+expiration period / time out for the whole transaction. I have also noticed
+applications sending OTP through automated voice calls, as an alternative to SMS.
+Something to note is - it is very clear that, there needs to be some sort of
+connectivity to some network - mobile network - for SMS, calls, or Internet /
+intranet for emails. There are some special OTPs, that can work completely
+offline, with no connectivity. We will come to it! :)</p>
+</li>
+</ul>
+<p>Now that we have seen some tweaks in such a flow, where OTP is used for phone
+number verification, what does it mean to verify the phone number in this way?
+I think it&rsquo;s a good way to verify phone numbers. <em>But</em>. Something to note is -
+this only verifies that the user who claims that they own the phone number -
+what we have verified is that they have <em>access to the phone number</em>. If for
+some reason, someone somehow hacked / hijacked / got access to someone else&rsquo;s
+SMS / Calls, then they can verify themselves as someone else - more like
+masquerading.</p>
+<p>It&rsquo;s kind of a lot of effort or maybe even impossible for an application to know
+if the physical person accessing the application is really the person who owns
+the phone number - like, has their name is registered to the phone number in the
+Network Provider&rsquo;s records. I mean, it could be easily like this - I&rsquo;m using my
+phone, accessing an application, but I use my dad&rsquo;s mobile number to login as my
+dad and I get access to his SMS for the OTP and then I can help my dad by doing
+some work on behalf of him in the application. I just have access to the phone
+number and don&rsquo;t own it.</p>
+<p>There are better ways to verify phone number too. I have noticed some
+applications, for example
+<a href="https://en.wikipedia.org/wiki/Unified_Payments_Interface">UPI</a> applicatons in
+India, which is money related, and hence needs maximum security do this in a
+different way. They check your phone number by using the application to access
+your SMS and then send an SMS from your phone using the SIM which has the number
+that needs to be verified. The SMS is sent to an external number, which then
+receives the SMS and then an application which has access to this external
+number&rsquo;s SMS inbox, reads from it and does verification of your phone number.
+And there&rsquo;s probably more to it, this was just an example based on experience.</p>
+<p>Now that we have seen some ways in which OTP works and helps and is special too
+because of the way it helps. Some reasons why you would use OTP - it is the
+same thing as the ways in which OTP is used - if you have a matching use case
+and it makes sense for your application - go ahead, use it!</p>
+<p>I think that OTPs over SMS / Calls is pretty ubiqutous probably because of the
+way our phone is too close to us, and hence our phone number. Not all of us - all
+ages, all kinds of people, from different countries, cultures etc, would be
+using something like email and email inboxes, and read emails. But a lot of us
+would surely call people using phones, receive calls, probably send and/ read
+SMS, probably use WhatsApp. Given this fact, a lot of the applications are
+trying to get a hold of the phone numbers of users, to send Ads, promotions, etc
+through SMS, calls, WhatsApp and any medium that links to your phone number.</p>
+<p>For some applications, phone number is probably a key element in the
+application. For example - transport apps like Uber, Ola (in India) need to
+know the phone number of their user to be able to connect to them and to also
+let the drivers and riders connect to each other through phone calls. There&rsquo;s
+also Internet calls these days, in such apps, to avoid exposing phone numbers
+of the users to other people. In any case, some of these apps, use phone
+numbers as the main way to uniquely identify a user and also have some extra
+details - the usual email ID, and anything else that makes sense for the
+application. And applications accordingly restrict any other user to reuse the
+phone number or even the email address, and also make sure that there&rsquo;s some
+sort of security - for example, by saying that only one user with a particular
+phone number can be logged into only one device at a time. Just an example.
+There&rsquo;s probably more work behind the scenes to take care of such use cases,
+but verifying the phone number is part of the big process.</p>
+<p>Now, we spoke about different things about OTPs. There are some special cool
+OTPs. I know two of them only - TOTP - Time based One Time Password, HOTP -
+HMAC based One Time Password.</p>
+<p>I can only talk about TOTP as I have used it a lot and read about it.
+Probably I can do some follow up writings about HOTP later.</p>
+<p>Remember I mentioned about some OTPs not need network connectivity for it&rsquo;s
+usage? TOTP is one such OTP. Let me give an example of how it works based on
+how I have used it.</p>
+<p>For TOTP to work, there are some pre-requisites. The user should be known to the
+application before hand, before using the TOTP. Or let&rsquo;s just say that there
+has to be some sort of initial communication needed between the user and the
+application, for the TOTP initial setup, and then the TOTPs can be used later.
+And any time the setup is again needed, a similar communication has to happen
+again. So, it is kind of like a pre-requisite setup before starting to use TOTPs.</p>
+<p>Usually I have seen TOTP used in 2nd Factor Authentication (2FA) - which is a
+feature few applications provide, where the user provides two different things to
+identify themselves. In general also called Multi Factor Authentication (MFA).
+For this feature, the user first signs up for the application, logs in, and then
+sets up their 2FA, in the process, setting up a way for providing TOTPs, as TOTP
+is what is used for the 2FA. So, in this case, the application should know the
+user, through signup, then login - to setup the TOTP.</p>
+<p>Now, TOTP works based on Time, as the name suggests. The user and the
+application share a unique secret, and this secret is different for different
+users. For example, for me and application <code>A</code>, our shared secret could be <code>ABCDEF</code>.
+For my friend and application <code>A</code>, they might be sharing a different secret,
+say <code>PQRSTUV</code>. This is just an example. The application remembers each user&rsquo;s
+secret key, that the application and user share. The user <strong>also</strong> remembers the
+same key on their side. Let&rsquo;s look at an example / demo of how TOTP works.</p>
+<p><strong>The First meet between the user and the application</strong></p>
+<blockquote>
+<p><strong>karuppiah7890</strong>: Hey, let&rsquo;s setup a way to identify me using TOTPs, for my
+2FA</p>
+<p><strong>Application</strong>: Sure! Let&rsquo;s have a shared key!</p>
+<p><strong>karuppiah7890</strong>: Sure!</p>
+</blockquote>
+<p>Application generates a shared key <code>LOLOLRTEFQ</code></p>
+<blockquote>
+<p><strong>Application</strong>: Here you go, remember this key <code>LOLOLRTEFQ</code> in your TOTP
+application</p>
+<p><strong>karuppiah7890</strong>: Okay! I&rsquo;ll use Authy app to store this key and remember it!</p>
+<p><strong>karuppiah7890</strong>: Hey! I stored it!</p>
+<p><strong>Application</strong>: Cool! You can use TOTP as an additional thing to identify
+yourself next time, apart from your standard password!</p>
+</blockquote>
+<p>The Application remembers that for user <code>karuppiah7890</code>, the shared secret key
+is <code>LOLOLRTEFQ</code>.</p>
+<p>The verification process looks something like this. This can happen anytime,
+after the initial setup.</p>
+<p><strong>The verification stage of TOTP</strong></p>
+<blockquote>
+<p><strong>karuppiah7890</strong>: hey, it&rsquo;s me, karuppiah7890</p>
+<p><strong>Application</strong>: Yeah, I know, because you provided the standard password to
+identify yourself. But I need something extra, your TOTP.</p>
+<p><strong>karuppiah7890</strong>: Sure thing. Let me get the TOTP from my Authy app!
+<strong>karuppiah7890</strong>: Hey my TOTP is <code>606347</code>. It&rsquo;s going to expire soon! Oops.
+Log me in fast! Or I need to type again.</p>
+<p><strong>Application</strong>: Just a sec.</p>
+</blockquote>
+<p>Application does it&rsquo;s standard math calculation for TOTP - which takes two
+inputs - Current Time and the shared secret, which is <code>LOLOLRTEFQ</code> in this
+case as that&rsquo;s what has been stored for the user <code>karuppiah7890</code>. After the
+calculation, it gets the value - <code>606347</code>. The user provided input <code>606347</code> and
+the calculated value <code>606347</code>, both match ✅</p>
+<blockquote>
+<p><strong>Applcation</strong>: Yup, I see you are in fact karuppiah7890, unless you hacked
+karuppiah7890 and got access to their shared secret key</p>
+<p><strong>karuppiah7890</strong>: Nah, it&rsquo;s actually me! Chill! :)</p>
+</blockquote>
+<p>As you can see, there&rsquo;s some calculation that&rsquo;s being done to get the value of
+TOTP. This calculation is universal - and that&rsquo;s why the user&rsquo;s app - Authy
+was able to do it and provide a value to the user, as it&rsquo;s hard for the user,
+a human to do such big calculations - I&rsquo;m not going to go into the details of
+the calculation, as even I don&rsquo;t know much :P But I do know this (or have
+noticed this) -</p>
+<p>Input to calculation: Current Time, Secret Key
+Output: 6 digit numbers</p>
+<p>At least that&rsquo;s what I have noticed. If you are new to this, I would recommend
+to think about what kind of function would you use to do this calculation. Also,
+I said <code>Time</code>, but <code>Time</code> has timezone attribute to it, what if the user and
+the application are in different timezone? :P Maybe they all use the universal
+UTC timezone for their calculations? Go checkout it out ;)</p>
+<p>Also, the TOTPs are valid for 1 minute or so usually. So, when I say the
+calculation is done with time, the value is still the same for a period of time,
+I think.</p>
+<p>I think I&rsquo;ll do a follow up write up on more about TOTP and HOTP :)</p>
+<p>That&rsquo;s all I had to talk about OTPs. I hope you had a good basic introduction
+to OTPs in general! Do let me know your thoughts in comments or any questions
+you have!</p>
+<p>Looks like there are some good links on the Internet for these topics
+<a href="https://en.wikipedia.org/wiki/One-time_password">https://en.wikipedia.org/wiki/One-time_password</a>
+<a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm">https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm</a>
+<a href="https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_algorithm">https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_algorithm</a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
+    &copy;  Karuppiah's Blog 2020 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/blog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
