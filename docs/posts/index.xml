@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Sep 2020 21:02:50 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Sep 2020 21:35:06 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning CSS: A bumpy journey</title>
+      <link>https://karuppiah7890.github.io/blog/posts/learning-css/</link>
+      <pubDate>Thu, 24 Sep 2020 21:35:06 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/learning-css/</guid>
+      <description>Recently I took up the task of implementing the login feature of our application. I took it up knowing I know nothing, so that I&amp;rsquo;ll learn it and do it and come out of it learning something new and with some knowledge on how things work.
+I kind of knew that my implementation would involve Keycloak, a software we use for Authentication and Authorization feature in our app. But little did I realize that I would have to also work with CSS to customize the theme of our login page, instead of using the default theme of the super cool Keycloak default login page.</description>
+    </item>
+    
     <item>
       <title>Introduction to One Time Passwords (OTPs)</title>
       <link>https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/</link>
