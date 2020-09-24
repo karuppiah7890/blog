@@ -31,9 +31,9 @@ From my experience, I have seen OTPs being used in multiple places -
 * For bank transactions - apart from the debit card details, banks additionally
 use OTP as a 2nd factor authentication
 * For easy signup and login for users of an application, using their mobile
-number, instead of using email ID
+number, instead of using email ID, and sending OTP to their mobile number
 * For verifying your phone number, similar to how applications verify your email
-ID. More like a one time thing for phone verification
+ID. More like a one time thing for phone verification too.
 * For 2nd or nth factor authentication as part of any standard authentication
 flow
 
@@ -179,14 +179,15 @@ because of the way it helps. Some reasons why you would use OTP - it is the
 same thing as the ways in which OTP is used - if you have a matching use case
 and it makes sense for your application - go ahead, use it!
 
-I think that OTPs over SMS / Calls is pretty ubiqutous probably because of the
-way our phone is too close to us, and hence our phone number. Not all of us - all
-ages, all kinds of people, from different countries, cultures etc, would be
-using something like email and email inboxes, and read emails. But a lot of us
-would surely call people using phones, receive calls, probably send and/ read
-SMS, probably use WhatsApp. Given this fact, a lot of the applications are
-trying to get a hold of the phone numbers of users, to send Ads, promotions, etc
-through SMS, calls, WhatsApp and any medium that links to your phone number.
+I think that OTPs over SMS / Calls for login with phone number is pretty
+ubiqutous. It's probably because of the way our phone is too close to us, and
+hence our phone number. Not all of us - all ages, all kinds of people, from
+different countries, cultures etc, would be using something like email and email 
+inboxes, and read emails. But a lot of us would surely call people using phones,
+receive calls, probably send and/ read SMS, probably use WhatsApp. Given this
+fact, a lot of the applications are trying to get a hold of the phone numbers of
+users, to send Ads, promotions, etc through SMS, calls, WhatsApp and any medium
+that links to your phone number.
 
 For some applications, phone number is probably a key element in the
 application. For example - transport apps like Uber, Ola (in India) need to
@@ -202,6 +203,28 @@ sort of security - for example, by saying that only one user with a particular
 phone number can be logged into only one device at a time. Just an example.
 There's probably more work behind the scenes to take care of such use cases,
 but verifying the phone number is part of the big process.
+
+Also, if you think about it, it's easy to have multiple email IDs - many
+websites have a very simple signup and you can get tons of email IDs, or create
+your own email server and get tons of email IDs too. But it's not easy for
+everyone to get mobile numbers - it's possible, just not easy usually, from what
+I have seen. These days, for security reasons, getting a phone number has it's
+own process so that the identity of the individual is known - this is the case
+for standard network providers, also, getting many SIM cards to have many phone
+numbers might be costly for someone, and also, to be able to actively use them,
+you need to keep swapping it in and out of your mobile phone devices or have
+multiple devices. So, compared to have multiple phone numbers, having multiple
+email IDs is easy. The same goes for having multiple credit / debit cards - it's
+not easy, but yes, possible. I think due to these reasons, asking the user for
+their phone number can help applications to find out duplicate users / accounts to some
+extent if that's something important for the application, and the same goes for
+paid services providing free trials which ask for credit card of the user or
+phone number or both. And they don't just ask for the phone number or credit
+card, they also verify it, phone number with OTP and credit card with some
+transaction of low value.
+
+I have notced that Google has infact started asking their users for their phone
+numbers. Not sure for what reasons :P
 
 Now, we spoke about different things about OTPs. There are some special cool
 OTPs. I know two of them only - TOTP - Time based One Time Password, HOTP - 
@@ -288,8 +311,19 @@ the calculated value `606347`, both match ✅
 >
 > **karuppiah7890**: Nah, it's actually me! Chill! :)
 
-As you can see, there's some calculation that's being done to get the value of
-TOTP. This calculation is universal - and that's why the user's app - Authy
+If you noticed, there is no concept of "sending" OTP to the user. Previously
+we noticed that OTPs are sent through SMS, email, call. In this case, the
+generation of OTP is done by both the application **and** the user. This way,
+the hassle of the sending and receiving OTPs is lifted in this case - no need
+to worry about a bad network provider in which SMS is received late, or just
+the fact that SMS is sometimes just unreliable (based on my experience), and no
+need to worry about calls or even slow Internet to update your email inbox to
+get the OTP through email. The user can generate the TOTP completely offline,
+even though it might be needed to be online to communicate with the application
+and send the OTP to the application for verification.
+
+Also as you can see, there's some calculation that's being done to get the value of
+TOTP. This calculation is universal and public - and that's why the user's app - Authy
 was able to do it and provide a value to the user, as it's hard for the user,
 a human to do such big calculations - I'm not going to go into the details of
 the calculation, as even I don't know much :P But I do know this (or have
