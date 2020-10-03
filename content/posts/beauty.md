@@ -82,5 +82,6 @@ heart, that's more valuable according to me than the "external beauty". I hope
 everyone values the inner beauty in others. It's a big hope, but I think it's
 possible in the upcoming generations.
 
-Let's promote self love, where one loves themselves regardless of how they look
-from the outside.
+I have also seen some people not like themselves or not like how they "look".
+Let's promote self love, where one loves themselves regardless of how they
+"look" from the outside.
