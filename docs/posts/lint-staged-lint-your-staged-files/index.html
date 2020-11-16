@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>lint-staged: Lint Your Staged Files | Karuppiah&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.78.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+    
+      <link href="/blog/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="lint-staged: Lint Your Staged Files" />
+<meta property="og:description" content="In my project, we use this tool called lint-staged which is pretty awesome! I wanted to write this blog post to talk a little bit about it and also mention some of the cool things I liked about it! :D
+To start off, I work on a React project with Typescript. We need to ensure we follow some good practices as much as possible, so we use ESLint in our project We also use Prettier for formatting, so that our code looks neat and the same always no matter who worked on it, letting us read code in a consistent manner and not fight about formatting rules." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/" />
+<meta property="article:published_time" content="2020-11-16T09:11:20+05:30" />
+<meta property="article:modified_time" content="2020-11-16T09:11:20+05:30" />
+<meta itemprop="name" content="lint-staged: Lint Your Staged Files">
+<meta itemprop="description" content="In my project, we use this tool called lint-staged which is pretty awesome! I wanted to write this blog post to talk a little bit about it and also mention some of the cool things I liked about it! :D
+To start off, I work on a React project with Typescript. We need to ensure we follow some good practices as much as possible, so we use ESLint in our project We also use Prettier for formatting, so that our code looks neat and the same always no matter who worked on it, letting us read code in a consistent manner and not fight about formatting rules.">
+<meta itemprop="datePublished" content="2020-11-16T09:11:20+05:30" />
+<meta itemprop="dateModified" content="2020-11-16T09:11:20+05:30" />
+<meta itemprop="wordCount" content="1971">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="lint-staged: Lint Your Staged Files"/>
+<meta name="twitter:description" content="In my project, we use this tool called lint-staged which is pretty awesome! I wanted to write this blog post to talk a little bit about it and also mention some of the cool things I liked about it! :D
+To start off, I work on a React project with Typescript. We need to ensure we follow some good practices as much as possible, so we use ESLint in our project We also use Prettier for formatting, so that our code looks neat and the same always no matter who worked on it, letting us read code in a consistent manner and not fight about formatting rules."/>
+
+      
+    
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
+      Karuppiah&#39;s Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/&amp;text=lint-staged:%20Lint%20Your%20Staged%20Files" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/&amp;title=lint-staged:%20Lint%20Your%20Staged%20Files" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">lint-staged: Lint Your Staged Files</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-11-16T09:11:20&#43;05:30">November 16, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>In my project, we use this tool called <a href="https://github.com/okonet/lint-staged">lint-staged</a>
+which is pretty awesome! I wanted to write this blog post to talk a little bit
+about it and also mention some of the cool things I liked about it! :D</p>
+<p>To start off, I work on a React project with Typescript. We need to ensure we
+follow some good practices as much as possible, so we use ESLint in our project
+We also use Prettier for formatting, so that our code looks neat and the same
+always no matter who worked on it, letting us read code in a consistent manner
+and not fight about formatting rules. If you have not heard about linters and
+formatters, I would recommend checking it out first before reading this post :)</p>
+<p>To run our linters and formatters, we could go two ways - either run them always
+on the whole project or just run for the changes we make for each commit.
+Running linters for the whole project is going to take a lot of time since it
+has to run for all files and that&rsquo;s going to be slow and going to be a bad
+Developer Experience (DX, like UX). In this aspect, the other approach sounds
+good - just run linters and formatters for the changes we make for each commit.
+I mean, this rule can be applied for almost anything - building / compiling too,
+to compile only files that have been changed and the files related to those
+changes too maybe but that&rsquo;s it, nothing unrelated.</p>
+<p>What are the problems with the second approach though? One could say that &ldquo;Hey,
+if I just run linting and formatting for the changes I make, that sounds nice,
+because I don&rsquo;t have to see some weird issues that is caused by some file that
+I didn&rsquo;t edit. But then, the whole point of linting is lost right? I mean, then
+I just worry about my code changes and not worry about the whole project, which
+might be breaking some lint rules or formatting rules&rdquo;</p>
+<p>I think this is a valid concern. I would say that - it&rsquo;s not exactly your worry
+to start with - as in, first you need to worry about your code changes. Once
+that&rsquo;s resolved, for the whole project, ideally people making the other changes
+need to take care of it. And to ensure this, you can run the &ldquo;lint check&rdquo; as a
+job in your Continuous Integration (CI) Pipeline, so that when someone pushes
+code that is not properly formatted or has lint issues, the &ldquo;lint check&rdquo; job
+will run the linting and formatting check in the whole project and will error
+out for any errors, resulting in a red CI pipeline. Then the people who broke
+the pipeline can check it out and fix it. Or, you could fix it too, but in a
+separate commit probably. :)</p>
+<p>Now that we have agreed that we can run linting and formatting on just the
+files changed - that is, the files in each commit, how does one do it? Usually
+people use git hooks to do such kind of code quality tests - to run linting,
+formatting, tests and similar checks. For example, you could run a git pre
+commit hook, which runs before each commit and does all the code quality checks.
+Either you could do all the scripting for git hooks or you could use existing
+tools and maybe not reinvent the wheel and spend your time on something else :)</p>
+<p>This is where <a href="https://github.com/okonet/lint-staged">lint-staged</a> tool comes
+into the picture. Usually one would run the code quality check on the whole
+project in the git hook scripts. <code>lint-staged</code> helps you to run any process or
+jobs on just the files changed and staged for the commit. If you have 10
+modified files in your git repository, and you have staged only two files for
+committing, <code>lint-staged</code> will work on only those two files and nothing else.</p>
+<p>Let&rsquo;s see how to setup <code>lint-staged</code> and then see it in action! :)</p>
+<p>As an example, I&rsquo;m going to take this project -
+<a href="https://gitlab.com/snapping-shrimp/cocreate-remote-vscode/">https://gitlab.com/snapping-shrimp/cocreate-remote-vscode/</a></p>
+<p>It has ESLint and Prettier, and also <code>lint-staged</code>. I will take you through what
+has been done for the project to setup <code>lint-staged</code>. Something to note is,
+<code>lint-staged</code> has some automated way of doing setup in
+<a href="https://github.com/okonet/lint-staged#installation-and-setup">their readme</a>.
+I would recommend checking it out and trying it out. Below I&rsquo;m going to explain
+how to do it manually as that&rsquo;s how I did it 😅 You can skip the below section
+to and move the <a href="#Seeing-lint-staged-in-action">Seeing lint-staged in action</a> section</p>
+<h2 id="setup">Setup</h2>
+<p>Assuming you have already setup code quality checks like test framework,
+linters, formatters, I&rsquo;m going to move forward to the next step of setting up
+<code>lint-staged</code>.</p>
+<p>For <code>lint-staged</code> to work, you need NodeJS. This is because <code>lint-staged</code> is
+written in JavaScript. If you work on a JavaScript / TypeScript project, it
+should be pretty straight forward to use <code>lint-staged</code>. Or else, I would
+recommend checking out other tools in the ecosystem of your language, or you
+could just use NodeJs just for some tools like this. It&rsquo;s totally your call.</p>
+<p>Now that we have sorted out the language/environment/ecosystem, let&rsquo;s move to
+the installation of <code>lint-staged</code>. <code>lint-staged</code> given that it works with staged
+files and for each commit, usually people use it with another tool called
+<a href="https://github.com/typicode/husky"><code>husky</code></a> which helps with git hooks,
+including pre commit hook. But it&rsquo;s not mandatory though, you could still use
+<code>lint-staged</code> without <code>husky</code>. Now, moving on to the installation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install --save-dev lint-staged
+</code></pre></div><p>If you are going to use <a href="https://github.com/typicode/husky"><code>husky</code></a>, check out
+which version you can use - v4 or v5 and then set it up.</p>
+<p>After the <code>lint-staged</code> installation is done, all you gotta do is, go to your
+<code>package.json</code> and put this in</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;lint-staged&#34;</span>: {
+    <span style="color:#f92672">&#34;*.js&#34;</span>: [
+      <span style="color:#e6db74">&#34;linter-command&#34;</span>,
+      <span style="color:#e6db74">&#34;formatter-command&#34;</span>,
+      <span style="color:#e6db74">&#34;test-command&#34;</span>,
+      <span style="color:#e6db74">&#34;any-command&#34;</span>
+    ]
+  }
+}
+</code></pre></div><p>If you are not comfortable using your <code>package.json</code> as a place for
+configuration for tools, there are other ways to configure too, checkout the
+tool&rsquo;s <a href="https://github.com/okonet/lint-staged#configuration">readme</a></p>
+<p>The above configuration means that &ldquo;hey lint-staged, when you run, check the
+staged files, and out of those files, find any staged files with the <code>.js</code>
+extension and run the following list of commands for those files&rdquo;</p>
+<p>Something to note is, each command needs to have certain properties and the
+<code>lint-staged</code> configuration also must be according to that. For example, if
+your lint command is like this</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ linter-command index.js
+</code></pre></div><p>Then you just use <code>linter-command</code> in your <code>lint-staged</code> configuration.
+<code>lint-staged</code> will take care of passing the file path of the staged files as
+it&rsquo;s the one that knows which files are staged and it&rsquo;s a dynamic thing but your
+configuration is just static and not dependent on that. But your
+<code>linter-command</code> should run only for the given file path. Ensure that&rsquo;s the
+case. Or else, let&rsquo;s say your <code>linter-command</code> works on the whole project no
+matter what, then there is no use of using a tool like <code>lint-staged</code> whose sole
+purpose is to run commands on only the files that are staged and are going to be
+committed in git.</p>
+<p>So, never pass file path related information in the <code>lint-staged</code> configuration.
+Once that&rsquo;s done, all you gotta do is, run <code>npx lint-staged</code> in your git pre
+commit hook or any hook that you want to use. If you are using husky v4, then
+it would look like the below in your <code>package.json</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;husky&#34;</span>: {
+    <span style="color:#f92672">&#34;hooks&#34;</span>: {
+      <span style="color:#f92672">&#34;pre-commit&#34;</span>: <span style="color:#e6db74">&#34;lint-staged&#34;</span>
+    }
+  }
+}
+</code></pre></div><p>Follow the similar thing in case you are using some other tool or your own
+script for git hooks, or husky v5. Just run the command <code>lint-staged</code> :)</p>
+<h2 id="seeing-lint-staged-in-action">Seeing lint-staged in action</h2>
+<p>I&rsquo;m trying out <code>lint-staged</code> in this project -</p>
+<p><a href="https://gitlab.com/snapping-shrimp/cocreate-remote-vscode">https://gitlab.com/snapping-shrimp/cocreate-remote-vscode</a></p>
+<p>I&rsquo;m making a change in a TypeScript file, where I change the word <code>Signed in</code> as
+<code>Logged in</code>. Look at what happens in my shell when I run the git commands</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git status
+On branch main
+Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
+
+Changes not staged <span style="color:#66d9ef">for</span> commit:
+  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span style="color:#f92672">)</span>
+  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span style="color:#f92672">)</span>
+        modified:   src/extension.ts
+
+no changes added to commit <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> and/or <span style="color:#e6db74">&#34;git commit -a&#34;</span><span style="color:#f92672">)</span>
+
+$ git diff
+diff --git a/src/extension.ts b/src/extension.ts
+index 273d95f..8c2041a <span style="color:#ae81ff">100644</span>
+--- a/src/extension.ts
++++ b/src/extension.ts
+@@ -11,9 +11,8 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
+           createIfNone: true,
+         <span style="color:#f92672">})</span>
+         .then<span style="color:#f92672">(</span>
+-          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+-            vscode.window.showInformationMessage<span style="color:#f92672">(</span>
+-              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
++          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> vscode.window.showInformationMessage<span style="color:#f92672">(</span>
++              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+             <span style="color:#f92672">)</span>;
+           <span style="color:#f92672">}</span>,
+           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+
+$ git add .
+
+$ git status
+On branch main
+Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
+
+Changes to be committed:
+  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span style="color:#f92672">)</span>
+        modified:   src/extension.ts
+
+$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+✔ Preparing...
+❯ Running tasks...
+  ❯ Running tasks <span style="color:#66d9ef">for</span> *.<span style="color:#f92672">{</span>js,ts<span style="color:#f92672">}</span>
+    ✔ eslint --fix
+    ⠙ prettier --write
+  ↓ No staged files match *.<span style="color:#f92672">{</span>json,yml,md<span style="color:#f92672">}</span> <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
+◼ Applying modifications...
+◼ Cleaning up...
+</code></pre></div><p>You can see how there are some set of tasks that are running when I run git
+commit command. This is because of the git pre commit hook that I have setup
+with husky v5 :)</p>
+<p>Finally it looks like this</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+✔ Preparing...
+✔ Running tasks...
+✔ Applying modifications...
+✔ Cleaning up...
+<span style="color:#f92672">[</span>main 41afab4<span style="color:#f92672">]</span> dummy change
+ <span style="color:#ae81ff">1</span> file changed, <span style="color:#ae81ff">1</span> insertion<span style="color:#f92672">(</span>+<span style="color:#f92672">)</span>, <span style="color:#ae81ff">1</span> deletion<span style="color:#f92672">(</span>-<span style="color:#f92672">)</span>
+
+$ git show
+$ git show
+commit 41afab43431cb2be65edac395577bf52fa13f3e4 <span style="color:#f92672">(</span>HEAD -&gt; main<span style="color:#f92672">)</span>
+Author: Karuppiah Natarajan &lt;karuppiah7890@gmail.com&gt;
+Date:   Mon Nov <span style="color:#ae81ff">16</span> 17:01:30 <span style="color:#ae81ff">2020</span> +0530
+
+    dummy change
+
+diff --git a/src/extension.ts b/src/extension.ts
+index 273d95f..2fc3d5c <span style="color:#ae81ff">100644</span>
+--- a/src/extension.ts
++++ b/src/extension.ts
+@@ -13,7 +13,7 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
+         .then<span style="color:#f92672">(</span>
+           <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+             vscode.window.showInformationMessage<span style="color:#f92672">(</span>
+-              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
++              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+             <span style="color:#f92672">)</span>;
+           <span style="color:#f92672">}</span>,
+           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</code></pre></div><p>You can see how the git commti changes are different from what we saw before.
+Prettier has formatted the code while doing the commit and it has also added
+the formatted code change and then did the commit.</p>
+<p>So, <code>lint-staged</code> can not just run commands on your staged files, if your
+commands are not just checks and if they also automatically change code, then
+<code>lint-staged</code> can add / stage those changes alone if related code was already
+staged, and then it will commit it all together ;)</p>
+<p>I have also tried to partially add / stage files and try to use <code>lint-staged</code>
+and it has worked well that time too :D Also, if you make changes that are
+reverted because of the commands that run during <code>lint-staged</code>&rsquo;s processing,
+then it can lead to an error like the below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+✔ Preparing...
+✔ Hiding unstaged changes to partially staged files...
+✔ Running tasks...
+✖ Prevented an empty git commit!
+↓
+  ✖ lint-staged failed due to a git error. <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
+✔ Reverting to original state because of errors...
+✔ Cleaning up...
+
+  ⚠ lint-staged prevented an empty git commit.
+  Use the --allow-empty option to <span style="color:#66d9ef">continue</span>, or check your task configuration
+
+husky - pre-commit hook exited with code <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span>
+</code></pre></div><p>As you can see, <code>lint-staged</code> errored out saying it was an empty git commit - a
+commit with no changes. No changes because all the changes I made were
+formatting changes, which were wrong according to prettier and it fixed it back
+and on doing so, there was no changes left to even be committed to git.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I would recommend you to try out <code>lint-staged</code> and give it a go in any of your
+projects. You can also look for similar tools in case you want some tool native
+to your eco system in case your&rsquo;s is not a JavaScript project. <code>lint-staged</code>
+would work too ;) :)</p>
+<p>If you have any questions regarding <code>lint-staged</code>, let me know in the comments
+below and I&rsquo;ll try to answer them :)</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
+    &copy;  Karuppiah's Blog 2020 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/blog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
