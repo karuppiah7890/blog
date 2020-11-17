@@ -6,7 +6,18 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2020 09:11:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Nov 2020 20:21:57 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Digital Signatures</title>
+      <link>https://karuppiah7890.github.io/blog/posts/digital-signatures/</link>
+      <pubDate>Mon, 16 Nov 2020 20:21:57 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/digital-signatures/</guid>
+      <description>If you don&amp;rsquo;t know what a digital signature is, in layman terms you may think of this, a photo of your physical signature
+Photo by Lewis Keegan - Skillscouter.com on Unsplash May be you could say that&amp;rsquo;s true, but only if it&amp;rsquo;s layman slang. Officially, in computer science, the concept of digital signature has a different meaning.
+It does denote someone&amp;rsquo;s or some entity&amp;rsquo;s signature, in a digital world. Yes. So, that&amp;rsquo;s not wrong.</description>
+    </item>
+    
     <item>
       <title>lint-staged: Lint Your Staged Files</title>
       <link>https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/</link>
