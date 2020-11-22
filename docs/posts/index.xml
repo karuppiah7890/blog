@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2020 20:21:57 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Nov 2020 14:23:37 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Drawing Tools Part 1: Excalidraw</title>
+      <link>https://karuppiah7890.github.io/blog/posts/drawing-tools-part1-excalidraw/</link>
+      <pubDate>Sat, 21 Nov 2020 14:23:37 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/drawing-tools-part1-excalidraw/</guid>
+      <description>TLDR; Try Excalidraw an Open Source Online drawing tool which has enough features for most of your basic needs! It also supports live collaboration for people working remotely! :)
+Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
+  This blog post will be mostly the text version of the video :) There might be a thing or two extra in this blog post.</description>
+    </item>
+    
     <item>
       <title>Digital Signatures</title>
       <link>https://karuppiah7890.github.io/blog/posts/digital-signatures/</link>
