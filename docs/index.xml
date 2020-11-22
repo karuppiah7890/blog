@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Nov 2020 14:23:37 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Nov 2020 14:45:36 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Validating Beans and Testing It</title>
+      <link>https://karuppiah7890.github.io/blog/posts/validating-beans-and-testing-it/</link>
+      <pubDate>Sun, 22 Nov 2020 14:45:36 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/validating-beans-and-testing-it/</guid>
+      <description>In my current project, we work with Spring Boot. Recently, I was writing a Data Transfer Object (DTO) and we also had to add validations to the fields. Usually, while doing this, we also add tests to ensure that in the future we don&amp;rsquo;t remove or change the validations by mistake and instead it&amp;rsquo;s more intentional as we have to also change the tests.
+Some more context - we are writing Web APIs.</description>
+    </item>
+    
     <item>
       <title>Drawing Tools Part 1: Excalidraw</title>
       <link>https://karuppiah7890.github.io/blog/posts/drawing-tools-part1-excalidraw/</link>
