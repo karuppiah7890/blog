@@ -104,6 +104,11 @@ worry about the Excalidraw servers reading your data. There's zero privacy
 breach as Excalidraw uses End to End (E2E) Encryption. You can read it in their
 [End-to-End Encryption in the Browser blog post](https://blog.excalidraw.com/end-to-end-encryption/)
 
+> Note: If someone gets access to the live collaboration URL, then they can join
+> your room and access your drawings. So, be sure to keep your collaboration URL
+> safe. I believe that it's a hard to guess URL so I wouldn't worry much about
+> it. You can read more over here in the [GitHub issue](https://github.com/excalidraw/excalidraw/issues/2408)
+
 ### Component Library
 
 You can draw stuff and then select them and then add them as a component in the
@@ -122,6 +127,11 @@ export and download the drawing you drew.
 
 Excalidraw has options to export as SVG, PNG. There's also an option to share
 the drawing using a link :)
+
+> Note: If someone gets access to the share link, then they can get access your
+> drawings. So, be sure to keep your share link safe. I believe that it's a
+> hard to guess link so I wouldn't worry much about it. You can read more over
+> here in the [GitHub issue](https://github.com/excalidraw/excalidraw/issues/2408)
 
 ### Exporting and Importing full scene in Excalidraw format
 
