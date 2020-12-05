@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Nov 2020 14:45:36 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Dec 2020 15:02:57 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jabba: A Java Version Manager</title>
+      <link>https://karuppiah7890.github.io/blog/posts/jabba-a-java-version-manager/</link>
+      <pubDate>Sat, 05 Dec 2020 15:02:57 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/jabba-a-java-version-manager/</guid>
+      <description>TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&amp;rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
+Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
+  This blog post will be mostly the text version of the video :)</description>
+    </item>
+    
     <item>
       <title>Validating Beans and Testing It</title>
       <link>https://karuppiah7890.github.io/blog/posts/validating-beans-and-testing-it/</link>
