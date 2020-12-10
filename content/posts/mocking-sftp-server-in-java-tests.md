@@ -40,3 +40,23 @@ It doesn't matter what library or framework you use. As long as it's Java, this
 blog should help. Even if it's not Java, I have some recommendations for you :)
 
 Now, let's get started.
+
+---
+
+SFTP Servers I found online
+
+https://github.com/drakkan/sftpgo
+
+https://hub.docker.com/r/amimof/sftp
+https://github.com/amimof/sftp
+
+https://hub.docker.com/r/asavartzeth/sftp
+https://github.com/AsavarTzeth/docker-sftp/blob/master/README.md
+
+https://hub.docker.com/r/atmoz/sftp
+https://github.com/atmoz/sftp
+
+Pointers for testcontainers container images - Run using alpine images maybe?
+Unless you are facing issues with alpine, then you can
+move on to debian
+https://www.turnkeylinux.org/blog/alpine-vs-debian
