@@ -174,7 +174,7 @@ I think this area is also related to plagiarism issues and ensure that the cross
 posts are still valid too. I would recommend checking this out in case you care
 about SEO. I don't so I never cared to look about it. :P
 
-Also, the platform you are cross posting on, it chould also help you with any
+Also, the platform you are cross posting on, it could also help you with any
 of the features that you want, similar to your main platform. Again, it depends
 on what you want and what the platform can provide
 

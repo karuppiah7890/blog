@@ -44,7 +44,7 @@ I love deleting code :P I love removing code to have less code. This way
 - We have less things to read and understand, less complexity in our lives.
   Every piece of code your team writes, all the people in the team are going to
   read it at some point and will try to understand it for various reasons - to
-  simlpy understand the system they are building, to modify the code or reuse
+  simply understand the system they are building, to modify the code or reuse
   it, to fix a possible bug that they are still debugging. Now, this is all
   good when the code is needed. But if it's just unnecessary code that no one
   needs or uses, then why would someone spend their time reading it,
@@ -156,7 +156,7 @@ looks pretty much useless.
 
 Another example is, recently in our project, we decided that we don't need one
 of the endpoints that we have in our microservice. This endpoint was mostly used
-only for development purposes but we realised that we can manage things without
+only for development purposes but we realized that we can manage things without
 it. Even with that decision, we took some time to remove it. Since we took
 some time, in this time people maintained it, fixed syntax errors, fixed failing
 tests for the endpoint - just because it existed. If it didn't exist, people
@@ -286,7 +286,7 @@ not needed"
 #### Special cases where I have not removed dead code
 
 In very rare cases, I've not removed some unused code. For example, we have end
-to end tests written with Selenum and it has some helper functions. These
+to end tests written with Selenium and it has some helper functions. These
 helper functions are like utils (utilities) that we all use to write lot of
 tests. I once noticed that one or two of them are not used anymore. They were
 dead code. I could have been brutal and removed them. But I noticed that they
@@ -319,7 +319,7 @@ the dead code and removal of it. It will help :)
 
 #### Hunter
 
-When I'm looking for things to improve in the project, especially unecessary
+When I'm looking for things to improve in the project, especially unnecessary
 things that I can delete, I'm like some sort of hunter, looking to hunt down
 something in the project and remove some code. :P
 
