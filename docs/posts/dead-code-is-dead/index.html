@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Dead Code is Dead! :P | Karuppiah&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.78.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+    
+      <link href="/blog/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Dead Code is Dead! :P" />
+<meta property="og:description" content="TLDR Dead code is just unnecessary code that&rsquo;s lying around. You don&rsquo;t need it, nobody needs it. Just remove it and make your lives easier by removing unnecessary things :)
+If you want to take it up to the next level, use automated tools to detect some kinds of dead code to make your lives more easier ;) Use the same automated tools to fail Continuous Integration pipelines when dead code is detected." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/" />
+<meta property="article:published_time" content="2020-12-12T14:41:35+05:30" />
+<meta property="article:modified_time" content="2020-12-12T14:41:35+05:30" />
+<meta itemprop="name" content="Dead Code is Dead! :P">
+<meta itemprop="description" content="TLDR Dead code is just unnecessary code that&rsquo;s lying around. You don&rsquo;t need it, nobody needs it. Just remove it and make your lives easier by removing unnecessary things :)
+If you want to take it up to the next level, use automated tools to detect some kinds of dead code to make your lives more easier ;) Use the same automated tools to fail Continuous Integration pipelines when dead code is detected.">
+<meta itemprop="datePublished" content="2020-12-12T14:41:35+05:30" />
+<meta itemprop="dateModified" content="2020-12-12T14:41:35+05:30" />
+<meta itemprop="wordCount" content="3143">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dead Code is Dead! :P"/>
+<meta name="twitter:description" content="TLDR Dead code is just unnecessary code that&rsquo;s lying around. You don&rsquo;t need it, nobody needs it. Just remove it and make your lives easier by removing unnecessary things :)
+If you want to take it up to the next level, use automated tools to detect some kinds of dead code to make your lives more easier ;) Use the same automated tools to fail Continuous Integration pipelines when dead code is detected."/>
+
+      
+    
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
+      Karuppiah&#39;s Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/&amp;text=Dead%20Code%20is%20Dead!%20:P" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/&amp;title=Dead%20Code%20is%20Dead!%20:P" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Dead Code is Dead! :P</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-12-12T14:41:35&#43;05:30">December 12, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="tldr">TLDR</h2>
+<p>Dead code is just unnecessary code that&rsquo;s lying around. You don&rsquo;t need it,
+nobody needs it. Just remove it and make your lives easier by removing
+unnecessary things :)</p>
+<p>If you want to take it up to the next level, use automated tools to detect some
+kinds of dead code to make your lives more easier ;) Use the same automated
+tools to fail Continuous Integration pipelines when dead code is detected.</p>
+<p>Some kinds of dead code can only be found by developers probably. So, find them
+and remove them!</p>
+<p>If someone says they need the deleted code back, get your version control
+system&rsquo;s (for example git) help. Go back to the old version and get the code
+back.</p>
+<p>Note: If you don&rsquo;t use a version control system, I would highly recommend using
+one before deleting any code. :)</p>
+<h2 id="longer-version">Longer version</h2>
+<p>Recently I have been doing some small cleanup and tech tasks in some of our
+project code. This happens whenever I see something that can be improved and
+have the time to fix it or I at least add a TODO comment in the code, so that no
+one in the team forgets it.</p>
+<p>There are many different kinds of cleanup and tech tasks. For me personally, the
+best ones are the ones where I get to delete code :D :D</p>
+<p>I love deleting code :P I love removing code to have less code. This way</p>
+<ul>
+<li>
+<p>We have less things to maintain. Every piece of code you write, you are going
+to have to maintain it. Which means, you have to improve it if needed, fix
+bugs. That&rsquo;s all good - but do you really want to maintain something that you
+don&rsquo;t even need / use? Why would someone do that? No one would, if they knew
+that the code is unused.</p>
+</li>
+<li>
+<p>We have less things to read and understand, less complexity in our lives.
+Every piece of code your team writes, all the people in the team are going to
+read it at some point and will try to understand it for various reasons - to
+simlpy understand the system they are building, to modify the code or reuse
+it, to fix a possible bug that they are still debugging. Now, this is all
+good when the code is needed. But if it&rsquo;s just unnecessary code that no one
+needs or uses, then why would someone spend their time reading it,
+understanding it?</p>
+</li>
+</ul>
+<p>When I say less code, of course, less code should still be readable 😅 It would
+be counter productive to delete 10 lines of code and use 1 line which no one in
+my team can understand and probably even the person who wrote it won&rsquo;t
+understand after a few days or months.</p>
+<p>So, clearly I don&rsquo;t like having code that&rsquo;s unnecessary - it just leads to
+problems like I just described. I&rsquo;m also a minimalist - do more with less, leave
+out anything that&rsquo;s not needed.</p>
+<p>Usually this kind of code is called unused code, or dead code or code that is
+not executed or just unnecessary code which is not needed any more due to some
+reason.</p>
+<h3 id="how-to-detect-dead-code">How to detect dead code</h3>
+<p>Let&rsquo;s start with some examples of dead code!</p>
+<p>Some simple examples of dead code are</p>
+<ul>
+<li>
+<p>Commented out code. This is usually pretty straight forward. Surely comments
+are something that are not used or executed. People usually use comments to
+document or give some meta information about code. But commented out code is
+just usually confusing. I think it&rsquo;s just unnecessary to have commented out
+code.</p>
+</li>
+<li>
+<p>Unused variables. No one uses the variable. It just stays there in the code
+and people will read it, thinking it might be used somewhere. They will also
+try to understand it. But if it&rsquo;s unused, it&rsquo;s all a waste of effort to try
+to understand it.</p>
+</li>
+<li>
+<p>Unused methods and functions. No one uses the methods or functions. There can
+be various reasons for this. Usually, it&rsquo;s just unnecessary to have such
+unused methods and functions. Someone will read it thinking it&rsquo;s being used.
+They will try to understand it but that would be just a waste of effort again.</p>
+</li>
+<li>
+<p>Unused classes and structs. This one&rsquo;s pretty crazy. Usually classes and
+structs are big entities, so if it&rsquo;s unused and someone doesn&rsquo;t know, they are
+just going to spend a lot of time try to understand it and it would be a big
+waste of effort.</p>
+</li>
+<li>
+<p>Unused function parameters. This one&rsquo;s a tricky one. This is more about a
+function that&rsquo;s being used but some of it&rsquo;s parameters are unused in the function code. What this leads to is - people using the function just pass
+these extra parameters, assuming it needs it, but the function does nothing
+with it. So the callers of the function have to spend some time and effort to
+just pass this parameter which is not even used. It&rsquo;s just plain sad and waste
+of effort.</p>
+</li>
+</ul>
+<p>There are probably lot more examples! These are just a few.</p>
+<p>How do you detect these? One of the ways would be - when you are coding, some
+Integrated Development Environments (IDEs) show you warnings for some issues
+when you are writing code. One pretty popular IDE warning is to show unused
+code.</p>
+<p>For example I use IntelliJ IDEA for Java development. IDEA shows me unused code
+in grey color with a warning that no one is using it - meaning no one is
+referring to the code (variable, method etc) that I&rsquo;m seeing.</p>
+<p>This is still a manual process, because you still need to use the IDE and &ldquo;see&rdquo;
+that there&rsquo;s warning and then detect that there&rsquo;s unused code in your project.
+This is usually useful when you are typing new code and that new code is not
+used anywhere because you just wrote an alternative for it, so now you can
+delete it by just visually seeing that no one else is using the code because it
+has a grey or some color with the IDE&rsquo;s warning about unused code. This also
+assumes that the IDE has the feature to show unused code using built in
+features or using some IDE plugins. And you also need to help your team mates
+to have the same features in the IDEs they use or ask them to use the same IDE
+that you use.</p>
+<p>One advantage of getting IDE&rsquo;s help is - it&rsquo;s a very fast feedback in you
+development cycle. You get some information while you are writing any new code
+and you can immediately remove the unused code if the IDE warns you about it.
+So, I would recommend you to check for IDE features or plugins to help you find
+unused code, if you don&rsquo;t already have these features.</p>
+<p>Even if the IDE has such a feature, IDE can only do so much. Not all dead code
+are easy to find.</p>
+<p>This is mostly because some code are clearly unused, while others are unused in
+a complicated manner. This is the reason why some dead code are easy to find
+while others might be a bit obscure to find.</p>
+<p>Let me give you some examples of hard to find dead code.</p>
+<p>Let&rsquo;s say you have some code and some tests (test code) written for it. If the
+code is only used by tests and nothing else, then it&rsquo;s still dead code 😅
+Ideally the code has to be referred / used by some other source code for it to
+be useful.</p>
+<p>Maybe some IDEs can find such dead code too, warning you saying &ldquo;hey, this code
+is only used in tests&rdquo;</p>
+<p>Some IDEs can also find dead code like this</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</code></pre></div><p>Let&rsquo;s say those are the only two lines of code where <code>blah</code> has been used. Which
+means that <code>blah</code> has been used only to update itself but not used anywhere
+else, for example to just read the data alone and use it. So, <code>blah</code> variable
+looks pretty much useless.</p>
+<blockquote>
+<p>blah variable : Ouch. That hurt.
+Me: I&rsquo;m sorry&hellip;</p>
+</blockquote>
+<p>Another example is, recently in our project, we decided that we don&rsquo;t need one
+of the endpoints that we have in our microservice. This endpoint was mostly used
+only for development purposes but we realised that we can manage things without
+it. Even with that decision, we took some time to remove it. Since we took
+some time, in this time people maintained it, fixed syntax errors, fixed failing
+tests for the endpoint - just because it existed. If it didn&rsquo;t exist, people
+wouldn&rsquo;t have had to do all that. So, when you take a decision to remove some
+feature - remove all the code related to that feature to avoid spending effort
+on maintaining an unused / unnecessary feature.</p>
+<p>A few more examples of hard to find dead code</p>
+<ul>
+<li>Unused tools / frameworks / libraries / similar softwares in the project.
+Sometimes the team may decide to stop using some software. But it&rsquo;s possible
+that the code, configuration, dependencies related to this software will
+still exist in your code. This is just unnecessary stuff which you can simply
+remove.</li>
+<li>Unused dependencies in the project. Sometimes, while doing development, we
+might be experimenting and trying out many libraries. We add these libraries
+as dependencies in our project&rsquo;s build system and try them. It&rsquo;s possible that
+we might miss to remove the others once we decide on which library/libraries
+to use. Also, I have noticed that sometimes we might add some extra
+dependencies than what is needed. A good understanding of just what is enough
+will help in such cases. This key because having extra unnecessary
+dependencies gives other people an idea that &ldquo;oh, these are the dependencies
+that we need for the project and tests to run.&rdquo; when in reality, it might
+not be the case</li>
+<li>Unused components in tests. Recently in our project, we noticed that we run
+integration tests with actual DB and Kafka running in Docker container. These
+are two components that our services use. In these tests, we turn off any
+Kafka related features or mock the Kafka related code. What this inherently
+means is that the tests would just run fine even if the Kafka was not
+running. But this is hard to find out until you really analyze the whole
+setup and understand the tests and the reasoning behind them. We also run
+Kafka integration tests separately in another project which is the Kafka
+client project. So, finally we removed the Kafka container and it made the
+integration tests run faster</li>
+<li>Unused features in code when running tests. This one&rsquo;s a bit tricky. Here
+it&rsquo;s not exactly unused code, so it does not exactly fit into the
+definition of &ldquo;dead code&rdquo;. This is more about how test code
+tests only some parts of the code and other parts can just be mocked if
+possible. But sometimes tests don&rsquo;t mock the unused features in the code.
+This can be okay, or sometimes problematic too. It really depends. I&rsquo;m going
+to cite a similar example as the previous one. In our project which uses
+Kafka, we had some integration tests where Kafka was not
+needed, but some of these integration tests didn&rsquo;t turn off Kafka features.
+These tests worked and passed, yes. But what this lead to was - we could see
+that the test logs showed that the code tried to connect to Kafka multiple
+times and failed after a time out error - as Kafka was not running and was
+not needed too, for the test. But because of this attempt to connect to Kafka
+multiple times, the tests ran for a lot of time and was too slow. In this
+case, an unused feature in code (Kafka code) ONLY in the test was causing
+issues - it could be avoided by using feature toggles in tests and turning
+off Kafka features or use mocks in tests. Again, this was specifically about
+test code and unused &ldquo;features&rdquo; though the code is certainly valid and is
+needed for production and for other source code.</li>
+</ul>
+<h4 id="automation-to-detect-dead-code">Automation to detect dead code</h4>
+<p>We just spoke about different kinds of dead code you can find in your project.
+We also saw how IDEs can help with detecting dead code - a few kinds at least.</p>
+<p>Usually, some basic kinds of dead code can be easily found by many tools out
+there. So, instead of you manually looking for dead code, tools can help you.</p>
+<p>Some special category of tools usually have such features of finding dead code
+and similar code quality issues. Such tools that help with code quality are
+called Code Quality Tools. For example linters are a kind of code quality tool.</p>
+<p>Manually checking for dead code can be very hard in any project including small
+ones, and it&rsquo;s nearly impossible with big ones. Tools can do a better job with
+finding some of the issues and you can sit back and relax :)</p>
+<p>You can also integrate such Code Quality Tools in your Continuous Integration
+(CI) pipeline, if you have one. I would highly recommend having a CI pipeline,
+and failing the build/pipeline when there&rsquo;s unused code / dead code detected.</p>
+<p>There are lot of Code Quality Tools out there for different languages. Also,
+some languages have built in tools to help with this. For example Golang
+compiler can help you with finding unused variables by showing compiler errors
+for it ;) It&rsquo;s pretty slick!</p>
+<p>If you are using JavaScript / TypeScript, you can checkout existing ESLint
+rules which help with finding unused variables, methods etc.</p>
+<p>I believe there are linters with such rules in other languages too :) If not,
+look for specialized tools that look for just dead code. If you don&rsquo;t find any
+for your language / tech stack, maybe build one? ;)</p>
+<p>In general, I would recommend using Code Quality Tools to help you with
+checking the quality of your code, apart from just finding dead code. Dead code
+is probably just one metric for a good quality project. Having less or 0 dead
+code is a good thing for a project - it means that the code quality is good!
+There are many other metrics to inform you about the quality of your code.</p>
+<h3 id="removing-dead-code">Removing Dead Code</h3>
+<p>Usually, presence of dead code would mean that you would have to delete the
+dead code, or if it&rsquo;s an unused &ldquo;feature&rdquo; in test code causing issues, turn off
+that feature or mock it - that was a very special case.</p>
+<p>Removing code, dead code in this case, may sound pretty scary for many people
+for multiple reasons.</p>
+<p>For example, someone may think that &ldquo;Someone else wrote this code. It was a lot
+of effort. Why delete it. Also, what if they want that code back again later?&rdquo;</p>
+<p>Or there might be thoughts like &ldquo;I&rsquo;m not sure what this code does. Is this code
+really needed?&rdquo;</p>
+<p>In such cases, I would recommend talking to the team first and try to understand
+the need of such code that you have detected as dead code and if you think it
+can be and has to be removed if it&rsquo;s unused, vouch for it :) Clarify with the
+team and take actions accordingly.</p>
+<p>Also, I have some warnings about deleting dead code when you are very sure
+about the fact that it&rsquo;s dead code and don&rsquo;t plan to talk to the team as you
+are too sure. I would still say inform the team at the least as people usually
+don&rsquo;t like surprises :)</p>
+<p>Warning - Understand the code and ensure that no one is using it. For example,
+if the code is actually a library that&rsquo;s imported by others, you can never
+easily find out who is using it and who is not using it. Especially public
+external libraries, like Open Source libraries. Also remember that removal of
+code is usually a breaking change - it breaks backwards compatibility of the
+project. So ensure no one uses the code before removing it. That&rsquo;s one of the
+main definitions or attributes of dead code 😅 &ldquo;it&rsquo;s not used by anyone and it&rsquo;s
+not needed&rdquo;</p>
+<h4 id="special-cases-where-i-have-not-removed-dead-code">Special cases where I have not removed dead code</h4>
+<p>In very rare cases, I&rsquo;ve not removed some unused code. For example, we have end
+to end tests written with Selenum and it has some helper functions. These
+helper functions are like utils (utilities) that we all use to write lot of
+tests. I once noticed that one or two of them are not used anymore. They were
+dead code. I could have been brutal and removed them. But I noticed that they
+were good utils and left it alone. It&rsquo;s kind of like against YAGNI (You aren&rsquo;t
+gonna need it) principle, but I let that one slide. 😅</p>
+<p>I guess now you must be like &ldquo;what&rsquo;s this guy doing? He tells me to remove dead
+code. Tells me all the bad qualities it has and then chooses not to remove some
+dead code from his project due to some reason?&rdquo;</p>
+<p>While I&rsquo;m writing, I&rsquo;m actually tempted to rethink my decision and go ahead and
+be brutal and remove that utility function which isn&rsquo;t used anymore :P</p>
+<p>My only thought process was &ldquo;If I remove this now, someone else will have to
+learn and write a similar utility function later when it&rsquo;s needed. Or if I
+remove this now, maybe someone will not be able to discover it and use it and
+have a good test using a nice utility function&rdquo;. I was basically thinking about
+the helpfulness of letting it stay there and also the effort of writing it
+again.</p>
+<p>But yeah, if I remove it, it&rsquo;s just a small utility function. Maybe someone
+else will think to write it again if they need it :) It will be some effort
+though, to learn some Selenium and write some lines of code :P But that&rsquo;s
+inevitable in coding I guess :)</p>
+<p>But yeah, talk with the team when you have second thoughts or are not sure about
+the dead code and removal of it. It will help :)</p>
+<h3 id="funny--weird-analogies">Funny / weird analogies</h3>
+<h4 id="hunter">Hunter</h4>
+<p>When I&rsquo;m looking for things to improve in the project, especially unecessary
+things that I can delete, I&rsquo;m like some sort of hunter, looking to hunt down
+something in the project and remove some code. :P</p>
+<p>And when I find something to delete, that &ldquo;Got you!&rdquo; feeling is awesome ;)</p>
+<h4 id="soul-reaper--grim-reaper">Soul Reaper / Grim Reaper</h4>
+<p>It&rsquo;s like the developer is some sort of soul reaper / grim reaper getting rid
+of the dead code (dead thing) from the project</p>
+<p><img src="/blog/img/dead-code-is-dead/soul-reaper-or-grim-reaper.jpg" alt="soul-reaper-or-grim-reaper" title="soul-reaper-or-grim-reaper">
+<a href="https://www.freepik.com/vectors/background">Background vector</a> created by <a href="https://www.freepik.com/macrovector">macrovector</a> - <a href="http://www.freepik.com">www.freepik.com</a></p>
+<blockquote>
+<p>Dead Code: Hey. I&rsquo;m already dead. Why you killing me again? Leave me alone</p>
+</blockquote>
+<blockquote>
+<p>Developer: You can&rsquo;t just exist here because you are dead. You gotta be non
+existent. It&rsquo;s time</p>
+</blockquote>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
+    &copy;  Karuppiah's Blog 2020 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/karuppiah7890" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://github.com/karuppiah7890" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/blog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

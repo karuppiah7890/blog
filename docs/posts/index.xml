@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2020 19:40:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Dec 2020 14:41:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dead Code is Dead! :P</title>
+      <link>https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/</link>
+      <pubDate>Sat, 12 Dec 2020 14:41:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/</guid>
+      <description>TLDR Dead code is just unnecessary code that&amp;rsquo;s lying around. You don&amp;rsquo;t need it, nobody needs it. Just remove it and make your lives easier by removing unnecessary things :)
+If you want to take it up to the next level, use automated tools to detect some kinds of dead code to make your lives more easier ;) Use the same automated tools to fail Continuous Integration pipelines when dead code is detected.</description>
+    </item>
+    
     <item>
       <title>Writing a Blog</title>
       <link>https://karuppiah7890.github.io/blog/posts/writing-a-blog/</link>
