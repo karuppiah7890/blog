@@ -322,7 +322,7 @@ DaemonSet Controller is actively looking at DaemonSet objects and creating pods
 by interacting with the API server. It creates pods based on node count, and
 other config like node selector and node affinity
 
-![daemon-set-controller-created-pods](/blog/img/kubernetes-daemonset-do-you-need-them-why/daemon-set-controller-created-pods.png "daemon-set-controller-created-pods")
+![daemon-set-controller-with-created-pods](/blog/img/kubernetes-daemonset-do-you-need-them-why/daemon-set-controller-with-created-pods.png "daemon-set-controller-with-created-pods")
 
 In this case, the DaemonSet does not have any special config to run on a subset
 of nodes so it's running on all the nodes of the cluster :)
