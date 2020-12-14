@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Dec 2020 14:41:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Dec 2020 22:53:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes DaemonSets: Do you need them? Why?</title>
+      <link>https://karuppiah7890.github.io/blog/posts/kubernetes-daemonset-do-you-need-them-why/</link>
+      <pubDate>Mon, 14 Dec 2020 22:53:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/kubernetes-daemonset-do-you-need-them-why/</guid>
+      <description>Note: This article assumes you know about Kubernetes basics like Pods and that Pods run on nodes, and that Kubernetes works in a cluster architecture with usually more than one node.
+ TLDR; DaemonSet is a specific name of a resource in Kubernetes in case you haven&amp;rsquo;t heard of it. I like to call it as &amp;ldquo;run everywhere thing&amp;rdquo; when I introduce it to newbies. If you need to run a program / software in every node of the Kubernetes cluster, then this article might be of interest to you.</description>
+    </item>
+    
     <item>
       <title>Dead Code is Dead! :P</title>
       <link>https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/</link>
