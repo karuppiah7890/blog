@@ -1,7 +1,6 @@
 ---
 title: "Testcontainers Part 1: An Introduction to a new way of integration testing"
 date: 2020-12-15T10:06:35+05:30
-draft: true
 ---
 
 Note: This post does not cover code examples for Testcontainers. That will be
