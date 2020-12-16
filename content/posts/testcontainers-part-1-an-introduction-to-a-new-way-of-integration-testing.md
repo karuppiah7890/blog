@@ -76,8 +76,9 @@ simple and straight forward.
 
 If that seems like a simple and plausible solution and you are probably already
 using it and are happy with it. I think you can just move on to a different
-blog post :) :p I'm serious, because things are going to get a bit complicated
-from here.
+blog post :) :p I'm serious. Things are going to get a bit complicated from
+here. There's going to be lot of brainstorming, thinking out loud and raw ideas.
+Many may seem pretty complicated 😅
 
 Now, if you are curious to know more and also other ways to run integration
 tests, you can read on. ;)
@@ -141,19 +142,19 @@ And you need to do this only if you have any sort of clashing problems or else
 you can just chill ;)
 
 Yet another thing you can do is get help from your CI system ;) I know a CI
-system that have some cool features to help you with this exact requirement.
+system that have a cool feature to help you with this exact requirement.
 The GitLab CI/CD system has a feature called "Services" which can be used to
 run any application using a Docker image. So, in case of your integration
-tests, you can first run the external component using Docker with the help of
-GitLab CI and then you can run your integration tests. You can find more
+tests, you can first run the external component with the help of GitLab CI and
+then you can run your integration tests. You can find more
 information about Services in the
-[GitLab CI Services Examples Doc](https://docs.gitlab.com/ee/ci/services/README.html)
+[GitLab CI Services Examples Doc](https://docs.gitlab.com/ee/ci/services/README.html) and [What is a Service Doc](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service)
 
 Check if your CI system can also help you with a similar feature. I also know
-some CI systems support plugins, for example Jenkins supports plugins or
-extensions. Check if an extension can help you with this requirement.
+some CI systems support plugins, for example Jenkins supports plugins. Check if
+a plugin can help you with this requirement.
 
-Such a solution also means that your CI should support such a feature in some
+Such a solution also means that your CI should supports such a feature in some
 way or the other. Usually such features use something like Docker to help you
 run the external component. Maybe it can also be run with a VM too. It really
 depends on the feature. But VMs could be an overkill and might take time to spin
@@ -164,16 +165,16 @@ pretty good. For example I have heard a lot of good things about
 Such a CI feature means that you can get your external component on-demand.
 Usually that's how it is. If it's not on-demand, it's no different from running
 an always running external component. In GitLab CI services feature, service is
-about an on-demand component using Docker containers. It also means that you
-need to have a Docker engine and have support for that in your CI system for
-Docker integration probably. At least that's how it is in GitLab CI.
+about running a component on-demand using Docker containers. It also mean
+that you need to have a Docker engine and have support for that in your CI
+system for Docker integration probably. At least that's how it is in GitLab CI.
 
 I usually think of Docker when it comes to on-demand components. On-demand VMs
 might be an overkill depending on the situation, but it's not impossible to do
 it. If your situation demands on-demand VMs over on-demand containers, sure, go
 ahead.
 
-Also, on-demand components reminds of serverless architecture / serverless
+Also, on-demand components reminds me of serverless architecture / serverless
 functions. Since it's on-demand, you might not be running your components all
 the time - which might save you some cost in terms of infrastructure. ;) But if
 you think about it, you could also share your app and test infrastructure, for
@@ -216,17 +217,24 @@ $ command-to-run-test
 $ stop-docker-container-script
 ```
 
-One thing to note is, you might have to expose ports from your Docker container
-to the host machine. Also, ensure that there is no sort of clashing among the
-Docker containers. For example, if you name your containers with custom static
-names, and if multiple pipelines run using same Docker engine, then there will
-be container name clash. Also, if you are exposing ports to the host machine
-running the test command, if multiple pipelines are running Docker containers
-in the same machine, then port clashing might happen. These are some things to
-take care of.
+One thing to note is, you might have to take care of networking between your
+containers and tests. If your tests are also running in Docker container, you
+can link your test Docker container and external component Docker by putting
+them in the same network. This is what GitLab CI Services feature does, I
+believe.
+
+If your tests are not running in Docker container, you might have to expose
+ports from your Docker container to the host machine. In this case, if multiple
+pipelines are running Docker containers in the same machine, then port clashing
+might happen.
+
+You also need to ensure that there is no clashing among the Docker containers.
+For example, if you name your containers with custom static names, and if
+multiple pipelines run using same Docker engine, then there will
+be container name clash. These are some things to take care of.
 
 With some amount of scripting, and sorting out any possible clashing issues
-depending on your situation, you should be good to go to use Docker. You still
+depending on your situation, you should be good to go, to use Docker. You still
 need Docker engine. This was using Docker. If you are using VMs, you can adopt
 a similar strategy probably. I'm not an expert on VMs, so I'm not going to go
 there.
@@ -393,3 +401,38 @@ your team should agree to using it. This applies to using any solution and not
 just Testcontainers. So, talk to your team. If your team is okay with
 Testcontainers and sees the benefits it offers and it seems like a
 feasible thing, then go ahead and use it :)
+
+### A list of all the solutions that we discussed about
+
+Most of the ideas of below solutions are more applicable for CI environments
+than local machines. I'm going to list only CI related solutions, assuming that
+running integration tests in local machine is not as complex as running it in CI
+
+- Test area inside an always running external component
+- Test area inside an always running external component with random test data
+  in integration tests
+- For every test, a temporary test area inside an always running external
+  component
+- For every test, run external components on-demand with the help of CI system
+- For every test, run external components on-demand with the help of scripts,
+  using containers or VMs
+- For every test, run external components on-demand with the help of
+  Testcontainers library, Docker and programmatic test code
+
+### Conclusion
+
+If you notice, a lot of the solutions we discussed with Continuous Integration
+in mind. In local machine, the use case is much simpler. CI system and it's
+use case, features and environment brings in it's own complexity.
+
+I spoke about a lot of different solutions just to give you a gist of what's out
+there and what's possible, and what are the different possible issues and how
+you can solve them. Instead of just telling Testcontainers is The thing you
+need to use.
+
+Excuse me if some of the situations and possible problems I solved seemed very
+hypothetical in your perspective. I was just thinking out loud and also trying
+to think of different possible solutions. I guess you could think of more :)
+
+How was this post? Let me know in the comments section! :) Shoot your questions
+too in the comments section
