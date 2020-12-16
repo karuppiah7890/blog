@@ -48,16 +48,18 @@ used to have two databases - one for the actual web application to run, another
 database called the test database to run the integration tests. I think this is
 a pretty classic method.
 
+![local-machine-integration-tests](/blog/img/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/local-machine-integration-tests.png "local-machine-integration-tests")
+
 So, that's one way - have the actual external component running in your local.
 The integration tests run against some sort of test area / namespace and you
 are good to go.
 
 Now, we spoke about how to run an external component and run integration test
 with it in our local machine. What about Continuous Integration (CI) pipeline?
-If you have one that is. I would recommend you to have one! :)
+If you have one that is. I would recommend you to have a CI pipeline! :)
 
-One way that I can think of is - again use a solution similar to what we do in
-our local machine. I mean, why not?
+One way that I can think of is - again implement a solution similar to what we
+do in our local machine. I mean, why not?
 
 I'm sure there must be some sort of development environment, kind of like a play
 ground for you to deploy your applications and run and test them. It would need
@@ -70,52 +72,73 @@ using application configuration. As simple as that, right? I like this solution
 actually. It's similar to the solution we use in our local machine, looks pretty
 simple and straight forward.
 
+![ci-pipeline-test-accessing-db](/blog/img/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/ci-pipeline-test-accessing-db.png "ci-pipeline-test-accessing-db")
+
 If that seems like a simple and plausible solution and you are probably already
 using it and are happy with it. I think you can just move on to a different
-blog post :) I'm serious, because things are going to get a bit complicated
+blog post :) :p I'm serious, because things are going to get a bit complicated
 from here.
 
 Now, if you are curious to know more and also other ways to run integration
-tests, you can read on.
+tests, you can read on. ;)
 
 There's one gotcha in the above solution. Sometimes Continuous Integration (CI)
 systems run multiple pipelines for multiple commits at the same time - for
 various reasons. If that's possible in your case, you need to understand that
 the test database is shared by the integration tests and are probably running
 in parallel in different pipelines. You just need to ensure that there are no
-problems because of this. I can think of one problem - if the integration test
-data is static, then it's possible that the tests running in parallel might try
-to put the same data in the test database. For example if there are any unique
-value constraints in the table, that's going to have failures in a perfectly
-fine scenario with correct code and test code. All just because of the test
-infrastructure setup. This was just one example and that too with Postgres
-database. There could be other issues too, and your external component could be
-anything. The issues that can pop up depends on the external component and it's
-working and how you have written your integration tests. So, it's possible that
-you may or may not have such kind of problems.
+problems because of this.
+
+I can think of one problem - if the integration test data is static, then it's
+possible that the tests running in parallel might try to put the same data in
+the test database. For example if there are any unique value constraints in the
+table, that's going to have failures in a perfectly fine scenario with correct
+code and test code. All just because of the test infrastructure setup.
+
+![ci-pipeline-multiple-parallel-tests-accessing-same-db](/blog/img/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/ci-pipeline-multiple-parallel-tests-accessing-same-db.png "ci-pipeline-multiple-parallel-tests-accessing-same-db")
+
+This was just one example and that too with Postgres database. There could be
+other issues too, and your external component could be anything. The issues
+that can pop up depends on the external component and it's working and how you
+have written your integration tests. So, it's possible that you may or may not
+have such kind of problems.
+
+The simplest solution I can think of is - avoid running multiple CI pipelines
+in parallel for different commits :P If that looks like a very hacky or a very
+restrictive solution - asking to run only one CI pipeline at a time, read on :)
 
 One thing that you can do to avoid such kind of problems is - write integration
 tests in such a way that even if multiple integration tests run in parallel
 against the same shared test database, there won't be any problems. For example
 by using some random test data, doing proper cleanups etc to avoid any sort
-of clashing problems. You can think of a similar solution in case you are using
-a different external component and not a database like Postgres. You can write
-integration tests based on the attributes of your specific external component
-in case you have clashing problems similar to the ones we just spoke about.
+of clashing problems.
+
+![ci-pipeline-multiple-parallel-tests-accessing-same-db-random-data](/blog/img/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/ci-pipeline-multiple-parallel-tests-accessing-same-db-random-data.png "ci-pipeline-multiple-parallel-tests-accessing-same-db-random-data")
+
+You can think of a similar solution in case you are using a different external
+component and not a database like Postgres. You can write integration tests
+based on the attributes of your specific external component in case you have
+clashing problems similar to the ones we just spoke about.
 
 Another thing you can do is, you can create a temporary test database with a
 random name every time the pipeline runs. The tests can run against that. If
 there are multiple tests running in parallel, then there will be multiple
 temporary tests databases in the Postgres Server. After the pipeline runs, you
-can delete the temporary test database. You might have to do some scripting for
-this in your CI pipeline configuration. With this kind of solution, you won't
-have to worry about how you have written your integration tests and think if
-there would be problems if many of them run in parallel against shared test
-database - as we have avoided using shared test database by providing dedicated
-temporary test database for each integration test. Again, you can think of a
-similar solution in case you are using a different external component, to create
-a temporary test area for the integration tests. And you need to do this only
-if you have any sort of clashing problems or else you can just chill ;)
+can delete the temporary test database.
+
+You might have to do some scripting in your CI pipeline configuration for this
+kind of solution. With this kind of solution, you won't have to worry about how
+you have written your integration tests and think if there would be problems if
+many of them run in parallel against shared test database - as we have avoided
+using shared test database by providing dedicated temporary test database for
+each integration test.
+
+![ci-pipeline-multiple-parallel-tests-accessing-temp-test-db](/blog/img/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/ci-pipeline-multiple-parallel-tests-accessing-temp-test-db.png "ci-pipeline-multiple-parallel-tests-accessing-temp-test-db")
+
+Again, you can think of a similar solution in case you are using a different
+external component, to create a temporary test area for the integration tests.
+And you need to do this only if you have any sort of clashing problems or else
+you can just chill ;)
 
 Yet another thing you can do is get help from your CI system ;) I know a CI
 system that have some cool features to help you with this exact requirement.
