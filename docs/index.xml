@@ -6,11 +6,11 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Dec 2020 10:06:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 09:55:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testcontainers Part 1: An Introduction to a new way of integration testing</title>
       <link>https://karuppiah7890.github.io/blog/posts/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/</link>
-      <pubDate>Tue, 15 Dec 2020 10:06:35 +0530</pubDate>
+      <pubDate>Thu, 17 Dec 2020 09:55:35 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/</guid>
       <description>Note: This post does not cover code examples for Testcontainers. That will be part of part 2.

@@ -1,6 +1,6 @@
 ---
 title: "Testcontainers Part 1: An Introduction to a new way of integration testing"
-date: 2020-12-15T10:06:35+05:30
+date: 2020-12-17T09:55:35+05:30
 ---
 
 Note: This post does not cover code examples for Testcontainers. That will be
@@ -164,7 +164,7 @@ pretty good. For example I have heard a lot of good things about
 Such a CI feature means that you can get your external component on-demand.
 Usually that's how it is. If it's not on-demand, it's no different from running
 an always running external component. In GitLab CI services feature, service is
-about running a component on-demand using Docker containers. It also mean
+about running a component on-demand using Docker containers. It also means
 that you need to have a Docker engine and have support for that in your CI
 system for Docker integration probably. At least that's how it is in GitLab CI.
 
@@ -186,7 +186,7 @@ maybe able to shell out money for infrastructure than break their heads at
 solving such problems with code and scripts or extra technologies like Docker
 🤷‍♂️
 
-On-demand components also mean that your component is going to take some time
+On-demand components also means that your component is going to take some time
 to start up and run. Your tests need to wait for that to happen. If you have an
 always running component, your tests won't have any sort of wait time. That's
 also something to note. This wait time really depends on the component and what
