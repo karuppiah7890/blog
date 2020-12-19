@@ -34,9 +34,12 @@ I'll be showing code examples with Junit 5 only though.
 
 Testcontainers comes built-in with a lot of default set of components which you
 can run easily. For example - PostgreSQL, Kafka, Nginx etc. Testcontainers
-calls this as "Modules". Let's start by using one such module. Let's say I want
-to run a PostgreSQL while running my integration tests so that I can test my
-code which accesses PostgreSQL. How would I go about doing that?
+calls this as "Modules". Let's start by using one such module
+
+## Using Built-in Modules from Testcontainers to run components
+
+Let's say I want to run a PostgreSQL while running my integration tests so that
+I can test my code which accesses PostgreSQL. How would I go about doing that?
 
 Since may not be using PostgreSQL, I don't want to get into the details of how
 I wrote code related to it. So I'll just give an overview and show how I test
@@ -279,11 +282,29 @@ PostgreSQLContainer postgreSQLContainer =
         .withDatabaseName("random");
 ```
 
-< Show that the postgres can be configured with some options - methods. Like,
-database name, username, password. And that different postgres versions can
-be used. How to use DockerImageName class to provide image name. And how you
-can do more advanced stuff like provide some sort of init scrip -
-initialization script >
+Of course you can also use different Postgres version. You can also use
+Initialization Scripts - SQL scripts, which will run when the DB starts, like
+this
+
+```java
+@Container
+PostgreSQLContainer<?> postgreSQLContainer =
+    new PostgreSQLContainer<>("postgres:13-alpine")
+            .withUsername("karuppiah")
+            .withPassword("password")
+            .withDatabaseName("random")
+            .withInitScript("scripts/initialize-stuff.sql");
+```
+
+This was just one example with Postgres component. Similar to this, depending
+on the component, you can find similar options to configure the component with
+nice methods.
+
+## Running components using Testcontainers without built-in Modules
+
+If Testcontainers provides the component you need in the form of a built-in
+Module, I would recommend you to use it to avoid writing too much code. Most of
+the time it should be enough for basic use cases.
 
 END
 
