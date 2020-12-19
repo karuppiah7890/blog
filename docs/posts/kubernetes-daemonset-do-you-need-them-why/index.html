@@ -37,7 +37,7 @@
  TLDR; DaemonSet is a specific name of a resource in Kubernetes in case you haven&rsquo;t heard of it. I like to call it as &ldquo;run everywhere thing&rdquo; when I introduce it to newbies. If you need to run a program / software in every node of the Kubernetes cluster, then this article might be of interest to you.">
 <meta itemprop="datePublished" content="2020-12-14T22:53:35+05:30" />
 <meta itemprop="dateModified" content="2020-12-14T22:53:35+05:30" />
-<meta itemprop="wordCount" content="2632">
+<meta itemprop="wordCount" content="2653">
 
 
 
@@ -246,7 +246,8 @@ program?</p>
 send it to some remote log storage server for further processing. How? Well,
 all the containers run on the nodes. Nodes have access to all the information
 of the containers including logs. Your program can run in each node and get
-access to these logs and ship the logs to a remote place :)</li>
+access to these logs and ship the logs to a remote place :) Few examples are -
+<a href="https://www.fluentd.org">Fluentd</a>, <a href="https://www.elastic.co/logstash">Logstash</a></li>
 <li>You can monitor your nodes - check node CPU, memory, disk and other node data.
 Monitoring is key in any system. Since all your workloads run in containers
 which in turn is just running on a node - you need to ensure that all your
@@ -256,7 +257,8 @@ with such requirements. One example is <a href="https://prometheus.io/">Promethe
 You can run Prometheus node exporter in each node and export node metrics to
 monitor the nodes. If it&rsquo;s any other monitoring system, there will be some
 sort of monitoring agent installed in each node which will inform some remote
-server about the node&rsquo;s health. :)</li>
+server about the node&rsquo;s health. :) One examples is -
+<a href="https://github.com/prometheus/node_exporter/">Prometheus Node Exporter</a></li>
 </ul>
 <p>There are probably many other use cases for such a thing. These are just the
 ones that I have seen and worked with personally.</p>
@@ -331,7 +333,7 @@ these to write a Pod yaml to run a program in all the nodes of the cluster</p>
           <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx:1.19-alpine</span>
 </code></pre></div><p><img src="/blog/img/kubernetes-daemonset-do-you-need-them-why/nginx-nginx-everywhere.jpg" alt="nginx-nginx-everywhere" title="nginx-nginx-everywhere"></p>
 <p>I have tried to deploy an Nginx server everywhere - in all the nodes of the
-cluster.</p>
+cluster. I chose Nginx as it&rsquo;s a simple example.</p>
 <p>In the above yaml, I have created a <code>Deployment</code> which has
 <code>affinity.podAntiAffinity</code> configuration in the <code>Pod</code> spec to inform
 Kubernetes that I don&rsquo;t want to run a <code>Pod</code> in a node where there&rsquo;s already

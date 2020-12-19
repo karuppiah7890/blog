@@ -102,7 +102,8 @@ Let's try to be more specific now. I have some examples!
   send it to some remote log storage server for further processing. How? Well,
   all the containers run on the nodes. Nodes have access to all the information
   of the containers including logs. Your program can run in each node and get
-  access to these logs and ship the logs to a remote place :)
+  access to these logs and ship the logs to a remote place :) Few examples are -
+  [Fluentd](https://www.fluentd.org), [Logstash](https://www.elastic.co/logstash)
 - You can monitor your nodes - check node CPU, memory, disk and other node data.
   Monitoring is key in any system. Since all your workloads run in containers
   which in turn is just running on a node - you need to ensure that all your
@@ -112,7 +113,8 @@ Let's try to be more specific now. I have some examples!
   You can run Prometheus node exporter in each node and export node metrics to
   monitor the nodes. If it's any other monitoring system, there will be some
   sort of monitoring agent installed in each node which will inform some remote
-  server about the node's health. :)
+  server about the node's health. :) One examples is -
+  [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/)
 
 There are probably many other use cases for such a thing. These are just the
 ones that I have seen and worked with personally.
@@ -204,7 +206,7 @@ spec:
 ![nginx-nginx-everywhere](/blog/img/kubernetes-daemonset-do-you-need-them-why/nginx-nginx-everywhere.jpg "nginx-nginx-everywhere")
 
 I have tried to deploy an Nginx server everywhere - in all the nodes of the
-cluster.
+cluster. I chose Nginx as it's a simple example.
 
 In the above yaml, I have created a `Deployment` which has
 `affinity.podAntiAffinity` configuration in the `Pod` spec to inform
