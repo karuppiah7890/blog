@@ -1,7 +1,6 @@
 ---
 title: "Testcontainers Part 2: Testcontainers in Java for your tests with Junit 5"
-date: 2020-12-19T12:40:35+05:30
-draft: true
+date: 2020-12-20T13:04:35+05:30
 ---
 
 Testcontainers is a library that helps you run Docker containers to run
@@ -12,7 +11,15 @@ I wrote a [part 1 blog post](https://karuppiah7890.github.io/blog/posts/testcont
 about integration tests and an introduction to Testcontainers. It didn't have
 any code examples though.
 
+A lot of the docs on the websites are really good for you to get started. I'm
+still writing this and upcoming posts to give a bit more details based on the
+experience from using Testcontainers in our project. If you are new to
+Testcontainers, I'm sure you will have at least a few takeaways from this blog
+post :)
+
 In this post I'll be focussing on some code examples with some sample use cases.
+You can find all the code examples can be found in my
+[testcontainers-demo GitHub repo](https://github.com/karuppiah7890/testcontainers-demo).
 This post will only focus on Java language and just plain Java. I'll cover how
 to use Testcontainers particularly with Spring Boot framework in another
 article, as I know many use Spring Boot and I use it too. It's a pretty
@@ -269,6 +276,20 @@ container variable has getter methods to get the config like username, password
 and even the JDBC URL which contains the hostname, port and even the DB name.
 So, it's pretty easy to inject that config to your test code!
 
+Testcontainers takes care of exposing the container at a random port in the
+host machine and also gives you the hostname in a programmatic manner, so you
+don't have to hard code it as `localhost`, as sometimes, that might not be the
+right value depending on the environment - local machine, Continuous Integration
+pipeline (CI).
+
+In the case of Postgres container, this is all hidden behind
+`postgreSQLContainer.getJdbcUrl()`, which contains the hostname and the random
+port. The random port number helps with no clashing of port numbers with any
+other existing applications running in the host machine. It has few more
+networking features, which you can find in the Testcontainers website in the
+[networking section](https://www.testcontainers.org/features/networking/), and
+we will also look at some in the next section.
+
 If you want to run the DB with some specific config - for example say with a
 specific username and password, or with a specific DB name, you can do it like
 this
@@ -303,17 +324,328 @@ nice methods.
 ## Running components using Testcontainers without built-in Modules
 
 If Testcontainers provides the component you need in the form of a built-in
-Module, I would recommend you to use it to avoid writing too much code. Most of
-the time it should be enough for basic use cases.
+Module, I would recommend you to use it. That way you can avoid writing too
+much code. Most of the time it should be enough for basic use cases.
 
-END
+Sometimes the component you want to run might not be available in
+Testcontainers as a Module, or the features provided by the built-in Module
+may not be enough for you. In this case - you can either look for Modules
+provided by external libraries to get something up and running soon and not
+having to maintain any code. But if you can't find that too, then you have to
+write your own. Writing your own Module is not that hard ;) :D Let's see how
+to do it!
 
----
+The Testcontainers library has a Generic Container Module concept, which can run
+any Docker Image. Testcontainers also helps you with the networking.
 
-Talk about different kinds of containers and also about the ability to create
-your own Containers using GenericContainer class
+Let's say I have some code which connects to Redis and gets some data. Now I
+want to write tests to ensure that the integration with Redis works using
+integration tests.
 
-Show examples with Postgres Container and Generic Container
+Let's see how the Java code looks like for this Redis code.
 
-Show examples with Extensions Concept and also with inheritance maybe? Talk
-about pros and cons after checking about it! :)
+```java
+package testcontainers.demo;
+
+import redis.clients.jedis.Jedis;
+
+public class RedisBackedCache {
+    private final Jedis jedis;
+
+    public RedisBackedCache(String redisHost, int port) {
+        this.jedis = new Jedis(redisHost, port);
+    }
+
+    public String put(String key, String value) {
+        return jedis.set(key, value);
+    }
+
+    public String get(String key) {
+        return jedis.get(key);
+    }
+}
+```
+
+Now, how do I write a test for this using Testcontainers? I can write it like
+this
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@Testcontainers
+class RedisBackedCacheIntTestStep {
+    @Container
+    public GenericContainer redis = new GenericContainer("redis:5.0.3-alpine")
+            .withExposedPorts(6379);
+    private RedisBackedCache underTest;
+
+    @BeforeEach
+    public void setUp() {
+        String address = redis.getHost();
+        Integer port = redis.getFirstMappedPort();
+
+        // Now we have an address and port for Redis, no matter where it is running
+        underTest = new RedisBackedCache(address, port);
+    }
+
+    @Test
+    void testSimplePutAndGet() {
+        underTest.put("test", "example");
+
+        String retrieved = underTest.get("test");
+        assertEquals("example", retrieved);
+    }
+}
+```
+
+You can see how Redis Docker container is used by using `GenericContainer`. We
+are still using the same annotations we used before. Here we also have some
+setup code in `@BeforeEach` instead of the test method itself, which is a bit
+different from the setup code we saw previously, but you could do it
+differently too.
+
+If you read the code, it's pretty straightforward. You can see how we have
+mentioned a Docker image name for the redis Docker image, and exposed ports
+using Testcontainers easy to use methods for networking. The ports that I expose
+are ports which the application in the container is using, which is `6379` .
+In the setup code you can see how we get the port for the redis connection
+config. This port is probably different from `6379`. Again, Testcontainers
+chooses random ports from the host machine and exposes the container through
+those ports. Here we say `getFirstMappedPort` as the Generic Container can be
+exposing multiple ports, in this case it's only one. If you have multiple
+exposed ports, to get the corresponding host port, you can use `getMappedPort`.
+For example, in this case it would be
+
+```java
+redis.getMappedPort(6379)
+```
+
+There are more things you can do with all the features I mentioned, like
+Networking. You can even do volume mounts. You can check more about what
+features you need and what Testcontainers provides. Most probably the features
+you need would be present, unless it's a very rare use case.
+
+Now, we have seen how you can use `GenericContainer` to run any kind of
+application inside Docker containers if there's a Docker image for it. Now,
+would you do all the Testcontainers setup in each and every test file that you
+write? In case you need it among multiple test files. How else can you write
+the test in such a way that the Testcontainers test setup code is not repeated
+everywhere and is not a hassle and is not bloating up and interfering
+readability in the test?
+
+Usually some people might be okay with the duplication in tests. In which case
+you can leave the test as is. I'm still going to mention how you can think about
+different ideas to use Testcontainers by keeping the Testcontainers setup
+away from test code.
+
+## Keeping Testcontainers setup in a separate class
+
+If you have some sort of big setup, you can move the Testcontainers setup to a
+separate class and have code like this
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class RedisBackedCacheIntTestStepTestSuite extends RedisContainerTestSuite {
+    private RedisBackedCache underTest;
+
+    @BeforeEach
+    public void setUp() {
+        String address = redis.getHost();
+        Integer port = redis.getFirstMappedPort();
+
+        // Now we have an address and port for Redis, no matter where it is running
+        underTest = new RedisBackedCache(address, port);
+    }
+
+    @Test
+    void testSimplePutAndGet() {
+        underTest.put("test", "example");
+
+        String retrieved = underTest.get("test");
+        assertEquals("example", retrieved);
+    }
+}
+```
+
+```java
+package testcontainers.demo;
+
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+@Testcontainers
+public class RedisContainerTestSuite {
+    @Container
+    public GenericContainer redis = new GenericContainer("redis:5.0.3-alpine")
+            .withExposedPorts(6379);
+}
+```
+
+The tests will still work fine :)
+
+## Using Testcontainers with JUnit Extensions
+
+I usually try to avoid using inheritance whenever it's not needed, and try to
+prefer composition. Also, Java can only support inheriting from one class, so,
+I try to use it properly. In this case, a "Test is a Redis Container Test
+Suite" or "Test is a Redis Container Test" might make sense and hence for the
+"is a" relationship, people might choose inheritance. But it's a bit
+unnecessary.
+
+I'm going to show a simple example of how you can avoid inheritance and still
+have most of the test related code in another place and not put it all in the
+tests. This will also help you to reuse your Testcontainers test setup code
+when you have a bit more than a few lines.
+
+For simplicity, I'm using the Redis example, which is not even a few lines of
+code. Ideally, you would do this only when you have lots of lines for setup,
+like 10-15 lines or maybe more. Just a ballpark value 😅
+
+As you noticed the title, we are going to look at JUni Extensions. You can use
+the concept of
+[JUnit Extensions](https://junit.org/junit5/docs/current/user-guide/#extensions)
+to your favor to help you with this use case.
+
+You can find more about JUnit Extensions and examples in the official docs, this
+is just a code example. The official docs also show an example where the
+extension is used to run a web server or a database server! So, I guess it's a
+pretty common use case for using Extensions.
+
+The test will now look like this
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class RedisBackedCacheExtensionBasedSetupOne {
+    private RedisBackedCache underTest;
+
+    @RegisterExtension
+    static RedisExtension redisExtension = new RedisExtension();
+
+    @BeforeEach
+    public void setUp() {
+        String address = redisExtension.getHost();
+        Integer port = redisExtension.getPort();
+
+        // Now we have an address and port for Redis, no matter where it is running
+        underTest = new RedisBackedCache(address, port);
+    }
+
+    @Test
+    void testSimplePutAndGet() {
+        underTest.put("test", "example");
+
+        String retrieved = underTest.get("test");
+        assertEquals("example", retrieved);
+    }
+}
+```
+
+The extension will look like this
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.Extension;
+import org.junit.jupiter.api.extension.ExtensionContext;
+
+public class RedisExtension implements Extension, BeforeAllCallback {
+    final RedisContainer redisContainer =
+            new RedisContainer("redis:5.0.3-alpine");
+
+    @Override
+    public void beforeAll(ExtensionContext context) {
+        redisContainer.start();
+    }
+
+    String getHost() {
+        return redisContainer.getHost();
+    }
+
+    Integer getPort() {
+        return redisContainer.getPort();
+    }
+}
+```
+
+```java
+package testcontainers.demo;
+
+import org.testcontainers.containers.GenericContainer;
+
+public class RedisContainer extends GenericContainer<RedisContainer> {
+    public static final int REDIS_PORT = 6379;
+
+    public RedisContainer(String dockerImageName) {
+        super(dockerImageName);
+        addExposedPort(REDIS_PORT);
+    }
+
+    Integer getPort() {
+        return this.getMappedPort(REDIS_PORT);
+    }
+}
+```
+
+There are multiple ways to use JUnit Extensions. Here I have used it
+programmatically. You could also use it with annotations and configure it with
+annotations. But using registering extensions programmatically helps with
+getting data like host, port and that data is present inside the extension.
+
+You can also see how the Extension runs before all the tests in this case, and
+it runs the container. So, here we are not using any of the Testcontainers
+annotations like `@TestContainers` or `@Container` to help with the container
+startup and stop lifecycle. Instead we manage the startup of container. For
+stop, we don't have to do anything. Testcontainers takes care of it.
+
+You could do the same in the form of "run container before each test" too. For
+that you need to implement `BeforeEachCallback` interface in the extension. It
+all depends on your use case - share the same container across all the test
+methods vs dedicated container for each test method.
+
+You can also do a lot of customization in this method with respect to the
+Container. As we use `GenericContainer` and extend it to create a
+`RedisContainer`. If you check the code for `PostgreSQLContainer`, it will look
+similar, but with more code 😅 as it needs some more features, and this is a
+very simple use case.
+
+So, that's also one way to use TestContainers :)
+
+## Conclusion
+
+I would recommend JUnit Extensions way along with specific classes for your
+containers instead of using `GenericContainer`. This is especially useful when
+you have more than just two or three lines of code for Testcontainers setup.
+This will also help you use the Extension and the Container across multiple
+tests. You will also not be limited to use inheritance - as at times, I have
+noticed how I get stuck at times because I can only extend one class, and then
+end up doing multi level inheritance and it also complicates things
+unnecessarily. This is composition and looks way simpler to me :)
+
+But no one way is a silver bullet for all problems. So choose based on your
+problem :)
+
+All code examples can be found on my
+[testcontainers-demo GitHub repo](https://github.com/karuppiah7890/testcontainers-demo)

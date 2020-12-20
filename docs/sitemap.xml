@@ -4,12 +4,17 @@
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
-    <lastmod>2020-12-17T09:55:35+05:30</lastmod>
+    <lastmod>2020-12-20T13:04:35+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
-    <lastmod>2020-12-17T09:55:35+05:30</lastmod>
+    <lastmod>2020-12-20T13:04:35+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://karuppiah7890.github.io/blog/posts/testcontainers-part-2-testcontainers-in-java-for-your-tests-with-junit-5/</loc>
+    <lastmod>2020-12-20T13:04:35+05:30</lastmod>
   </url>
   
   <url>
