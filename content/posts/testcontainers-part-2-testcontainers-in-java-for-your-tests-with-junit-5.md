@@ -18,7 +18,7 @@ Testcontainers, I'm sure you will have at least a few takeaways from this blog
 post :)
 
 In this post I'll be focussing on some code examples with some sample use cases.
-You can find all the code examples can be found in my
+You can find all the code examples in my
 [testcontainers-demo GitHub repo](https://github.com/karuppiah7890/testcontainers-demo).
 This post will only focus on Java language and just plain Java. I'll cover how
 to use Testcontainers particularly with Spring Boot framework in another
