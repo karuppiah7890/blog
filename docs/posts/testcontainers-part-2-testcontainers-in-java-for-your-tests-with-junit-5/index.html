@@ -404,8 +404,8 @@ we will also look at some in the next section.</p>
 specific username and password, or with a specific DB name, you can do it like
 this</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
-PostgreSQLContainer postgreSQLContainer <span style="color:#f92672">=</span>
-    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
+PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
         <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
         <span style="color:#f92672">.</span><span style="color:#a6e22e">withPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
         <span style="color:#f92672">.</span><span style="color:#a6e22e">withDatabaseName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;random&#34;</span><span style="color:#f92672">);</span>

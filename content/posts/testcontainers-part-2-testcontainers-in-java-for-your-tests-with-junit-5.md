@@ -296,8 +296,8 @@ this
 
 ```java
 @Container
-PostgreSQLContainer postgreSQLContainer =
-    new PostgreSQLContainer("postgres:13-alpine")
+PostgreSQLContainer<?> postgreSQLContainer =
+    new PostgreSQLContainer<>("postgres:13-alpine")
         .withUsername("karuppiah")
         .withPassword("password")
         .withDatabaseName("random");
