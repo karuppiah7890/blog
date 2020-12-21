@@ -6,6 +6,9 @@
     
     <title>Testcontainers Part 1: An Introduction to a new way of integration testing | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Note: This post does not cover code examples for Testcontainers. That will be part of part 2.
+TLDR Sometimes you have some external components in your system - like a data store or cache or message queue and similar. Some examples of external components are - Postgres, Redis, Kafka, RabbitMQ.
+You might be writing and running integration tests against actual components to ensure the integration works. To run these actual components - you could do it in many ways.">
     <meta name="generator" content="Hugo 0.79.0" />
     
     
@@ -14,13 +17,14 @@
 
     
     
-      <link href="/blog/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+      <link href="/blog/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
@@ -52,6 +56,7 @@ You might be writing and running integration tests against actual components to 
 
       
     
+	
   </head>
 
   <body class="ma0 avenir bg-near-white production">
@@ -64,8 +69,10 @@ You might be writing and running integration tests against actual components to 
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
-      Karuppiah&#39;s Blog
+    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Karuppiah&#39;s Blog
+      
     </a>
     <div class="flex-l items-center">
       
@@ -105,6 +112,7 @@ You might be writing and running integration tests against actual components to 
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
 
 
 
@@ -163,7 +171,7 @@ You might be writing and running integration tests against actual components to 
       <h1 class="f1 athelas mt3 mb1">Testcontainers Part 1: An Introduction to a new way of integration testing</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2020-12-17T09:55:35&#43;05:30">December 17, 2020</time>
+      <time class="f6 mv4 dib tracked" datetime="2020-12-17T09:55:35+05:30">December 17, 2020</time>
 
       
       
@@ -593,6 +601,7 @@ too in the comments section</p>
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
 
 
 

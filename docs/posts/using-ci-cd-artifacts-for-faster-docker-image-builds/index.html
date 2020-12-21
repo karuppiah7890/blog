@@ -6,6 +6,8 @@
     
     <title>Using CI/CD Artifacts for Faster Docker Image Builds | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
+ Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
     <meta name="generator" content="Hugo 0.79.0" />
     
     
@@ -14,13 +16,14 @@
 
     
     
-      <link href="/blog/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+      <link href="/blog/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
@@ -49,6 +52,7 @@
 
       
     
+	
   </head>
 
   <body class="ma0 avenir bg-near-white production">
@@ -61,8 +65,10 @@
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://karuppiah7890.github.io/blog" class="f3 fw2 hover-white no-underline white-90 dib">
-      Karuppiah&#39;s Blog
+    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Karuppiah&#39;s Blog
+      
     </a>
     <div class="flex-l items-center">
       
@@ -102,6 +108,7 @@
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
 
 
 
@@ -160,7 +167,7 @@
       <h1 class="f1 athelas mt3 mb1">Using CI/CD Artifacts for Faster Docker Image Builds</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2020-09-19T08:29:02&#43;05:30">September 19, 2020</time>
+      <time class="f6 mv4 dib tracked" datetime="2020-09-19T08:29:02+05:30">September 19, 2020</time>
 
       
       
@@ -543,6 +550,7 @@ have in the comments! :)</p>
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
 
 
 
