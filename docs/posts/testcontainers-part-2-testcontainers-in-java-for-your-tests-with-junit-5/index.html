@@ -39,7 +39,7 @@ I wrote a part 1 blog post about integration tests and an introduction to Testco
 A lot of the docs on the websites are really good for you to get started. I&rsquo;m still writing this and upcoming posts to give a bit more details based on the experience from using Testcontainers in our project.">
 <meta itemprop="datePublished" content="2020-12-20T13:04:35+05:30" />
 <meta itemprop="dateModified" content="2020-12-20T13:04:35+05:30" />
-<meta itemprop="wordCount" content="3414">
+<meta itemprop="wordCount" content="3877">
 
 
 
@@ -591,17 +591,20 @@ pretty common use case for using Extensions.</p>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheExtensionBasedSetupOne</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheSharedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
 
     <span style="color:#a6e22e">@RegisterExtension</span>
-    <span style="color:#66d9ef">static</span> RedisExtension redisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisExtension<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">static</span> SharedRedisExtension sharedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SharedRedisExtension<span style="color:#f92672">();</span>
 
     <span style="color:#a6e22e">@BeforeEach</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String address <span style="color:#f92672">=</span> redisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-        Integer port <span style="color:#f92672">=</span> redisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+        String address <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+        Integer port <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
 
         <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
 </span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
@@ -614,15 +617,24 @@ pretty common use case for using Extensions.</p>
         String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
         assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
+
+        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>The extension will look like this</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterAllCallback<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeAllCallback<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeAllCallback <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SharedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeAllCallback<span style="color:#f92672">,</span> AfterAllCallback <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
             <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
 
@@ -631,12 +643,21 @@ pretty common use case for using Extensions.</p>
         redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterAll</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
     String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 
     Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
@@ -656,24 +677,126 @@ pretty common use case for using Extensions.</p>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>There are multiple ways to use JUnit Extensions. Here I have used it
-programmatically. You could also use it with annotations and configure it with
-annotations. But using registering extensions programmatically helps with
-getting data like host, port and that data is present inside the extension.</p>
+programmatically. You could also use it with annotations like <code>@ExtendWith</code> and
+configure it with annotations. But using registering extensions
+programmatically helps with getting data like host, port easily. That data is
+present inside the extension.</p>
 <p>You can also see how the Extension runs before all the tests in this case, and
 it runs the container. So, here we are not using any of the Testcontainers
 annotations like <code>@TestContainers</code> or <code>@Container</code> to help with the container
-startup and stop lifecycle. Instead we manage the startup of container. For
-stop, we don&rsquo;t have to do anything. Testcontainers takes care of it.</p>
-<p>You could do the same in the form of &ldquo;run container before each test&rdquo; too. For
-that you need to implement <code>BeforeEachCallback</code> interface in the extension. It
-all depends on your use case - share the same container across all the test
-methods vs dedicated container for each test method.</p>
-<p>You can also do a lot of customization in this method with respect to the
-Container. As we use <code>GenericContainer</code> and extend it to create a
-<code>RedisContainer</code>. If you check the code for <code>PostgreSQLContainer</code>, it will look
-similar, but with more code 😅 as it needs some more features, and this is a
-very simple use case.</p>
-<p>So, that&rsquo;s also one way to use TestContainers :)</p>
+startup and stop lifecycle. Instead we manage the startup of container.</p>
+<p>For stop, if we don&rsquo;t stop it using the After All callback, the container will
+be stopped only after the JVM stops executing the tests, where Testcontainers
+library takes care of cleaning up the containers that weren&rsquo;t stopped. But if
+you have many test files with many test methods, many of which might not even
+need the container, it&rsquo;s not really advantageous to keep running the containers
+in the extension till all of them finish and then let the containers get
+cleaned up. So, try to clean it up sooner :)</p>
+<p>I have also added a method called <code>getContainerID</code> to show the redis container&rsquo;s
+ID before each test is run. It&rsquo;s to show that the same redis container is used
+in all the tests.</p>
+<p>You could do something similar to run a dedicated redis container for each
+test method, before each test. For that you need to implement
+<code>BeforeEachCallback</code> interface in the extension. It all depends on your use
+case - share the same container across all the test methods vs dedicated
+container for each test method.</p>
+<p>Below is an example of how a dedicated redis extension would like to run a
+dedicated redis container for each test method.</p>
+<p>This is the test code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheDedicatedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@RegisterExtension</span>
+    <span style="color:#66d9ef">static</span> DedicatedRedisExtension dedicatedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DedicatedRedisExtension<span style="color:#f92672">();</span>
+
+    <span style="color:#a6e22e">@BeforeEach</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        String address <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+        Integer port <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
+</span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
+
+        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+        assertNull<span style="color:#f92672">(</span>retrieved<span style="color:#f92672">);</span>
+
+        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
+
+        retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>This is the dedicated extension code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterEachCallback<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeEachCallback<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DedicatedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeEachCallback<span style="color:#f92672">,</span> AfterEachCallback <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
+            <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
+
+    String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beforeEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Notice how we stop the redis container after each test method using the
+<code>afterEach</code> method in the extension? If we do not do this, the test methods
+will keep using the same redis container. How? The <code>start</code> method does get
+executed every time a test method runs because of the Before Each call, but
+it still uses the same Docker container. Why? It&rsquo;s because the <code>start</code> method
+does not start any new container if the Docker container associated with the
+variable is already present. So, you need to run <code>stop</code> to be able to stop the
+already running container and then run <code>start</code> again to start a new container
+using the same variable.</p>
+<p>You can also do a lot of customization in this way of using Testcontainers -
+with respect to the Container. As we use <code>GenericContainer</code> and extend it to
+create a <code>RedisContainer</code>. If you check the code for <code>PostgreSQLContainer</code>, it
+will look similar, but with more code 😅 as it needs some more features, and
+this is a very simple use case.</p>
+<p>So, that&rsquo;s also one way to use TestContainers - using JUnit Extensions :)</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>I would recommend JUnit Extensions way along with specific classes for your
 containers instead of using <code>GenericContainer</code>. This is especially useful when

@@ -536,17 +536,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class RedisBackedCacheExtensionBasedSetupOne {
+public class RedisBackedCacheSharedExtensionBasedSetupTest {
     private RedisBackedCache underTest;
 
     @RegisterExtension
-    static RedisExtension redisExtension = new RedisExtension();
+    static SharedRedisExtension sharedRedisExtension = new SharedRedisExtension();
 
     @BeforeEach
     public void setUp() {
-        String address = redisExtension.getHost();
-        Integer port = redisExtension.getPort();
+        String address = sharedRedisExtension.getHost();
+        Integer port = sharedRedisExtension.getPort();
+
+        System.out.println(sharedRedisExtension.getContainerID());
 
         // Now we have an address and port for Redis, no matter where it is running
         underTest = new RedisBackedCache(address, port);
@@ -559,6 +562,14 @@ public class RedisBackedCacheExtensionBasedSetupOne {
         String retrieved = underTest.get("test");
         assertEquals("example", retrieved);
     }
+
+    @Test
+    void anotherTestForSimplePutAndGet() {
+        underTest.put("test", "anotherExample");
+
+        String retrieved = underTest.get("test");
+        assertEquals("anotherExample", retrieved);
+    }
 }
 ```
 
@@ -567,11 +578,12 @@ The extension will look like this
 ```java
 package testcontainers.demo;
 
+import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-public class RedisExtension implements Extension, BeforeAllCallback {
+public class SharedRedisExtension implements Extension, BeforeAllCallback, AfterAllCallback {
     final RedisContainer redisContainer =
             new RedisContainer("redis:5.0.3-alpine");
 
@@ -580,12 +592,21 @@ public class RedisExtension implements Extension, BeforeAllCallback {
         redisContainer.start();
     }
 
+    @Override
+    public void afterAll(ExtensionContext context) throws Exception {
+        redisContainer.stop();
+    }
+
     String getHost() {
         return redisContainer.getHost();
     }
 
     Integer getPort() {
         return redisContainer.getPort();
+    }
+
+    String getContainerID() {
+        return redisContainer.getContainerId();
     }
 }
 ```
@@ -610,28 +631,142 @@ public class RedisContainer extends GenericContainer<RedisContainer> {
 ```
 
 There are multiple ways to use JUnit Extensions. Here I have used it
-programmatically. You could also use it with annotations and configure it with
-annotations. But using registering extensions programmatically helps with
-getting data like host, port and that data is present inside the extension.
+programmatically. You could also use it with annotations like `@ExtendWith` and
+configure it with annotations. But using registering extensions
+programmatically helps with getting data like host, port easily. That data is
+present inside the extension.
 
 You can also see how the Extension runs before all the tests in this case, and
 it runs the container. So, here we are not using any of the Testcontainers
 annotations like `@TestContainers` or `@Container` to help with the container
-startup and stop lifecycle. Instead we manage the startup of container. For
-stop, we don't have to do anything. Testcontainers takes care of it.
+startup and stop lifecycle. Instead we manage the startup of container.
 
-You could do the same in the form of "run container before each test" too. For
-that you need to implement `BeforeEachCallback` interface in the extension. It
-all depends on your use case - share the same container across all the test
-methods vs dedicated container for each test method.
+For stop, if we don't stop it using the After All callback, the container will
+be stopped only after the JVM stops executing the tests, where Testcontainers
+library takes care of cleaning up the containers that weren't stopped. But if
+you have many test files with many test methods, many of which might not even
+need the container, it's not really advantageous to keep running the containers
+in the extension till all of them finish and then let the containers get
+cleaned up. So, try to clean it up sooner :)
 
-You can also do a lot of customization in this method with respect to the
-Container. As we use `GenericContainer` and extend it to create a
-`RedisContainer`. If you check the code for `PostgreSQLContainer`, it will look
-similar, but with more code 😅 as it needs some more features, and this is a
-very simple use case.
+I have also added a method called `getContainerID` to show the redis container's
+ID before each test is run. It's to show that the same redis container is used
+in all the tests.
 
-So, that's also one way to use TestContainers :)
+You could do something similar to run a dedicated redis container for each
+test method, before each test. For that you need to implement
+`BeforeEachCallback` interface in the extension. It all depends on your use
+case - share the same container across all the test methods vs dedicated
+container for each test method.
+
+Below is an example of how a dedicated redis extension would like to run a
+dedicated redis container for each test method.
+
+This is the test code
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+public class RedisBackedCacheDedicatedExtensionBasedSetupTest {
+    private RedisBackedCache underTest;
+
+    @RegisterExtension
+    static DedicatedRedisExtension dedicatedRedisExtension = new DedicatedRedisExtension();
+
+    @BeforeEach
+    public void setUp() {
+        String address = dedicatedRedisExtension.getHost();
+        Integer port = dedicatedRedisExtension.getPort();
+
+        System.out.println(dedicatedRedisExtension.getContainerID());
+
+        // Now we have an address and port for Redis, no matter where it is running
+        underTest = new RedisBackedCache(address, port);
+    }
+
+    @Test
+    void testSimplePutAndGet() {
+        underTest.put("test", "example");
+
+        String retrieved = underTest.get("test");
+        assertEquals("example", retrieved);
+    }
+
+    @Test
+    void anotherTestForSimplePutAndGet() {
+        String retrieved = underTest.get("test");
+        assertNull(retrieved);
+
+        underTest.put("test", "anotherExample");
+
+        retrieved = underTest.get("test");
+        assertEquals("anotherExample", retrieved);
+    }
+}
+```
+
+This is the dedicated extension code
+
+```java
+package testcontainers.demo;
+
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.Extension;
+import org.junit.jupiter.api.extension.ExtensionContext;
+
+public class DedicatedRedisExtension implements Extension, BeforeEachCallback, AfterEachCallback {
+    final RedisContainer redisContainer =
+            new RedisContainer("redis:5.0.3-alpine");
+
+    String getHost() {
+        return redisContainer.getHost();
+    }
+
+    Integer getPort() {
+        return redisContainer.getPort();
+    }
+
+    @Override
+    public void beforeEach(ExtensionContext context) {
+        redisContainer.start();
+    }
+
+    public String getContainerID() {
+        return redisContainer.getContainerId();
+    }
+
+    @Override
+    public void afterEach(ExtensionContext context) throws Exception {
+        redisContainer.stop();
+    }
+}
+```
+
+Notice how we stop the redis container after each test method using the
+`afterEach` method in the extension? If we do not do this, the test methods
+will keep using the same redis container. How? The `start` method does get
+executed every time a test method runs because of the Before Each call, but
+it still uses the same Docker container. Why? It's because the `start` method
+does not start any new container if the Docker container associated with the
+variable is already present. So, you need to run `stop` to be able to stop the
+already running container and then run `start` again to start a new container
+using the same variable.
+
+You can also do a lot of customization in this way of using Testcontainers -
+with respect to the Container. As we use `GenericContainer` and extend it to
+create a `RedisContainer`. If you check the code for `PostgreSQLContainer`, it
+will look similar, but with more code 😅 as it needs some more features, and
+this is a very simple use case.
+
+So, that's also one way to use TestContainers - using JUnit Extensions :)
 
 ## Conclusion
 
