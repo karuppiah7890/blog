@@ -233,47 +233,254 @@ thing.
 
 Let's assume you have automated this by using some sort of application which
 checks if the task is successful or not, and if it's not successful, then
-delete and create Pods or else maybe add more Pods.
+delete and create Pods or else maybe add more Pods. This application would use
+the Kubernetes API and do it's work.
 
-Also, what if the task keeps failing always? Due to some other issue that you
+Now, what if the task keeps failing always? Due to some other issue that you
 haven't found yet. With retry mechanism, especially the automated one, your
-tasks would retried again and again about a gazillion times. That's running
-the task unnecessarily. So, you need to ensure your automation or manual
-creation of Pods to run tasks runs only for a few times and does Not have
-infinite retries. This is more like a threshold of when to stop or which nth
-time to stop when error has occurred many times. So, more like a max retry.
+tasks would be retried again and again about a gazillion times. That's running
+the task unnecessarily too many time. So, you need to ensure your automation or
+manual creation of Pods to run tasks runs only for a few times and does Not have
+infinite retries. This is more like a threshold of when to stop in terms of time
+or which Nth time to stop when error has occurred many times. So, more like a
+max retry.
 
-Now that we have seen about how to run a simple task in Kubernetes using our
-most basic Pods resource.
+Now we have seen about how to run a simple task in Kubernetes using the most
+basic resource - Pod.
 
-Now, let's say I need to run the tasks multiple times and that too in parallel
-to speed things up. I'm not sure what's the use case for this though. I can
-only think of one thing based on my experience - deleting a Pod continuously
-from inside the cluster. This is just one example.
+Let's say I need to run the same task multiple times - in sequence or in
+parallel to speed things up. How would you do that? One example use case for
+this is - workers to do some tasks from a task queue. Each worker can do just
+a single task, or maybe multiple tasks from the the task queue. It all depends
+on the use case.
 
-Now, let's see how to run multiple tasks in parallel.
+Now, let's see how to run multiple tasks in sequence and parallel using just
+Pods.
 
-<talk about how to run multiple jobs in parallel>
-<talk about how a example Pod yaml can just be replicated and multiple pods
-can be created in parallel to run in parallel. Mention you have not personally
-had to do it>
-<maybe talk about ReplicaSet and Deployment too, apart from Pods>
+Do you already have any ideas?
 
-<What about running a part (not all) of the tasks in parallel while others
-haven't started.>
+So, you could create multiple Pods each with a different name one by one in
+sequence for sequential run. For parallel run, you can create the Pods
+parallely.
 
-<What about running the same task again and again and again, but not in parallel
-instead in sequence.>
+For parallel run, you could also use `ReplicaSet` or `Deployment` with multiple
+replicas.
 
-<talk about retry. show how retry can be done with just Pods - but manually>
+Now that we have seen how to do all this using just Pods, ReplicaSets and
+Deployments, what do you think about the above solutions?
 
-<Show how kubernetes makes it all easy>
+If you notice closely, a lot of the time we were doing things manually. For
+automation, I mentioned creating an application to talk to the Kubernetes API
+server and programmatically create Pods or even ReplicaSets or Deployments.
+This would mean you have to spend some effort in writing an application for
+automation. Or look for an existing application, like an Open Source Software.
 
-<an example kubernetes Job>
+Can Kubernetes help here? Of course. This is where Kubernetes Job resource
+comes in. You don't need to write any sort of application for automated
+creation of Pods to run your tasks. Kubernetes has all features for most of your
+usual use cases. It is all possible using the Job Controller present in
+Kubernetes.
 
-<mention that Job is just an abstraction over Pods with some extra features>
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(20)"]
+      restartPolicy: Never
+```
 
-<talk about how to run a task based on an interval or schedule.>
+Kubernetes Job is just an abstraction over Pods with some extra features. What
+are these features? It's all of the above that we just spoke about ;)
+
+With Kubernetes Jobs you can also easily find if the task has been completed or
+not.
+
+```bash
+$ kubectl get job
+NAME   COMPLETIONS   DURATION   AGE
+pi     1/1           74s        80s
+
+$ kubectl get pod
+NAME       READY   STATUS      RESTARTS   AGE
+pi-9xgr4   0/1     Completed   0          75s
+```
+
+Look at how the Job shows the number of completions - one out of one (1/1).
+
+How are these Pods created? Job Controller manages and takes care of the Jobs.
+It looks at the Job objects and interacts with the Kubernetes API server and
+creates Pods and then Kubernetes maintains the Pods. So, if you don't use
+Jobs and instead create an application for automating Pod creation for your
+running your tasks, it will be basically doing what the Job controller does.
+So, why not just use the Job controller? ;) Unless it doesn't satisfy your
+use case / needs.
+
+With Kubernetes Jobs you also get automatic retries. So, if a Pod fails with
+some non-zero exit status, a new Pod is again created to run the task. Let's
+look at an example
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-retry
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["bad-command"]
+      restartPolicy: Never
+```
+
+```bash
+$ kubectl get job
+NAME              COMPLETIONS   DURATION   AGE
+pi-retry   0/1           31s        31s
+
+$ kubectl get pod
+NAME                    READY   STATUS               RESTARTS   AGE
+pi-retry-92pj4   0/1     ContainerCannotRun   0          113s
+pi-retry-d2944   0/1     ContainerCannotRun   0          53s
+pi-retry-jj7mk   0/1     ContainerCannotRun   0          2m11s
+pi-retry-m6nqg   0/1     ContainerCannotRun   0          2m3s
+pi-retry-nltc8   0/1     ContainerCannotRun   0          93s
+```
+
+The Pods are created a lot of times to do the retry. Are infinite number of Pods
+created? No. Instead there is a max retry count - 6, which is the default. You
+could change the default too, using a field in the Job spec called
+`backoffLimit` like this
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-retry-with-2
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["bad-command"]
+      restartPolicy: Never
+  backoffLimit: 2
+```
+
+```bash
+$ kubectl get pod
+NAME                    READY   STATUS               RESTARTS   AGE
+pi-retry-with-2-chvkr   0/1     ContainerCannotRun   0          2m49s
+pi-retry-with-2-slf4w   0/1     ContainerCannotRun   0          2m58s
+pi-retry-with-2-zmblx   0/1     ContainerCannotRun   0          2m39s
+
+$ kubectl get job
+NAME              COMPLETIONS   DURATION   AGE
+pi-retry-with-2   0/1           3m24s      3m24s
+
+$ kubectl describe job pi-retry-with-2
+...
+...
+...
+Events:
+  Type     Reason                Age    From            Message
+  ----     ------                ----   ----            -------
+  Normal   SuccessfulCreate      3m53s  job-controller  Created pod: pi-retry-with-2-slf4w
+  Normal   SuccessfulCreate      3m44s  job-controller  Created pod: pi-retry-with-2-chvkr
+  Normal   SuccessfulCreate      3m34s  job-controller  Created pod: pi-retry-with-2-zmblx
+  Warning  BackoffLimitExceeded  3m14s  job-controller  Job has reached the specified backoff limit
+```
+
+You can see how the description of the job says that the Job has reached the
+specified backoff limit. At times more or less Pods are created. In this case,
+3 got created even though backoff limit has been mentioned as 2.
+
+We have seen the basic stuff now. Apart from this, you can also run multiple
+tasks in sequence and in parallel using Jobs.
+
+For a simple sequence run, it looks like this
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  completions: 4
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(10)"]
+      restartPolicy: Never
+  backoffLimit: 4
+```
+
+What this means is that - the job has to be run / completed 4 times. This is
+done in sequence by default.
+
+For parallel run, you can just do
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  completions: 4
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(10)"]
+      restartPolicy: Never
+  backoffLimit: 4
+```
+
+What this means is - run 3 tasks in parallel at a time, and complete the task
+4 times totally. You can also use same value for `completions` and
+`parallelism`.
+
+So, that's how you do all the stuff we spoke about but with Kubernetes Jobs with
+ease :D
+
+To know more about the different options, you can use the official
+[Kubernetes Documentation For Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job) and also use the `kubectl explain` command like this
+
+```bash
+$ kubectl explain job
+$ kubectl explain job.spec
+$ kubectl explain job.spec.completions
+$ kubectl explain job.spec.parallelism
+$ kubectl explain job.spec.backoffLimit
+```
+
+I would also recommend you to explore the extra options like
+`activeDeadlineSeconds`, `ttlSecondsAfterFinished` in the Job spec :D
+
+## Kubernetes CronJobs
+
+Kubernetes also has a resource called CronJob which helps you to run tasks like
+Jobs. Unlike Jobs, CronJob runs the task again and again though, based on a cron
+schedule.
+
+Remember we spoke about backup tasks on a daily or monthly basis? CronJobs can
+help with this to run that task, that too in an automated manner.
+
+If you didn't have CronJobs, you would have to manually run Pods based on a cron
+schedule or have an application.
 
 <show yaml example with a plain simple code for interval or schedule>
 
