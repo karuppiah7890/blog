@@ -22,16 +22,23 @@ not"
 
 Any thoughts on why someone would have such a requirement?
 
-<I can think of some use cases for such a requirement.>
+I can think of some use cases for such a requirement.
 
-<one off tasks to run in general. >
+- Any sort of one off tasks to run
+- CI/CD pipelines - everything there is a task - Compile, Build, Test, Deploy
+- Data pipelines which need to run some data processing jobs. Personally I have
+  not done this, but I have heard of it.
+- Running database migrations. Before you deploy some of your application,
+  sometimes you need to run migrations. I know that some people run it as part
+  of the application startup. The thing to note is, when multiple instances of
+  the application is present, it doesn't make sense to run the migration as
+  part of the application startup, though it's possible with locking mechanisms.
+  This is just an alternative - run the migration task separately, then deploy
+  the application.
 
-<- CI/CD pipelines>
-<- Data pipelines which need to run some data processing jobs>
-<- Running database migrations>
-
-<run a task again and again - like backup of data based on an interval - every
-day, every month etc>
+Another related requirement could be - run a task again and again. Use case?
+Some of the ones that I have personally seen and worked with is - backup of
+data based on an interval - every day, every month etc.
 
 < those are just a few examples >
 
