@@ -85,10 +85,11 @@ The above is just a simple Pod yaml. It runs an `echo` command and that's it.
 One thing to note is how I have used the `restartPolicy` as `Never`. If I don't
 use this value, then the Pod will keep restarting and also go into a
 `CrashLoopBackOff` state again and again after showing `Running` and
-`Completed`. This is because Kubernetes will think that the container died and
-that it has to bring it back up and keep it running. But the truth is that -
-our task is just expected to run for sometime and end. It's not some long
-running process like a server.
+`Completed`. This is because the default is `Always` and due to that Kubernetes
+will think that the container died and that it has to bring it back up and keep
+it running. But the truth is that - our task is just expected to run for
+sometime and end. It's not some long running process like a server. There are
+other values too for `restartPolicy`.
 
 Is this solution good enough? How do we get to know if the task completed
 successfully or not? 🤔
@@ -317,10 +318,10 @@ Look at how the Job shows the number of completions - one out of one (1/1).
 How are these Pods created? Job Controller manages and takes care of the Jobs.
 It looks at the Job objects and interacts with the Kubernetes API server and
 creates Pods and then Kubernetes maintains the Pods. So, if you don't use
-Jobs and instead create an application for automating Pod creation for your
+Jobs and instead create a custom application for automating Pod creation for
 running your tasks, it will be basically doing what the Job controller does.
-So, why not just use the Job controller? ;) Unless it doesn't satisfy your
-use case / needs.
+So, why not just use the Job resource and the Job controller? ;) Unless it
+doesn't satisfy your use case / needs.
 
 With Kubernetes Jobs you also get automatic retries. So, if a Pod fails with
 some non-zero exit status, a new Pod is again created to run the task. Let's
@@ -480,15 +481,103 @@ Remember we spoke about backup tasks on a daily or monthly basis? CronJobs can
 help with this to run that task, that too in an automated manner.
 
 If you didn't have CronJobs, you would have to manually run Pods based on a cron
-schedule or have an application.
+schedule or have a custom application which works based on a cron schedule /
+cron service and creates Pods and also handles everything that a Job can -
+retries, multiple runs - parallel and sequential and many more.
 
-<show yaml example with a plain simple code for interval or schedule>
+Below is an example of a Cron Job
 
-<now talk about Kubernetes CronJob>
+```yaml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello-another
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      completions: 4
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+```
 
-<show an example of Kubernetes CronJob yaml>
+The above Cron Job runs a task every minute.
 
-<mention that CronJob is just an abstraction over Jobs>
+How does a Cron Job work? Cron Job is just an abstraction over the Kubernetes
+Job. The Cron Job Controller just creates the Job using the Kubernetes
+API based on the cron schedule, and then the Job takes care of running the Job.
 
-<mention crontab.guru to understand how cron schedule will work. any local tools
-reference also will help>
+You can also see this clearly when you see the spec of a Cron Job. There's the
+`schedule` for the cron schedule, and then the Job template to create a new Job
+when the time comes. You can checkout what other configurations are possible
+using
+
+```bash
+$ kubectl explain cronjob.spec
+```
+
+While writing a Cron Job yaml, if you are not sure about cron schedule
+expressions, I would recommend you to use some online or offline tools to check
+what the cron schedule expression means. I use the https://crontab.guru online
+tool often for this purpose :)
+
+## Miscellaneous: Monitoring Jobs and CronJobs
+
+Usually when people are running applications, they ensure they have monitoring
+systems to see how the systems are performing and to ensure everything is going
+well and get alerts if not.
+
+Similar to monitoring your applications running Pods in Kubernetes, Jobs and
+CronJobs also run in Pods. You can monitor those too. You can also do monitoring
+at the level of other resources too, including Jobs and CronJobs. How? There are
+many monitoring systems out there. Personally I have used
+[Prometheus](https://prometheus.io/) for monitoring things in Kubernetes, there
+are also many other systems and tools in the Prometheus ecosystem.
+
+Apart from using monitoring systems, you could also bake in some monitoring in
+your Jobs and CronJobs by writing some code as part of your tasks. For example,
+we had a snapshot job for taking snapshots of the disks we use in the cloud.
+Pretty standard stuff. For this snapshot job, we used to run a command to take
+the snapshot. As part of monitoring if everything went well - completely, or
+even partially, we added code to send notifications through Slack using Slack's
+incoming webhook, which is a pretty common webhook for any chat system. We sent
+success and failure notifications every night so that we can check in case any
+issues occurred. This was just an example, you could do it in multiple ways and
+better ways too, based on your use case.
+
+So, yes, those are some of the ways you can monitor your Jobs and CronJobs -
+from outside and also baking it inside the task code. :)
+
+## Miscellaneous: Building CI/CD systems
+
+I mentioned that Jobs can be used to run the tasks in a CI/CD system. This was
+just an example that I thought of in my mind. It's pretty basic and makes sense
+to me. Though Kubernetes Jobs sound good for this use case, I have also noticed
+many Open Source CI/CD systems running on Kubernetes. I would recommend trying
+them out before building anything on your own and probably reinventing the 
+wheel.
+
+One example of such an Open Source system is [Tekton](https://tekton.dev/).
+Tekton calls themselves as "a powerful and flexible open-source framework for
+creating CI/CD systems". They have Custom Resource Definitions (CRDs) in
+Kubernetes for tasks called `Task`, and for CI/CD pipelines called `Pipeline`
+and many other resources. I would recommend you to try Tekton and similar 
+systems instead of just using plain Jobs to build your CI/CD system.
+
+## Conclusion
+
+Clearly Kubernetes Jobs and Cron Jobs have a lot of features to offer which
+cater to the usual needs. If you consider and use Kubernetes as your one stop
+shop solution for a lot of things, you would like Kubernetes in this aspect too
+for running one off or repetitive tasks. We also saw about alternatives in case
+we aren't into Kubernetes or in case we don't plan to use Jobs or Cron Jobs. I
+would highly recommend you to use the built-in Job and Cron Job resources
+before writing any custom application and probably trying to reinvent the wheel.
