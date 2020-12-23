@@ -1,7 +1,6 @@
 ---
 title: "Kubernetes Jobs and CronJobs: Do you need them? Why?"
-date: 2020-12-21T05:00:35+05:30
-draft: true
+date: 2020-12-23T13:19:35+05:30
 ---
 
 ## TDLR;
@@ -562,14 +561,14 @@ I mentioned that Jobs can be used to run the tasks in a CI/CD system. This was
 just an example that I thought of in my mind. It's pretty basic and makes sense
 to me. Though Kubernetes Jobs sound good for this use case, I have also noticed
 many Open Source CI/CD systems running on Kubernetes. I would recommend trying
-them out before building anything on your own and probably reinventing the 
+them out before building anything on your own and probably reinventing the
 wheel.
 
 One example of such an Open Source system is [Tekton](https://tekton.dev/).
 Tekton calls themselves as "a powerful and flexible open-source framework for
 creating CI/CD systems". They have Custom Resource Definitions (CRDs) in
 Kubernetes for tasks called `Task`, and for CI/CD pipelines called `Pipeline`
-and many other resources. I would recommend you to try Tekton and similar 
+and many other resources. I would recommend you to try Tekton and similar
 systems instead of just using plain Jobs to build your CI/CD system.
 
 ## Conclusion
