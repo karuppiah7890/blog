@@ -457,7 +457,8 @@ So, that's how you do all the stuff we spoke about but with Kubernetes Jobs with
 ease :D
 
 To know more about the different options, you can use the official
-[Kubernetes Documentation For Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job) and also use the `kubectl explain` command like this
+[Kubernetes Documentation For Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job), which is a recommended read for anyone new. You can
+also use the `kubectl explain` command like this to know more
 
 ```bash
 $ kubectl explain job
@@ -523,6 +524,9 @@ using
 $ kubectl explain cronjob.spec
 ```
 
+It's also recommended to read the official
+[Kubernetes Documentation For CronJobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs)
+
 While writing a Cron Job yaml, if you are not sure about cron schedule
 expressions, I would recommend you to use some online or offline tools to check
 what the cron schedule expression means. I use the https://crontab.guru online
@@ -580,3 +584,5 @@ for running one off or repetitive tasks. We also saw about alternatives in case
 we aren't into Kubernetes or in case we don't plan to use Jobs or Cron Jobs. I
 would highly recommend you to use the built-in Job and Cron Job resources
 before writing any custom application and probably trying to reinvent the wheel.
+
+Here's some extra reading about Jobs and CronJobs with some examples - https://kubernetes.io/docs/tasks/job/

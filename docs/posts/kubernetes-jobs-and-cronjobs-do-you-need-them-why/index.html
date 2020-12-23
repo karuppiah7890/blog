@@ -46,7 +46,7 @@ Longer Version Let&rsquo;s start with a requirement first
 &ldquo;I want to be able to run a task and know if it was successfully completed or not&rdquo;">
 <meta itemprop="datePublished" content="2020-12-23T13:19:35+05:30" />
 <meta itemprop="dateModified" content="2020-12-23T13:19:35+05:30" />
-<meta itemprop="wordCount" content="3286">
+<meta itemprop="wordCount" content="3322">
 
 
 
@@ -534,7 +534,8 @@ done in sequence by default.</p>
 <p>So, that&rsquo;s how you do all the stuff we spoke about but with Kubernetes Jobs with
 ease :D</p>
 <p>To know more about the different options, you can use the official
-<a href="https://kubernetes.io/docs/concepts/workloads/controllers/job">Kubernetes Documentation For Jobs</a> and also use the <code>kubectl explain</code> command like this</p>
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/job">Kubernetes Documentation For Jobs</a>, which is a recommended read for anyone new. You can
+also use the <code>kubectl explain</code> command like this to know more</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain job
 $ kubectl explain job.spec
 $ kubectl explain job.spec.completions
@@ -581,7 +582,9 @@ API based on the cron schedule, and then the Job takes care of running the Job.<
 when the time comes. You can checkout what other configurations are possible
 using</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain cronjob.spec
-</code></pre></div><p>While writing a Cron Job yaml, if you are not sure about cron schedule
+</code></pre></div><p>It&rsquo;s also recommended to read the official
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs">Kubernetes Documentation For CronJobs</a></p>
+<p>While writing a Cron Job yaml, if you are not sure about cron schedule
 expressions, I would recommend you to use some online or offline tools to check
 what the cron schedule expression means. I use the <a href="https://crontab.guru">https://crontab.guru</a> online
 tool often for this purpose :)</p>
@@ -628,6 +631,7 @@ for running one off or repetitive tasks. We also saw about alternatives in case
 we aren&rsquo;t into Kubernetes or in case we don&rsquo;t plan to use Jobs or Cron Jobs. I
 would highly recommend you to use the built-in Job and Cron Job resources
 before writing any custom application and probably trying to reinvent the wheel.</p>
+<p>Here&rsquo;s some extra reading about Jobs and CronJobs with some examples - <a href="https://kubernetes.io/docs/tasks/job/">https://kubernetes.io/docs/tasks/job/</a></p>
 <ul class="pa0">
   
 </ul>
