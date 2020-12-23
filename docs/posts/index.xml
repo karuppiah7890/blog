@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Dec 2020 13:19:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Dec 2020 15:34:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optionally Running Services in Docker Compose (v3 and v2)</title>
+      <link>https://karuppiah7890.github.io/blog/posts/optionally-running-services-in-docker-compose/</link>
+      <pubDate>Wed, 23 Dec 2020 15:34:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/optionally-running-services-in-docker-compose/</guid>
+      <description>Today I learned a new thing when someone asked something -
+&amp;ldquo;We have two services in docker compose file. How to run one service optionally based on some feature toggle like environment variable or command line option? Is it possible to do this in a single Docker Compose file?&amp;rdquo;
+TLDR One way is to control the replica count. If replica count is 0, then it means no instance of the service is running.</description>
+    </item>
+    
     <item>
       <title>Kubernetes Jobs and CronJobs: Do you need them? Why?</title>
       <link>https://karuppiah7890.github.io/blog/posts/kubernetes-jobs-and-cronjobs-do-you-need-them-why/</link>
