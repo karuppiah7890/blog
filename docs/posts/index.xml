@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Dec 2020 15:34:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Dec 2020 12:33:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Introduction to GitLab CI/CD Services feature</title>
+      <link>https://karuppiah7890.github.io/blog/posts/an-introduction-to-gitlab-ci-cd-services-feature/</link>
+      <pubDate>Thu, 24 Dec 2020 12:33:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/an-introduction-to-gitlab-ci-cd-services-feature/</guid>
+      <description>All the code for this blog post is present in the demo GitLab repo.
+It has GitLab CI Config and also a demo pipeline which shows how it runs.
+Recently I wrote a blog post about integration tests and some ways to do it. One of the ways talks about using GitLab CI/CD&amp;rsquo;s Services feature. I realized it deserves a separate blog post, so here it is :D
+This blog post is meant to create awareness around this feature of GitLab CI/CD and also give a basic introduction.</description>
+    </item>
+    
     <item>
       <title>Optionally Running Services in Docker Compose (v3 and v2)</title>
       <link>https://karuppiah7890.github.io/blog/posts/optionally-running-services-in-docker-compose/</link>
