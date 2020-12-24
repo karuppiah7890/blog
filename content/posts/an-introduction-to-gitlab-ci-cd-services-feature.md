@@ -99,12 +99,17 @@ documented in ["Available settings for services"](https://docs.gitlab.com/ee/ci/
 I have put a lot of reference links in the [Reference links](#reference-links)
 section for you to check out.
 
+The above was just one example, you can similarly run any such external service
+for your use case
+
 ## Conclusion
 
+That's all there is about GitLab CI Services feature! :)
 I believe that this is a great feature provided by GitLab CI/CD to help with
-pretty common use cases like integration testing. Give it a try if you use
-GitLab CI/CD and especially if you are doing integration testing with GitLab CI/
-CD in a different manner!
+pretty common use cases like integration testing.
+
+Give it a try if you use GitLab CI/CD. Especially if you are doing integration
+testing with GitLab CI/CD, but in a different manner!
 
 ## Reference links:
 
