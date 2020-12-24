@@ -46,7 +46,7 @@ Recently I wrote a blog post about integration tests and some ways to do it. One
 This blog post is meant to create awareness around this feature of GitLab CI/CD and also give a basic introduction.">
 <meta itemprop="datePublished" content="2020-12-24T12:33:35+05:30" />
 <meta itemprop="dateModified" content="2020-12-24T12:33:35+05:30" />
-<meta itemprop="wordCount" content="850">
+<meta itemprop="wordCount" content="1069">
 
 
 
@@ -232,23 +232,42 @@ demo project, the link is this</p>
 with it, it will look like this -</p>
 <p><img src="/blog/img/an-introduction-to-gitlab-ci-cd-services-feature/gitlab-ci-services-feature-pipeline-demo.png" alt="gitlab-ci-services-feature-pipeline-demo" title="gitlab-ci-services-feature-pipeline-demo"></p>
 <p><a href="https://gitlab.com/karuppiah7890/gitlab-ci-services-demo/-/jobs/930732004">https://gitlab.com/karuppiah7890/gitlab-ci-services-demo/-/jobs/930732004</a></p>
-<p>Notice how it shows that it&rsquo;s running the service and is waiting for it to come
-up. I&rsquo;m not going to be explaining in detail about how GitLab CI checks if the
+<p>As you can see, my job runs and passes! :D The <code>psql</code> command was able to
+successfully connect to a PostgreSQL database and run some commands!</p>
+<p>Now, let&rsquo;s start digging into the logs a bit to understand what happened ;)</p>
+<p>Notice in the logs how it shows that it&rsquo;s running the service and is waiting
+for it to come up. That&rsquo;s one indication that we are using the services
+feature and that too successfully.</p>
+<p>I&rsquo;m not going to be explaining in detail about how GitLab CI checks if the
 service is up or not. Docs mention that it checks the connectivity to ports
-exposed by the container. . Not sure how this happens in depth. You can check
+exposed by the container. Not sure how this happens in depth. You can check
 the <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#how-the-health-check-of-services-works">&ldquo;How the health check of services works&rdquo;</a>
-section in the official docs for more information. But in my case, however the
-Docker container runs pretty fast so no problem :)</p>
-<p>How does the networking between my job container and the service container
-work though? For example, to connect to an external service, I need details like
-IP address and Port number of the external service. In this case, we have
-access to the hostname with the usage of <code>alias</code> config, if we don&rsquo;t use <code>alias</code>
-config, then we can use an auto-generated hostname based on the image name, in
-this case it would be <code>postgres</code>. This auto-generation logic is something used
-and done by GitLab CI. I highly recommend you to use <code>alias</code> if you can, as it&rsquo;s
-easier to understand and use. But <code>alias</code> feature is only present in some
-newer versions.</p>
-<p>You can check more about accessing the service at the <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services">&ldquo;Accessing the services&rdquo;</a> section in the official docs.</p>
+section in the official docs for more information though. But in my case,
+however the PostgreSQL Docker container runs pretty fast! So no problem for me
+:)</p>
+<p>Let&rsquo;s move on to some more specifics. How does the networking between my job
+container and the service container work though? For example, to connect to an
+external service, I need details like IP address and Port number of the
+external service. In this case, we have access to the hostname with the usage
+of <code>alias</code> config. GitLab CI has features to help connect the two Docker
+containers through container networking. So one container can reach the other
+container as they are in the same network / are linked. GitLab also uses
+Docker features to provide hostname for the containers running the services, so
+that we can easily connect to the service in our GitLab CI/CD job.</p>
+<p>You can check more about how the job and the services are linked in the
+<a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#how-services-are-linked-to-the-job">&ldquo;How services are linked to the job&rdquo;</a> section of the
+official docs.</p>
+<p>If we don&rsquo;t use <code>alias</code> config, then we can use an auto-generated hostname
+based on the image name, in this case it would be <code>postgres</code>. This
+auto-generation logic is something used and done by GitLab CI. I highly
+recommend you to use <code>alias</code> if you can, as it&rsquo;s easier to understand and use.
+But <code>alias</code> feature is only present in some newer versions.</p>
+<p>You can check more about accessing the service in the <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services">&ldquo;Accessing the services&rdquo;</a> section of the official docs.</p>
+<p>Regarding port number - PostgreSQL by default runs on port <code>5432</code>, and that&rsquo;s
+the case in this PostgreSQL Docker image too, and the <code>psql</code> client too uses the
+default port number. So, it all works :) Also, this works only because the
+pre-requisite works, which is - job container can reach the service container
+as they are in the same network / are linked together.</p>
 <p>The configurations / settings available for services including <code>alias</code> is
 documented in <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#available-settings-for-services">&ldquo;Available settings for services&rdquo;</a></p>
 <p>I have put a lot of reference links in the <a href="#reference-links">Reference links</a>
