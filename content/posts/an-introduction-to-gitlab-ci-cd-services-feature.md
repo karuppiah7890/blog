@@ -73,25 +73,50 @@ with it, it will look like this -
 
 https://gitlab.com/karuppiah7890/gitlab-ci-services-demo/-/jobs/930732004
 
-Notice how it shows that it's running the service and is waiting for it to come
-up. I'm not going to be explaining in detail about how GitLab CI checks if the
+As you can see, my job runs and passes! :D The `psql` command was able to
+successfully connect to a PostgreSQL database and run some commands!
+
+Now, let's start digging into the logs a bit to understand what happened ;)
+
+Notice in the logs how it shows that it's running the service and is waiting
+for it to come up. That's one indication that we are using the services
+feature and that too successfully.
+
+I'm not going to be explaining in detail about how GitLab CI checks if the
 service is up or not. Docs mention that it checks the connectivity to ports
-exposed by the container. . Not sure how this happens in depth. You can check
+exposed by the container. Not sure how this happens in depth. You can check
 the ["How the health check of services works"](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#how-the-health-check-of-services-works)
-section in the official docs for more information. But in my case, however the
-Docker container runs pretty fast so no problem :)
+section in the official docs for more information though. But in my case,
+however the PostgreSQL Docker container runs pretty fast! So no problem for me
+:)
 
-How does the networking between my job container and the service container
-work though? For example, to connect to an external service, I need details like
-IP address and Port number of the external service. In this case, we have
-access to the hostname with the usage of `alias` config, if we don't use `alias`
-config, then we can use an auto-generated hostname based on the image name, in
-this case it would be `postgres`. This auto-generation logic is something used
-and done by GitLab CI. I highly recommend you to use `alias` if you can, as it's
-easier to understand and use. But `alias` feature is only present in some
-newer versions.
+Let's move on to some more specifics. How does the networking between my job
+container and the service container work though? For example, to connect to an
+external service, I need details like IP address and Port number of the
+external service. In this case, we have access to the hostname with the usage
+of `alias` config. GitLab CI has features to help connect the two Docker
+containers through container networking. So one container can reach the other
+container as they are in the same network / are linked. GitLab also uses
+Docker features to provide hostname for the containers running the services, so
+that we can easily connect to the service in our GitLab CI/CD job.
 
-You can check more about accessing the service at the ["Accessing the services"](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services) section in the official docs.
+You can check more about how the job and the services are linked in the
+["How services are linked to the job"](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#how-services-are-linked-to-the-job) section of the
+official docs.
+
+If we don't use `alias` config, then we can use an auto-generated hostname
+based on the image name, in this case it would be `postgres`. This
+auto-generation logic is something used and done by GitLab CI. I highly
+recommend you to use `alias` if you can, as it's easier to understand and use.
+But `alias` feature is only present in some newer versions.
+
+You can check more about accessing the service in the ["Accessing the services"](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services) section of the official docs.
+
+Regarding port number - PostgreSQL by default runs on port `5432`, and that's
+the case in this PostgreSQL Docker image too, and the `psql` client too uses the
+default port number. So, it all works :) Also, this works only because the
+pre-requisite works, which is - job container can reach the service container
+as they are in the same network / are linked together.
 
 The configurations / settings available for services including `alias` is
 documented in ["Available settings for services"](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#available-settings-for-services)
