@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Mar 2021 19:42:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 21:47:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bytes #1: Mail Catcher: Dummy Email Server to catch your emails!</title>
+      <link>https://karuppiah7890.github.io/blog/posts/mailcatcher-dummy-email-server-to-catch-your-emails/</link>
+      <pubDate>Sat, 27 Mar 2021 21:47:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/mailcatcher-dummy-email-server-to-catch-your-emails/</guid>
+      <description>MailCatcher is a nice little tool to help you run a dummy email server
+It&amp;rsquo;s open source - https://github.com/sj26/mailcatcher
+Why would one use it? There are two use cases for which I personally used it for.
+One is - trying out a program in local which needs an email server as part of setup. I couldn&amp;rsquo;t setup an email server like the ones people do in production environments or use email services like AWS Simple Email Service, as I was only simply trying out the program and not doing a production deployment.</description>
+    </item>
+    
     <item>
       <title>Please get your assertions right!</title>
       <link>https://karuppiah7890.github.io/blog/posts/please-get-your-assertions-right/</link>
