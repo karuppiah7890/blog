@@ -16,7 +16,7 @@ Note that Consul KV store is a simple one, there are many complicated fully feat
 A basic KV store visualization will look like a table like this -
 
 Key | Value
---- | --- 
+:---:|:---: 
 redis_connections | 5
 
 When you store information, you store it in key-value pairs, where value is kind of like the main data and key is to find the data and retrieve the data. So, to retrieve data, you would provide the key as input to the system and get the value as the output
