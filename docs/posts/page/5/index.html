@@ -36,7 +36,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
-<meta property="og:updated_time" content="2021-03-27T21:47:35+05:30" />
+<meta property="og:updated_time" content="2021-03-29T16:37:35+05:30" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="">
 <meta name="twitter:card" content="summary"/>
@@ -126,6 +126,21 @@
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/" class="link black dim">
+        Cloning All Git Repos From GitLab Group
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ 'map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })' $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group.
+    </div>
+  </div>
+</div>
+</div>
       
         <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
@@ -290,23 +305,6 @@ I finally reach her. She hands the basket and gives me some shillings and then s
 $ go get -u -v github.com/karuppiah7890/uff $ git clone https://github.com/fishworks/fish-food $ cd fish-food $ uff Food/helm.lua 2.14.2 existing food version: 2.14.1 upgrading fish food Food/helm.lua to version 2.14.2 ... done! 🐠 GitHub repo for the plugin - https://github.com/karuppiah7890/uff
 Longer version Sometime ago I created a tool called uff. The repo is here
 In this post I&rsquo;m going to tell the story behind the tool.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/installing-prometheus-operator-prometheus-alertmanager-and-grafana/" class="link black dim">
-        Installing Prometheus Operator, Prometheus, Alertmanager and Grafana
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
-If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?
     </div>
   </div>
 </div>
