@@ -11,7 +11,7 @@ Now one fine day, your GitHub account gets compromised by an attacker and your t
 
 Now, how can one avoid such a possibility? Surely you need to keep your account very secure. For example, use strong password, use Multi Factor Authentication (MFA). Keep all your secrets in a safe place like a trusted password manager or any good alternatives that you know, and not in any place that can be easily exposed leading to your secrets being leaked.
 
-To add to this, if you don't need admin access, you can get rid of it. This way, even if the attacker gets access to you account in any way, they can only get some access that you had, access that was necessary for you. But if you have unnecessary higher access, it's going to be a big lottery for the attacker!
+To add to this, if you don't need admin access, you can get rid of it. This way, even if the attacker gets access to your account in any way, they can only get some access that you had, access that was necessary for you. But if you have unnecessary higher access, it's going to be a big lottery for the attacker!
 
 This idea can be applied to all systems, including some very important systems like your Source code hosting platform, cloud platform. Accounts in all systems need to have just the necessary access.
 
