@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Apr 2021 05:07:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Apr 2021 06:48:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How CI/CD systems work with source code hosting services</title>
+      <link>https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/</link>
+      <pubDate>Fri, 02 Apr 2021 06:48:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/</guid>
+      <description>I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&amp;rsquo;s not too complicated. So, let&amp;rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
+So, what&amp;rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.</description>
+    </item>
+    
     <item>
       <title>Bytes #4: Please don&#39;t use plain text files to store secrets!</title>
       <link>https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/</link>

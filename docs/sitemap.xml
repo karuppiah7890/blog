@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/</loc>
-    <lastmod>2021-04-02T05:07:35+05:30</lastmod>
+    <loc>https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/</loc>
+    <lastmod>2021-04-02T06:48:35+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
-    <lastmod>2021-04-02T05:07:35+05:30</lastmod>
+    <lastmod>2021-04-02T06:48:35+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
+    <lastmod>2021-04-02T06:48:35+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/</loc>
     <lastmod>2021-04-02T05:07:35+05:30</lastmod>
   </url>
   

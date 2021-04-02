@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog</title>
+    <title>How CI/CD systems work with source code hosting services | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
+So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.">
     <meta name="generator" content="Hugo 0.80.0" />
     
     
@@ -27,21 +28,27 @@
 
     
     
-      <link href="/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      
-    
-    
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
-<meta property="og:updated_time" content="2021-04-02T06:48:35+05:30" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
+    <meta property="og:title" content="How CI/CD systems work with source code hosting services" />
+<meta property="og:description" content="I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
+So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/" />
+<meta property="article:published_time" content="2021-04-02T06:48:35+05:30" />
+<meta property="article:modified_time" content="2021-04-02T06:48:35+05:30" />
+<meta itemprop="name" content="How CI/CD systems work with source code hosting services">
+<meta itemprop="description" content="I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
+So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.">
+<meta itemprop="datePublished" content="2021-04-02T06:48:35+05:30" />
+<meta itemprop="dateModified" content="2021-04-02T06:48:35+05:30" />
+<meta itemprop="wordCount" content="615">
+
+
+
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="How CI/CD systems work with source code hosting services"/>
+<meta name="twitter:description" content="I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
+So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each."/>
 
       
     
@@ -51,9 +58,11 @@
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -111,231 +120,119 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height nested-img">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/i-imagine/" class="link black dim">
-        I Imagine
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is a small writing
- I&rsquo;m watching my series and some funny scenes come and I&rsquo;m laughing and I imagine how it will be funny for you too
-I imagine about how you would laugh at it if you had been sitting near me
-I imagine how you would just slowly lean your head on my shoulders while laughing and then sit straight smiling
-I imagine how your hair, eyes and smile would look
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/the-dress/" class="link black dim">
-        The Dress
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is a small writing
- I go to her place imagining what she&rsquo;s probably wearing
-I see her waiting for me outside with the big basket of clothes
-As I approach her, I see her. There she is. In pure white. And she isn&rsquo;t smiling. I wonder why
-I finally reach her. She hands the basket and gives me some shillings and then some extra and says &ldquo;Just make sure it goes away.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/my-cheatsheet-for-commands-and-stuff/" class="link black dim">
-        My Cheatsheet for Commands and Stuff
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently I have been noting down the commands I use :P I think it&rsquo;s especially useful for commands that take quite some time for me to get right and I&rsquo;m always searching the Internet or the command manuals or help text for the same thing again and again each time. And the search sometimes takes time - almost the same amount of time that took for me during the first time.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/code-is-about-people/" class="link black dim">
-        Code Is About People
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Actually, everything is about people. Including code. I remember reading about this in Twitter. Since then and up until now, I have seen multiple instances where I can clearly say everything is about people, including code. I mean, I guess we have made ourselves the centre of the Earth 😅 If we should be inclusive, I think the phrasing should be - everything is about living organisms. For this article, I&rsquo;ll limit myself to talking about just code.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/uff-tool/" class="link black dim">
-        uff Tool
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      tldr Install uff and check it out! Below is an example!
-$ go get -u -v github.com/karuppiah7890/uff $ git clone https://github.com/fishworks/fish-food $ cd fish-food $ uff Food/helm.lua 2.14.2 existing food version: 2.14.1 upgrading fish food Food/helm.lua to version 2.14.2 ... done! 🐠 GitHub repo for the plugin - https://github.com/karuppiah7890/uff
-Longer version Sometime ago I created a tool called uff. The repo is here
-In this post I&rsquo;m going to tell the story behind the tool.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/installing-prometheus-operator-prometheus-alertmanager-and-grafana/" class="link black dim">
-        Installing Prometheus Operator, Prometheus, Alertmanager and Grafana
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
-If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/why-blog-why-open-source-why-learning-log/" class="link black dim">
-        Why Blog? Why Open Source? Why Learning Log?
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently I wrote about how I write for myself and mostly because I forget stuff. I think I can find more reasons to write - the more, the better. It&rsquo;ll make me write more! So, I remember reading this concept of Learning in Public, but I just remembered the phrase not the whole concept later, until recently when I read this post about learning in public - and few other posts related to it
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/contributing-to-open-source-efforts-and-rework/" class="link black dim">
-        Contributing to Open Source: Efforts and Rework
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Sometimes, the craziest thing for me is - the amount of effort I put into something, some work, but how I do it all wrong because I don&rsquo;t know some of the expectations of the work. It&rsquo;s very crazy.
-In terms of Open Source, it has happened quite a lot of times for me I think. I&rsquo;ll be working on a Pull Request to fix an issue. I&rsquo;ll take an approach and then maintainers feel that the approach can be changed totally.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/creating-dummy-files/" class="link black dim">
-        Creating Dummy Files
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I have created dummy files two times or so now. Now, what do I mean when I say a dummy file? In my case, I mean a file which doesn&rsquo;t have any actual content, instead it has more like some random dummy data. Similar to the lorem ipsum content that people use for placeholder text during development when they don&rsquo;t have actual content ready yet
-Before telling the reasons for why I needed a dummy file, I&rsquo;ll first tell how I created a dummy file.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/vscode-golang-programming/" class="link black dim">
-        VSCode Golang Programming
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I usually use IntelliJ when I&rsquo;m working on company projects. These days I have been trying to use VS Code. Recently I have realized that VS Code&rsquo;s Golang extension has a lot of new features to offer. I think a lot of credit goes to gopls (&ldquo;go please&rdquo;) - https://github.com/golang/tools/tree/master/gopls . I have been using VS Code with repos that have go modules (without vendoring). With vendoring on and go v1.
-    </div>
-  </div>
-</div>
-</div>
-      
-    </section>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/posts/page/5/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/5/">5</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/posts/page/6/">6</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/7/">7</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/9/">9</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/posts/page/7/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/posts/page/9/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-  </li>
-</ul>
 
-</article>
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/&amp;text=How%20CI/CD%20systems%20work%20with%20source%20code%20hosting%20services" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/&amp;title=How%20CI/CD%20systems%20work%20with%20source%20code%20hosting%20services" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">How CI/CD systems work with source code hosting services</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-04-02T06:48:35+05:30">April 2, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services</p>
+<p>So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.</p>
+<p>There are two ways that I know of in which the whole system works. One is, there is a push notification by the source code hosting service to the CI/CD system about the pushes to the source code. The other is, the CI/CD system keeps polling the source code hosting service every few intervals and keeps track of things.</p>
+<p>That&rsquo;s all there is to it! :D Let&rsquo;s see an example</p>
+<p>Example 1 for push (push notification)</p>
+<ul>
+<li>Karuppiah pushes code to GitHub</li>
+<li>GitHub notifies Travis CI pipeline that a commit was pushed with commit information preferably. Say commit sha abcd.</li>
+<li>Travis CI understands this and triggers a CI/CD pipeline for the commit</li>
+<li>The code is pulled and it&rsquo;s ensured that the current checked out commit is the pushed commit - commit sha abcd. This way, we are not always simply building latest commit. This is especially important when multiple commits are pushed rapidly but CI/CD system takes time to respond to the pushes. But once it does respond, it doesn&rsquo;t use the latest commit, instead it uses the commit for which the build was triggered</li>
+<li>After the CI/CD pipeline is over, the status of the commit is sent back to GitHub as GitHub supports showing build status as part of each git commit</li>
+</ul>
+<p>Example 2 for polling</p>
+<ul>
+<li>Karuppiah pushes code to GitHub</li>
+<li>Jenkins polls the GitHub code every 10 minutes. After a few minutes it finds that there is some new code and pulls it</li>
+<li>Jenkins then triggers a CI/CD pipeline for the new commits</li>
+<li>The code is pulled and it&rsquo;s ensured that the current checked out commit is the latest pushed commit</li>
+<li>After the CI/CD pipeline is over, the status of the commit is sent back to GitHub as GitHub supports showing build status as part of each git commit</li>
+</ul>
+<p>Note that both these are just examples. Some things can vary depending on the tools and services you have setup and the constraints you have.</p>
+<p>One might ask as to - why would someone want polling instead of a good old simple push notification. The tricky part is that, it&rsquo;s not always that simple. For push notifications to work, there are some things to take care of. For example, you need to be able to configure push notifications (web hooks) in your source code hosting service. This means that it should have this feature and it also means that your CI/CD system should also support receiving this push notification as a feature. The CI/CD system should also be accessible from the source code hosting service - this may not always be possible, for example, the source code hosting service maybe on the public Internet but the CI/CD system maybe present in a private network behind a Virtual Private Network (VPN). This is just an example</p>
+<p>So, those are just some things to keep in mind. For this reason, it&rsquo;s possible that sometimes polling is used by the CI/CD system when push notification is not possible various reasons</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
