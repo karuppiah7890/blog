@@ -1,5 +1,5 @@
 ---
-title: "Bytes #3: Don't have unnecessary high access!"
+title: "Bytes #3: Please don't have unnecessary high access!"
 date: 2021-04-01T19:57:00+05:30
 ---
 
