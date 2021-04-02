@@ -33,3 +33,7 @@ Note that both these are just examples. Some things can vary depending on the to
 One might ask as to - why would someone want polling instead of a good old simple push notification. The tricky part is that, it's not always that simple. For push notifications to work, there are some things to take care of. For example, you need to be able to configure push notifications (web hooks) in your source code hosting service. This means that it should have this feature and it also means that your CI/CD system should also support receiving this push notification as a feature. The CI/CD system should also be accessible from the source code hosting service - this may not always be possible, for example, the source code hosting service maybe on the public Internet but the CI/CD system maybe present in a private network behind a Virtual Private Network (VPN). This is just an example 
 
 So, those are just some things to keep in mind. For this reason, it's possible that sometimes polling is used by the CI/CD system when push notification is not possible various reasons
+
+## Conclusion
+
+So, that's how CI/CD systems broadly work with source code hosting services.

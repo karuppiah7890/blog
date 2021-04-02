@@ -40,7 +40,7 @@ So, what&rsquo;s actually the thing that I was curious about? I was to curious t
 So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.">
 <meta itemprop="datePublished" content="2021-04-02T06:48:35+05:30" />
 <meta itemprop="dateModified" content="2021-04-02T06:48:35+05:30" />
-<meta itemprop="wordCount" content="615">
+<meta itemprop="wordCount" content="628">
 
 
 
@@ -195,6 +195,8 @@ So, what&rsquo;s actually the thing that I was curious about? I was to curious t
 <p>Note that both these are just examples. Some things can vary depending on the tools and services you have setup and the constraints you have.</p>
 <p>One might ask as to - why would someone want polling instead of a good old simple push notification. The tricky part is that, it&rsquo;s not always that simple. For push notifications to work, there are some things to take care of. For example, you need to be able to configure push notifications (web hooks) in your source code hosting service. This means that it should have this feature and it also means that your CI/CD system should also support receiving this push notification as a feature. The CI/CD system should also be accessible from the source code hosting service - this may not always be possible, for example, the source code hosting service maybe on the public Internet but the CI/CD system maybe present in a private network behind a Virtual Private Network (VPN). This is just an example</p>
 <p>So, those are just some things to keep in mind. For this reason, it&rsquo;s possible that sometimes polling is used by the CI/CD system when push notification is not possible various reasons</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So, that&rsquo;s how CI/CD systems broadly work with source code hosting services.</p>
 <ul class="pa0">
   
 </ul>
