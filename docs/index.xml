@@ -6,7 +6,16 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Apr 2021 06:48:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Apr 2021 11:23:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A slightly failed Kubernetes adoption story</title>
+      <link>https://karuppiah7890.github.io/blog/posts/a-slightly-failed-kubernetes-adoption-story/</link>
+      <pubDate>Sat, 03 Apr 2021 11:23:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/a-slightly-failed-kubernetes-adoption-story/</guid>
+      <description>Let me start with the beginning of the story of the team when I wasn&amp;rsquo;t present. I know only some details about this which I was told by the team members. I know better about what happened after I joined, but given my bad memory, I can only recall some of the important moments. Also, it was around a 2 year journey. I&amp;rsquo;ll try to recall as much as possible 😅</description>
+    </item>
+    
     <item>
       <title>How CI/CD systems work with source code hosting services</title>
       <link>https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/</link>
