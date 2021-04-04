@@ -39,6 +39,8 @@ Let me show an example
 
 Treat the above link as more of a GET API link than a real image source, though you can serve some real images too, like your logo AND also track the email opening
 
+GitHub actually uses this kind of tracking as part of their email notifications. So, when you open a GitHub notification email, GitHub uses an `img` tag and captures the information that you have opened this email. So, when you go to GitHub, under your notifications, the email notification that you opened, it shows that the notification is read / marked as read. This way, you don't have to separately go to GitHub to mark a notification as read if you have already opened the email regarding it.
+
 Tracking email opening is a bit hacky like that, using `img` tag and all. But the idea behind capturing clicking of links is pretty straightforward. This is a technique that Google and many others have been following till date. The idea is similar to that of a URL link shortener, like bit.ly links. The idea is - " redirection ". So, whatever link you want to put, don't put a direct link to the webpage. Instead, put a unique link which redirects the users to that direct link. While redirecting the system will also capture the link click as part of the API.
 
 For example
