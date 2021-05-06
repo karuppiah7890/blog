@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 May 2021 14:05:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 20:47:35 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jest and TypeScript</title>
+      <link>https://karuppiah7890.github.io/blog/posts/jest-and-typescript/</link>
+      <pubDate>Thu, 06 May 2021 20:47:35 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/jest-and-typescript/</guid>
+      <description>I was recently working on a front end project where the code was written in TypeScript. It was a React project, and it was bootstrapped with Create React App (CRA) tool. And the testing framework that we used was Jest.
+The team quickly realized that the test code we wrote was not being type checked and we could see TypeScript type errors in our text editors and Integrated Development Environments (IDEs) but there were no such type errors when running the tests using react-scripts tool to run the tests which in turn used Jest</description>
+    </item>
+    
     <item>
       <title>Trusting software in this era: Part 1</title>
       <link>https://karuppiah7890.github.io/blog/posts/trusting-software-in-this-era/</link>
