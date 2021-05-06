@@ -1,5 +1,5 @@
 ---
-title: "Trusting software in this era: Part "
+title: "Trusting software in this era: Part 1"
 date: 2021-05-06T14:05:35+05:30
 ---
 
