@@ -1,7 +1,6 @@
 ---
 title: "Developer Experience Part 1"
-date: 2021-05-07T14:13:35+05:30
-draft: true
+date: 2021-05-07T20:59:45+05:30
 ---
 
 I have been working with software since 2011 when I started learning the ABCs of C/C++ in my 11th grade, and I was a user of software way before that. I have been professionally working with software since 2017 when I started freelancing and then joined my first company for a full time job
@@ -36,10 +35,30 @@ Yet another example is - a slow Continuous Integration pipeline. The definition 
 
 I believe that some popular ideologies in the industry help when it comes to a good developer experience. Let's look at some of them
 
-Faster feedback when there are issues. I have always noticed that it's good to see the errors / issues as soon as possible. For example, the best thing I love about the modern Integrated Development Environments (IDEs) is that they show errors immediately while typing the code. I don't have to manually run compile or run any build command to see errors. Every character of code I type, there's a process behind the scenes that automatically checks the code for me and gives me warnings and errors. These can be lint warnings / errors or even programming language warnings and errors coming from a compiler / interpreter. The industry also calls this as a Faster Feedback loop, or cycle.
+- Faster feedback when there are issues. I have always noticed that it's good to see the errors / issues as soon as possible. For example, the best thing I love about the modern Integrated Development Environments (IDEs) is that they show errors immediately while typing the code. I don't have to manually run compile or run any build command to see errors. Every character of code I type, there's a process behind the scenes that automatically checks the code for me and gives me warnings and errors. These can be lint warnings / errors or even programming language warnings and errors coming from a compiler / interpreter. The industry also calls this as a Faster Feedback loop, or cycle.
 
-Shift left. In a sequence of processes in software development, when jotted down from left to right in a sequence, it's good to find issues sooner than later. So, the goal is to try and find issues more on the left or to do things to shift and find issues on the left than on the right which is more later and which means issues are found very late. This is just another way of saying faster feedback loop but at a more bigger picture level. For example, we do analysis and design, and then develop, and then test and finally release. It's easier to find as much issues as possible in analysis and design instead of letting them leak into the next stages and then find issues during development, testing or after releasing - by end users creating support tickets.
+- Shift left. In a sequence of processes in software development, it's good to find issues sooner than later. Now let's say you jot down these processes from left to right in a sequence. It's kind of like a timeline of the processes. So, the goal is to try and find issues more on the left or to do things to shift and find issues on the left than on the right. As being more on the right means it is more later and it means issues are found very late. This is just another way of saying faster feedback loop but at a more bigger picture level. For example, let's say we do analysis and design, and then develop, and then test and finally release / deploy. It's easier to find as much issues as possible in analysis and design instead of letting them leak into the next stages and then find issues during development, testing or after releasing - by end users creating support tickets.
 
-Simple ways to read code and debug code to fix issues. Debugging process should be easy. Reading code - it should be readable code without too much complexity, like it shouldn't have so much cognitive overhead - lot of thinking to understand the code?
+![sequence-of-processes](/blog/img/developer-experience-part-1/sequence-of-processes.svg "sequence-of-processes")
 
-Development tools to enable and speed up Development for the Developer. For example IDEs to help enable refactoring, writing code, changing code.
+These are just some examples that I can think of as of now. But these are pretty good. Let me give an example of how this helps at a developer experience level and also at a bigger picture level.
+
+When having faster feedback loops / shifting left, the team as a whole find issues faster and rectifies / corrects them faster. Same goes for developer experience. What happens when you find issues later and not sooner?
+
+Let me give you an example. In my previous project, whenever we had to push the code to the git remote repository, we would run a sequences of commands manually or automatically using git pre-push hooks, these commands would basically run a lot of checks that are also run in our Continuous Integration pipeline. What are these checks? It would be things like - run tests, run compile, run linter etc. Each team has it's own set of checks to ensure that the software quality is great! Now, if we don't do run these checks in our local, the code would be pushed and it would fail in the pipeline and pipeline would be red. In such a case, people pulling the latest code from the git remote repository would have a dirty / not-so-proper code as it's failing in the pipeline. This is not a good state to be in. So, it's important to find issues in the local as much as possible before pushing the code and letting it fail in the pipeline. Why? Because others pulling the code from the git remote repository or any repository would expect a clean build which passes all the checks in the pipeline so that they can make changes and be sure that only their changes can fail the checks if at all the checks fail. Also, the other thing is - when you don't run checks in the local, you have to wait to push the code, see the pipeline run and then see it fail there. That's kind of slower. Instead you can run the same checks in your local and it will be faster and it will also not affect the work of your team mates as much as possible.
+
+Some might say - why run the checks in local and in pipeline. The pipeline is meant to help with issues like "works on my machine" and also helps to check if the code works in a completely new sandbox environment every time. The pipeline also ensures that all the checks are run even if the developer does not run the checks.
+
+So, we had to run checks in our local. If we didn't, it would just be a bad developer experience for almost the whole team. Now, while running checks in our local, that can have bad developer experiences too. Let me give you an example. Now, in our project, we had to run tests, compile, run linter. We ran these in a sequence and not in parallel, in exactly that order. Tests and compilation took a lot of time actually, and linters were pretty fast. In my case, I used to use the automatic pre-push git hook to run these. The craziest part was - the tests and compilation would take so long and complete and then I would get a linter error. I would have to fix it and run all of them again most of the time, or just run the linter if I'm so sure that the compile or test won't be affected by the fix and then push it with no pre-push hooks. An easier alternative would be to run the linter first, which runs fast and gives errors / issues faster, and then run the test and compile which take more time to run. This way, I find any possible issues way sooner. At least that's what I prefer!
+
+Other good Developer Experiences that I can think of are
+
+- Simple ways to read code and debug code to fix issues
+    - Debugging process should be easy
+    - Reading code - it should be readable code without too much complexity, like it shouldn't have a lot of cognitive overhead, which basically implies that reading and understanding the code requires a lot of thinking
+
+- Development tools to enable and speed up Development for the Developer. For example - powerful IDEs to help enable refactoring, writing code, changing code
+
+## Conclusion
+
+Developer Experience is really a very relative term. Each developer might prefer some things and expect some behaviors from the systems they work with and would love some kind of experiences. It's very important for the team to come together and talk about what's going well and what are the pain points and how it can be improved in a meeting. Retrospective is a popular name for such meetings.
