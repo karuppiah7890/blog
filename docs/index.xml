@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 May 2021 20:59:45 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 May 2021 20:43:15 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Async Communications Gone Wrong (Ranting included)</title>
+      <link>https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/</link>
+      <pubDate>Fri, 14 May 2021 20:43:15 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/</guid>
+      <description>⚠️ This is kind of a rant post too. You have been warned! 😅 Also, it&amp;rsquo;s a lot of scattered thoughts too. I&amp;rsquo;m sorry if you feel lost somewhere 🙈
+ Given that a lot of modern and tech based companies have moved from an office setup to a remote working setup - working out of homes or multiple scattered very small offices etc, the mindset of the companies doesn&amp;rsquo;t seem to have changed much.</description>
+    </item>
+    
     <item>
       <title>Developer Experience Part 1</title>
       <link>https://karuppiah7890.github.io/blog/posts/developer-experience-part-1/</link>
