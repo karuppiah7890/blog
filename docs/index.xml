@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 May 2021 20:43:15 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 May 2021 22:33:15 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Substituting environment variables with envsubst</title>
+      <link>https://karuppiah7890.github.io/blog/posts/subtituting-envrionment-variables-with-envsubst/</link>
+      <pubDate>Fri, 14 May 2021 22:33:15 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/subtituting-envrionment-variables-with-envsubst/</guid>
+      <description>TLDR; $ man envsubst Online man page - https://www.man7.org/linux/man-pages/man1/envsubst.1.html
+$ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format too histsize: $HISTSIZE home: ${HOME} user: ${USER} $ cat sample.template.yaml | envsubst &amp;#39;$SHELL ${HISTSIZE}&amp;#39; &amp;gt; sample.yaml $ cat sample.yaml shell: /bin/bash # notice how we can use ${} format too histsize: 50000 home: ${HOME} user: ${USER} Longer version Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster.</description>
+    </item>
+    
     <item>
       <title>Async Communications Gone Wrong (Ranting included)</title>
       <link>https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/</link>
