@@ -5,6 +5,72 @@ draft: true
 ---
 
 
+Code examples:
+
+### Good code but can have problems
+
+`list-special-files.sh`
+
+```bash
+#!/bin/bash
+
+dir=$1
+
+for file in $dir/special-*; do
+  echo $file
+done
+```
+
+```bash
+$ vi list-special-files.sh
+$ chmod +x list-special-files.sh
+$ mkdir "cool directory"
+$ cd "cool directory"
+$ touch meh
+$ touch special-pluginA
+$ touch special-fileB
+$ cd ..
+$ ./list-special-files.sh "cool directory"/
+cool
+directory//special-*
+```
+
+
+### Better code
+
+`list-special-files.sh`
+
+```bash
+#!/bin/bash
+
+dir=$1
+
+for file in "$dir"/special-*; do
+  echo $file
+done
+```
+
+```bash
+$ ./list-special-files.sh "cool directory"/
+cool directory//special-fileB
+cool directory//special-pluginA
+```
+
+Need to be careful to not use
+
+```bash
+for file in "$dir/special-*"; do
+  echo $file
+done
+```
+
+As that leads to - 
+
+```bash
+$ ./list-special-files.sh "cool directory"/
+cool directory//special-*
+```
+
 
 References:
 
