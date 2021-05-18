@@ -80,11 +80,13 @@ https://www.shellcheck.net/
 
 https://github.com/koalaman/shellcheck
 
+https://github.com/koalaman/shellcheck#user-content-in-your-editor
+
 https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck
 
-https://www.tecmint.com/shellcheck-shell-script-code-analyzer-for-linux/
-
 https://plugins.jetbrains.com/plugin/10195-shellcheck
+
+https://www.tecmint.com/shellcheck-shell-script-code-analyzer-for-linux/
 
 https://hackage.haskell.org/package/ShellCheck
 
