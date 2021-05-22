@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 May 2021 22:33:15 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 May 2021 17:12:05 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An introduction to linting shell scripts using shellcheck tool</title>
+      <link>https://karuppiah7890.github.io/blog/posts/linting-shell-scripts-using-shellcheck-tool/</link>
+      <pubDate>Sat, 22 May 2021 17:12:05 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/linting-shell-scripts-using-shellcheck-tool/</guid>
+      <description>TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &amp;ldquo;a static analysis tool for shell scripts&amp;rdquo;. A small example usage -
+$ cat list-special-files.sh #!/bin/bash dir=$1 for file in &amp;#34;$dir/special-*&amp;#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &amp;#34;$dir/special-*&amp;#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.</description>
+    </item>
+    
     <item>
       <title>Substituting environment variables with envsubst</title>
       <link>https://karuppiah7890.github.io/blog/posts/subtituting-envrionment-variables-with-envsubst/</link>
