@@ -6,7 +6,17 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jun 2021 11:43:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 15:07:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shareable URLs</title>
+      <link>https://karuppiah7890.github.io/blog/posts/shareable-urls/</link>
+      <pubDate>Sun, 27 Jun 2021 15:07:20 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/shareable-urls/</guid>
+      <description>This is a very simple post about the kind of features that users would expect in general when it comes to the ability to share URLs of websites
+Let&amp;rsquo;s start with an example. I&amp;rsquo;m sure many of us would have shared a lot of URLs. A popular example that comes to my mind is - sharing YouTube videos. YouTube allows users to share videos by having a button called &amp;ldquo;Share&amp;rdquo;, which shows the video&amp;rsquo;s short URL link and also the ability to share the URL on different mediums with ease.</description>
+    </item>
+    
     <item>
       <title>Avoiding Rookie Mistakes</title>
       <link>https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/</link>
