@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jun 2021 20:54:50 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 11:43:20 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Avoiding Rookie Mistakes</title>
+      <link>https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/</link>
+      <pubDate>Sun, 27 Jun 2021 11:43:20 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/</guid>
+      <description>This is a short post about how one can try to avoid rookie mistakes. This is just me jotting down lessons for myself :)
+ Note: Rookie mistakes are common and can happen anytime. It&amp;rsquo;s good to learn from them and create processes and tools that help you succeed :)
+ Recently I made a rookie mistake where I created a temporary git branch in a git repository, but I couldn&amp;rsquo;t delete it and this lead to problematic things that I won&amp;rsquo;t get into</description>
+    </item>
+    
     <item>
       <title>Modern Software Development</title>
       <link>https://karuppiah7890.github.io/blog/posts/modern-software-development/</link>
