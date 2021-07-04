@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog</title>
+    <title>Time machine series: Part 2 - Curious case of database connection failing | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!
+Now, let&rsquo;s checkout what problem we faced with respect to database connections!">
     <meta name="generator" content="Hugo 0.80.0" />
     
     
@@ -27,21 +28,27 @@
 
     
     
-      <link href="/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      
-    
-    
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
-<meta property="og:updated_time" content="2021-07-04T21:30:05+05:30" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
+    <meta property="og:title" content="Time machine series: Part 2 - Curious case of database connection failing" />
+<meta property="og:description" content="In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!
+Now, let&rsquo;s checkout what problem we faced with respect to database connections!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/" />
+<meta property="article:published_time" content="2021-07-04T21:30:05+05:30" />
+<meta property="article:modified_time" content="2021-07-04T21:30:05+05:30" />
+<meta itemprop="name" content="Time machine series: Part 2 - Curious case of database connection failing">
+<meta itemprop="description" content="In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!
+Now, let&rsquo;s checkout what problem we faced with respect to database connections!">
+<meta itemprop="datePublished" content="2021-07-04T21:30:05+05:30" />
+<meta itemprop="dateModified" content="2021-07-04T21:30:05+05:30" />
+<meta itemprop="wordCount" content="1191">
+
+
+
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Time machine series: Part 2 - Curious case of database connection failing"/>
+<meta name="twitter:description" content="In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!
+Now, let&rsquo;s checkout what problem we faced with respect to database connections!"/>
 
       
     
@@ -51,9 +58,11 @@
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -111,216 +120,112 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height nested-img">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/" class="link black dim">
-        Time machine series: Part 2 - Curious case of database connection failing
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!
-Now, let&rsquo;s checkout what problem we faced with respect to database connections!
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/time-machine-series-part1/" class="link black dim">
-        Time Machine Series: Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In this time machine series I want to recall some of my older experiences that I didn&rsquo;t write blog posts about. It&rsquo;s basically me going back in time and recalling some of the cool things that my team did
-Migration of components In this blog post I&rsquo;m gonna tell about one of the stories from my work from around 2019 end / 2020 start if I remember correctly
-Me and my team had this task of migrating a lot of components - Postgres databases and Redis databases / caches from one Kubernetes cluster to multiple clusters
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/shareable-urls/" class="link black dim">
-        Shareable URLs
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is a very simple post about the kind of features that users would expect in general when it comes to the ability to share URLs of websites
-Let&rsquo;s start with an example. I&rsquo;m sure many of us would have shared a lot of URLs. A popular example that comes to my mind is - sharing YouTube videos. YouTube allows users to share videos by having a button called &ldquo;Share&rdquo;, which shows the video&rsquo;s short URL link and also the ability to share the URL on different mediums with ease.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/" class="link black dim">
-        Avoiding Rookie Mistakes
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is a short post about how one can try to avoid rookie mistakes. This is just me jotting down lessons for myself :)
- Note: Rookie mistakes are common and can happen anytime. It&rsquo;s good to learn from them and create processes and tools that help you succeed :)
- Recently I made a rookie mistake where I created a temporary git branch in a git repository, but I couldn&rsquo;t delete it and this lead to problematic things that I won&rsquo;t get into
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/modern-software-development/" class="link black dim">
-        Modern Software Development
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This post is to see some of the cool things in the modern software development and the kind of experience that developers can get. This post especially focuses on a kind of experience that I expect to get as a developer when I develop for backend (servers, services, microservices etc) or frontend (web app). I&rsquo;m not going to be focusing on other kind of software in this blog post
-Focus If you think about it, as a developer, I want to focus on building software.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/linting-shell-scripts-using-shellcheck-tool/" class="link black dim">
-        An introduction to linting shell scripts using shellcheck tool
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -
-$ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &#34;$dir/special-*&#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/subtituting-envrionment-variables-with-envsubst/" class="link black dim">
-        Substituting environment variables with envsubst
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      TLDR; $ man envsubst Online man page - https://www.man7.org/linux/man-pages/man1/envsubst.1.html
-$ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format too histsize: $HISTSIZE home: ${HOME} user: ${USER} $ cat sample.template.yaml | envsubst &#39;$SHELL ${HISTSIZE}&#39; &gt; sample.yaml $ cat sample.yaml shell: /bin/bash # notice how we can use ${} format too histsize: 50000 home: ${HOME} user: ${USER} Longer version Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/" class="link black dim">
-        Async Communications Gone Wrong (Ranting included)
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      ⚠️ This is kind of a rant post too. You have been warned! 😅 Also, it&rsquo;s a lot of scattered thoughts too. I&rsquo;m sorry if you feel lost somewhere 🙈
- Given that a lot of modern and tech based companies have moved from an office setup to a remote working setup - working out of homes or multiple scattered very small offices etc, the mindset of the companies doesn&rsquo;t seem to have changed much.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/developer-experience-part-1/" class="link black dim">
-        Developer Experience Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I have been working with software since 2011 when I started learning the ABCs of C/C++ in my 11th grade, and I was a user of software way before that. I have been professionally working with software since 2017 when I started freelancing and then joined my first company for a full time job
-If I look back at all those years of writing code, I can clearly remember some experiences where I banged my head to solve some problem and figured out a good way to debug or analyze the problem at the end of it.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://karuppiah7890.github.io/blog/posts/jest-and-typescript/" class="link black dim">
-        Jest and TypeScript
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I was recently working on a front end project where the code was written in TypeScript. It was a React project, and it was bootstrapped with Create React App (CRA) tool. And the testing framework that we used was Jest.
-The team quickly realized that the test code we wrote was not being type checked and we could see TypeScript type errors in our text editors and Integrated Development Environments (IDEs) but there were no such type errors when running the tests using react-scripts tool to run the tests which in turn used Jest
-    </div>
-  </div>
-</div>
-</div>
-      
-    </section>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-  </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/posts/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/posts/page/10/">10</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/posts/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/posts/page/10/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-  </li>
-</ul>
 
-</article>
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/&amp;text=Time%20machine%20series:%20Part%202%20-%20Curious%20case%20of%20database%20connection%20failing" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/&amp;title=Time%20machine%20series:%20Part%202%20-%20Curious%20case%20of%20database%20connection%20failing" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Time machine series: Part 2 - Curious case of database connection failing</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-07-04T21:30:05+05:30">July 4, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>In this time machine series blog post, I&rsquo;m going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I&rsquo;ll try to cover each one of them in a time machine series blog post :D For now I&rsquo;m just noting down all the bits and pieces in my notes based on whatever I can recall!</p>
+<p>Now, let&rsquo;s checkout what problem we faced with respect to database connections!</p>
+<p>So, we were using Kubernetes for running our client&rsquo;s microservices or any stateless services. We were also running databases / any stateful components in Kubernetes clusters. We were using <a href="https://www.consul.io">Consul</a> for the DNS of stateful components as they were in a different cluster and not in the same cluster as the stateless services. If they were all in the same cluster, we could have just used the Kube DNS, but that wasn&rsquo;t the case though</p>
+<p>Now, To integrate stateful components running in Kubernetes with Consul, we were using a tool called kube consul register - <a href="https://github.com/tczekajlo/kube-consul-register">https://github.com/tczekajlo/kube-consul-register</a> to register pods as services to consul service registry</p>
+<p>Later at one point, we realized that there was a bug in the tool where it didn&rsquo;t remove the service once the pod was gone. Ideally the tool had to keep the service registry up to date with the service name and the correct list of IPs - pod IPs. What this meant was - if a new pod came up for the service - that should be in the service registry for that service, and if a pod dies or goes away for a service, that should be removed from the service registry for that service. Only then the Consul service registry will be up to date and only then the Consul DNS service can respond with correct results and no stale results, especially in a very dynamic environment like Kubernetes where new pods can come at any point and existing pod can die at any point, and pod IPs are all dynamic and a service may not get the same pod IP as before when one of it&rsquo;s pods goes away and a new pod comes up</p>
+<p>What this lead to was - in such cases, where a service&rsquo;s pod goes away, the service record with that old pod IP remained in consul service registry and consul kept trying to do health checks using the registered health checks and showed failed health checks - basically failed services. This was because there was no pod with that pod IP, so any health checks would fail. Ideally that pod IP should have been removed from the service when the pod died</p>
+<p>This also caused one weird problem in a specific situation - when a pod was gone and there was this zombie corresponding service in the consul, for example say</p>
+<p>service-abcd-postgres-db pod IP was in the consul service registry under service-abcd-postgres-db service, but service-abcd-postgres-db pod died but the dead pod&rsquo;s IP still remained in the service registry under service-abcd-postgres-db service</p>
+<p>Later, let&rsquo;s say service-def-postgres-db pod came up, with the same IP as the previously dead service-abcd-postgres-db pod IP. This is possible as the pod IPs are all dynamic and any pod can get any IP and IP could be reused too if it&rsquo;s not assigned to any pod currently, so there&rsquo;s no rule stopping that, at least in our case we didn&rsquo;t have anything like that. Now the consul still had service-abcd-postgres-db service in it&rsquo;s service registry along with health checks along with the IP address. Consul was still doing health checks and the previously failing health checks suddenly start passing. How?! This is because now consul is running the health checks against service-def-postgres-db actually thinking it&rsquo;s service-abcd-postgres-db . I&rsquo;m not able to recall if there was also the service-def-postgres-db service separately with the same IP, maybe there was, I mean, ideally it should have been present, but that will however be considered as a valid entry / service record in the service registry, unlike the wrong pod IP under service-abcd-postgres-db</p>
+<p>Now what this lead to was - since we were using consul service as a DNS service, and it&rsquo;s service registry had service-abcd-postgres-db with the IP address of the service-def-postgres-db and the health checks were passing - as the health checks simply checked if port 5432 was accessible, what happened was - the services which were trying to access service-abcd-postgres-db using the consul DNS service were now getting service-def-postgres-db IP and were accessing service-def-postgres-db but then they used the service-abcd-postgres-db credentials - which didn&rsquo;t work in service-def-postgres-db as service-def-postgres-db had a different set of credentials and hence the connection failed</p>
+<p>We fortunately noticed this and fixed it! This was based on some reports by some teams on intermittent issues regarding connection failures and also some failed services showing up in consul</p>
+<p>The craziest part is - had the credentials of all the databases had been the same, for example the same basic username and password, you would have two services using the same database and many possible crazy issues because of that - performance issues, lots of storage usage and the biggest problem - corruption of data in case both use the same database name and table names for some reason. Most probably these won&rsquo;t happen - different services usually use different names etc, but still, it&rsquo;s a possibility in theory!! Fortunately things stopped at the authentication level itself for us, but this was still an embarrassing issue! 🙈😅</p>
+<p>Let me give you a gist of what was the most craziest part apart from that. Our redis databases had no credentials. Almost none of them had it, maybe a few of them had, very very few. Most others just needed the IP/hostname + port number for connection, no credentials. So if there was a service-ghi-redis-db and a service-jkl-redis-db , and if there was a similar consul service registry entry issue where IP of an old redis pod say service-ghi-redis-db pod gets reused in a different new redis pod say service-jkl-redis-db, then any service using service-ghi-redis-db might be connecting to service-jkl-redis-db too and it will not have any issues connecting to it!! As we always used port 6379 and there was no credentials and for host/dns name/ip there was consul where the above issue could occur and that&rsquo;s it, a service might corrupt the data in another service&rsquo;s redis db!!!</p>
+<h2 id="learnings">Learnings</h2>
+<p>It&rsquo;s very very important to ensure that the DNS service is proper - Of course!</p>
+<p>Of course it&rsquo;s better to secure any database / any service with proper credentials and of course not reuse the same set of credentials for different databases / services. Also one could try to rotate credentials - use something like <a href="https://www.hashicorp.com/products/vault">HashiCorp Vault</a> maybe, and ensure that a service has access only to the credentials of it&rsquo;s own databases / data stores, that is, data stores it interacts with and has access to. It&rsquo;s also good to have authorization / access levels - read/write etc and any possible granular access levels depending on the data store usage. One could extrapolate the same idea from data stores to any external service access and not just data stores</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

@@ -1,7 +1,6 @@
 ---
 title: "Time machine series: Part 2 - Curious case of database connection failing"
 date: 2021-07-04T21:30:05+05:30
-draft: true
 ---
 
 In this time machine series blog post, I'm going to go back in time and recall an interesting problem we faced. We faced many interesting problems actually. I'll try to cover each one of them in a time machine series blog post :D For now I'm just noting down all the bits and pieces in my notes based on whatever I can recall!
