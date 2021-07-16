@@ -1,513 +1,309 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
     <lastmod>2021-07-04T21:30:05+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
     <lastmod>2021-07-04T21:30:05+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/</loc>
     <lastmod>2021-07-04T21:30:05+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/time-machine-series-part1/</loc>
     <lastmod>2021-06-27T18:25:20+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/shareable-urls/</loc>
     <lastmod>2021-06-27T15:07:20+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/</loc>
     <lastmod>2021-06-27T11:43:20+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/modern-software-development/</loc>
     <lastmod>2021-06-01T20:54:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/linting-shell-scripts-using-shellcheck-tool/</loc>
     <lastmod>2021-05-22T17:12:05+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/subtituting-envrionment-variables-with-envsubst/</loc>
     <lastmod>2021-05-14T22:33:15+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/</loc>
     <lastmod>2021-05-14T20:43:15+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/developer-experience-part-1/</loc>
     <lastmod>2021-05-07T20:59:45+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/jest-and-typescript/</loc>
     <lastmod>2021-05-06T20:47:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/trusting-software-in-this-era/</loc>
     <lastmod>2021-05-06T14:05:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/how-basic-email-tracking-works/</loc>
     <lastmod>2021-04-04T17:44:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/a-slightly-failed-kubernetes-adoption-story/</loc>
     <lastmod>2021-04-03T11:23:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/</loc>
     <lastmod>2021-04-02T06:48:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/</loc>
     <lastmod>2021-04-02T05:07:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/bytes-3-dont-have-unnecessary-high-access/</loc>
     <lastmod>2021-04-01T19:57:00+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/money-stuff-part-1/</loc>
     <lastmod>2021-03-31T21:59:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/bytes-2-consul-kv-store/</loc>
     <lastmod>2021-03-29T17:12:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/open-source-business-models/</loc>
     <lastmod>2021-03-29T16:37:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/mailcatcher-dummy-email-server-to-catch-your-emails/</loc>
     <lastmod>2021-03-27T21:47:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/please-get-your-assertions-right/</loc>
     <lastmod>2021-03-27T19:42:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/an-introduction-to-gitlab-ci-cd-services-feature/</loc>
     <lastmod>2020-12-24T12:33:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/optionally-running-services-in-docker-compose/</loc>
     <lastmod>2020-12-23T15:34:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/kubernetes-jobs-and-cronjobs-do-you-need-them-why/</loc>
     <lastmod>2020-12-23T13:19:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/testcontainers-part-2-testcontainers-in-java-for-your-tests-with-junit-5/</loc>
     <lastmod>2020-12-20T13:04:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/testcontainers-part-1-an-introduction-to-a-new-way-of-integration-testing/</loc>
     <lastmod>2020-12-17T09:55:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/kubernetes-daemonset-do-you-need-them-why/</loc>
     <lastmod>2020-12-14T22:53:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/dead-code-is-dead/</loc>
     <lastmod>2020-12-12T14:41:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/writing-a-blog/</loc>
     <lastmod>2020-12-10T19:40:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/jabba-a-java-version-manager/</loc>
     <lastmod>2020-12-05T15:02:57+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/validating-beans-and-testing-it/</loc>
     <lastmod>2020-11-22T14:45:36+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/drawing-tools-part1-excalidraw/</loc>
     <lastmod>2020-11-21T14:23:37+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/digital-signatures/</loc>
     <lastmod>2020-11-16T20:21:57+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/lint-staged-lint-your-staged-files/</loc>
     <lastmod>2020-11-16T09:11:20+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/role-based-access-control/</loc>
     <lastmod>2020-11-15T20:02:34+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/aim-for-https/</loc>
     <lastmod>2020-10-11T09:13:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/doing-demos-in-style/</loc>
     <lastmod>2020-10-08T20:02:58+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/softwares-hindering-vs-enabling/</loc>
     <lastmod>2020-10-06T22:29:23+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/education/</loc>
     <lastmod>2020-10-03T20:36:15+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/beauty/</loc>
     <lastmod>2020-10-03T13:44:19+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/barriers-to-attending-events/</loc>
     <lastmod>2020-10-02T16:28:47+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/learning-css/</loc>
     <lastmod>2020-09-24T21:35:06+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/</loc>
     <lastmod>2020-09-22T21:02:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/getting-started-with-keycloak/</loc>
     <lastmod>2020-09-21T08:05:21+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/introduction-to-keycloak/</loc>
     <lastmod>2020-09-19T21:17:46+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/</loc>
     <lastmod>2020-09-19T08:29:02+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/</loc>
     <lastmod>2020-09-18T08:46:20+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/step-cli/</loc>
     <lastmod>2020-09-17T21:05:08+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/bitbucket-cloud-no-git-commit-sign/</loc>
     <lastmod>2020-08-07T21:17:48+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/my-python-and-data-analysis-journey/</loc>
     <lastmod>2020-08-07T21:06:17+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/why-blog-why-share-knowledge/</loc>
     <lastmod>2020-08-06T19:57:33+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/github-profile-readme/</loc>
     <lastmod>2020-08-06T16:48:05+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/childhood-crazy-tech-stuff/</loc>
     <lastmod>2020-05-24T20:49:03+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/learning-networking-hacking/</loc>
     <lastmod>2020-05-24T20:14:18+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/i-chose-simplicity-i-chose-empathy/</loc>
     <lastmod>2020-05-20T18:50:39+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/what-is-software/</loc>
     <lastmod>2020-05-20T18:31:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/obscure-javascript/</loc>
     <lastmod>2020-04-19T18:20:07+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/prettified-json-in-http-response/</loc>
     <lastmod>2020-04-19T18:16:33+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/</loc>
     <lastmod>2020-04-19T07:35:13+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/the-pot/</loc>
     <lastmod>2020-04-08T19:54:07+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/walking-alone/</loc>
     <lastmod>2020-04-08T19:47:02+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/shadow-and-friendship/</loc>
     <lastmod>2020-04-08T19:39:45+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/my-friends-and-the-rose/</loc>
     <lastmod>2020-04-08T19:19:38+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/i-imagine/</loc>
     <lastmod>2020-04-08T09:56:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/the-dress/</loc>
     <lastmod>2020-04-08T09:55:10+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/my-cheatsheet-for-commands-and-stuff/</loc>
     <lastmod>2020-04-04T12:49:09+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/code-is-about-people/</loc>
     <lastmod>2020-04-01T08:48:01+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/uff-tool/</loc>
     <lastmod>2020-03-30T08:03:52+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/installing-prometheus-operator-prometheus-alertmanager-and-grafana/</loc>
     <lastmod>2020-03-26T19:31:37+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/why-blog-why-open-source-why-learning-log/</loc>
     <lastmod>2020-03-21T18:56:27+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/contributing-to-open-source-efforts-and-rework/</loc>
     <lastmod>2020-03-21T16:24:08+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/creating-dummy-files/</loc>
     <lastmod>2020-03-20T18:09:41+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/vscode-golang-programming/</loc>
     <lastmod>2020-03-17T14:10:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/no-code-is-happiness/</loc>
     <lastmod>2020-03-16T19:46:29+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/test-test-test-code/</loc>
     <lastmod>2020-03-16T19:22:28+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/spinning-up-vms-in-my-local/</loc>
     <lastmod>2020-03-13T08:42:19+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/i-like-to-write-things-down/</loc>
     <lastmod>2020-03-12T08:52:51+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/no-cash-and-digital-transactions/</loc>
     <lastmod>2020-03-11T21:32:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/kubectl-commands/</loc>
     <lastmod>2020-03-09T09:30:21+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/oss-stories-part-1-write-tests-to-fix-that-bug/</loc>
     <lastmod>2020-03-08T15:10:08+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/asciinema-to-record-your-terminal/</loc>
     <lastmod>2020-03-08T10:47:01+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/trying-to-make-my-life-easier-while-coding/</loc>
     <lastmod>2020-03-08T09:22:37+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/running-is-tough/</loc>
     <lastmod>2020-03-08T09:15:00+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/tmate-share-your-terminal/</loc>
     <lastmod>2020-03-07T14:20:33+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/redis-cli-lolwut-command/</loc>
     <lastmod>2020-03-06T11:16:25+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/debugging-go-in-visual-studio-code/</loc>
     <lastmod>2020-03-01T15:55:00+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/mission-crusader-2020/</loc>
     <lastmod>2020-03-01T13:00:35+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/cooking/</loc>
     <lastmod>2020-03-01T09:39:03+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/cycling/</loc>
     <lastmod>2020-02-29T13:28:19+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/in-a-class/</loc>
     <lastmod>2020-02-09T22:34:02+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/</loc>
     <lastmod>2020-01-29T17:40:02+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/helm-values-schema-gen-plugin/</loc>
     <lastmod>2019-12-28T17:31:50+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/openfaas-containerd-series-part1/</loc>
     <lastmod>2019-12-27T19:49:59+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/a-conference-story/</loc>
     <lastmod>2019-12-25T14:03:03+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/debugging-go-in-intellij-idea-or-goland/</loc>
     <lastmod>2019-08-15T07:56:34+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/helm-3-charts-and-oci-registries/</loc>
     <lastmod>2019-06-18T22:00:00+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/my-open-source-journey/</loc>
     <lastmod>2019-06-16T12:44:09+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/my-first-post/</loc>
     <lastmod>2019-06-04T21:13:36+05:30</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://karuppiah7890.github.io/blog/tags/</loc>
   </url>
-  
 </urlset>
