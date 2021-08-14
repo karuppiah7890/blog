@@ -4,7 +4,7 @@ This is the code for my blog! It's built using [hugo](https://gohugo.io) 😎
 
 # Development
 
-```
+```bash
 $ git clone git@github.com:karuppiah7890/blog
 $ cd blog
 $ git submodule init
@@ -16,8 +16,13 @@ $ make # to build site for prod
 To get the latest ananke hugo theme
 
 ```bash
+$ git submodule init
+$ git submodule update # to get the hugo theme
 $ cd themes/ananke
-$ git pull --rebase --verbose
+$ git status
+$ git remote -v
+$ git checkout master
+$ git pull --rebase --verbose origin master
 ```
 
 If there are new commits, there will be changes in `themes/ananke` according to
