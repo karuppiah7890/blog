@@ -7,7 +7,7 @@
     <title>I Chose Simplicity. I Chose Empathy | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Recently I was writing this code for a JSON REST API. We were adding an extra field to our API structure, for a resource. For the sake of simplicity let&rsquo;s assume we were building an API to store rich text in our database. The size of this rich text was small, like 500 characters, that&rsquo;s it. And let&rsquo;s say we came up with some simple solutions on how to store the rich text.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -170,7 +170,7 @@ assume we were building an API to store rich text in our database. The size of
 this rich text was small, like 500 characters, that&rsquo;s it. And let&rsquo;s say we came
 up with some simple solutions on how to store the rich text. And finally, the
 below is what we decided the structure would look like</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;textContents&#34;</span>: [
         {
             <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;PLAIN_TEXT&#34;</span>,
@@ -208,7 +208,7 @@ it in a single line with <code>json.Unmarshal()</code> and nothing else. And the
 processing, used if statement to find the type of the element and then
 accordingly use the fields. To give a gist, based on the example, this is what
 the types looked like -</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContent</span> <span style="color:#66d9ef">struct</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContent</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">ContentType</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;type&#34;`</span>
 	<span style="color:#a6e22e">PlainText</span>   <span style="color:#66d9ef">string</span>
 	<span style="color:#a6e22e">LinkInfo</span>    <span style="color:#a6e22e">LinkInfo</span>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="In my current project, we work with Spring Boot. Recently, I was writing a Data Transfer Object (DTO) and we also had to add validations to the fields. Usually, while doing this, we also add tests to ensure that in the future we don&rsquo;t remove or change the validations by mistake and instead it&rsquo;s more intentional as we have to also change the tests.
 Some more context - we are writing Web APIs.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -178,7 +178,7 @@ controller that was responsible for handling the API request. Invoking through
 method or by using Spring MockMvc and writing tests at API level. The method in
 the controller took care of validating the DTO. The code looked something like
 this -</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserController.java
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserController.java
 </span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
@@ -195,7 +195,7 @@ this -</p>
         <span style="color:#75715e">// create a user using the UserService
 </span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserDto.java
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserDto.java
 </span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> lombok.AllArgsConstructor<span style="color:#f92672">;</span>
@@ -213,7 +213,7 @@ this -</p>
     <span style="color:#a6e22e">@NotNull</span>
     <span style="color:#66d9ef">private</span> String email<span style="color:#f92672">;</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> com.fasterxml.jackson.core.JsonProcessingException<span style="color:#f92672">;</span>
@@ -303,7 +303,7 @@ it&rsquo;s <a href="https://beanvalidation.org/2.0/">reference implementation</a
 <a href="https://hibernate.org/validator/">Hibernate Validator</a>. Specifically this
 guide about <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-validating-bean-constraints">Validating Bean Constraints</a></p>
 <p>You can see the code below</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> lombok.SneakyThrows<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>

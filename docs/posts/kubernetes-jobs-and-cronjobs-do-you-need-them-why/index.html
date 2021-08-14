@@ -10,7 +10,7 @@
 In this blog post we will see what&rsquo;s the use case for Kubernetes Jobs and CronJobs. We try to solve the same use case without these resources, and then see how it compares to Kubernetes Jobs and CronJobs.
 Longer Version Let&rsquo;s start with a requirement first
 &ldquo;I want to be able to run a task and know if it was successfully completed or not&rdquo;">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -220,7 +220,7 @@ ReplicaSets and Deployments.</p>
 <p>Any thoughts?</p>
 <p>I&rsquo;m sure you got this idea by now. Pods can run one-off tasks very easily. Let&rsquo;s
 look at an example Pod that runs a sample <code>echo</code> task</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">simple-task</span>
@@ -250,7 +250,7 @@ successfully or not? 🤔</p>
 successfully. How do you know it was successful? This is just an assumption
 based on checking the logs and also the fact that the task is too simple -
 echoing a word, and nothing else complicated.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod --watch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod --watch
 NAME    READY   STATUS    RESTARTS   AGE
 simple-task   0/1     Pending   <span style="color:#ae81ff">0</span>          0s
 simple-task   0/1     Pending   <span style="color:#ae81ff">0</span>          0s
@@ -264,7 +264,7 @@ has successfully executed the task.</p>
 <p>That was success scenario. What about failure scenarios?</p>
 <p>Let&rsquo;s say you used some bad command instead of <code>echo</code>, say <code>ecoh</code>. Standard
 typos 😅</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">simple-task</span>
@@ -280,14 +280,14 @@ typos 😅</p>
         - <span style="color:#e6db74">&#34;network-task&#34;</span>
   <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span>
 </code></pre></div><p>In this case, the container will show a state <code>ContainerCannotRun</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod --watch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod --watch
 NAME          READY   STATUS    RESTARTS   AGE
 simple-task   0/1     Pending   <span style="color:#ae81ff">0</span>          0s
 simple-task   0/1     Pending   <span style="color:#ae81ff">0</span>          0s
 simple-task   0/1     ContainerCreating   <span style="color:#ae81ff">0</span>          0s
 simple-task   0/1     ContainerCannotRun   <span style="color:#ae81ff">0</span>          7s
 </code></pre></div><p>The describe also shows the error about the Pod.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl describe pod simple-task
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl describe pod simple-task
 ...
 ...
 Events:
@@ -300,7 +300,7 @@ Events:
   Warning  Failed     1s    kubelet            Error: failed to start container <span style="color:#e6db74">&#34;echo-task&#34;</span>: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused <span style="color:#e6db74">&#34;exec: \&#34;ecoh\&#34;: executable file not found in </span>$PATH<span style="color:#e6db74">&#34;</span>: unknown
 </code></pre></div><p>What if there was no typo or code issue but there was still some valid error
 due to some reason?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">simple-task</span>
@@ -320,7 +320,7 @@ due to some reason?</p>
 </span><span style="color:#e6db74">          exit 1</span>          
   <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span>
 </code></pre></div><p>Kubernetes would show the Pod with <code>Error</code> state</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod
 NAME          READY   STATUS    RESTARTS   AGE
 simple-task   0/1     Error     <span style="color:#ae81ff">0</span>          68s
 
@@ -391,7 +391,7 @@ comes in. You don&rsquo;t need to write any sort of application for automated
 creation of Pods to run your tasks. Kubernetes has all features for most of your
 usual use cases. It is all possible using the Job Controller present in
 Kubernetes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pi</span>
@@ -407,7 +407,7 @@ Kubernetes.</p>
 are these features? It&rsquo;s all of the above that we just spoke about ;)</p>
 <p>With Kubernetes Jobs you can also easily find if the task has been completed or
 not.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get job
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get job
 NAME   COMPLETIONS   DURATION   AGE
 pi     1/1           74s        80s
 
@@ -425,7 +425,7 @@ doesn&rsquo;t satisfy your use case / needs.</p>
 <p>With Kubernetes Jobs you also get automatic retries. So, if a Pod fails with
 some non-zero exit status, a new Pod is again created to run the task. Let&rsquo;s
 look at an example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pi-retry</span>
@@ -437,7 +437,7 @@ look at an example</p>
           <span style="color:#f92672">image</span>: <span style="color:#ae81ff">perl</span>
           <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;bad-command&#34;</span>]
       <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get job
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get job
 NAME              COMPLETIONS   DURATION   AGE
 pi-retry   0/1           31s        31s
 
@@ -452,7 +452,7 @@ pi-retry-nltc8   0/1     ContainerCannotRun   <span style="color:#ae81ff">0</spa
 created? No. Instead there is a max retry count - 6, which is the default. You
 could change the default too, using a field in the Job spec called
 <code>backoffLimit</code> like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pi-retry-with-2</span>
@@ -465,7 +465,7 @@ could change the default too, using a field in the Job spec called
           <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;bad-command&#34;</span>]
       <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span>
   <span style="color:#f92672">backoffLimit</span>: <span style="color:#ae81ff">2</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pod
 NAME                    READY   STATUS               RESTARTS   AGE
 pi-retry-with-2-chvkr   0/1     ContainerCannotRun   <span style="color:#ae81ff">0</span>          2m49s
 pi-retry-with-2-slf4w   0/1     ContainerCannotRun   <span style="color:#ae81ff">0</span>          2m58s
@@ -492,7 +492,7 @@ specified backoff limit. At times more or less Pods are created. In this case,
 <p>We have seen the basic stuff now. Apart from this, you can also run multiple
 tasks in sequence and in parallel using Jobs.</p>
 <p>For a simple sequence run, it looks like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pi</span>
@@ -509,7 +509,7 @@ tasks in sequence and in parallel using Jobs.</p>
 </code></pre></div><p>What this means is that - the job has to be run / completed 4 times. This is
 done in sequence by default.</p>
 <p>For parallel run, you can just do</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pi</span>
@@ -532,7 +532,7 @@ ease :D</p>
 <p>To know more about the different options, you can use the official
 <a href="https://kubernetes.io/docs/concepts/workloads/controllers/job">Kubernetes Documentation For Jobs</a>, which is a recommended read for anyone new. You can
 also use the <code>kubectl explain</code> command like this to know more</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain job
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain job
 $ kubectl explain job.spec
 $ kubectl explain job.spec.completions
 $ kubectl explain job.spec.parallelism
@@ -550,7 +550,7 @@ schedule or have a custom application which works based on a cron schedule /
 cron service and creates Pods and also handles everything that a Job can -
 retries, multiple runs - parallel and sequential and many more.</p>
 <p>Below is an example of a Cron Job</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1beta1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1beta1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CronJob</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">hello-another</span>
@@ -577,7 +577,7 @@ API based on the cron schedule, and then the Job takes care of running the Job.<
 <code>schedule</code> for the cron schedule, and then the Job template to create a new Job
 when the time comes. You can checkout what other configurations are possible
 using</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain cronjob.spec
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl explain cronjob.spec
 </code></pre></div><p>It&rsquo;s also recommended to read the official
 <a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs">Kubernetes Documentation For CronJobs</a></p>
 <p>While writing a Cron Job yaml, if you are not sure about cron schedule

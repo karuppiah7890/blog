@@ -9,7 +9,7 @@
     <meta name="description" content="If you have not heard of Hashicorp Consul before, then this bytes (short) post is going to be interesting!
 Consul is an interesting software that has a lot of features, which is a boon and a bane I guess. One of the features it has is - it has a Key Value (KV) store
 A Key Value (KV) store is a kind of data storage software that helps you store data in the form of key value pairs.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -196,7 +196,7 @@ A Key Value (KV) store is a kind of data storage software that helps you store d
 <p>Let&rsquo;s look at this in action using Consul KV store!</p>
 <p>To run Consul in your local or any non production environment, simply download the Consul binary from here - <a href="https://www.consul.io/downloads">https://www.consul.io/downloads</a></p>
 <p>And then run it in your terminal</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># check if it&#39;s installed</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># check if it&#39;s installed</span>
 $ consul version
 Consul v1.9.4
 Revision 10bb6cb3b
@@ -206,7 +206,7 @@ $ <span style="color:#75715e"># run it!</span>
 $ consul agent -dev
 </code></pre></div><p>There will be a lot of logs from the program, you can ignore that as of now or else it can be overwhelming to understand it in the beginning itself. Consul is a long running program, it&rsquo;s a server software, which provides Key Value (KV) store feature. Since it&rsquo;s long running server software, the program will keep running until you stop it with Control + C or whatever keyboard shortcut is needed to kill foreground processes / programs</p>
 <p>Now in another terminal use the consul program as a client software and try out the Consul KV store!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ consul kv put redis_connections <span style="color:#ae81ff">5</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ consul kv put redis_connections <span style="color:#ae81ff">5</span>
 Success! Data written to: redis_connections
 
 $ consul kv get redis_connections 

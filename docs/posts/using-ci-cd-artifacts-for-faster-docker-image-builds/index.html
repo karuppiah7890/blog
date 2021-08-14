@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
  Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -177,7 +177,7 @@ for our React App. It didn&rsquo;t have any server side to it, just a static app
 We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.</p>
 <p>We followed the usual strategy to build Docker images. This is how our <code>Dockerfile</code>
 kind of looked like</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
@@ -238,7 +238,7 @@ just use the output/artifact of <code>yarn build</code> from the build stage in 
 pipeline in our <code>Dockerfile</code></p>
 <p>So, in short, we can get rid of almost everything in our <code>Dockerfile</code> and it
 boils down to this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
@@ -279,7 +279,7 @@ the build to even start. This is a common problem for anyone starting out new in
 Docker and build Docker images.</p>
 <p>The key here is the build context. This is the input that&rsquo;s passed as the
 last argument in the Docker build command</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
 </code></pre></div><p>The <code>.</code> is the build context and it can be anything based on your app and use
 case and from where you are running your build command in the shell. Now the
 important thing to note is - by default all the contents of the directory
@@ -325,13 +325,13 @@ named it <code>Dockerfile.ci</code> as it will be mainly used in the CI/CD pipel
 still, why? Why not just use one <code>Dockerfile</code> - get rid of the long one, and
 just have the small one. Well, if you notice, anyone who uses this
 <code>Dockerfile.ci</code> cannot simply run this command directly</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -f Dockefile.ci -t local-image .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -f Dockefile.ci -t local-image .
 </code></pre></div><p>Instead, because of the need/pre-requisite of the <code>Dockerfile.ci</code> - which is a
 <code>build</code> directory with proper <code>build</code> content for it to work properly at
 runtime, the user has to first run <code>yarn install</code> and <code>yarn build</code> and then only
 can run <code>docker build</code>. Ideally people would expect to easily run the Docker
 image build with just the standard command and nothing else, which is</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
 </code></pre></div><p>And that command uses <code>Dockerfile</code> by default, as the file to read. So, for a
 good user experience, we just named things appropriately. One thing to note
 is - for that good user experience, we also need to maintain and update our
@@ -356,7 +356,7 @@ variable configuration, to enable the feature to use multiple Docker ignore file
 <p>Now, another thing to note is - the environment in which you run the stages of
 your pipeline.</p>
 <p>If you compare the two <code>Dockerfile</code>s</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
@@ -373,7 +373,7 @@ your pipeline.</p>
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
@@ -414,7 +414,7 @@ application - a Spring Boot microservice.</p>
 </ul>
 <p>For this, again we use the build artifact - the jar file of our microservice, in
 the <code>Dockerfile.ci</code>. It looks kind of like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> adoptopenjdk:14-jre-hotspot</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> adoptopenjdk:14-jre-hotspot</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/libs/app.jar /app.jar<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;java&#34;</span>, <span style="color:#e6db74">&#34;-jar&#34;</span>, <span style="color:#e6db74">&#34;/app.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">

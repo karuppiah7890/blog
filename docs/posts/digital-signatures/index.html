@@ -9,7 +9,7 @@
     <meta name="description" content="If you don&rsquo;t know what a digital signature is, in layman terms you may think of this, a photo of your physical signature
 Photo by Lewis Keegan - Skillscouter.com on Unsplash May be you could say that&rsquo;s true, but only if it&rsquo;s layman slang. Officially, in computer science, the concept of digital signature has a different meaning.
 It does denote someone&rsquo;s or some entity&rsquo;s signature, in a digital world. Yes. So, that&rsquo;s not wrong.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -290,7 +290,7 @@ Gnu PG - Gnu Privacy Guard -</p>
 <p><a href="https://www.gnupg.org/gph/en/manual/x135.html">https://www.gnupg.org/gph/en/manual/x135.html</a></p>
 <p>Below is an example of trying out <code>gpg</code>. I try to create a detached digital
 signature based on the concept we just spoke about in the above sections</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># Create a digital signature</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># Create a digital signature</span>
 $ gpg --output README.md.sign --detach-sign README.md
 $ <span style="color:#75715e"># Check the digital signature that has been created</span>
 $ ls README.md*

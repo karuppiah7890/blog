@@ -10,7 +10,7 @@
 It&rsquo;s open source - https://github.com/sj26/mailcatcher
 Why would one use it? There are two use cases for which I personally used it for.
 One is - trying out a program in local which needs an email server as part of setup. I couldn&rsquo;t setup an email server like the ones people do in production environments or use email services like AWS Simple Email Service, as I was only simply trying out the program and not doing a production deployment.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -199,7 +199,7 @@ it. Or you can use Docker, there&rsquo;s an official Docker image for it</p>
 <p>Docker Image in Docker Hub - <a href="https://hub.docker.com/r/sj26/mailcatcher">https://hub.docker.com/r/sj26/mailcatcher</a></p>
 <p>Source Dockerfile for the Docker Image - <a href="https://github.com/sj26/mailcatcher/blob/master/Dockerfile">https://github.com/sj26/mailcatcher/blob/master/Dockerfile</a></p>
 <p>I think the below is enough</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d --name mailcatcher -p 1025:1025 -p 1080:1080 sj26/mailcatcher
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d --name mailcatcher -p 1025:1025 -p 1080:1080 sj26/mailcatcher
 </code></pre></div><p>It will run the Docker container in the background with SMTP port and web server
 port exposed, the web server serves the web UI</p>
 <p>What&rsquo;s my recommendation on the method to run? Use Docker! :) As Ruby

@@ -9,7 +9,7 @@
     <meta name="description" content="Testcontainers is a library that helps you run Docker containers to run components for your integration tests. There&rsquo;s a Java library and there are libraries in other languages too.
 I wrote a part 1 blog post about integration tests and an introduction to Testcontainers. It didn&rsquo;t have any code examples though.
 A lot of the docs on the websites are really good for you to get started. I&rsquo;m still writing this and upcoming posts to give a bit more details based on the experience from using Testcontainers in our project.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -211,9 +211,9 @@ it :)</p>
 <p>Let me first write some code which accesses PostgreSQL. Just for the sake of an
 example, I&rsquo;m going to be running a simple SQL query which can run in any
 database</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> some_value;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> some_value;
 </code></pre></div><p>Let&rsquo;s see the Java code for this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> java.sql.*<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> java.util.Properties<span style="color:#f92672">;</span>
@@ -248,7 +248,7 @@ database</p>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Let&rsquo;s also see the test code I wrote for this, assuming that Postgres Server
 is running</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
 
@@ -290,14 +290,14 @@ Postgres Testcontainers Module which you can find here on Maven Central</p>
 <p><a href="https://search.maven.org/artifact/org.testcontainers/postgresql">https://search.maven.org/artifact/org.testcontainers/postgresql</a></p>
 <p>The versions are the same across all the libraries, depending upon the core
 library version. Since I&rsquo;m using gradle, I&rsquo;m adding this to the project</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testcontainers_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.15.1&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testcontainers_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.15.1&#34;</span>
 
 testImplementation <span style="color:#e6db74">&#34;org.testcontainers:testcontainers:$testcontainers_version&#34;</span>
 testImplementation <span style="color:#e6db74">&#34;org.testcontainers:junit-jupiter:$testcontainers_version&#34;</span>
 testImplementation <span style="color:#e6db74">&#34;org.testcontainers:postgresql:$testcontainers_version&#34;</span>
 </code></pre></div><p>With that, let&rsquo;s get to the code now! :) The source code remains the same. Only
 the test code is going to change.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.testcontainers.containers.PostgreSQLContainer<span style="color:#f92672">;</span>
@@ -378,7 +378,7 @@ another container using an image called
 container management purposes. So, you will notice two Docker containers - one
 for Postgres, another for ryuk. You can check this out by running a command like
 the below when running the tests</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ watch docker ps
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ watch docker ps
 </code></pre></div><p>You have seen the basic code for Testcontainers and also the running of a test
 with it. Another part of the code we didn&rsquo;t discuss is - the DB config. The
 container variable has getter methods to get the config like username, password
@@ -399,7 +399,7 @@ we will also look at some in the next section.</p>
 <p>If you want to run the DB with some specific config - for example say with a
 specific username and password, or with a specific DB name, you can do it like
 this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
 PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
     <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
         <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
@@ -408,7 +408,7 @@ PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContai
 </code></pre></div><p>Of course you can also use different Postgres version. You can also use
 Initialization Scripts - SQL scripts, which will run when the DB starts, like
 this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
 PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
     <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
             <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
@@ -435,7 +435,7 @@ any Docker Image. Testcontainers also helps you with the networking.</p>
 want to write tests to ensure that the integration with Redis works using
 integration tests.</p>
 <p>Let&rsquo;s see how the Java code looks like for this Redis code.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> redis.clients.jedis.Jedis<span style="color:#f92672">;</span>
 
@@ -456,7 +456,7 @@ integration tests.</p>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Now, how do I write a test for this using Testcontainers? I can write it like
 this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
@@ -506,7 +506,7 @@ those ports. Here we say <code>getFirstMappedPort</code> as the Generic Containe
 exposing multiple ports, in this case it&rsquo;s only one. If you have multiple
 exposed ports, to get the corresponding host port, you can use <code>getMappedPort</code>.
 For example, in this case it would be</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">)</span>
 </code></pre></div><p>There are more things you can do with all the features I mentioned, like
 Networking. You can even do volume mounts. You can check more about what
 features you need and what Testcontainers provides. Most probably the features
@@ -525,7 +525,7 @@ away from test code.</p>
 <h2 id="keeping-testcontainers-setup-in-a-separate-class">Keeping Testcontainers setup in a separate class</h2>
 <p>If you have some sort of big setup, you can move the Testcontainers setup to a
 separate class and have code like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
@@ -552,7 +552,7 @@ separate class and have code like this</p>
         assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
@@ -588,7 +588,7 @@ is just a code example. The official docs also show an example where the
 extension is used to run a web server or a database server! So, I guess it&rsquo;s a
 pretty common use case for using Extensions.</p>
 <p>The test will now look like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
@@ -631,7 +631,7 @@ pretty common use case for using Extensions.</p>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>The extension will look like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterAllCallback<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeAllCallback<span style="color:#f92672">;</span>
@@ -664,7 +664,7 @@ pretty common use case for using Extensions.</p>
         <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
 
@@ -707,7 +707,7 @@ container for each test method.</p>
 <p>Below is an example of how a dedicated redis extension would like to run a
 dedicated redis container for each test method.</p>
 <p>This is the test code</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
@@ -753,7 +753,7 @@ dedicated redis container for each test method.</p>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>This is the dedicated extension code</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterEachCallback<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeEachCallback<span style="color:#f92672">;</span>

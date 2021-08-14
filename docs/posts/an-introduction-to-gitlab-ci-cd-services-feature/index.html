@@ -10,7 +10,7 @@
 It has GitLab CI Config and also a demo pipeline which shows how it runs.
 Recently I wrote a blog post about integration tests and some ways to do it. One of the ways talks about using GitLab CI/CD&rsquo;s Services feature. I realized it deserves a separate blog post, so here it is :D
 This blog post is meant to create awareness around this feature of GitLab CI/CD and also give a basic introduction.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -202,7 +202,7 @@ database.</p>
 <p>To start off, for using Services feature, the service you need to run should be
 available as a Docker Image.</p>
 <p>Let&rsquo;s see an example GitLab CI Config with a psql job and PostgreSQL service</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">services</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">services</span>:
   - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres:13-alpine</span>
     <span style="color:#f92672">alias</span>: <span style="color:#ae81ff">my-db</span>
 

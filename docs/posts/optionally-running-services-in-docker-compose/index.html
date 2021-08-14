@@ -9,7 +9,7 @@
     <meta name="description" content="Today I learned a new thing when someone asked something -
 &ldquo;We have two services in docker compose file. How to run one service optionally based on some feature toggle like environment variable or command line option? Is it possible to do this in a single Docker Compose file?&rdquo;
 TLDR One way is to control the replica count. If replica count is 0, then it means no instance of the service is running.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -234,18 +234,18 @@ had never used it. I started looking for that and found it</p>
 </blockquote>
 <p>I started meddling with a sample docker compose file. The below one runs a
 simple redis</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">redis</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
     <span style="color:#f92672">deploy</span>:
       <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REPLICAS</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up
 WARNING: The REPLICAS variable is not set. Defaulting to a blank string.
 ERROR: Error <span style="color:#66d9ef">while</span> attempting to convert service.redis.deploy.replicas to appropriate type: <span style="color:#e6db74">&#34;&#34;</span> is not a valid integer
 </code></pre></div><p>Interesting. Now, with replica count as 0 using the <code>REPLICAS</code> environment
 variable</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
 Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
 Attaching to
 
@@ -257,7 +257,7 @@ Name   Command   State   Ports
 ------------------------------
 </code></pre></div><p>It worked! It didn&rsquo;t run the redis! Now let&rsquo;s try running the redis by
 turning on the feature toggle, that is, the environment variable</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up
 Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
 Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
 Attaching to docker-compose-demo_redis_1
@@ -269,7 +269,7 @@ redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae8
 redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.387 <span style="color:#75715e"># Server initialized</span>
 redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.390 * Ready to accept connections
 </code></pre></div><p>So it worked! With one more example service, it would look like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">redis</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
@@ -280,7 +280,7 @@ redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae8
     <span style="color:#f92672">environment</span>:
       <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password</span>
 </code></pre></div><p>So, we are trying to run both postgres and redis</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
 Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Attaching to docker-compose-demo_postgres_1
 postgres_1  | The files belonging to this database system will be owned by user <span style="color:#e6db74">&#34;postgres&#34;</span>.
@@ -299,7 +299,7 @@ postgres_1  | selecting default max_connections ... <span style="color:#ae81ff">
 ...
 ...
 </code></pre></div><p>Let&rsquo;s try detached mode this time</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
 Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 
 $ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
@@ -307,7 +307,7 @@ $ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">
 ---------------------------------------------------------------------------------
 docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
 </code></pre></div><p>Let&rsquo;s try toggling on the redis service to run it</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
 Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Removing network docker-compose-demo_default
@@ -326,7 +326,7 @@ docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/t
 <p>There was also another thing we wanted to try. What if we need to use
 <code>depends_on</code> feature based on the service that is being toggled on and off?
 That&rsquo;s possible too :)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">redis</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
@@ -339,7 +339,7 @@ That&rsquo;s possible too :)</p>
     <span style="color:#f92672">depends_on</span>:
       - <span style="color:#ae81ff">redis</span>
 </code></pre></div><p>Cleaning up stuff first</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose down
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose down
 Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Stopping docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</span>
 Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
@@ -347,7 +347,7 @@ Removing docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</sp
 Removing network docker-compose-demo_default
 </code></pre></div><p>Now bringing up postgres alone without redis. But postgres depends on redis
 according to the spec file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
 Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
 Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 
@@ -357,12 +357,12 @@ $ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">
 docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
 </code></pre></div><p>All good! It still works!</p>
 <p>Now let&rsquo;s cleanup</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
 Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
 Removing network docker-compose-demo_default
 </code></pre></div><p>Let&rsquo;s try to toggle on the redis and try things out!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 $ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up -d
 Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
 Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>

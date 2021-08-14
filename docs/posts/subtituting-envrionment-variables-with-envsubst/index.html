@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR; $ man envsubst Online man page - https://www.man7.org/linux/man-pages/man1/envsubst.1.html
 $ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format too histsize: $HISTSIZE home: ${HOME} user: ${USER} $ cat sample.template.yaml | envsubst &#39;$SHELL ${HISTSIZE}&#39; &gt; sample.yaml $ cat sample.yaml shell: /bin/bash # notice how we can use ${} format too histsize: 50000 home: ${HOME} user: ${USER} Longer version Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster.">
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -169,9 +169,9 @@ $ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format to
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="tldr">TLDR;</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
 </code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
 shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
 histsize: $HISTSIZE
 home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
@@ -194,7 +194,7 @@ user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</sp
 <p>I had requested my team mate to checkout <code>envsubst</code> since I had used it before and felt it was pretty handy and cool. I think he tried out different ways and later mentioned <code>envsubst</code> was what he finally chose</p>
 <p>Let&rsquo;s look at what is <code>envsubst</code> and how it helps in our use case</p>
 <p><code>envsubst</code> is a tool to substitute environment variables with their values. Let&rsquo;s look at a very basic example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Note the single quotes. Don&#39;t use double quotes or the shell will substitute</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Note the single quotes. Don&#39;t use double quotes or the shell will substitute</span>
 <span style="color:#75715e"># the environment variable before envsubst tool can</span>
 $ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span>
 <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span>
@@ -204,7 +204,7 @@ $ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span> | envsubst
 </code></pre></div><p>Notice how <code>envsubst</code> reads from the standard input and substitutes the environment variable <code>${SHELL}</code> with it&rsquo;s value <code>/bin/bash</code> which is my shell</p>
 <p>This was just a basic example. <code>envsubst</code> works by using the standard input and standard output in general</p>
 <p>For us to replace environment variables in a file, below are some ways to do it</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi sample.yaml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi sample.yaml
 
 $ cat sample.yaml
 shell: $SHELL
@@ -223,7 +223,7 @@ $ cat sample.yaml
 shell: $SHELL
 </code></pre></div><p>So, now we have seen how the input is given with files. These are generic examples of how shell users generally give file input in the form of standard input to programs.</p>
 <p>Notice how the sample.yaml hasn&rsquo;t changed though? Now, we need the output back in the same file. Since the output goes to standard output, let&rsquo;s use some standard shell features to store it back in the file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.yaml 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.yaml 
 shell: $SHELL
 
 $ envsubst &lt; sample.yaml &gt; sample.yaml.output
@@ -240,7 +240,7 @@ $ cat sample.yaml
 shell: /bin/bash
 </code></pre></div><p>You can use other tools and simple shell features to store the output in a file - same or different</p>
 <p><code>envsubst</code> also has some more features. I think two more. I&rsquo;m gonna talk about one of them. So, apart from substituting environment variables, you can also mention exactly which environment variables need to be substituted, and others will be left out without substitution. See below for an example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
 shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
 histsize: $HISTSIZE
 home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
@@ -255,7 +255,7 @@ home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</sp
 user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
 </code></pre></div><p>Notice how only <code>SHELL</code> and <code>HISTSIZE</code> environment variables got substituted? Also note the usage of <code>${HISTSIZE}</code> and <code>$HISTSIZE</code>. The <code>${}</code> and <code>$</code>, both formats can be used to mention the environment variable names in the inputs - in standard input and in the <code>envsubst</code> command line arguments</p>
 <p>You want to read more on <code>envsubst</code>? You can checkout the help of <code>envsubst</code> to get some more details -</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ envsubst --help
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ envsubst --help
 Usage: envsubst <span style="color:#f92672">[</span>OPTION<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SHELL-FORMAT<span style="color:#f92672">]</span>
 
 Substitutes the values of environment variables.
@@ -280,10 +280,10 @@ of the environment variables that are referenced in SHELL-FORMAT, one per line.
 Report bugs in the bug tracker at &lt;https://savannah.gnu.org/projects/gettext&gt;
 or by email to &lt;bug-gettext@gnu.org&gt;.
 </code></pre></div><p>There&rsquo;s also a man(ual) page for it</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
 </code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
 <p>If you use <a href="https://tldr.sh/"><code>tldr</code></a> tool, that can also help</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tldr envsubst
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tldr envsubst
 
 envsubst
 
