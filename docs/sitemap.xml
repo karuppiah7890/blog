@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://karuppiah7890.github.io/blog/posts/how-to-learn-something/</loc>
-    <lastmod>2021-08-14T15:38:45+05:30</lastmod>
-  </url><url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
-    <lastmod>2021-08-14T15:38:45+05:30</lastmod>
+    <lastmod>2021-08-19T20:07:30+05:30</lastmod>
   </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
+    <lastmod>2021-08-19T20:07:30+05:30</lastmod>
+  </url><url>
+    <loc>https://karuppiah7890.github.io/blog/posts/reviewing-pull-requests/</loc>
+    <lastmod>2021-08-19T20:07:30+05:30</lastmod>
+  </url><url>
+    <loc>https://karuppiah7890.github.io/blog/posts/how-to-learn-something/</loc>
     <lastmod>2021-08-14T15:38:45+05:30</lastmod>
   </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/time-machine-series-part-2-curious-case-of-database-connection-failing/</loc>
