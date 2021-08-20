@@ -129,6 +129,22 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/step-cli/" class="link black dim">
+        Step CLI to decode JWT tokens
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      tldr; step GitHub repo - https://github.com/smallstep/cli
+$ # Reading from keyboard / standard input after running command. $ # Run command and then paste the JWT token as input and press Enter. $ step crypto jwt inspect --insecure eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from file $ cat jwt-token.txt | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from environment variables $ echo $JWT_TOKEN | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } Recently I was trying to decode the information present in a JWT token to understand what&rsquo;s the information in it.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/bitbucket-cloud-no-git-commit-sign/" class="link black dim">
         BitBucket Cloud doesn&#39;t support Git commit signing?
       </a>
@@ -264,23 +280,6 @@ That&rsquo;s just a part of it! There was a lot of information in the profile. A
 </div>
 </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/prettified-json-in-http-response/" class="link black dim">
-        Prettified JSON in HTTP Response
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I was randomly thinking about JSON, jq tool and the tool&rsquo;s ability to prettify JSON by indenting with spaces and it&rsquo;s ability to remove spaces too.
-Suddenly for a second I was thinking why HTTP responses should not have spaces? If they had spaces they would look so cool right? 😂
-In a moment I got the answer - yeah. You got it right. Prettifying the JSON with indentation will mean - add spaces.
-    </div>
-  </div>
-</div>
-</div>
-      
     </section>
     <ul class="pagination pagination-default">
       <li class="page-item">
@@ -308,7 +307,7 @@ In a moment I got the answer - yeah. You got it right. Prettifying the JSON with
         <a href="/blog/posts/page/7/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/posts/page/11/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul></article>
 

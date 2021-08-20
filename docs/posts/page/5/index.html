@@ -129,6 +129,27 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/softwares-hindering-vs-enabling/" class="link black dim">
+        Softwares: Hindering vs Enabling
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      TLDR; &ldquo;It&rsquo;s not built for this thing&rdquo;
+&ldquo;It&rsquo;s not supposed to be done this way&rdquo;
+&ldquo;It has a bug. This is not expected!&rdquo;
+&ldquo;It&rsquo;s too rigid, not flexible or configurable&rdquo;
+&ldquo;It does not have the feature that you want&rdquo;
+&ldquo;You are expecting it to do too much. It&rsquo;s not supposed to be doing that much maybe&rdquo;
+&ldquo;Some evil corporation&rsquo;s mission is to hinder you. Just kidding. Dig deep. Understand the core of the problem&rdquo;
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/education/" class="link black dim">
         Education
       </a>
@@ -272,22 +293,6 @@ Given we have all this, initially we were exposing these through the same URL bu
 </div>
 </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/step-cli/" class="link black dim">
-        Step CLI to decode JWT tokens
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      tldr; step GitHub repo - https://github.com/smallstep/cli
-$ # Reading from keyboard / standard input after running command. $ # Run command and then paste the JWT token as input and press Enter. $ step crypto jwt inspect --insecure eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from file $ cat jwt-token.txt | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from environment variables $ echo $JWT_TOKEN | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } Recently I was trying to decode the information present in a JWT token to understand what&rsquo;s the information in it.
-    </div>
-  </div>
-</div>
-</div>
-      
     </section>
     <ul class="pagination pagination-default">
       <li class="page-item">
@@ -315,7 +320,7 @@ $ # Reading from keyboard / standard input after running command. $ # Run comman
         <a href="/blog/posts/page/6/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/blog/posts/page/11/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul></article>
 
