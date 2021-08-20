@@ -1,6 +1,6 @@
 ---
 title: "Tools tools everywhere"
-date: 2021-08-19T20:07:30+05:30
+date: 2021-08-20T23:30:30+05:30
 ---
 
 I love the current era of software for some reasons. It's making lives easier at times. For example - there's tons of tooling out there to help with a lot of things
