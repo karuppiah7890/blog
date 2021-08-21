@@ -129,6 +129,22 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/code-snippets-on-internet/" class="link black dim">
+        Code snippets on Internet
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I think this is very intuitive and straight forward topic. Pretty cliche too. But I think it&rsquo;s important to talk about it nevertheless
+There are so many technical articles on the Internet. Lot of technical content. Many of them also include code. I have seen different websites display code in many different ways. In my blog, the code display is very very basic actually 🙈 But I have high expectations from other people now 🙈 Let&rsquo;s go over them!
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/tools-tools-everywhere/" class="link black dim">
         Tools tools everywhere
       </a>
@@ -267,22 +283,6 @@ Focus If you think about it, as a developer, I want to focus on building softwar
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -
 $ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &#34;$dir/special-*&#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/subtituting-envrionment-variables-with-envsubst/" class="link black dim">
-        Substituting environment variables with envsubst
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      TLDR; $ man envsubst Online man page - https://www.man7.org/linux/man-pages/man1/envsubst.1.html
-$ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format too histsize: $HISTSIZE home: ${HOME} user: ${USER} $ cat sample.template.yaml | envsubst &#39;$SHELL ${HISTSIZE}&#39; &gt; sample.yaml $ cat sample.yaml shell: /bin/bash # notice how we can use ${} format too histsize: 50000 home: ${HOME} user: ${USER} Longer version Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster.
     </div>
   </div>
 </div>
