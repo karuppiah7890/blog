@@ -7,7 +7,7 @@ date: 2019-12-28T17:31:50+05:30
 
 ```
 $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
-$ helm schem-gen <values-yaml-file>
+$ helm schema-gen <values-yaml-file>
 ```
 
 GitHub repo for the plugin - https://github.com/karuppiah7890/helm-schema-gen
@@ -140,6 +140,6 @@ That's all! Have fun trying out the plugin!
 
 ```
 $ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
-$ helm schem-gen <values-yaml-file>
+$ helm schema-gen <values-yaml-file>
 ```
 
