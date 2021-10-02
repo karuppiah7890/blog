@@ -10,7 +10,7 @@
 Longer version Today I finally created a Helm plugin that I wanted to for so long. The repo is here
 In this post I&rsquo;m going to tell the story behind the plugin. First the what, then the why, and a bit of how.
 The What Recently, helm released their version 3 which was a big thing.">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -176,7 +176,7 @@ The What Recently, helm released their version 3 which was a big thing."/>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="tldr">tldr</h3>
-<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
+<pre tabindex="0"><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
 $ helm schem-gen &lt;values-yaml-file&gt;
 </code></pre><p>GitHub repo for the plugin - <a href="https://github.com/karuppiah7890/helm-schema-gen">https://github.com/karuppiah7890/helm-schema-gen</a></p>
 <h3 id="longer-version">Longer version</h3>
@@ -206,7 +206,7 @@ not all of them are obvious I think. The first reason for creating the
 plugin is - ease of use. So, when I saw this feature in Helm v3, I was
 quite excited to check it out. I wanted to try it out with the
 default chart that comes with this command:</p>
-<pre><code>$ helm create test
+<pre tabindex="0"><code>$ helm create test
 </code></pre><p>But when I saw the big <code>values.yaml</code> in the <code>test</code> chart, I was
 confused as to how I would write a very big schema file for it.
 I was also thinking why the default chart did not have a schema
@@ -285,7 +285,7 @@ customization. And then I released it finally!</p>
 I decided to write a small blog post about it, and it turned out to be
 this big 👆! 😛</p>
 <p>That&rsquo;s all! Have fun trying out the plugin!</p>
-<pre><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
+<pre tabindex="0"><code>$ helm plugin install https://github.com/karuppiah7890/helm-schema-gen
 $ helm schem-gen &lt;values-yaml-file&gt;
 </code></pre><ul class="pa0">
   

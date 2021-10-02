@@ -9,7 +9,7 @@
     <meta name="description" content="Some of the commands that I use in my day to day work when interacting with kubernetes clusters
 Exec / execute into a pod If you have kube-fzf, you can use execpod which is an interactive way to exec into a pod&rsquo;s container
 $ # exec into a pod in the default namespace $ execpod $ # exec into a pod in a particular namespace $ execpod -n &lt;namespace-name&gt; $ # exec into a pod in any namespace by seeing all namespace pods $ execpod -a Or if you don&rsquo;t have kube-fzf, you can use the below">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -175,14 +175,14 @@ $ # exec into a pod in the default namespace $ execpod $ # exec into a pod in a 
 <h2 id="exec--execute-into-a-pod">Exec / execute into a pod</h2>
 <p>If you have <a href="https://github.com/thecasualcoder/kube-fzf">kube-fzf</a>, you can use <code>execpod</code> which
 is an interactive way to exec into a pod&rsquo;s container</p>
-<pre><code>$ # exec into a pod in the default namespace
+<pre tabindex="0"><code>$ # exec into a pod in the default namespace
 $ execpod
 $ # exec into a pod in a particular namespace
 $ execpod -n &lt;namespace-name&gt;
 $ # exec into a pod in any namespace by seeing all namespace pods
 $ execpod -a
 </code></pre><p>Or if you don&rsquo;t have <a href="https://github.com/thecasualcoder/kube-fzf">kube-fzf</a>, you can use the below</p>
-<pre><code>$ kubectl exec --namespace &lt;namespace-name&gt; &lt;pod-name&gt; -c &lt;container-name&gt; -it &lt;command&gt;
+<pre tabindex="0"><code>$ kubectl exec --namespace &lt;namespace-name&gt; &lt;pod-name&gt; -c &lt;container-name&gt; -it &lt;command&gt;
 $ # an example for sh command is below
 $ kubectl exec --namespace default ubuntu-pod -c ubuntu -it sh
 </code></pre><p>I&rsquo;ll keep updating this when I get time and when I recall the different commands that I use :)</p>

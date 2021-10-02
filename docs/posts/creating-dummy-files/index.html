@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I have created dummy files two times or so now. Now, what do I mean when I say a dummy file? In my case, I mean a file which doesn&rsquo;t have any actual content, instead it has more like some random dummy data. Similar to the lorem ipsum content that people use for placeholder text during development when they don&rsquo;t have actual content ready yet
 Before telling the reasons for why I needed a dummy file, I&rsquo;ll first tell how I created a dummy file.">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -179,7 +179,7 @@ another is using fallocate which I tried just today! Both of these I had to run
 in Linux. I also found out how to create dummy files in Mac OS and Windows OS
 too! See below</p>
 <p>Works on Linux and Mac OS too:</p>
-<pre><code>$ dd if=/dev/zero of=dummy-file bs=1 count=10000
+<pre tabindex="0"><code>$ dd if=/dev/zero of=dummy-file bs=1 count=10000
 $ ls -alh dummy-file
 </code></pre><p>That will create <code>bs x count</code> bytes, which is <code>1 x 10000 = 10000 bytes</code>. You can
 check more about the <code>dd</code> command in your OS by using <code>man dd</code> or <code>dd --help</code></p>
@@ -187,14 +187,14 @@ check more about the <code>dd</code> command in your OS by using <code>man dd</c
 noticed one more tool that was fast too, and apparently it&rsquo;s really really
 fast compared to <code>dd</code>. It&rsquo;s called <code>fallocate</code>. This is how I used it</p>
 <p>Works only on Linux:</p>
-<pre><code>$ fallocate -l 10K dummy-file
+<pre tabindex="0"><code>$ fallocate -l 10K dummy-file
 $ ls -alh dummy-file
 </code></pre><p>For my use case, I created files of the size <code>1900MB</code>.</p>
 <p>Below is what I tried in MacOS, the <code>mkfile</code> command but it doesn&rsquo;t seem to use
 up disk space, based on what I see in <code>df</code> and <code>du</code>, but <code>ls</code> shows that the
 file is big. May be use <code>dd</code> which will lower the disk space by consuming space.
 I need to research more on this command 😅</p>
-<pre><code>$ mkfile -n 1g dummy-file
+<pre tabindex="0"><code>$ mkfile -n 1g dummy-file
 $ ls -alh dummy-file
 </code></pre><p>Some asciinema demos in Linux and in Mac:</p>
 <p>Linx:</p>

@@ -9,7 +9,7 @@
     <meta name="description" content="In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
  Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -285,13 +285,13 @@ $ ls /etc/nginx/nginx.conf
 /etc/nginx/nginx.conf
 </code></pre></div><p>We will be putting our sub config files in here - <code>/etc/nginx/conf.d</code>. You can
 notice in <code>/etc/nginx/nginx.conf</code> contents, the line</p>
-<pre><code>include /etc/nginx/conf.d/*.conf;
+<pre tabindex="0"><code>include /etc/nginx/conf.d/*.conf;
 </code></pre><p>So, all the config files in <code>/etc/nginx/conf.d</code> with extension <code>.conf</code> will be
 included and processed.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls /etc/nginx/conf.d/default.conf
 /etc/nginx/conf.d/default.conf
 </code></pre></div><p>The default config file looks like this</p>
-<pre><code>server {
+<pre tabindex="0"><code>server {
     listen       80;
     listen  [::]:80;
     server_name  localhost;
@@ -337,7 +337,7 @@ included and processed.</p>
     #}
 }
 </code></pre><p>Removing all the comments, looks something like this</p>
-<pre><code>server {
+<pre tabindex="0"><code>server {
     listen       80;
     listen  [::]:80;
     server_name  localhost;
@@ -353,7 +353,7 @@ included and processed.</p>
     }
 }
 </code></pre><p>We are going to change the contents of this file to</p>
-<pre><code>server {
+<pre tabindex="0"><code>server {
     listen       80;
     listen  [::]:80;
     server_name  localhost;
@@ -389,7 +389,7 @@ these two, what you can do is, use the
 and set the <code>Host</code> header to the Nginx Host name and also set a header called
 <code>X-Real-IP</code> to tell the app behind Nginx what&rsquo;s the actual IP of the client. So,
 it will look something like this</p>
-<pre><code>server {
+<pre tabindex="0"><code>server {
     listen       80;
     listen  [::]:80;
     server_name  localhost;

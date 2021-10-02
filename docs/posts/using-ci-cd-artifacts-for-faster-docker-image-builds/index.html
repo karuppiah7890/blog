@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
  Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -303,7 +303,7 @@ Docker image build - which in our case is the <code>build</code> directory and a
 directory containing some Nginx configuration. So I just went ahead and ignore
 <strong>everything</strong> except the <code>build</code> and <code>conf</code> directories in the <code>.dockerignore</code>
 file</p>
-<pre><code>*
+<pre tabindex="0"><code>*
 */
 !/build
 !/conf

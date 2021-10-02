@@ -9,7 +9,7 @@
     <meta name="description" content="Today I learned a new thing when someone asked something -
 &ldquo;We have two services in docker compose file. How to run one service optionally based on some feature toggle like environment variable or command line option? Is it possible to do this in a single Docker Compose file?&rdquo;
 TLDR One way is to control the replica count. If replica count is 0, then it means no instance of the service is running.">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -372,7 +372,7 @@ $ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">
 docker-compose-demo_postgres_1   docker-entrypoint.sh postgres    Up      5432/tcp
 docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp
 </code></pre></div><p>All works! Final cleanup</p>
-<pre><code>$ REDIS_REPLICAS=1 docker-compose down
+<pre tabindex="0"><code>$ REDIS_REPLICAS=1 docker-compose down
 Stopping docker-compose-demo_postgres_1 ... done
 Stopping docker-compose-demo_redis_1    ... done
 Removing docker-compose-demo_postgres_1 ... done

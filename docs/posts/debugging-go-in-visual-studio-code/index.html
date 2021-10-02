@@ -7,7 +7,7 @@
     <title>Debugging Go in Visual Studio Code | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Long ago, in one post I wrote about how to debug Go program in Intellij IDEA / Goland. I realized not everyone uses IDEA ecosystem though, as they are paid. You could check out the IDEA community edition though, which is free. And you can install the Go plugin from here. In my case I used to use IDEA Ultimate and evaluate it (Evaluator version) for free, now I use a company license.">
-    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -186,7 +186,7 @@ project. It will look like this</p>
 <p>For my use case, I modified it like this</p>
 <p><img src="/blog/img/debugging-go-in-vs-code/launch-json-file-2.png" alt="launch-json-file-2" title="launch-json-file-2"></p>
 <p>There are multiple configurations that you can provide. For example, you can provide the program arguments like in the above example. I used it to debug a <a href="https://github.com/helm/helm/issues/6079">linting issue</a> hence the lint subcommand, so VS Code will run something like</p>
-<pre><code>$ helm lint /Users/karuppiahoss/helm-stable-repo/apm-server-2.1.4.tgz /Users/karuppiahoss/helm-stable-repo/atlantis-3.7.0.tgz
+<pre tabindex="0"><code>$ helm lint /Users/karuppiahoss/helm-stable-repo/apm-server-2.1.4.tgz /Users/karuppiahoss/helm-stable-repo/atlantis-3.7.0.tgz
 </code></pre><p>Now, once the configuration is done, you are good to go and debug your program ;)</p>
 <p>Now you can run and debug it with the play icon button in the debug side bar. Before debugging you need to add breakpoints to your program code - wherever you want to stop the program and see the data present in the variables and you can evaluate expressions too!</p>
 <p>And while debugging you can add breakpoints on the go and you can add breakpoints anywhere in the program execution! Like even in the standard library code execution! See below for examples of putting breakpoints and how I have put breakpoints in the <a href="https://golang.org/pkg/text/template/">template golang stdblib</a></p>
