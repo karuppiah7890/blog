@@ -123,6 +123,26 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/buildinfo-golang-std-lib-package/" class="link black dim">
+        debug/buildinfo golang standard library package
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      A colleague, Madhav Jivrajani, recently posted about the debug/buildinfo standard library package in Golang in my company slack channel
+https://pkg.go.dev/debug/buildinfo
+It is a package present from golang 1.18beta1 version
+So I figured I&rsquo;ll give it a try than defer it for later ;)
+I got the beta version using gvm
+gvm list-all -u gvm install 1.18beta1 gvm set 1.18beta1 go version Then I used VS Code editor to start off a small demo project to try out the debug/buildinfo package.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/code-snippets-on-internet/" class="link black dim">
         Code snippets on Internet
       </a>
@@ -261,22 +281,6 @@ Let&rsquo;s start with an example. I&rsquo;m sure many of us would have shared a
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       This post is to see some of the cool things in the modern software development and the kind of experience that developers can get. This post especially focuses on a kind of experience that I expect to get as a developer when I develop for backend (servers, services, microservices etc) or frontend (web app). I&rsquo;m not going to be focusing on other kind of software in this blog post
 Focus If you think about it, as a developer, I want to focus on building software.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/linting-shell-scripts-using-shellcheck-tool/" class="link black dim">
-        An introduction to linting shell scripts using shellcheck tool
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -
-$ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &#34;$dir/special-*&#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
     </div>
   </div>
 </div>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>debug/buildinfo golang standard library package | Karuppiah&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A colleague, Madhav Jivrajani, recently posted about the debug/buildinfo standard library package in Golang in my company slack channel
+https://pkg.go.dev/debug/buildinfo
+It is a package present from golang 1.18beta1 version
+So I figured I&rsquo;ll give it a try than defer it for later ;)
+I got the beta version using gvm
+gvm list-all -u gvm install 1.18beta1 gvm set 1.18beta1 go version Then I used VS Code editor to start off a small demo project to try out the debug/buildinfo package.">
+    <meta name="generator" content="Hugo 0.90.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/blog/ananke/css/main.min.9528a778428441630a3571fd7eefae30242202535351591990323d6a02b31802.css" >
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="debug/buildinfo golang standard library package" />
+<meta property="og:description" content="A colleague, Madhav Jivrajani, recently posted about the debug/buildinfo standard library package in Golang in my company slack channel
+https://pkg.go.dev/debug/buildinfo
+It is a package present from golang 1.18beta1 version
+So I figured I&rsquo;ll give it a try than defer it for later ;)
+I got the beta version using gvm
+gvm list-all -u gvm install 1.18beta1 gvm set 1.18beta1 go version Then I used VS Code editor to start off a small demo project to try out the debug/buildinfo package." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/buildinfo-golang-std-lib-package/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-15T17:07:00+05:30" />
+<meta property="article:modified_time" content="2021-12-15T17:07:00+05:30" />
+
+<meta itemprop="name" content="debug/buildinfo golang standard library package">
+<meta itemprop="description" content="A colleague, Madhav Jivrajani, recently posted about the debug/buildinfo standard library package in Golang in my company slack channel
+https://pkg.go.dev/debug/buildinfo
+It is a package present from golang 1.18beta1 version
+So I figured I&rsquo;ll give it a try than defer it for later ;)
+I got the beta version using gvm
+gvm list-all -u gvm install 1.18beta1 gvm set 1.18beta1 go version Then I used VS Code editor to start off a small demo project to try out the debug/buildinfo package."><meta itemprop="datePublished" content="2021-12-15T17:07:00+05:30" />
+<meta itemprop="dateModified" content="2021-12-15T17:07:00+05:30" />
+<meta itemprop="wordCount" content="852">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="debug/buildinfo golang standard library package"/>
+<meta name="twitter:description" content="A colleague, Madhav Jivrajani, recently posted about the debug/buildinfo standard library package in Golang in my company slack channel
+https://pkg.go.dev/debug/buildinfo
+It is a package present from golang 1.18beta1 version
+So I figured I&rsquo;ll give it a try than defer it for later ;)
+I got the beta version using gvm
+gvm list-all -u gvm install 1.18beta1 gvm set 1.18beta1 go version Then I used VS Code editor to start off a small demo project to try out the debug/buildinfo package."/>
+
+      
+    
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Karuppiah&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/karuppiah7890" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:{{ .fill }};"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+    <a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="youtube ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="YouTube link" rel="noopener" aria-label="follow on YouTube——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:{{ .fill }};"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+    <a href="https://github.com/karuppiah7890" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg {{ with .size }} height="{{ . }}" {{ end }} style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+      
+      <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/buildinfo-golang-std-lib-package/&amp;text=debug/buildinfo%20golang%20standard%20library%20package" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:{{ .fill }};"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">debug/buildinfo golang standard library package</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-12-15T17:07:00+05:30">December 15, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>A colleague, <a href="https://github.com/MadhavJivrajani">Madhav Jivrajani</a>, recently posted about the <code>debug/buildinfo</code> standard library package in Golang in my company slack channel</p>
+<p><a href="https://pkg.go.dev/debug/buildinfo">https://pkg.go.dev/debug/buildinfo</a></p>
+<p>It is a package present from golang <code>1.18beta1</code> version</p>
+<p>So I figured I&rsquo;ll give it a try than <code>defer</code> it for later ;)</p>
+<p>I got the beta version using <a href="https://github.com/moovweb/gvm"><code>gvm</code></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gvm list-all -u
+
+gvm install 1.18beta1
+
+gvm set 1.18beta1
+
+go version
+</code></pre></div><p>Then I used VS Code editor to start off a small demo project to try out the <code>debug/buildinfo</code> package. VS Code has become my default editor for work and especially for Golang. I use the <a href="https://marketplace.visualstudio.com/items?itemName=golang.Go">official Golang VS Code Extension</a> from the <a href="https://marketplace.visualstudio.com/publishers/golang">Go Team at Google</a> which is also <a href="https://github.com/golang/vscode-go/">Open Source on GitHub</a></p>
+<p>I also updated the <code>gopls</code> Language Server tool which is used in the Golang VS Code Extension using <code>Go: Install/Update Tools</code> VS Code Command and then choosing <code>gopls</code> from the list. I did this so that I can get the latest features of the language server and can also get some intellisense features for the latest Golang version <code>1.18beta1</code> that I downloaded in my VS Code Editor</p>
+<p>The basic demo code is open source here <a href="https://github.com/karuppiah7890/temp-trials/tree/master/golang-stuff/buildinfo-demo">https://github.com/karuppiah7890/temp-trials/tree/master/golang-stuff/buildinfo-demo</a></p>
+<p>I just wrote some simple code to get some build information from a given binary</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;debug/buildinfo&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;log&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#e6db74">&#34;pass exactly one argument&#34;</span>)
+	}
+	<span style="color:#a6e22e">binPath</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+	<span style="color:#a6e22e">bin</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#a6e22e">binPath</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
+	}
+
+	<span style="color:#a6e22e">buildInfo</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">buildinfo</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">bin</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
+	}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%+v\n&#34;</span>, <span style="color:#a6e22e">buildInfo</span>)
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">dep</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">buildInfo</span>.<span style="color:#a6e22e">Deps</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%+v\n&#34;</span>, <span style="color:#a6e22e">dep</span>)
+	}
+}
+</code></pre></div><p>and then built it</p>
+<p>This simple program could be used with any binary built using <code>go</code> tool. I used it with a CLI called <code>tanzu</code> CLI which is a golang binary built from the <a href="https://github.com/vmware-tanzu/tanzu-framework/">Tanzu Framework open source project</a></p>
+<p>This is how the run looked like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">buildinfo-demo $ go build -v
+
+buildinfo-demo $ tanzu version
+version: v0.10.0
+buildDate: 2021-11-16
+sha: fd96beb
+
+buildinfo-demo $ which tanzu
+/usr/local/bin/tanzu
+
+buildinfo-demo $ ./buildinfo-demo /usr/local/bin/tanzu
+&amp;<span style="color:#f92672">{</span>GoVersion:go1.16.2 Path:github.com/vmware-tanzu/tanzu-framework/cmd/cli/tanzu Main:<span style="color:#f92672">{</span>Path:github.com/vmware-tanzu/tanzu-framework Version:<span style="color:#f92672">(</span>devel<span style="color:#f92672">)</span> Sum: Replace:&lt;nil&gt;<span style="color:#f92672">}</span> Deps:<span style="color:#f92672">[</span>0xc000a540c0 0xc000a54100 0xc000a54140 0xc000a54180 0xc000a541c0 0xc000a54240 0xc000a54280 0xc000a542c0 0xc000a54300 0xc000a54340 0xc000a54380 0xc000a543c0 0xc000a54400 0xc000a54440 0xc000a54480 0xc000a544c0 0xc000a54500 0xc000a54540 0xc000a54580 0xc000a545c0 0xc000a54600 0xc000a54680 0xc000a546c0 0xc000a54700 0xc000a54740 0xc000a54780 0xc000a547c0 0xc000a54800 0xc000a54840 0xc000a548c0 0xc000a54900 0xc000a54940 0xc000a54980 0xc000a549c0 0xc000a54a00 0xc000a54a40 0xc000a54a80 0xc000a54ac0 0xc000a54b00 0xc000a54b40 0xc000a54b80 0xc000a54bc0 0xc000a54c00 0xc000a54c40 0xc000a54c80 0xc000a54cc0 0xc000a54d00 0xc000a54d40 0xc000a54d80 0xc000a54dc0 0xc000a54e00 0xc000a54e40 0xc000a54e80 0xc000a54ec0 0xc000a54f00 0xc000a54f40 0xc000a54f80 0xc000a54fc0 0xc000a55000 0xc000a55040 0xc000a55080 0xc000a550c0 0xc000a55100 0xc000a55140 0xc000a55180 0xc000a551c0 0xc000a55200 0xc000a55240 0xc000a55280 0xc000a552c0 0xc000a55300 0xc000a55340 0xc000a55380 0xc000a553c0 0xc000a55400 0xc000a55440 0xc000a554c0 0xc000a55500 0xc000a55580 0xc000a55600 0xc000a55640 0xc000a556c0 0xc000a55740 0xc000a55780 0xc000a55800<span style="color:#f92672">]</span> Settings:<span style="color:#f92672">[]}</span>
+&amp;<span style="color:#f92672">{</span>Path:cloud.google.com/go Version:v0.74.0 Sum:h1:kpgPA77kSSbjSs+fWHkPTxQ6J5Z2Qkruo5jfXEkHxNQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:cloud.google.com/go/storage Version:v1.10.0 Sum:h1:STgFzyU5/8miMl0//zKh2aQeTyeaUH3WN9bSUiJ09bA<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/AlecAivazis/survey/v2 Version:v2.1.1 Sum:h1:LEMbHE0pLj75faaVEKClEX1TM4AJmmnOh9eimREzLWI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/Masterminds/semver Version:v1.5.0 Sum:h1:H65muMkzWKEuNDnfl9d70GUjFniHKHRbFPGBuZ3QEww<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/adrg/xdg Version:v0.2.1 Sum:h1:VSVdnH7cQ7V+B33qSJHTCRlNgra1607Q8PzEmnvb2Ic<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/apparentlymart/go-cidr Version:v1.1.0 Sum:h1:2mAhrMoF+nhXqxTzSZMUzDHkLjmIHC+Zzn4tdgBZjnU<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/aunum/log Version:v0.0.0-20200821225356-38d2e2c8b489 Sum:h1:DKOk8ZLAPnn4P/qTwGj5x5wAMqHmaE1oL4+nl1laIu8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/beorn7/perks Version:v1.0.1 Sum:h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/briandowns/spinner Version:v1.16.0 Sum:h1:DFmp6hEaIx2QXXuqSJmtfSBSAjRmpGiKG6ip2Wm/yOs<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/cespare/xxhash/v2 Version:v2.1.1 Sum:h1:6MnRN8NT7+YBpUIWxHtefFZOKTAPgGjpQSxqLNn0+qY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/containerd/containerd Version:v1.3.0 Sum:h1:xjvXQWABwS2uiv3TWgQt5Uth60Gu86LTGZXMJkjc7rY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/cpuguy83/go-md2man/v2 Version:v2.0.0 Sum:h1:EoUDS0afbrsXAZ9YQ9jdu/mZ2sXgT1/2yyNng4PGlyM<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/davecgh/go-spew Version:v1.1.1 Sum:h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/docker/distribution Version:v2.7.1+incompatible Sum:h1:a5mlkVzth6W5A4fOsS3D2EO5BUmsJpcB+cRlLU7cSug<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/docker/docker Version:v1.4.2-0.20190924003213-a8608b5b67c7 Sum:h1:Cvj7S8I4Xpx78KAl6TwTmMHuHlZ/0SM60NUneGJQ7IE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/docker/go-connections Version:v0.4.0 Sum:h1:El9xVISelRB7BuFusrZozjnkIM5YnzCViNKohAFqRJQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/docker/go-units Version:v0.4.0 Sum:h1:3uh0PgVws3nIA0Q+MwDC8yjEPf9zjRfZZWXZYDct3Tw<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/evanphx/json-patch Version:v4.11.0+incompatible Sum:h1:glyUF9yIYtMHzn8xaKw5rMhdWcwsYV8dZHIq5567/xs<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/fatih/color Version:v1.12.0 Sum:h1:mRhaKNwANqRgUBGKmnI5ZxEk7QXmjQeCcuYFMX2bfcc<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/ghodss/yaml Version:v1.0.0 Sum:h1:wQHKEahhL6wmXdzwWG11gIVCkOv05bNOh+Rxn0yngAk<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/go-logr/logr Version:v0.4.0 Sum: Replace:0xc000a54640<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/gogo/protobuf Version:v1.3.2 Sum:h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/golang/groupcache Version:v0.0.0-20210331224755-41bb18bfe9da Sum:h1:oI5xCqsCo564l8iNU+DwB5epxmsaqB+rhGL0m5jtYqE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/golang/protobuf Version:v1.5.2 Sum:h1:ROPKBNFfQgOUMifHyP+KYbvpjbdoFNs+aK7DXlji0Tw<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/google/go-cmp Version:v0.5.6 Sum:h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/google/gofuzz Version:v1.2.0 Sum:h1:xRy4A+RhZaiKjJ1bPfwQ8sedCA+YS2YcCHW6ec7JMi0<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/google/uuid Version:v1.2.0 Sum:h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/googleapis/gax-go/v2 Version:v2.0.5 Sum:h1:sjZBwGj9Jlw33ImPtvFviGYvseOtDM7hkSKB7+Tv3SM<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/googleapis/gnostic Version:v0.4.1 Sum: Replace:0xc000a54880<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/hashicorp/golang-lru Version:v0.5.4 Sum:h1:YDjusn29QI/Das2iO9M0BHnIbxPeyuCHsjMW+lJfyTc<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/imdario/mergo Version:v0.3.12 Sum:h1:b6R2BslTbIEToALKP7LxUvijTsNI9TAe80pLWN2g/HU<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/json-iterator/go Version:v1.1.11 Sum:h1:uVUAXhF2To8cbw/3xN3pxj6kk7TYKs98NIrTqPlMWAQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/juju/fslock Version:v0.0.0-20160525022230-4d5c94c67b4b Sum:h1:FQ7+9fxhyp82ks9vAuyPzG0/vVbWwMwLJ+P6yJI5FN8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/kballard/go-shellquote Version:v0.0.0-20180428030007-95032a82bc51 Sum:h1:Z9n2FFNUXsshfwJMBgNA0RU6/i7WVaAegv3PtuIHPMs<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/lithammer/dedent Version:v1.1.0 Sum:h1:VNzHMVCBNG1j0fh3OrsFRkVUwStdDArbgBWoPAffktY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/logrusorgru/aurora Version:v2.0.3+incompatible Sum:h1:tOpm7WcpBTn4fjmVfgpQq0EfczGlG91VSDkswnjF5A8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/mattn/go-colorable Version:v0.1.8 Sum:h1:c1ghPdyEDarC70ftn0y+A/Ee++9zz8ljHG1b13eJ0s8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/mattn/go-isatty Version:v0.0.12 Sum:h1:wuysRhFDzyxgEmMf5xjvJ2M9dZoWAXNNr5LSBS7uHXY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/mattn/go-runewidth Version:v0.0.7 Sum:h1:Ei8KR0497xHyKJPAv59M1dkC+rOZCMBJ+t3fZ+twI54<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/matttproud/golang_protobuf_extensions Version:v1.0.2-0.20181231171920-c182affec369 Sum:h1:I0XW9+e1XWDxdcEniV4rQAIOPUGDq67JSCiRCgGCZLI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/mgutz/ansi Version:v0.0.0-20170206155736-9520e82c474b Sum:h1:j7+1HpAFS1zy5+Q4qx1fWh90gTKwiN4QCGoY9TWyyO4<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/modern-go/concurrent Version:v0.0.0-20180306012644-bacd9c7ef1dd Sum:h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/modern-go/reflect2 Version:v1.0.1 Sum:h1:9f412s+6RmYXLWZSEzVVgPGK7C2PphHj5RJrvfx9AWI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/olekukonko/tablewriter Version:v0.0.4 Sum:h1:vHD/YYe1Wolo78koG299f7V/VAS08c6IpCLn+Ejf/w8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/opencontainers/go-digest Version:v1.0.0 Sum:h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/opencontainers/image-spec Version:v1.0.1 Sum:h1:JMemWkRwHx4Zj+fVxWoMCFm/8sYGGrUVojFA6h/TRcI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/pkg/errors Version:v0.9.1 Sum:h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/prometheus/client_golang Version:v1.11.0 Sum:h1:HNkLOAEQMIDv/K+04rukrLx6ch7msSRwf3/SASFAGtQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/prometheus/client_model Version:v0.2.0 Sum:h1:uq5h0d+GuxiXLJLNABMgp2qUWDPiLvgCzz2dUR+/W/M<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/prometheus/common Version:v0.29.0 Sum:h1:3jqPBvKT4OHAbje2Ql7KeaaSicDBCxMYwEJU1zRJceE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/prometheus/procfs Version:v0.6.0 Sum:h1:mxy4L2jP6qMonqmq+aTtOx1ifVWUgG/TAmntgbh3xv4<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/russross/blackfriday/v2 Version:v2.0.1 Sum:h1:lPqVAte+HuHNfhJ/0LC98ESWRz8afy9tM/0RK8m9o+Q<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/shurcooL/sanitized_anchor_name Version:v1.0.0 Sum:h1:PdmoCO6wvbs+7yrJyMORt4/BmY5IYyJwS/kOiWx8mHo<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/sirupsen/logrus Version:v1.8.1 Sum:h1:dJKuHgqk1NNQlqoA6BTlM1Wf9DOH3NBjQyu0h9+AZZE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/spf13/cobra Version:v1.1.3 Sum:h1:xghbfqPkxzxP3C/f3n5DdpAbdKLj4ZE4BWQI362l53M<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:github.com/spf13/pflag Version:v1.0.5 Sum:h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:go.opencensus.io Version:v0.22.5 Sum:h1:dntmOdLpSpHlVqbW5Eay97DelsZHe+55D+xC6i0dDS0<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:go.uber.org/atomic Version:v1.6.0 Sum:h1:Ezj3JGmsOnG1MoRWQkPBsKLe9DwWD9QeXzTRzzldNVk<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:go.uber.org/multierr Version:v1.5.0 Sum:h1:KCa4XfM8CWFCpxXRGok+Q0SS/0XBhMDbHHGABQLvD2A<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/crypto Version:v0.0.0-20210616213533-5ff15b29337e Sum:h1:gsTQYXdTw2Gq7RBsWvlQ91b+aEQ6bXFUngBGuR8sPpI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/mod Version:v0.4.2 Sum:h1:Gz96sIWK3OalVv/I/qNygP42zyoKp3xptRVCWRFEBvo<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/net Version:v0.0.0-20210614182718-04defd469f4e Sum:h1:XpT3nA5TvE525Ne3hInMh6+GETgn27Zfm9dxsThnX2Q<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/oauth2 Version:v0.0.0-20210628180205-a41e5a781914 Sum:h1:3B43BWw0xEBsLZ/NO1VALz6fppU3481pik+2Ksv45z8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/sys Version:v0.0.0-20210910150752-751e447fb3d0 Sum:h1:xrCZDmdtoloIiooiA9q0OQb9r8HejIHYoHGhGCe1pGg<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/term Version:v0.0.0-20210615171337-6886f2dfbf5b Sum:h1:9zKuko04nR4gjZ4+DNjHqRlAJqbJETHwiNKDqTfOjfE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/text Version:v0.3.6 Sum:h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:golang.org/x/time Version:v0.0.0-20210611083556-38a9dc6acbc6 Sum:h1:Vv0JUPWTyeqUq42B2WJ1FeIDjjvGKoA2Ss+Ts0lAVbs<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:gomodules.xyz/jsonpatch/v2 Version:v2.2.0 Sum:h1:4pT439QV83L+G9FkcCriY6EkpcK6r6bK+A5FBUMI7qY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:google.golang.org/api Version:v0.40.0 Sum:h1:uWrpz12dpVPn7cojP82mk02XDgTJLDPc2KbVTxrWb4A<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:google.golang.org/genproto Version:v0.0.0-20201214200347-8c77b98c765d Sum:h1:HV9Z9qMhQEsdlvxNFELgQ11RkMzO3CMkjEySjCtuLes<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:google.golang.org/grpc Version:v1.34.0 Sum:h1:raiipEjMOIC/TO2AvyTxP25XFdLxNIBwzDh3FM3XztI<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:google.golang.org/protobuf Version:v1.27.1 Sum:h1:SnqbnDw1V7RiZcXPx5MEeqPv2s79L9i7BJUlG/+RurQ<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:gopkg.in/fsnotify.v1 Version:v1.4.7 Sum:h1:xOHLXZwVvI9hhs+cLKq5+I5onOuwQLhQwiu63xxlHs4<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:gopkg.in/inf.v0 Version:v0.9.1 Sum:h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:gopkg.in/yaml.v2 Version:v2.4.0 Sum:h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/api Version:v0.21.2 Sum: Replace:0xc000a55480<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/apiextensions-apiserver Version:v0.21.2 Sum:h1:+exKMRep4pDrphEafRvpEi79wTnCFMqKf8LBtlA3yrE<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/apimachinery Version:v0.21.2 Sum: Replace:0xc000a55540<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/client-go Version:v0.21.2 Sum: Replace:0xc000a555c0<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/klog Version:v1.0.0 Sum:h1:Pt+yjF5aB1xDSVbau4VsWe+dQNzA0qv1LlXdC2dF6Q8<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/klog/v2 Version:v2.8.0 Sum: Replace:0xc000a55680<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/kube-openapi Version:v0.0.0-20210305001622-591a79e4bda7 Sum: Replace:0xc000a55700<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:k8s.io/utils Version:v0.0.0-20210527160623-6fdb442a123b Sum:h1:MSqsVQ3pZvPGTqCjptfimO2WjG7A9un2zcpiHkA6M/s<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:sigs.k8s.io/controller-runtime Version:v0.7.0 Sum: Replace:0xc000a557c0<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>Path:sigs.k8s.io/yaml Version:v1.2.0 Sum:h1:kr/MCeFWJWTwyaHoR9c8EjH9OumOmoF9YGiZd7lFm/Q<span style="color:#f92672">=</span> Replace:&lt;nil&gt;<span style="color:#f92672">}</span>
+</code></pre></div><p>As you can see, you can get information like</p>
+<ul>
+<li>Which version of <code>go</code> was used to build the binary</li>
+<li>What are the different Golang modules used in the binary</li>
+</ul>
+<p>When running this program, you can cross verify the modules information in the output with the <code>go.mod</code> and <code>go.sum</code> files if you have access to the source code of the binary&rsquo;s project. In the above example, you can find the Golang modules files in the <a href="https://github.com/vmware-tanzu/tanzu-framework/">Tanzu Framework open source project</a> in <code>v0.10.0</code> - <a href="https://github.com/vmware-tanzu/tanzu-framework/blob/v0.10.0/go.mod"><code>go.mod</code></a> , <a href="https://github.com/vmware-tanzu/tanzu-framework/blob/v0.10.0/go.sum"><code>go.sum</code></a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
+    &copy;  Karuppiah's Blog 2021 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/karuppiah7890" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:{{ .fill }};"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+    <a href="https://www.youtube.com/channel/UC8RUp-TYJUhTzgAgPqDKRRg" target="_blank" class="youtube ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="YouTube link" rel="noopener" aria-label="follow on YouTube——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:{{ .fill }};"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+    <a href="https://github.com/karuppiah7890" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg {{ with .size }} height="{{ . }}" {{ end }} style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -123,6 +123,24 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/helm-3-charts-and-oci-registries/" class="link black dim">
+        Helm 3 Charts and OCI registries
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
+With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
+ The commands being used in the video:
+$ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/my-open-source-journey/" class="link black dim">
         My Open Source Journey
       </a>

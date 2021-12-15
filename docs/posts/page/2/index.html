@@ -123,6 +123,22 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/linting-shell-scripts-using-shellcheck-tool/" class="link black dim">
+        An introduction to linting shell scripts using shellcheck tool
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -
+$ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &#34;$dir/special-*&#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/subtituting-envrionment-variables-with-envsubst/" class="link black dim">
         Substituting environment variables with envsubst
       </a>
@@ -266,21 +282,6 @@ https://github.com/steppingcloudlabs/single-tenant-alumniportal/commit/f99e126fd
 I just had to do a GitHub search
 https://github.com/search?q=aws+credentials+env&amp;type=commits
 And I found the above. Fortunately the people who removed the keys from their git repository knew that the git history would contain it and hence revoked the keys and rotated it to get new keys.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/bytes-3-dont-have-unnecessary-high-access/" class="link black dim">
-        Bytes #3: Please don&#39;t have unnecessary high access!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      A lot of times it good to have a lot of access in the systems we interact with. This could be any system - external systems or internal systems. For example, git / source code repository access is a pretty common thing. Let&rsquo;s say your team has a private repository on GitHub. You can have any kind of access to this repository - read access, write access, or even admin access, for example to change settings and what not.
     </div>
   </div>
 </div>

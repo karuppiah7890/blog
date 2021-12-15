@@ -1,10 +1,9 @@
 ---
 title: "debug/buildinfo golang standard library package"
 date: 2021-12-15T17:07:00+05:30
-draft: true
 ---
 
-A friend (Madhav) recently posted about the `debug/buildinfo` standard library package in Golang in my company slack channel
+A colleague, [Madhav Jivrajani](https://github.com/MadhavJivrajani), recently posted about the `debug/buildinfo` standard library package in Golang in my company slack channel
 
 https://pkg.go.dev/debug/buildinfo
 
