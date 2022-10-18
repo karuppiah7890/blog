@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR Dead code is just unnecessary code that&rsquo;s lying around. You don&rsquo;t need it, nobody needs it. Just remove it and make your lives easier by removing unnecessary things :)
 If you want to take it up to the next level, use automated tools to detect some kinds of dead code to make your lives more easier ;) Use the same automated tools to fail Continuous Integration pipelines when dead code is detected.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -282,9 +282,9 @@ be useful.</p>
 <p>Maybe some IDEs can find such dead code too, warning you saying &ldquo;hey, this code
 is only used in tests&rdquo;</p>
 <p>Some IDEs can also find dead code like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-<span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-</code></pre></div><p>Let&rsquo;s say those are the only two lines of code where <code>blah</code> has been used. Which
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">blah</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blah</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Let&rsquo;s say those are the only two lines of code where <code>blah</code> has been used. Which
 means that <code>blah</code> has been used only to update itself but not used anywhere
 else, for example to just read the data alone and use it. So, <code>blah</code> variable
 looks pretty much useless.</p>
@@ -437,7 +437,7 @@ something in the project and remove some code. :P</p>
 <p>It&rsquo;s like the developer is some sort of soul reaper / grim reaper getting rid
 of the dead code (dead thing) from the project</p>
 <p><img src="/blog/img/dead-code-is-dead/soul-reaper-or-grim-reaper.jpg" alt="soul-reaper-or-grim-reaper" title="soul-reaper-or-grim-reaper">
-<a href="https://www.freepik.com/vectors/background">Background vector</a> created by <a href="https://www.freepik.com/macrovector">macrovector</a> - <a href="http://www.freepik.com">www.freepik.com</a></p>
+<a href="https://www.freepik.com/vectors/background">Background vector</a> created by <a href="https://www.freepik.com/macrovector">macrovector</a> - <a href="https://www.freepik.com">www.freepik.com</a></p>
 <blockquote>
 <p>Dead Code: Hey. I&rsquo;m already dead. Why you killing me again? Leave me alone</p>
 </blockquote>
@@ -452,7 +452,7 @@ existent. It&rsquo;s time</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -488,7 +488,7 @@ existent. It&rsquo;s time</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

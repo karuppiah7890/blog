@@ -7,7 +7,7 @@
     <title>Please get your assertions right! | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR Assertions in programming generally have &ldquo;expected&rdquo; and &ldquo;actual&rdquo; value to check if the &ldquo;actual&rdquo; value is equal to the &ldquo;expected&rdquo; value. When the programmer provides the two values in the wrong order to the assertion library then when errors occur, they are confusing to read. Getting the order of &ldquo;expected&rdquo; and &ldquo;actual&rdquo; value can be helpful to get a sensible error message which one can read and understand the issue when errors occur in assertion.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -186,10 +186,10 @@ or Must hold. If that&rsquo;s not the case, the program throws an error</p>
 <p><a href="https://en.wikipedia.org/wiki/Assertion_(software_development)">Assertions Wikipedia page</a></p>
 <p>Let&rsquo;s see an example in Java using JUnit testing framework&rsquo;s <code>assertEquals</code>
 method</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
-assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span> <span style="color:#75715e">// this passes
-</span><span style="color:#75715e"></span>assertEquals<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span> <span style="color:#75715e">// this fails
-</span></code></pre></div><p>If you are not familiar with Java, I hope it&rsquo;s still understandable and
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span> <span style="color:#75715e">// this passes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>assertEquals<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span> <span style="color:#75715e">// this fails
+</span></span></span></code></pre></div><p>If you are not familiar with Java, I hope it&rsquo;s still understandable and
 readable. Also, many languages have similar assertion libraries with such
 functions. These could be within testing frameworks or even standalone outside
 of a testing framework. You could check them out</p>
@@ -200,10 +200,10 @@ else throws an error.</p>
 <p>This kind of checking or assertion is popularly used while writing automation
 tests for a software. A usual assertion in programming for testing a
 software would look like this in the form of English</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">-</span> Hey software take this input and do this work
-<span style="color:#66d9ef">-</span> Give me the output
-<span style="color:#66d9ef">-</span> Let me check if the output you gave me is the expected output
-</code></pre></div><p>Now, if the software is not working right, it would give the wrong output or
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Hey software take this input and do this work
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Give me the output
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Let me check if the output you gave me is the expected output
+</span></span></code></pre></div><p>Now, if the software is not working right, it would give the wrong output or
 what&rsquo;s called an unexpected output. In general, as you may already know,
 anything unexpected behavior in the software world is generally called an issue
 / bug. The process of testing software is used to catch such bugs / issues as
@@ -212,12 +212,12 @@ soon as they appear in the software.</p>
 <p>Now, let&rsquo;s get to what do I mean by getting your assertions right.</p>
 <p>Before doing this, let me show an example output of a assertion when an error
 occurs</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
-assertEquals<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">org.opentest4j.AssertionFailedError:
-Expected :2
-Actual   :1
-</code></pre></div><p>Look at the output and notice how it says that the expected value is 2 but the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>assertEquals<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>org.opentest4j.AssertionFailedError:
+</span></span><span style="display:flex;"><span>Expected :2
+</span></span><span style="display:flex;"><span>Actual   :1
+</span></span></code></pre></div><p>Look at the output and notice how it says that the expected value is 2 but the
 actual is 1. What does this mean?</p>
 <p>Remember what I told about assertions and testing? Recall the part -
 &ldquo;Let me check if the output you gave me is the expected output&rdquo;</p>
@@ -227,9 +227,9 @@ name too. If you check the definition of the different <code>assertEquals</code>
 overloaded methods you will find the names of these values by checking the name
 of the method parameters in the method definition.</p>
 <p>For the above method, the <a href="https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html#assertEquals-int-int-">definition</a> looks like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Asserts that expected and actual are equal.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> expected<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> actual<span style="color:#f92672">)</span>
-</code></pre></div><p>Look at how it says <code>expected</code> and <code>actual</code>. So, according to <code>assertEquals</code>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Asserts that expected and actual are equal.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> expected<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> actual<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Look at how it says <code>expected</code> and <code>actual</code>. So, according to <code>assertEquals</code>,
 you tell it two values, one is the value that you want to check, which is the
 actual and the other is the expected value - the value you expect the other
 value (actual) to have.</p>
@@ -243,9 +243,9 @@ and everyone&rsquo;s happy.</p>
 an example.</p>
 <p>So, what can go wrong here? Well, the teeny tiny bit that can go wrong or weird
 over here is, typing code something like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
-assertEquals<span style="color:#f92672">(</span>value<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
-</code></pre></div><p>What the above means is - &ldquo;I&rsquo;m expecting the actual value <code>2</code> to be equal to the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>assertEquals<span style="color:#f92672">(</span>value<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>What the above means is - &ldquo;I&rsquo;m expecting the actual value <code>2</code> to be equal to the
 expected value <code>value</code>&rdquo;</p>
 <p>Why is the above not so good? The thing is, assertions are usually written in
 such a way that - the value of expected is a constant or somewhat a constant -
@@ -257,13 +257,13 @@ an unexpected manner - as the software has a bug. But the expected will remain
 more of a constant. Let&rsquo;s see how the errors in your test would look like
 during different scenarios</p>
 <p>Let&rsquo;s say you have a calculator module.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> calculator<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
-assertEquals<span style="color:#f92672">(</span>value<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
-</code></pre></div><p>When the calculator has a bug and it&rsquo;s output value for addition of 1 and 1 is
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> calculator<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>assertEquals<span style="color:#f92672">(</span>value<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>When the calculator has a bug and it&rsquo;s output value for addition of 1 and 1 is
 1 instead of 2 and then you see</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Expected <span style="color:#ae81ff">1</span>
-Actual <span style="color:#ae81ff">2</span>
-</code></pre></div><p>That&rsquo;s a weird error. Someone reading the error will be like &ldquo;But 1 + 1 is 2,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Expected <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Actual <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p>That&rsquo;s a weird error. Someone reading the error will be like &ldquo;But 1 + 1 is 2,
 why does it say expected 1? And actual 2 is correct right?&rdquo; only to realize
 that the assertion statement is wrong - the order of arguments for expected and
 actual is wrong</p>
@@ -284,7 +284,7 @@ waste of time because of the confusion</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -320,7 +320,7 @@ waste of time because of the confusion</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

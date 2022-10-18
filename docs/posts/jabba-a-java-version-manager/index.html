@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :)">
-    <meta name="generator" content="Hugo 0.90.1" />
+This blog post will be mostly the text version of the video :)">
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -31,7 +31,7 @@ Video Version Before going into the post, if you prefer videos over blogs, you c
     <meta property="og:title" content="Jabba: A Java Version Manager" />
 <meta property="og:description" content="TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :)" />
+This blog post will be mostly the text version of the video :)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/jabba-a-java-version-manager/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-05T15:02:57+05:30" />
@@ -40,14 +40,14 @@ Video Version Before going into the post, if you prefer videos over blogs, you c
 <meta itemprop="name" content="Jabba: A Java Version Manager">
 <meta itemprop="description" content="TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :)"><meta itemprop="datePublished" content="2020-12-05T15:02:57+05:30" />
+This blog post will be mostly the text version of the video :)"><meta itemprop="datePublished" content="2020-12-05T15:02:57+05:30" />
 <meta itemprop="dateModified" content="2020-12-05T15:02:57+05:30" />
 <meta itemprop="wordCount" content="1196">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jabba: A Java Version Manager"/>
 <meta name="twitter:description" content="TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :)"/>
+This blog post will be mostly the text version of the video :)"/>
 
       
     
@@ -226,148 +226,148 @@ versions, let&rsquo;s move on to Jabba!</p>
 <p>Jabba is pretty straight forward to use. It&rsquo;s written in Golang and you can get
 a single binary and put it anywhere and it will run. I use Mac OS and I
 installed it with this command</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash <span style="color:#f92672">&amp;&amp;</span> . ~/.jabba/jabba.sh
-</code></pre></div><p>For other ways to install or other OSes, go to <a href="https://github.com/shyiko/jabba">https://github.com/shyiko/jabba</a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash <span style="color:#f92672">&amp;&amp;</span> . ~/.jabba/jabba.sh
+</span></span></code></pre></div><p>For other ways to install or other OSes, go to <a href="https://github.com/shyiko/jabba">https://github.com/shyiko/jabba</a>
 and check installation methods</p>
 <p>After installation, use <code>jabba</code> in the command line and it will help you with
 it&rsquo;s help instructions</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba
-Java Version Manager <span style="color:#f92672">(</span>https://github.com/shyiko/jabba<span style="color:#f92672">)</span>.
-
-Usage:
-  jabba <span style="color:#f92672">[</span>flags<span style="color:#f92672">]</span>
-  jabba <span style="color:#f92672">[</span>command<span style="color:#f92672">]</span>
-
-Available Commands:
-  install     Download and install JDK
-  uninstall   Uninstall JDK
-  link        Resolve or update a link
-  unlink      Delete a link
-  use         Modify PATH &amp; JAVA_HOME to use specific JDK
-  current     Display currently <span style="color:#e6db74">&#39;use&#39;</span>ed version
-  ls          List installed versions
-  ls-remote   List remote versions available <span style="color:#66d9ef">for</span> install
-  deactivate  Undo effects of <span style="color:#e6db74">`</span>jabba<span style="color:#e6db74">`</span> on current shell
-  alias       Resolve or update an alias
-  unalias     Delete an alias
-  which       Display path to installed JDK
-
-Flags:
-  -h, --help      help <span style="color:#66d9ef">for</span> jabba
-      --version   version of jabba
-
-Use <span style="color:#e6db74">&#34;jabba [command] --help&#34;</span> <span style="color:#66d9ef">for</span> more information about a command.
-</code></pre></div><p>Before using Jabba, I would recommend getting rid of any other JDK
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba
+</span></span><span style="display:flex;"><span>Java Version Manager <span style="color:#f92672">(</span>https://github.com/shyiko/jabba<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Usage:
+</span></span><span style="display:flex;"><span>  jabba <span style="color:#f92672">[</span>flags<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  jabba <span style="color:#f92672">[</span>command<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Available Commands:
+</span></span><span style="display:flex;"><span>  install     Download and install JDK
+</span></span><span style="display:flex;"><span>  uninstall   Uninstall JDK
+</span></span><span style="display:flex;"><span>  link        Resolve or update a link
+</span></span><span style="display:flex;"><span>  unlink      Delete a link
+</span></span><span style="display:flex;"><span>  use         Modify PATH &amp; JAVA_HOME to use specific JDK
+</span></span><span style="display:flex;"><span>  current     Display currently <span style="color:#e6db74">&#39;use&#39;</span>ed version
+</span></span><span style="display:flex;"><span>  ls          List installed versions
+</span></span><span style="display:flex;"><span>  ls-remote   List remote versions available <span style="color:#66d9ef">for</span> install
+</span></span><span style="display:flex;"><span>  deactivate  Undo effects of <span style="color:#e6db74">`</span>jabba<span style="color:#e6db74">`</span> on current shell
+</span></span><span style="display:flex;"><span>  alias       Resolve or update an alias
+</span></span><span style="display:flex;"><span>  unalias     Delete an alias
+</span></span><span style="display:flex;"><span>  which       Display path to installed JDK
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Flags:
+</span></span><span style="display:flex;"><span>  -h, --help      help <span style="color:#66d9ef">for</span> jabba
+</span></span><span style="display:flex;"><span>      --version   version of jabba
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Use <span style="color:#e6db74">&#34;jabba [command] --help&#34;</span> <span style="color:#66d9ef">for</span> more information about a command.
+</span></span></code></pre></div><p>Before using Jabba, I would recommend getting rid of any other JDK
 installations, so that you have lesser confusions and also lesser other Java
 binaries in your <code>$PATH</code> environment variable</p>
 <p>To check what Java versions / variants you can install, just check using Jabba
 like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba ls-remote
-1.15.0
-1.15.0-1
-1.6.65
-adopt@1.15.0-1
-adopt@1.15.0-0
-adopt@1.14.0-2
-...
-...
-adopt@1.8.0-181
-adopt@1.8.0-172
-adopt-openj9@1.15.0-1
-adopt-openj9@1.15.0-0
-...
-...
-adopt-openj9@1.8.0-242
-adopt-openj9@1.8.0-232
-amazon-corretto@1.11.0-9.12.1
-amazon-corretto@1.11.0-9.11.1
-...
-...
-amazon-corretto@1.8.232-09.1
-amazon-corretto@1.8.222-10.1
-graalvm@20.3.0
-graalvm@20.2.0
-...
-...
-graalvm@1.0.0-6
-graalvm@1.0.0-5
-graalvm-ce-java11@20.3.0
-graalvm-ce-java11@20.2.0
-...
-...
-graalvm-ce-java8@1.0.0-6
-graalvm-ce-java8@1.0.0-5
-liberica@1.15.0
-liberica@1.15.0-1
-...
-...
-liberica@1.8.232-10
-liberica@1.8.222
-openjdk@1.15.0
-openjdk@1.15.0-1
-openjdk@1.14.0
-...
-...
-openjdk@1.9.0
-openjdk@1.9.0-4
-zulu@1.16.0-0
-zulu@1.15.0
-...
-...
-zulu@1.7.60
-zulu@1.7.55
-</code></pre></div><p>As you can see, there are so many versions and variants available. You can
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba ls-remote
+</span></span><span style="display:flex;"><span>1.15.0
+</span></span><span style="display:flex;"><span>1.15.0-1
+</span></span><span style="display:flex;"><span>1.6.65
+</span></span><span style="display:flex;"><span>adopt@1.15.0-1
+</span></span><span style="display:flex;"><span>adopt@1.15.0-0
+</span></span><span style="display:flex;"><span>adopt@1.14.0-2
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>adopt@1.8.0-181
+</span></span><span style="display:flex;"><span>adopt@1.8.0-172
+</span></span><span style="display:flex;"><span>adopt-openj9@1.15.0-1
+</span></span><span style="display:flex;"><span>adopt-openj9@1.15.0-0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>adopt-openj9@1.8.0-242
+</span></span><span style="display:flex;"><span>adopt-openj9@1.8.0-232
+</span></span><span style="display:flex;"><span>amazon-corretto@1.11.0-9.12.1
+</span></span><span style="display:flex;"><span>amazon-corretto@1.11.0-9.11.1
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>amazon-corretto@1.8.232-09.1
+</span></span><span style="display:flex;"><span>amazon-corretto@1.8.222-10.1
+</span></span><span style="display:flex;"><span>graalvm@20.3.0
+</span></span><span style="display:flex;"><span>graalvm@20.2.0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>graalvm@1.0.0-6
+</span></span><span style="display:flex;"><span>graalvm@1.0.0-5
+</span></span><span style="display:flex;"><span>graalvm-ce-java11@20.3.0
+</span></span><span style="display:flex;"><span>graalvm-ce-java11@20.2.0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>graalvm-ce-java8@1.0.0-6
+</span></span><span style="display:flex;"><span>graalvm-ce-java8@1.0.0-5
+</span></span><span style="display:flex;"><span>liberica@1.15.0
+</span></span><span style="display:flex;"><span>liberica@1.15.0-1
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>liberica@1.8.232-10
+</span></span><span style="display:flex;"><span>liberica@1.8.222
+</span></span><span style="display:flex;"><span>openjdk@1.15.0
+</span></span><span style="display:flex;"><span>openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>openjdk@1.14.0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>openjdk@1.9.0
+</span></span><span style="display:flex;"><span>openjdk@1.9.0-4
+</span></span><span style="display:flex;"><span>zulu@1.16.0-0
+</span></span><span style="display:flex;"><span>zulu@1.15.0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>zulu@1.7.60
+</span></span><span style="display:flex;"><span>zulu@1.7.55
+</span></span></code></pre></div><p>As you can see, there are so many versions and variants available. You can
 choose one and then install it. For example, like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba install openjdk@1.11.0-2
-$ jabba install openjdk@1.15.0-1
-</code></pre></div><p>Jabba has been inspired by <a href="https://github.com/nvm-sh/nvm">nvm</a>, so if you have
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba install openjdk@1.11.0-2
+</span></span><span style="display:flex;"><span>$ jabba install openjdk@1.15.0-1
+</span></span></code></pre></div><p>Jabba has been inspired by <a href="https://github.com/nvm-sh/nvm">nvm</a>, so if you have
 used <code>nvm</code>, you would find a similar experience with <code>jabba</code> :)</p>
 <p>To check what are the installed Java versions, just run</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba ls
-openjdk@1.15.0-1
-openjdk@1.11.0-2
-</code></pre></div><p>To use a Java version, you can run</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba use openjdk@1.11.0-2
-$ java --version
-openjdk 11.0.2 2019-01-15
-OpenJDK Runtime Environment 18.9 <span style="color:#f92672">(</span>build 11.0.2+9<span style="color:#f92672">)</span>
-OpenJDK 64-Bit Server VM 18.9 <span style="color:#f92672">(</span>build 11.0.2+9, mixed mode<span style="color:#f92672">)</span>
-$ which java
-/Users/karuppiahn/.jabba/jdk/openjdk@1.11.0-2/Contents/Home/bin/java
-
-$ jabba use openjdk@1.15.0-1
-$ java --version
-openjdk 15.0.1 2020-10-20
-OpenJDK Runtime Environment <span style="color:#f92672">(</span>build 15.0.1+9-18<span style="color:#f92672">)</span>
-OpenJDK 64-Bit Server VM <span style="color:#f92672">(</span>build 15.0.1+9-18, mixed mode, sharing<span style="color:#f92672">)</span>
-$ which java
-/Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1/Contents/Home/bin/java
-</code></pre></div><p>You can also check where your JDK is installed</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba ls
-openjdk@1.15.0-1
-openjdk@1.11.0-2
-$ jabba which openjdk@1.15.0-1
-/Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1
-</code></pre></div><p>Also, when opening a new shell / terminal, to be able to set one default Java
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba ls
+</span></span><span style="display:flex;"><span>openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>openjdk@1.11.0-2
+</span></span></code></pre></div><p>To use a Java version, you can run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba use openjdk@1.11.0-2
+</span></span><span style="display:flex;"><span>$ java --version
+</span></span><span style="display:flex;"><span>openjdk 11.0.2 2019-01-15
+</span></span><span style="display:flex;"><span>OpenJDK Runtime Environment 18.9 <span style="color:#f92672">(</span>build 11.0.2+9<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>OpenJDK 64-Bit Server VM 18.9 <span style="color:#f92672">(</span>build 11.0.2+9, mixed mode<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>$ which java
+</span></span><span style="display:flex;"><span>/Users/karuppiahn/.jabba/jdk/openjdk@1.11.0-2/Contents/Home/bin/java
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ jabba use openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>$ java --version
+</span></span><span style="display:flex;"><span>openjdk 15.0.1 2020-10-20
+</span></span><span style="display:flex;"><span>OpenJDK Runtime Environment <span style="color:#f92672">(</span>build 15.0.1+9-18<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>OpenJDK 64-Bit Server VM <span style="color:#f92672">(</span>build 15.0.1+9-18, mixed mode, sharing<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>$ which java
+</span></span><span style="display:flex;"><span>/Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1/Contents/Home/bin/java
+</span></span></code></pre></div><p>You can also check where your JDK is installed</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba ls
+</span></span><span style="display:flex;"><span>openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>openjdk@1.11.0-2
+</span></span><span style="display:flex;"><span>$ jabba which openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>/Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1
+</span></span></code></pre></div><p>Also, when opening a new shell / terminal, to be able to set one default Java
 version, you can use the jabba alias like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba alias default openjdk@1.15.0-1
-default -&gt; /Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1
-$ jabba alias default
-openjdk@1.15.0-1
-</code></pre></div><p>So, every time you open a new shell, it will have the default Java version. You
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba alias default openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>default -&gt; /Users/karuppiahn/.jabba/jdk/openjdk@1.15.0-1
+</span></span><span style="display:flex;"><span>$ jabba alias default
+</span></span><span style="display:flex;"><span>openjdk@1.15.0-1
+</span></span></code></pre></div><p>So, every time you open a new shell, it will have the default Java version. You
 can also use <code>.jabbarc</code> to store your Java version in your different
 repositories, and then use <code>jabba</code> like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#e6db74">&#34;openjdk@1.15.0-1&#34;</span> &gt; .jabbarc
-$ jabba use
-$ java --version
-openjdk 15.0.1 2020-10-20
-OpenJDK Runtime Environment <span style="color:#f92672">(</span>build 15.0.1+9-18<span style="color:#f92672">)</span>
-OpenJDK 64-Bit Server VM <span style="color:#f92672">(</span>build 15.0.1+9-18, mixed mode, sharing<span style="color:#f92672">)</span>
-</code></pre></div><h3 id="conclusion">Conclusion</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;openjdk@1.15.0-1&#34;</span> &gt; .jabbarc
+</span></span><span style="display:flex;"><span>$ jabba use
+</span></span><span style="display:flex;"><span>$ java --version
+</span></span><span style="display:flex;"><span>openjdk 15.0.1 2020-10-20
+</span></span><span style="display:flex;"><span>OpenJDK Runtime Environment <span style="color:#f92672">(</span>build 15.0.1+9-18<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>OpenJDK 64-Bit Server VM <span style="color:#f92672">(</span>build 15.0.1+9-18, mixed mode, sharing<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h3 id="conclusion">Conclusion</h3>
 <p>Those were just some of the features of <code>jabba</code>. There are a few more. You can
 check other features of <code>jabba</code> by checking it&rsquo;s help :)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jabba --help
-</code></pre></div><p>Jabba seems to be a pretty simple tool to use and mostly intuitive too. Let me
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ jabba --help
+</span></span></code></pre></div><p>Jabba seems to be a pretty simple tool to use and mostly intuitive too. Let me
 know what you think!</p>
 <p>If you have any questions or comments, do comment below :)</p>
 <ul class="pa0">
@@ -377,7 +377,7 @@ know what you think!</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -413,7 +413,7 @@ know what you think!</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

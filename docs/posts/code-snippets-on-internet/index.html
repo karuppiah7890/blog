@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I think this is very intuitive and straight forward topic. Pretty cliche too. But I think it&rsquo;s important to talk about it nevertheless
 There are so many technical articles on the Internet. Lot of technical content. Many of them also include code. I have seen different websites display code in many different ways. In my blog, the code display is very very basic actually 🙈 But I have high expectations from other people now 🙈 Let&rsquo;s go over them!">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -170,8 +170,8 @@ There are so many technical articles on the Internet. Lot of technical content. 
 <p>A lot of websites now a days have the cool feature to copy a code snippet at the click of a button. It&rsquo;s pretty cool ! I mean, yeah, it might sound like a lazy thing, but sometimes copying code, especially large snippets can be hard, you would have to select a lot of the code and then copy it. It&rsquo;s easier with the single click of a button!</p>
 <p>One thing to note though - it&rsquo;s good to have a feedback for the user that code has been copied once you copy it into their clip board. So, if you are implementing this, something like a <code>Copied!</code> text on top of the botton or on the button to show that code has been copied would help. Also, if the copy failed, due to some reason, it&rsquo;s better to indicate that too to the user, for better feedback on the action that they performed, which is &ldquo;copy code&rdquo;</p>
 <p>Another thing to note is - it&rsquo;s important to be careful about what you copy. It&rsquo;s good to copy just what&rsquo;s needed, though the code representation on the site may differ. For example, if you are showing the code you are running on a shell, basically a command, then when you show it, you would show something like -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls -al
-</code></pre></div><p>I just used <code>ls</code> command as an example. Now, for this code snippet, when copied, it&rsquo;s best to not copy the <code>$</code>. The <code>$</code> is meant to represent the fact that the code is being run in a command line and that it&rsquo;s a command line thing. <code>$</code> is more of a visual representation but the actual content or actual code is just <code>ls -al</code>. So, beware of what you copy into the clipboard. Also, I have noticed some websites use fancy characters to show different things, which are not the exact right characters to be used in the code, as it would not be recognized as a normal valid character. So beware of that too. If a user copies the code and pastes, it should work, without giving them headaches :P</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls -al
+</span></span></code></pre></div><p>I just used <code>ls</code> command as an example. Now, for this code snippet, when copied, it&rsquo;s best to not copy the <code>$</code>. The <code>$</code> is meant to represent the fact that the code is being run in a command line and that it&rsquo;s a command line thing. <code>$</code> is more of a visual representation but the actual content or actual code is just <code>ls -al</code>. So, beware of what you copy into the clipboard. Also, I have noticed some websites use fancy characters to show different things, which are not the exact right characters to be used in the code, as it would not be recognized as a normal valid character. So beware of that too. If a user copies the code and pastes, it should work, without giving them headaches :P</p>
 <p>Another thing to note is - in case of command line code, it&rsquo;s best to copy it properly without any new lines at the end. For example, for -</p>
 <pre tabindex="0"><code>$ mkdir -p some-directory
 </code></pre><p>If the user copies and pastes into their command line, it should just paste it and not run it. For it to NOT run, the clipboard should contain just <code>mkdir -p some-directory</code> and not <code>mkdir -p some-directory\n</code>, note the <code>\n</code> new line character. If the new line is there, then that would create the effect of an <code>Enter</code> key on the keyboard for the command line and it would run the command. Note that this behavior differs from terminal to terminal and even shell to shell. For example I have heard <code>zsh</code> avoids running the command, but in my <code>bash</code> in built-in Mac OS <code>Terminal</code> app, I noticed it run the command. So I say it&rsquo;s best to not copy the new line, as the user may want to read the command before running it, or just modify the command before running it and what not</p>
@@ -198,7 +198,7 @@ There are so many technical articles on the Internet. Lot of technical content. 
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -234,7 +234,7 @@ There are so many technical articles on the Internet. Lot of technical content. 
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
 If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?">
-    <meta name="generator" content="Hugo 0.90.1" />
+This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?">
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -31,7 +31,7 @@ If you want to checkout the video version of this blog which shows a demo, you c
     <meta property="og:title" content="Installing Prometheus Operator, Prometheus, Alertmanager and Grafana" />
 <meta property="og:description" content="In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
 If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?" />
+This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/installing-prometheus-operator-prometheus-alertmanager-and-grafana/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-26T19:31:37+05:30" />
@@ -40,14 +40,14 @@ If you want to checkout the video version of this blog which shows a demo, you c
 <meta itemprop="name" content="Installing Prometheus Operator, Prometheus, Alertmanager and Grafana">
 <meta itemprop="description" content="In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
 If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?"><meta itemprop="datePublished" content="2020-03-26T19:31:37+05:30" />
+This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?"><meta itemprop="datePublished" content="2020-03-26T19:31:37+05:30" />
 <meta itemprop="dateModified" content="2020-03-26T19:31:37+05:30" />
 <meta itemprop="wordCount" content="1219">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Installing Prometheus Operator, Prometheus, Alertmanager and Grafana"/>
 <meta name="twitter:description" content="In this blog post I&rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
 If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?"/>
+This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?"/>
 
       
     
@@ -187,52 +187,52 @@ In my case, I manually downloaded the tar ball from the
 installation. Since I use Mac OS 64 bit, I got the appropriate <code>darwin</code> 64 bit
 tar ball.</p>
 <p>The latest version of Helm as of this writing is <code>v3.1.2</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://get.helm.sh/helm-v3.1.2-darwin-amd64.tar.gz
-$ tar xf helm-v3.1.2-darwin-amd64.tar.gz
-$ mv darwin-amd64/helm /usr/local/bin/helm
-$ <span style="color:#75715e"># cleanup</span>
-$ rm -rf helm-v3.1.2-darwin-amd64.tar.gz darwin-amd64/
-</code></pre></div><p>Before we install prometheus operator or anything, we need a kubernetes cluster
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://get.helm.sh/helm-v3.1.2-darwin-amd64.tar.gz
+</span></span><span style="display:flex;"><span>$ tar xf helm-v3.1.2-darwin-amd64.tar.gz
+</span></span><span style="display:flex;"><span>$ mv darwin-amd64/helm /usr/local/bin/helm
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># cleanup</span>
+</span></span><span style="display:flex;"><span>$ rm -rf helm-v3.1.2-darwin-amd64.tar.gz darwin-amd64/
+</span></span></code></pre></div><p>Before we install prometheus operator or anything, we need a kubernetes cluster
 to install it in. Since I don&rsquo;t have any cloud based kubernetes cluster, I&rsquo;m
 going to run a local kubernete cluser using <code>minikube</code>. You can install
 <code>minikube</code> by using the binary from their <a href="https://github.com/kubernetes/minikube/releases">releases</a>
 page. I installed it using <a href="https://gofi.sh"><code>gofish</code></a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gofish install minikube
-</code></pre></div><p>Note: You can also install <code>helm</code> too using <code>gofish</code> :) I install multiple
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gofish install minikube
+</span></span></code></pre></div><p>Note: You can also install <code>helm</code> too using <code>gofish</code> :) I install multiple
 versions (v2 and v3) of helm in my local and manage them, so I don&rsquo;t use
 <code>gofish</code> to install helm</p>
 <p>Now let&rsquo;s start our kubernetes cluster using <code>minikube</code>!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ minikube start --kubernetes-version<span style="color:#f92672">=</span>v1.18.0
-😄  minikube v1.8.2 on Darwin 10.15.3
-✨  Automatically selected the hyperkit driver. Other choices: docker, virtualbox
-🔥  Creating hyperkit VM <span style="color:#f92672">(</span>CPUs<span style="color:#f92672">=</span>2, Memory<span style="color:#f92672">=</span>4000MB, Disk<span style="color:#f92672">=</span>20000MB<span style="color:#f92672">)</span> ...
-🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.6 ...
-    &gt; kubelet.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
-    &gt; kubectl.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
-    &gt; kubeadm.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
-    &gt; kubeadm: 37.96 MiB / 37.96 MiB <span style="color:#f92672">[</span>---------------<span style="color:#f92672">]</span> 100.00% 3.47 MiB p/s 12s
-    &gt; kubelet: 108.01 MiB / 108.01 MiB <span style="color:#f92672">[</span>-------------<span style="color:#f92672">]</span> 100.00% 6.92 MiB p/s 16s
-    &gt; kubectl: 41.98 MiB / 41.98 MiB <span style="color:#f92672">[</span>---------------<span style="color:#f92672">]</span> 100.00% 2.31 MiB p/s 19s
-🚀  Launching Kubernetes ...
-🌟  Enabling addons: default-storageclass, storage-provisioner
-⌛  Waiting <span style="color:#66d9ef">for</span> cluster to come online ...
-🏄  Done! kubectl is now configured to use <span style="color:#e6db74">&#34;minikube&#34;</span>
-</code></pre></div><p>Check if the kubernetes cluster is up and running</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl version
-Client Version: version.Info<span style="color:#f92672">{</span>Major:<span style="color:#e6db74">&#34;1&#34;</span>, Minor:<span style="color:#e6db74">&#34;17&#34;</span>, GitVersion:<span style="color:#e6db74">&#34;v1.17.3&#34;</span>, GitCommit:<span style="color:#e6db74">&#34;06ad960bfd03b39c8310aaf92d1e7c12ce618213&#34;</span>, GitTreeState:<span style="color:#e6db74">&#34;clean&#34;</span>, BuildDate:<span style="color:#e6db74">&#34;2020-02-11T18:14:22Z&#34;</span>, GoVersion:<span style="color:#e6db74">&#34;go1.13.6&#34;</span>, Compiler:<span style="color:#e6db74">&#34;gc&#34;</span>, Platform:<span style="color:#e6db74">&#34;darwin/amd64&#34;</span><span style="color:#f92672">}</span>
-Server Version: version.Info<span style="color:#f92672">{</span>Major:<span style="color:#e6db74">&#34;1&#34;</span>, Minor:<span style="color:#e6db74">&#34;18&#34;</span>, GitVersion:<span style="color:#e6db74">&#34;v1.18.0&#34;</span>, GitCommit:<span style="color:#e6db74">&#34;9e991415386e4cf155a24b1da15becaa390438d8&#34;</span>, GitTreeState:<span style="color:#e6db74">&#34;clean&#34;</span>, BuildDate:<span style="color:#e6db74">&#34;2020-03-25T14:50:46Z&#34;</span>, GoVersion:<span style="color:#e6db74">&#34;go1.13.8&#34;</span>, Compiler:<span style="color:#e6db74">&#34;gc&#34;</span>, Platform:<span style="color:#e6db74">&#34;linux/amd64&#34;</span><span style="color:#f92672">}</span>
-
-$ kubectl get pods -n kube-system
-NAME                          READY   STATUS    RESTARTS   AGE
-coredns-66bff467f8-24swn      1/1     Running   <span style="color:#ae81ff">0</span>          15m
-coredns-66bff467f8-d5dwg      1/1     Running   <span style="color:#ae81ff">0</span>          15m
-etcd-m01                      1/1     Running   <span style="color:#ae81ff">0</span>          15m
-kube-apiserver-m01            1/1     Running   <span style="color:#ae81ff">0</span>          15m
-kube-controller-manager-m01   1/1     Running   <span style="color:#ae81ff">0</span>          15m
-kube-proxy-df68x              1/1     Running   <span style="color:#ae81ff">0</span>          15m
-kube-scheduler-m01            1/1     Running   <span style="color:#ae81ff">0</span>          15m
-storage-provisioner           1/1     Running   <span style="color:#ae81ff">1</span>          15m
-</code></pre></div><p>Now we can search for charts to install. As of this writing, <code>stable</code> chart
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ minikube start --kubernetes-version<span style="color:#f92672">=</span>v1.18.0
+</span></span><span style="display:flex;"><span>😄  minikube v1.8.2 on Darwin 10.15.3
+</span></span><span style="display:flex;"><span>✨  Automatically selected the hyperkit driver. Other choices: docker, virtualbox
+</span></span><span style="display:flex;"><span>🔥  Creating hyperkit VM <span style="color:#f92672">(</span>CPUs<span style="color:#f92672">=</span>2, Memory<span style="color:#f92672">=</span>4000MB, Disk<span style="color:#f92672">=</span>20000MB<span style="color:#f92672">)</span> ...
+</span></span><span style="display:flex;"><span>🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.6 ...
+</span></span><span style="display:flex;"><span>    &gt; kubelet.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
+</span></span><span style="display:flex;"><span>    &gt; kubectl.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
+</span></span><span style="display:flex;"><span>    &gt; kubeadm.sha256: <span style="color:#ae81ff">65</span> B / <span style="color:#ae81ff">65</span> B <span style="color:#f92672">[</span>--------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 0s
+</span></span><span style="display:flex;"><span>    &gt; kubeadm: 37.96 MiB / 37.96 MiB <span style="color:#f92672">[</span>---------------<span style="color:#f92672">]</span> 100.00% 3.47 MiB p/s 12s
+</span></span><span style="display:flex;"><span>    &gt; kubelet: 108.01 MiB / 108.01 MiB <span style="color:#f92672">[</span>-------------<span style="color:#f92672">]</span> 100.00% 6.92 MiB p/s 16s
+</span></span><span style="display:flex;"><span>    &gt; kubectl: 41.98 MiB / 41.98 MiB <span style="color:#f92672">[</span>---------------<span style="color:#f92672">]</span> 100.00% 2.31 MiB p/s 19s
+</span></span><span style="display:flex;"><span>🚀  Launching Kubernetes ...
+</span></span><span style="display:flex;"><span>🌟  Enabling addons: default-storageclass, storage-provisioner
+</span></span><span style="display:flex;"><span>⌛  Waiting <span style="color:#66d9ef">for</span> cluster to come online ...
+</span></span><span style="display:flex;"><span>🏄  Done! kubectl is now configured to use <span style="color:#e6db74">&#34;minikube&#34;</span>
+</span></span></code></pre></div><p>Check if the kubernetes cluster is up and running</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl version
+</span></span><span style="display:flex;"><span>Client Version: version.Info<span style="color:#f92672">{</span>Major:<span style="color:#e6db74">&#34;1&#34;</span>, Minor:<span style="color:#e6db74">&#34;17&#34;</span>, GitVersion:<span style="color:#e6db74">&#34;v1.17.3&#34;</span>, GitCommit:<span style="color:#e6db74">&#34;06ad960bfd03b39c8310aaf92d1e7c12ce618213&#34;</span>, GitTreeState:<span style="color:#e6db74">&#34;clean&#34;</span>, BuildDate:<span style="color:#e6db74">&#34;2020-02-11T18:14:22Z&#34;</span>, GoVersion:<span style="color:#e6db74">&#34;go1.13.6&#34;</span>, Compiler:<span style="color:#e6db74">&#34;gc&#34;</span>, Platform:<span style="color:#e6db74">&#34;darwin/amd64&#34;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>Server Version: version.Info<span style="color:#f92672">{</span>Major:<span style="color:#e6db74">&#34;1&#34;</span>, Minor:<span style="color:#e6db74">&#34;18&#34;</span>, GitVersion:<span style="color:#e6db74">&#34;v1.18.0&#34;</span>, GitCommit:<span style="color:#e6db74">&#34;9e991415386e4cf155a24b1da15becaa390438d8&#34;</span>, GitTreeState:<span style="color:#e6db74">&#34;clean&#34;</span>, BuildDate:<span style="color:#e6db74">&#34;2020-03-25T14:50:46Z&#34;</span>, GoVersion:<span style="color:#e6db74">&#34;go1.13.8&#34;</span>, Compiler:<span style="color:#e6db74">&#34;gc&#34;</span>, Platform:<span style="color:#e6db74">&#34;linux/amd64&#34;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods -n kube-system
+</span></span><span style="display:flex;"><span>NAME                          READY   STATUS    RESTARTS   AGE
+</span></span><span style="display:flex;"><span>coredns-66bff467f8-24swn      1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>coredns-66bff467f8-d5dwg      1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>etcd-m01                      1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>kube-apiserver-m01            1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>kube-controller-manager-m01   1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>kube-proxy-df68x              1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>kube-scheduler-m01            1/1     Running   <span style="color:#ae81ff">0</span>          15m
+</span></span><span style="display:flex;"><span>storage-provisioner           1/1     Running   <span style="color:#ae81ff">1</span>          15m
+</span></span></code></pre></div><p>Now we can search for charts to install. As of this writing, <code>stable</code> chart
 repository still exists along with
 <a href="https://github.com/helm/charts/#how-do-i-enable-the-incubator-repository"><code>incubator</code></a>.
 You can find the source code here - <a href="https://github.com/helm/charts/">https://github.com/helm/charts/</a> . But in the
@@ -244,90 +244,90 @@ providing that feature. I&rsquo;ll provide both the ways to search for charts - 
 locally added repositories including stable, and to search in Helm Hub. And then
 how to install them too!</p>
 <p>For searching / checking in chart repositories</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># check if you have stable repository</span>
-$ <span style="color:#75715e"># or any other repository in which you want to search in</span>
-$ helm repo list
-Error: no repositories to show
-$ <span style="color:#75715e"># or else add it</span>
-$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-<span style="color:#e6db74">&#34;stable&#34;</span> has been added to your repositories
-$ helm search repo prometheus-operator
-NAME                            CHART VERSION   APP VERSION     DESCRIPTION
-stable/prometheus-operator      8.12.3          0.37.0          Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
-</code></pre></div><p>For searching in Helm Hub</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm search hub prometheus-operator
-URL                                                     CHART VERSION   APP VERSION     DESCRIPTION
-https://hub.helm.sh/charts/choerodon/prometheus...      8.5.8           8.5.8           Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
-https://hub.helm.sh/charts/cloudposse/prometheu...      0.2.0                           Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
-https://hub.helm.sh/charts/cloudposse/prometheus        0.2.1                           Prometheus instance created by the CoreOS Prome...
-https://hub.helm.sh/charts/stable/prometheus-op...      8.12.3          0.37.0          Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
-https://hub.helm.sh/charts/bitnami/prometheus-o...      0.13.8          0.38.0          The Prometheus Operator <span style="color:#66d9ef">for</span> Kubernetes provides...
-</code></pre></div><p>Now, I&rsquo;m going to install <code>prometheus-operator</code> chart from <code>stable</code> chart
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># check if you have stable repository</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># or any other repository in which you want to search in</span>
+</span></span><span style="display:flex;"><span>$ helm repo list
+</span></span><span style="display:flex;"><span>Error: no repositories to show
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># or else add it</span>
+</span></span><span style="display:flex;"><span>$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;stable&#34;</span> has been added to your repositories
+</span></span><span style="display:flex;"><span>$ helm search repo prometheus-operator
+</span></span><span style="display:flex;"><span>NAME                            CHART VERSION   APP VERSION     DESCRIPTION
+</span></span><span style="display:flex;"><span>stable/prometheus-operator      8.12.3          0.37.0          Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
+</span></span></code></pre></div><p>For searching in Helm Hub</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ helm search hub prometheus-operator
+</span></span><span style="display:flex;"><span>URL                                                     CHART VERSION   APP VERSION     DESCRIPTION
+</span></span><span style="display:flex;"><span>https://hub.helm.sh/charts/choerodon/prometheus...      8.5.8           8.5.8           Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
+</span></span><span style="display:flex;"><span>https://hub.helm.sh/charts/cloudposse/prometheu...      0.2.0                           Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
+</span></span><span style="display:flex;"><span>https://hub.helm.sh/charts/cloudposse/prometheus        0.2.1                           Prometheus instance created by the CoreOS Prome...
+</span></span><span style="display:flex;"><span>https://hub.helm.sh/charts/stable/prometheus-op...      8.12.3          0.37.0          Provides easy monitoring definitions <span style="color:#66d9ef">for</span> Kubern...
+</span></span><span style="display:flex;"><span>https://hub.helm.sh/charts/bitnami/prometheus-o...      0.13.8          0.38.0          The Prometheus Operator <span style="color:#66d9ef">for</span> Kubernetes provides...
+</span></span></code></pre></div><p>Now, I&rsquo;m going to install <code>prometheus-operator</code> chart from <code>stable</code> chart
 repository - <a href="https://hub.helm.sh/charts/stable/prometheus-operator">https://hub.helm.sh/charts/stable/prometheus-operator</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm install prom-operator stable/prometheus-operator
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-NAME: prom-operator
-LAST DEPLOYED: Thu Mar <span style="color:#ae81ff">26</span> 20:27:10 <span style="color:#ae81ff">2020</span>
-NAMESPACE: default
-STATUS: deployed
-REVISION: <span style="color:#ae81ff">1</span>
-NOTES:
-The Prometheus Operator has been installed. Check its status by running:
-  kubectl --namespace default get pods -l <span style="color:#e6db74">&#34;release=prom-operator&#34;</span>
-
-Visit https://github.com/coreos/prometheus-operator <span style="color:#66d9ef">for</span> instructions on how
-to create &amp; configure Alertmanager and Prometheus instances using the Operator.
-</code></pre></div><p>Ignore the below info message</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
-</code></pre></div><p>I think this is due to the fact that the helm chart is trying to support both v2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ helm install prom-operator stable/prometheus-operator
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span><span style="display:flex;"><span>NAME: prom-operator
+</span></span><span style="display:flex;"><span>LAST DEPLOYED: Thu Mar <span style="color:#ae81ff">26</span> 20:27:10 <span style="color:#ae81ff">2020</span>
+</span></span><span style="display:flex;"><span>NAMESPACE: default
+</span></span><span style="display:flex;"><span>STATUS: deployed
+</span></span><span style="display:flex;"><span>REVISION: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>NOTES:
+</span></span><span style="display:flex;"><span>The Prometheus Operator has been installed. Check its status by running:
+</span></span><span style="display:flex;"><span>  kubectl --namespace default get pods -l <span style="color:#e6db74">&#34;release=prom-operator&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Visit https://github.com/coreos/prometheus-operator <span style="color:#66d9ef">for</span> instructions on how
+</span></span><span style="display:flex;"><span>to create &amp; configure Alertmanager and Prometheus instances using the Operator.
+</span></span></code></pre></div><p>Ignore the below info message</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manifest_sorter.go:192: info: skipping unknown hook: <span style="color:#e6db74">&#34;crd-install&#34;</span>
+</span></span></code></pre></div><p>I think this is due to the fact that the helm chart is trying to support both v2
 and v3, and hence the above info. <code>crd-install</code> is a concept in v2, not in v3
 though.</p>
 <p>Looks like our helm chart has been installed. Let&rsquo;s check all the resources!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm ls
-NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                      APP VERSION
-prom-operator   default         <span style="color:#ae81ff">1</span>               2020-03-26 20:27:10.579598 +0530 IST    deployed        prometheus-operator-8.12.3 0.37.0
-
-$ kubectl get pod
-NAME                                                     READY   STATUS    RESTARTS   AGE
-alertmanager-prom-operator-prometheus-o-alertmanager-0   2/2     Running   <span style="color:#ae81ff">0</span>          106s
-prom-operator-grafana-7f86956496-xj7v4                   3/3     Running   <span style="color:#ae81ff">0</span>          2m7s
-prom-operator-kube-state-metrics-6dcd4c8fbd-jtzfp        1/1     Running   <span style="color:#ae81ff">0</span>          2m7s
-prom-operator-prometheus-node-exporter-tjgz7             1/1     Running   <span style="color:#ae81ff">0</span>          2m7s
-prom-operator-prometheus-o-operator-64964d9fb7-mw467     2/2     Running   <span style="color:#ae81ff">0</span>          2m7s
-prometheus-prom-operator-prometheus-o-prometheus-0       3/3     Running   <span style="color:#ae81ff">1</span>          96s
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get crd
-NAME                                    CREATED AT
-alertmanagers.monitoring.coreos.com     2020-03-26T14:57:05Z
-podmonitors.monitoring.coreos.com       2020-03-26T14:57:05Z
-prometheuses.monitoring.coreos.com      2020-03-26T14:57:05Z
-prometheusrules.monitoring.coreos.com   2020-03-26T14:57:06Z
-servicemonitors.monitoring.coreos.com   2020-03-26T14:57:06Z
-thanosrulers.monitoring.coreos.com      2020-03-26T14:57:06Z
-</code></pre></div><p>As you can see, on installing the <code>prometheus-operator</code> chart, I have installed
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ helm ls
+</span></span><span style="display:flex;"><span>NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                      APP VERSION
+</span></span><span style="display:flex;"><span>prom-operator   default         <span style="color:#ae81ff">1</span>               2020-03-26 20:27:10.579598 +0530 IST    deployed        prometheus-operator-8.12.3 0.37.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ kubectl get pod
+</span></span><span style="display:flex;"><span>NAME                                                     READY   STATUS    RESTARTS   AGE
+</span></span><span style="display:flex;"><span>alertmanager-prom-operator-prometheus-o-alertmanager-0   2/2     Running   <span style="color:#ae81ff">0</span>          106s
+</span></span><span style="display:flex;"><span>prom-operator-grafana-7f86956496-xj7v4                   3/3     Running   <span style="color:#ae81ff">0</span>          2m7s
+</span></span><span style="display:flex;"><span>prom-operator-kube-state-metrics-6dcd4c8fbd-jtzfp        1/1     Running   <span style="color:#ae81ff">0</span>          2m7s
+</span></span><span style="display:flex;"><span>prom-operator-prometheus-node-exporter-tjgz7             1/1     Running   <span style="color:#ae81ff">0</span>          2m7s
+</span></span><span style="display:flex;"><span>prom-operator-prometheus-o-operator-64964d9fb7-mw467     2/2     Running   <span style="color:#ae81ff">0</span>          2m7s
+</span></span><span style="display:flex;"><span>prometheus-prom-operator-prometheus-o-prometheus-0       3/3     Running   <span style="color:#ae81ff">1</span>          96s
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl get crd
+</span></span><span style="display:flex;"><span>NAME                                    CREATED AT
+</span></span><span style="display:flex;"><span>alertmanagers.monitoring.coreos.com     2020-03-26T14:57:05Z
+</span></span><span style="display:flex;"><span>podmonitors.monitoring.coreos.com       2020-03-26T14:57:05Z
+</span></span><span style="display:flex;"><span>prometheuses.monitoring.coreos.com      2020-03-26T14:57:05Z
+</span></span><span style="display:flex;"><span>prometheusrules.monitoring.coreos.com   2020-03-26T14:57:06Z
+</span></span><span style="display:flex;"><span>servicemonitors.monitoring.coreos.com   2020-03-26T14:57:06Z
+</span></span><span style="display:flex;"><span>thanosrulers.monitoring.coreos.com      2020-03-26T14:57:06Z
+</span></span></code></pre></div><p>As you can see, on installing the <code>prometheus-operator</code> chart, I have installed
 the prometheus operator, prometheus, alertmanager and grafana too!</p>
 <p>Let&rsquo;s checkout the dashboard for each of them! Starting with Prometheus!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> prometheus-prom-operator-prometheus-o-prometheus-0 <span style="color:#ae81ff">9090</span>
-Forwarding from 127.0.0.1:9090 -&gt; <span style="color:#ae81ff">9090</span>
-Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:9090 -&gt; <span style="color:#ae81ff">9090</span>
-Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">9090</span>
-</code></pre></div><p>Now visit http://localhost:9090 !</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> prometheus-prom-operator-prometheus-o-prometheus-0 <span style="color:#ae81ff">9090</span>
+</span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:9090 -&gt; <span style="color:#ae81ff">9090</span>
+</span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:9090 -&gt; <span style="color:#ae81ff">9090</span>
+</span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">9090</span>
+</span></span></code></pre></div><p>Now visit http://localhost:9090 !</p>
 <p>Next, Alertmanager!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> alertmanager-prom-operator-prometheus-o-alertmanager-0 <span style="color:#ae81ff">9093</span>
-Forwarding from 127.0.0.1:9093 -&gt; <span style="color:#ae81ff">9093</span>
-Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:9093 -&gt; <span style="color:#ae81ff">9093</span>
-Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">9093</span>
-</code></pre></div><p>Now visit http://localhost:9093 !</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> alertmanager-prom-operator-prometheus-o-alertmanager-0 <span style="color:#ae81ff">9093</span>
+</span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:9093 -&gt; <span style="color:#ae81ff">9093</span>
+</span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:9093 -&gt; <span style="color:#ae81ff">9093</span>
+</span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">9093</span>
+</span></span></code></pre></div><p>Now visit http://localhost:9093 !</p>
 <p>Next up is Grafana!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> prom-operator-grafana-7f86956496-xj7v4 <span style="color:#ae81ff">3000</span>
-Forwarding from 127.0.0.1:3000 -&gt; <span style="color:#ae81ff">3000</span>
-Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:3000 -&gt; <span style="color:#ae81ff">3000</span>
-Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">3000</span>
-</code></pre></div><p>Now visit http://localhost:3000 ! The default admin username is <code>admin</code> and
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl port-forward --namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span> prom-operator-grafana-7f86956496-xj7v4 <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:3000 -&gt; <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:3000 -&gt; <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">3000</span>
+</span></span></code></pre></div><p>Now visit http://localhost:3000 ! The default admin username is <code>admin</code> and
 default admin password is <code>prom-operator</code></p>
 <p>You can visit some dashboards and check if they are working. For me some of
 them worked, some didn&rsquo;t. Like, <code>Nodes</code> dashboard worked, but <code>etcd</code> didn&rsquo;t.</p>
@@ -344,7 +344,7 @@ app - <a href="https://slack.kubernetes.io">https://slack.kubernetes.io</a></p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -380,7 +380,7 @@ app - <a href="https://slack.kubernetes.io">https://slack.kubernetes.io</a></p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

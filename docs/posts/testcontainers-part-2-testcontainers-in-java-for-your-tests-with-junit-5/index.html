@@ -9,7 +9,7 @@
     <meta name="description" content="Testcontainers is a library that helps you run Docker containers to run components for your integration tests. There&rsquo;s a Java library and there are libraries in other languages too.
 I wrote a part 1 blog post about integration tests and an introduction to Testcontainers. It didn&rsquo;t have any code examples though.
 A lot of the docs on the websites are really good for you to get started. I&rsquo;m still writing this and upcoming posts to give a bit more details based on the experience from using Testcontainers in our project.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -200,61 +200,61 @@ it :)</p>
 <p>Let me first write some code which accesses PostgreSQL. Just for the sake of an
 example, I&rsquo;m going to be running a simple SQL query which can run in any
 database</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> some_value;
-</code></pre></div><p>Let&rsquo;s see the Java code for this.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> java.sql.*<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.Properties<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStore</span> <span style="color:#f92672">{</span>
-    String jdbcUrl<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String username<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String password<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SqlDataStore</span><span style="color:#f92672">(</span>String jdbcUrl<span style="color:#f92672">,</span> String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbcUrl</span> <span style="color:#f92672">=</span> jdbcUrl<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> username<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> password<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-        Properties props <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
-        props<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">,</span> username<span style="color:#f92672">);</span>
-        props<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
-
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>Connection conn <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span>jdbcUrl<span style="color:#f92672">,</span> props<span style="color:#f92672">);</span>
-             Statement st <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();)</span> <span style="color:#f92672">{</span>
-            ResultSet rs <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span><span style="color:#a6e22e">executeQuery</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SELECT 1 as some_value&#34;</span><span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">return</span> rs<span style="color:#f92672">.</span><span style="color:#a6e22e">getInt</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-            rs<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Let&rsquo;s also see the test code I wrote for this, assuming that Postgres Server
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> some_value;
+</span></span></code></pre></div><p>Let&rsquo;s see the Java code for this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Properties<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStore</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String jdbcUrl<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String username<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String password<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SqlDataStore</span><span style="color:#f92672">(</span>String jdbcUrl<span style="color:#f92672">,</span> String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbcUrl</span> <span style="color:#f92672">=</span> jdbcUrl<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> username<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> password<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Properties props <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        props<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">,</span> username<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        props<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>Connection conn <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span>jdbcUrl<span style="color:#f92672">,</span> props<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>             Statement st <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            ResultSet rs <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span><span style="color:#a6e22e">executeQuery</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SELECT 1 as some_value&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> rs<span style="color:#f92672">.</span><span style="color:#a6e22e">getInt</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            rs<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Let&rsquo;s also see the test code I wrote for this, assuming that Postgres Server
 is running</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> java.sql.SQLException<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStoreTest</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-        SqlDataStore sqlDataStore <span style="color:#f92672">=</span>
-                <span style="color:#66d9ef">new</span> SqlDataStore<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jdbc:postgresql://localhost/postgres&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;karuppiahn&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> sqlDataStore<span style="color:#f92672">.</span><span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">();</span>
-        assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>I had Postgres Server running in my local using
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStoreTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SqlDataStore sqlDataStore <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> SqlDataStore<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jdbc:postgresql://localhost/postgres&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;karuppiahn&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> sqlDataStore<span style="color:#f92672">.</span><span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>I had Postgres Server running in my local using
 <a href="https://postgresapp.com/">PostgresApp</a> for Mac OS which had a default
 database named <code>postgres</code>. So the above test passed.</p>
 <p>Also notice how I&rsquo;m able to inject the configuration for which DB to connect to
@@ -279,42 +279,42 @@ Postgres Testcontainers Module which you can find here on Maven Central</p>
 <p><a href="https://search.maven.org/artifact/org.testcontainers/postgresql">https://search.maven.org/artifact/org.testcontainers/postgresql</a></p>
 <p>The versions are the same across all the libraries, depending upon the core
 library version. Since I&rsquo;m using gradle, I&rsquo;m adding this to the project</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testcontainers_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.15.1&#34;</span>
-
-testImplementation <span style="color:#e6db74">&#34;org.testcontainers:testcontainers:$testcontainers_version&#34;</span>
-testImplementation <span style="color:#e6db74">&#34;org.testcontainers:junit-jupiter:$testcontainers_version&#34;</span>
-testImplementation <span style="color:#e6db74">&#34;org.testcontainers:postgresql:$testcontainers_version&#34;</span>
-</code></pre></div><p>With that, let&rsquo;s get to the code now! :) The source code remains the same. Only
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> testcontainers_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.15.1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>testImplementation <span style="color:#e6db74">&#34;org.testcontainers:testcontainers:$testcontainers_version&#34;</span>
+</span></span><span style="display:flex;"><span>testImplementation <span style="color:#e6db74">&#34;org.testcontainers:junit-jupiter:$testcontainers_version&#34;</span>
+</span></span><span style="display:flex;"><span>testImplementation <span style="color:#e6db74">&#34;org.testcontainers:postgresql:$testcontainers_version&#34;</span>
+</span></span></code></pre></div><p>With that, let&rsquo;s get to the code now! :) The source code remains the same. Only
 the test code is going to change.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.containers.PostgreSQLContainer<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> java.sql.SQLException<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@Testcontainers</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStoreTest</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#a6e22e">@Container</span>
-    PostgreSQLContainer postgreSQLContainer <span style="color:#f92672">=</span>
-            <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">);</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
-        SqlDataStore sqlDataStore <span style="color:#f92672">=</span>
-                <span style="color:#66d9ef">new</span> SqlDataStore<span style="color:#f92672">(</span>postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getJdbcUrl</span><span style="color:#f92672">(),</span>
-                        postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">(),</span>
-                        postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">());</span>
-        <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> sqlDataStore<span style="color:#f92672">.</span><span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">();</span>
-        assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Ensure you have Docker Engine up and running. Check it out by running some
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.containers.PostgreSQLContainer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.sql.SQLException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Testcontainers</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SqlDataStoreTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Container</span>
+</span></span><span style="display:flex;"><span>    PostgreSQLContainer postgreSQLContainer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SqlDataStore sqlDataStore <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> SqlDataStore<span style="color:#f92672">(</span>postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getJdbcUrl</span><span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>                        postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>                        postgreSQLContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> sqlDataStore<span style="color:#f92672">.</span><span style="color:#a6e22e">runDummyQuery</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Ensure you have Docker Engine up and running. Check it out by running some
 <code>docker</code> command like <code>docker ps</code>. After ensuring that Docker is running, you
 can then run the tests and see how it runs and passes.</p>
 <p>If Docker is not running some weird short error will popup and with full
@@ -367,8 +367,8 @@ another container using an image called
 container management purposes. So, you will notice two Docker containers - one
 for Postgres, another for ryuk. You can check this out by running a command like
 the below when running the tests</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ watch docker ps
-</code></pre></div><p>You have seen the basic code for Testcontainers and also the running of a test
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ watch docker ps
+</span></span></code></pre></div><p>You have seen the basic code for Testcontainers and also the running of a test
 with it. Another part of the code we didn&rsquo;t discuss is - the DB config. The
 container variable has getter methods to get the config like username, password
 and even the JDBC URL which contains the hostname, port and even the DB name.
@@ -388,23 +388,23 @@ we will also look at some in the next section.</p>
 <p>If you want to run the DB with some specific config - for example say with a
 specific username and password, or with a specific DB name, you can do it like
 this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
-PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
-    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
-        <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
-        <span style="color:#f92672">.</span><span style="color:#a6e22e">withPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
-        <span style="color:#f92672">.</span><span style="color:#a6e22e">withDatabaseName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;random&#34;</span><span style="color:#f92672">);</span>
-</code></pre></div><p>Of course you can also use different Postgres version. You can also use
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Container</span>
+</span></span><span style="display:flex;"><span>PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">withPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">withDatabaseName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;random&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Of course you can also use different Postgres version. You can also use
 Initialization Scripts - SQL scripts, which will run when the DB starts, like
 this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Container</span>
-PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
-    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withDatabaseName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;random&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withInitScript</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;scripts/initialize-stuff.sql&#34;</span><span style="color:#f92672">);</span>
-</code></pre></div><p>This was just one example with Postgres component. Similar to this, depending
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Container</span>
+</span></span><span style="display:flex;"><span>PostgreSQLContainer<span style="color:#f92672">&lt;?&gt;</span> postgreSQLContainer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> PostgreSQLContainer<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;postgres:13-alpine&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;karuppiah&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withDatabaseName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;random&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withInitScript</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;scripts/initialize-stuff.sql&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>This was just one example with Postgres component. Similar to this, depending
 on the component, you can find similar options to configure the component with
 nice methods.</p>
 <h2 id="running-components-using-testcontainers-without-built-in-modules">Running components using Testcontainers without built-in Modules</h2>
@@ -424,62 +424,62 @@ any Docker Image. Testcontainers also helps you with the networking.</p>
 want to write tests to ensure that the integration with Redis works using
 integration tests.</p>
 <p>Let&rsquo;s see how the Java code looks like for this Redis code.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> redis.clients.jedis.Jedis<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCache</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Jedis jedis<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RedisBackedCache</span><span style="color:#f92672">(</span>String redisHost<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> port<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jedis</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Jedis<span style="color:#f92672">(</span>redisHost<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">,</span> String value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> jedis<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> jedis<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Now, how do I write a test for this using Testcontainers? I can write it like
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> redis.clients.jedis.Jedis<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCache</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Jedis jedis<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RedisBackedCache</span><span style="color:#f92672">(</span>String redisHost<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> port<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jedis</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Jedis<span style="color:#f92672">(</span>redisHost<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">,</span> String value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jedis<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jedis<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Now, how do I write a test for this using Testcontainers? I can write it like
 this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@Testcontainers</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheIntTestStep</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@Container</span>
-    <span style="color:#66d9ef">public</span> GenericContainer redis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GenericContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withExposedPorts</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@BeforeEach</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String address <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-        Integer port <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getFirstMappedPort</span><span style="color:#f92672">();</span>
-
-        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
-</span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
-
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>You can see how Redis Docker container is used by using <code>GenericContainer</code>. We
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Testcontainers</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheIntTestStep</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> GenericContainer redis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GenericContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withExposedPorts</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@BeforeEach</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String address <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Integer port <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getFirstMappedPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>You can see how Redis Docker container is used by using <code>GenericContainer</code>. We
 are still using the same annotations we used before. Here we also have some
 setup code in <code>@BeforeEach</code> instead of the test method itself, which is a bit
 different from the setup code we saw previously, but you could do it
@@ -495,8 +495,8 @@ those ports. Here we say <code>getFirstMappedPort</code> as the Generic Containe
 exposing multiple ports, in this case it&rsquo;s only one. If you have multiple
 exposed ports, to get the corresponding host port, you can use <code>getMappedPort</code>.
 For example, in this case it would be</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">)</span>
-</code></pre></div><p>There are more things you can do with all the features I mentioned, like
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>There are more things you can do with all the features I mentioned, like
 Networking. You can even do volume mounts. You can check more about what
 features you need and what Testcontainers provides. Most probably the features
 you need would be present, unless it&rsquo;s a very rare use case.</p>
@@ -514,46 +514,46 @@ away from test code.</p>
 <h2 id="keeping-testcontainers-setup-in-a-separate-class">Keeping Testcontainers setup in a separate class</h2>
 <p>If you have some sort of big setup, you can move the Testcontainers setup to a
 separate class and have code like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheIntTestStepTestSuite</span> <span style="color:#66d9ef">extends</span> RedisContainerTestSuite <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@BeforeEach</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String address <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-        Integer port <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getFirstMappedPort</span><span style="color:#f92672">();</span>
-
-        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
-</span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
-
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@Testcontainers</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisContainerTestSuite</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@Container</span>
-    <span style="color:#66d9ef">public</span> GenericContainer redis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GenericContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">)</span>
-            <span style="color:#f92672">.</span><span style="color:#a6e22e">withExposedPorts</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>The tests will still work fine :)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheIntTestStepTestSuite</span> <span style="color:#66d9ef">extends</span> RedisContainerTestSuite <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@BeforeEach</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String address <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Integer port <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span><span style="color:#a6e22e">getFirstMappedPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Container<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.junit.jupiter.Testcontainers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Testcontainers</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisContainerTestSuite</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> GenericContainer redis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GenericContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">withExposedPorts</span><span style="color:#f92672">(</span>6379<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The tests will still work fine :)</p>
 <h2 id="using-testcontainers-with-junit-extensions">Using Testcontainers with JUnit Extensions</h2>
 <p>I usually try to avoid using inheritance whenever it&rsquo;s not needed, and try to
 prefer composition. Also, Java can only support inheriting from one class, so,
@@ -577,99 +577,99 @@ is just a code example. The official docs also show an example where the
 extension is used to run a web server or a database server! So, I guess it&rsquo;s a
 pretty common use case for using Extensions.</p>
 <p>The test will now look like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheSharedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@RegisterExtension</span>
-    <span style="color:#66d9ef">static</span> SharedRedisExtension sharedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SharedRedisExtension<span style="color:#f92672">();</span>
-
-    <span style="color:#a6e22e">@BeforeEach</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String address <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-        Integer port <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
-
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
-
-        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
-</span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
-
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
-
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>The extension will look like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterAllCallback<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeAllCallback<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SharedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeAllCallback<span style="color:#f92672">,</span> AfterAllCallback <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
-            <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beforeAll</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterAll</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisContainer</span> <span style="color:#66d9ef">extends</span> GenericContainer<span style="color:#f92672">&lt;</span>RedisContainer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> REDIS_PORT <span style="color:#f92672">=</span> 6379<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RedisContainer</span><span style="color:#f92672">(</span>String dockerImageName<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>dockerImageName<span style="color:#f92672">);</span>
-        addExposedPort<span style="color:#f92672">(</span>REDIS_PORT<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>REDIS_PORT<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>There are multiple ways to use JUnit Extensions. Here I have used it
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheSharedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@RegisterExtension</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> SharedRedisExtension sharedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SharedRedisExtension<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@BeforeEach</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String address <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Integer port <span style="color:#f92672">=</span> sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sharedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The extension will look like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterAllCallback<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeAllCallback<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SharedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeAllCallback<span style="color:#f92672">,</span> AfterAllCallback <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beforeAll</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterAll</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.testcontainers.containers.GenericContainer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisContainer</span> <span style="color:#66d9ef">extends</span> GenericContainer<span style="color:#f92672">&lt;</span>RedisContainer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> REDIS_PORT <span style="color:#f92672">=</span> 6379<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RedisContainer</span><span style="color:#f92672">(</span>String dockerImageName<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>dockerImageName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        addExposedPort<span style="color:#f92672">(</span>REDIS_PORT<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getMappedPort</span><span style="color:#f92672">(</span>REDIS_PORT<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>There are multiple ways to use JUnit Extensions. Here I have used it
 programmatically. You could also use it with annotations like <code>@ExtendWith</code> and
 configure it with annotations. But using registering extensions
 programmatically helps with getting data like host, port easily. That data is
@@ -696,86 +696,86 @@ container for each test method.</p>
 <p>Below is an example of how a dedicated redis extension would like to run a
 dedicated redis container for each test method.</p>
 <p>This is the test code</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
-<span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheDedicatedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@RegisterExtension</span>
-    <span style="color:#66d9ef">static</span> DedicatedRedisExtension dedicatedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DedicatedRedisExtension<span style="color:#f92672">();</span>
-
-    <span style="color:#a6e22e">@BeforeEach</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String address <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-        Integer port <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
-
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
-
-        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
-</span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
-
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertNull<span style="color:#f92672">(</span>retrieved<span style="color:#f92672">);</span>
-
-        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
-
-        retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
-        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>This is the dedicated extension code</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterEachCallback<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeEachCallback<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DedicatedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeEachCallback<span style="color:#f92672">,</span> AfterEachCallback <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
-            <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
-
-    String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beforeEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Notice how we stop the redis container after each test method using the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.BeforeEach<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.RegisterExtension<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertEquals<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.junit.jupiter.api.Assertions.assertNull<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisBackedCacheDedicatedExtensionBasedSetupTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> RedisBackedCache underTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@RegisterExtension</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> DedicatedRedisExtension dedicatedRedisExtension <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DedicatedRedisExtension<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@BeforeEach</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String address <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Integer port <span style="color:#f92672">=</span> dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dedicatedRedisExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Now we have an address and port for Redis, no matter where it is running
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        underTest <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisBackedCache<span style="color:#f92672">(</span>address<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;example&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anotherTestForSimplePutAndGet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertNull<span style="color:#f92672">(</span>retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        retrieved <span style="color:#f92672">=</span> underTest<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;anotherExample&#34;</span><span style="color:#f92672">,</span> retrieved<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>This is the dedicated extension code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> testcontainers.demo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.AfterEachCallback<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.BeforeEachCallback<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.Extension<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.extension.ExtensionContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DedicatedRedisExtension</span> <span style="color:#66d9ef">implements</span> Extension<span style="color:#f92672">,</span> BeforeEachCallback<span style="color:#f92672">,</span> AfterEachCallback <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> RedisContainer redisContainer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> RedisContainer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;redis:5.0.3-alpine&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">getHost</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getHost</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Integer <span style="color:#a6e22e">getPort</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beforeEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getContainerID</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">getContainerId</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterEach</span><span style="color:#f92672">(</span>ExtensionContext context<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        redisContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">stop</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Notice how we stop the redis container after each test method using the
 <code>afterEach</code> method in the extension? If we do not do this, the test methods
 will keep using the same redis container. How? The <code>start</code> method does get
 executed every time a test method runs because of the Before Each call, but
@@ -810,7 +810,7 @@ problem :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -846,7 +846,7 @@ problem :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

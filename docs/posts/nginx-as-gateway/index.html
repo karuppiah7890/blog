@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
- Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -">
-    <meta name="generator" content="Hugo 0.90.1" />
+Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak The user experience for the user accessing the web app looked something like this -">
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -31,7 +31,7 @@ Given we have all this, initially we were exposing these through the same URL bu
     <meta property="og:title" content="Nginx as Gateway" />
 <meta property="og:description" content="In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
- Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -" />
+Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak The user experience for the user accessing the web app looked something like this -" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-18T08:46:20+05:30" />
@@ -40,14 +40,14 @@ Given we have all this, initially we were exposing these through the same URL bu
 <meta itemprop="name" content="Nginx as Gateway">
 <meta itemprop="description" content="In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
- Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -"><meta itemprop="datePublished" content="2020-09-18T08:46:20+05:30" />
+Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak The user experience for the user accessing the web app looked something like this -"><meta itemprop="datePublished" content="2020-09-18T08:46:20+05:30" />
 <meta itemprop="dateModified" content="2020-09-18T08:46:20+05:30" />
 <meta itemprop="wordCount" content="1708">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nginx as Gateway"/>
 <meta name="twitter:description" content="In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
- Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -"/>
+Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak The user experience for the user accessing the web app looked something like this -"/>
 
       
     
@@ -260,27 +260,27 @@ Mac, you can do <code>brew install nginx</code></p>
 <p>Nginx looks for it&rsquo;s config files usually in a specific directory, but you can
 specify the config file and other path while starting Nginx too.</p>
 <p>I&rsquo;m using Docker to run Nginx like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># runs nginx in the background</span>
-$ docker run -d --name nginx -p 8080:80 nginx:1.19-alpine
-$ <span style="color:#75715e"># to check the logs</span>
-$ docker logs -f nginx
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># getting inside the container, where nginx is running</span>
-$ docker exec -it nginx sh
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># environment where nginx is installed</span>
-$ ls /etc/nginx
-conf.d          fastcgi_params  koi-win         modules         scgi_params     win-utf
-fastcgi.conf    koi-utf         mime.types      nginx.conf      uwsgi_params
-$ <span style="color:#75715e"># the config file is this</span>
-$ ls /etc/nginx/nginx.conf
-/etc/nginx/nginx.conf
-</code></pre></div><p>We will be putting our sub config files in here - <code>/etc/nginx/conf.d</code>. You can
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># runs nginx in the background</span>
+</span></span><span style="display:flex;"><span>$ docker run -d --name nginx -p 8080:80 nginx:1.19-alpine
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># to check the logs</span>
+</span></span><span style="display:flex;"><span>$ docker logs -f nginx
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># getting inside the container, where nginx is running</span>
+</span></span><span style="display:flex;"><span>$ docker exec -it nginx sh
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># environment where nginx is installed</span>
+</span></span><span style="display:flex;"><span>$ ls /etc/nginx
+</span></span><span style="display:flex;"><span>conf.d          fastcgi_params  koi-win         modules         scgi_params     win-utf
+</span></span><span style="display:flex;"><span>fastcgi.conf    koi-utf         mime.types      nginx.conf      uwsgi_params
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># the config file is this</span>
+</span></span><span style="display:flex;"><span>$ ls /etc/nginx/nginx.conf
+</span></span><span style="display:flex;"><span>/etc/nginx/nginx.conf
+</span></span></code></pre></div><p>We will be putting our sub config files in here - <code>/etc/nginx/conf.d</code>. You can
 notice in <code>/etc/nginx/nginx.conf</code> contents, the line</p>
 <pre tabindex="0"><code>include /etc/nginx/conf.d/*.conf;
 </code></pre><p>So, all the config files in <code>/etc/nginx/conf.d</code> with extension <code>.conf</code> will be
 included and processed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls /etc/nginx/conf.d/default.conf
-/etc/nginx/conf.d/default.conf
-</code></pre></div><p>The default config file looks like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls /etc/nginx/conf.d/default.conf
+</span></span><span style="display:flex;"><span>/etc/nginx/conf.d/default.conf
+</span></span></code></pre></div><p>The default config file looks like this</p>
 <pre tabindex="0"><code>server {
     listen       80;
     listen  [::]:80;
@@ -319,8 +319,8 @@ included and processed.</p>
     #    include        fastcgi_params;
     #}
 
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
+    # deny access to .htaccess files, if Apache&#39;s document root
+    # concurs with nginx&#39;s one
     #
     #location ~ /\.ht {
     #    deny  all;
@@ -434,7 +434,7 @@ Nginx is just too simple :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -470,7 +470,7 @@ Nginx is just too simple :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

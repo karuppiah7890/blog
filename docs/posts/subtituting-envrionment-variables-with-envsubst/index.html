@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR; $ man envsubst Online man page - https://www.man7.org/linux/man-pages/man1/envsubst.1.html
 $ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format too histsize: $HISTSIZE home: ${HOME} user: ${USER} $ cat sample.template.yaml | envsubst &#39;$SHELL ${HISTSIZE}&#39; &gt; sample.yaml $ cat sample.yaml shell: /bin/bash # notice how we can use ${} format too histsize: 50000 home: ${HOME} user: ${USER} Longer version Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -158,22 +158,22 @@ $ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format to
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="tldr">TLDR;</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
-</code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
-shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
-histsize: $HISTSIZE
-home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
-user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
-
-$ cat sample.template.yaml | envsubst <span style="color:#e6db74">&#39;$SHELL ${HISTSIZE}&#39;</span>  &gt; sample.yaml
-
-$ cat sample.yaml 
-shell: /bin/bash <span style="color:#75715e"># notice how we can use ${} format too</span>
-histsize: <span style="color:#ae81ff">50000</span>
-home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
-user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
-</code></pre></div><h2 id="longer-version">Longer version</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ man envsubst
+</span></span></code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat sample.template.yaml 
+</span></span><span style="display:flex;"><span>shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
+</span></span><span style="display:flex;"><span>histsize: $HISTSIZE
+</span></span><span style="display:flex;"><span>home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.template.yaml | envsubst <span style="color:#e6db74">&#39;$SHELL ${HISTSIZE}&#39;</span>  &gt; sample.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: /bin/bash <span style="color:#75715e"># notice how we can use ${} format too</span>
+</span></span><span style="display:flex;"><span>histsize: <span style="color:#ae81ff">50000</span>
+</span></span><span style="display:flex;"><span>home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+</span></span></code></pre></div><h2 id="longer-version">Longer version</h2>
 <p>Me and my team mate are working on writing some automation scripts to automatically run some commands which can bootstrap a kubernetes cluster. One of the requirements we had was - injecting secrets in a YAML file</p>
 <p>It&rsquo;s never a good practice to store secrets in plain text in a file and then commit it in a Version Control System. I wrote a blog about it recently - <a href="https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/">https://karuppiah7890.github.io/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/</a></p>
 <p>For this reason, my team mate was following one of the best practices - which is to use environment variables in different places of the code - wherever the secrets are required. And then injecting secrets at runtime using the same environment variables</p>
@@ -183,122 +183,122 @@ user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</sp
 <p>I had requested my team mate to checkout <code>envsubst</code> since I had used it before and felt it was pretty handy and cool. I think he tried out different ways and later mentioned <code>envsubst</code> was what he finally chose</p>
 <p>Let&rsquo;s look at what is <code>envsubst</code> and how it helps in our use case</p>
 <p><code>envsubst</code> is a tool to substitute environment variables with their values. Let&rsquo;s look at a very basic example</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Note the single quotes. Don&#39;t use double quotes or the shell will substitute</span>
-<span style="color:#75715e"># the environment variable before envsubst tool can</span>
-$ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span>
-<span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span>
-
-$ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span> | envsubst 
-/bin/bash
-</code></pre></div><p>Notice how <code>envsubst</code> reads from the standard input and substitutes the environment variable <code>${SHELL}</code> with it&rsquo;s value <code>/bin/bash</code> which is my shell</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Note the single quotes. Don&#39;t use double quotes or the shell will substitute</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the environment variable before envsubst tool can</span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;${SHELL}&#39;</span> | envsubst 
+</span></span><span style="display:flex;"><span>/bin/bash
+</span></span></code></pre></div><p>Notice how <code>envsubst</code> reads from the standard input and substitutes the environment variable <code>${SHELL}</code> with it&rsquo;s value <code>/bin/bash</code> which is my shell</p>
 <p>This was just a basic example. <code>envsubst</code> works by using the standard input and standard output in general</p>
 <p>For us to replace environment variables in a file, below are some ways to do it</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi sample.yaml
-
-$ cat sample.yaml
-shell: $SHELL
-
-$ cat sample.yaml | envsubst 
-shell: /bin/bash
-
-$ cat sample.yaml 
-shell: $SHELL
-
-<span style="color:#75715e"># another way</span>
-$ envsubst &lt; sample.yaml 
-shell: /bin/bash
-
-$ cat sample.yaml 
-shell: $SHELL
-</code></pre></div><p>So, now we have seen how the input is given with files. These are generic examples of how shell users generally give file input in the form of standard input to programs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ vi sample.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml
+</span></span><span style="display:flex;"><span>shell: $SHELL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml | envsubst 
+</span></span><span style="display:flex;"><span>shell: /bin/bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: $SHELL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># another way</span>
+</span></span><span style="display:flex;"><span>$ envsubst &lt; sample.yaml 
+</span></span><span style="display:flex;"><span>shell: /bin/bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: $SHELL
+</span></span></code></pre></div><p>So, now we have seen how the input is given with files. These are generic examples of how shell users generally give file input in the form of standard input to programs.</p>
 <p>Notice how the sample.yaml hasn&rsquo;t changed though? Now, we need the output back in the same file. Since the output goes to standard output, let&rsquo;s use some standard shell features to store it back in the file</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.yaml 
-shell: $SHELL
-
-$ envsubst &lt; sample.yaml &gt; sample.yaml.output
-
-$ cat sample.yaml 
-shell: $SHELL
-
-$ cat sample.yaml.output 
-shell: /bin/bash
-
-$ cat sample.yaml.output &gt; sample.yaml
-
-$ cat sample.yaml
-shell: /bin/bash
-</code></pre></div><p>You can use other tools and simple shell features to store the output in a file - same or different</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: $SHELL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ envsubst &lt; sample.yaml &gt; sample.yaml.output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: $SHELL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml.output 
+</span></span><span style="display:flex;"><span>shell: /bin/bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml.output &gt; sample.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml
+</span></span><span style="display:flex;"><span>shell: /bin/bash
+</span></span></code></pre></div><p>You can use other tools and simple shell features to store the output in a file - same or different</p>
 <p><code>envsubst</code> also has some more features. I think two more. I&rsquo;m gonna talk about one of them. So, apart from substituting environment variables, you can also mention exactly which environment variables need to be substituted, and others will be left out without substitution. See below for an example</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat sample.template.yaml 
-shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
-histsize: $HISTSIZE
-home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
-user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
-
-$ cat sample.template.yaml | envsubst <span style="color:#e6db74">&#39;$SHELL ${HISTSIZE}&#39;</span>  &gt; sample.yaml
-
-$ cat sample.yaml 
-shell: /bin/bash <span style="color:#75715e"># notice how we can use ${} format too</span>
-histsize: <span style="color:#ae81ff">50000</span>
-home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
-user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
-</code></pre></div><p>Notice how only <code>SHELL</code> and <code>HISTSIZE</code> environment variables got substituted? Also note the usage of <code>${HISTSIZE}</code> and <code>$HISTSIZE</code>. The <code>${}</code> and <code>$</code>, both formats can be used to mention the environment variable names in the inputs - in standard input and in the <code>envsubst</code> command line arguments</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat sample.template.yaml 
+</span></span><span style="display:flex;"><span>shell: <span style="color:#e6db74">${</span>SHELL<span style="color:#e6db74">}</span> <span style="color:#75715e"># notice how we can use ${} format too</span>
+</span></span><span style="display:flex;"><span>histsize: $HISTSIZE
+</span></span><span style="display:flex;"><span>home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.template.yaml | envsubst <span style="color:#e6db74">&#39;$SHELL ${HISTSIZE}&#39;</span>  &gt; sample.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat sample.yaml 
+</span></span><span style="display:flex;"><span>shell: /bin/bash <span style="color:#75715e"># notice how we can use ${} format too</span>
+</span></span><span style="display:flex;"><span>histsize: <span style="color:#ae81ff">50000</span>
+</span></span><span style="display:flex;"><span>home: <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>user: <span style="color:#e6db74">${</span>USER<span style="color:#e6db74">}</span>
+</span></span></code></pre></div><p>Notice how only <code>SHELL</code> and <code>HISTSIZE</code> environment variables got substituted? Also note the usage of <code>${HISTSIZE}</code> and <code>$HISTSIZE</code>. The <code>${}</code> and <code>$</code>, both formats can be used to mention the environment variable names in the inputs - in standard input and in the <code>envsubst</code> command line arguments</p>
 <p>You want to read more on <code>envsubst</code>? You can checkout the help of <code>envsubst</code> to get some more details -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ envsubst --help
-Usage: envsubst <span style="color:#f92672">[</span>OPTION<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SHELL-FORMAT<span style="color:#f92672">]</span>
-
-Substitutes the values of environment variables.
-
-Operation mode:
-  -v, --variables             output the variables occurring in SHELL-FORMAT
-
-Informative output:
-  -h, --help                  display this help and exit
-  -V, --version               output version information and exit
-
-In normal operation mode, standard input is copied to standard output,
-with references to environment variables of the form $VARIABLE or <span style="color:#e6db74">${</span>VARIABLE<span style="color:#e6db74">}</span>
-being replaced with the corresponding values.  If a SHELL-FORMAT is given,
-only those environment variables that are referenced in SHELL-FORMAT are
-substituted; otherwise all environment variables references occurring in
-standard input are substituted.
-
-When --variables is used, standard input is ignored, and the output consists
-of the environment variables that are referenced in SHELL-FORMAT, one per line.
-
-Report bugs in the bug tracker at &lt;https://savannah.gnu.org/projects/gettext&gt;
-or by email to &lt;bug-gettext@gnu.org&gt;.
-</code></pre></div><p>There&rsquo;s also a man(ual) page for it</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ man envsubst
-</code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ envsubst --help
+</span></span><span style="display:flex;"><span>Usage: envsubst <span style="color:#f92672">[</span>OPTION<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SHELL-FORMAT<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Substitutes the values of environment variables.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Operation mode:
+</span></span><span style="display:flex;"><span>  -v, --variables             output the variables occurring in SHELL-FORMAT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Informative output:
+</span></span><span style="display:flex;"><span>  -h, --help                  display this help and exit
+</span></span><span style="display:flex;"><span>  -V, --version               output version information and exit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In normal operation mode, standard input is copied to standard output,
+</span></span><span style="display:flex;"><span>with references to environment variables of the form $VARIABLE or <span style="color:#e6db74">${</span>VARIABLE<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>being replaced with the corresponding values.  If a SHELL-FORMAT is given,
+</span></span><span style="display:flex;"><span>only those environment variables that are referenced in SHELL-FORMAT are
+</span></span><span style="display:flex;"><span>substituted; otherwise all environment variables references occurring in
+</span></span><span style="display:flex;"><span>standard input are substituted.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>When --variables is used, standard input is ignored, and the output consists
+</span></span><span style="display:flex;"><span>of the environment variables that are referenced in SHELL-FORMAT, one per line.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Report bugs in the bug tracker at &lt;https://savannah.gnu.org/projects/gettext&gt;
+</span></span><span style="display:flex;"><span>or by email to &lt;bug-gettext@gnu.org&gt;.
+</span></span></code></pre></div><p>There&rsquo;s also a man(ual) page for it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ man envsubst
+</span></span></code></pre></div><p>Online man page - <a href="https://www.man7.org/linux/man-pages/man1/envsubst.1.html">https://www.man7.org/linux/man-pages/man1/envsubst.1.html</a></p>
 <p>If you use <a href="https://tldr.sh/"><code>tldr</code></a> tool, that can also help</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tldr envsubst
-
-envsubst
-
-Substitutes environment variables with their value in shell format strings.
-Variables to be replaced should be in either <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span>var<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> or <span style="color:#e6db74">`</span>$var<span style="color:#e6db74">`</span> format.
-More information: &lt;https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html&gt;.
-
-- Replace environment variables in stdin and output to stdout:
-    echo <span style="color:#e6db74">&#39;$HOME&#39;</span> | envsubst
-
-- Replace environment variables in an input file and output to stdout:
-    envsubst &lt; path/to/input_file
-
-- Replace environment variables in an input file and output to a file:
-    envsubst &lt; path/to/input_file &gt; path/to/output_file
-
-- Replace environment variables in an input file from a space-separated list:
-    envsubst <span style="color:#e6db74">&#39;$USER $SHELL $HOME&#39;</span> &lt; path/to/input_file
-</code></pre></div><ul class="pa0">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tldr envsubst
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>envsubst
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Substitutes environment variables with their value in shell format strings.
+</span></span><span style="display:flex;"><span>Variables to be replaced should be in either <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span>var<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> or <span style="color:#e6db74">`</span>$var<span style="color:#e6db74">`</span> format.
+</span></span><span style="display:flex;"><span>More information: &lt;https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html&gt;.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Replace environment variables in stdin and output to stdout:
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;$HOME&#39;</span> | envsubst
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Replace environment variables in an input file and output to stdout:
+</span></span><span style="display:flex;"><span>    envsubst &lt; path/to/input_file
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Replace environment variables in an input file and output to a file:
+</span></span><span style="display:flex;"><span>    envsubst &lt; path/to/input_file &gt; path/to/output_file
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Replace environment variables in an input file from a space-separated list:
+</span></span><span style="display:flex;"><span>    envsubst <span style="color:#e6db74">&#39;$USER $SHELL $HOME&#39;</span> &lt; path/to/input_file
+</span></span></code></pre></div><ul class="pa0">
   
 </ul>
 <div class="mt6 instapaper_ignoref">
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -334,7 +334,7 @@ More information: &lt;https://www.gnu.org/software/gettext/manual/html_node/envs
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

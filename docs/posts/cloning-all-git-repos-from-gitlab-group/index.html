@@ -6,8 +6,8 @@
     
     <title>Cloning All Git Repos From GitLab Group | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="description" content="tldr; $ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \ &#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group.">
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -27,19 +27,19 @@
     
     
     <meta property="og:title" content="Cloning All Git Repos From GitLab Group" />
-<meta property="og:description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group." />
+<meta property="og:description" content="tldr; $ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \ &#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-04-19T07:35:13+05:30" />
 <meta property="article:modified_time" content="2020-04-19T07:35:13+05:30" />
 
 <meta itemprop="name" content="Cloning All Git Repos From GitLab Group">
-<meta itemprop="description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."><meta itemprop="datePublished" content="2020-04-19T07:35:13+05:30" />
+<meta itemprop="description" content="tldr; $ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \ &#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."><meta itemprop="datePublished" content="2020-04-19T07:35:13+05:30" />
 <meta itemprop="dateModified" content="2020-04-19T07:35:13+05:30" />
 <meta itemprop="wordCount" content="653">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloning All Git Repos From GitLab Group"/>
-<meta name="twitter:description" content="tldr; $ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \ &quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."/>
+<meta name="twitter:description" content="tldr; $ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \ &#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&rsquo;s GitLab group."/>
 
       
     
@@ -154,13 +154,13 @@
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="tldr">tldr;</h2>
-<pre tabindex="0"><code>$ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \
-&quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \
-'map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })'
+<pre tabindex="0"><code>$ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \
+&#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \
+&#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39;
 
-$ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {}
+$ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {}
 $ # OR
-$ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {}
+$ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {}
 </code></pre><h2 id="longer-version">Longer version</h2>
 <p>I have joined a new project. My use case was to clone all the repositories
 in our team&rsquo;s GitLab group. Ideally I&rsquo;m expecting a feature in
@@ -182,8 +182,8 @@ saying :P</p>
 <h3 id="listed-and-stored-the-repositories-information-i-needed">Listed and stored the repositories information I needed</h3>
 <p>Now I used the API and listed the repositories / projects like this using
 <a href="https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects">list group projects api</a></p>
-<pre tabindex="0"><code>$ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \
-&quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot;
+<pre tabindex="0"><code>$ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \
+&#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34;
 </code></pre><p>Make sure <code>GITLAB_TOKEN</code> has your personal access token stored in it. <code>gitlab-url</code>
 is the GitLab instance URL - based on if it&rsquo;s a public instance or private
 instance that you host yourself. <code>group-id</code> you can get by checking the web UI
@@ -195,14 +195,14 @@ find out the ID from the response with the name of the group.</p>
 in this case is the url to the repo which I can use to clone. I&rsquo;m also going
 to simply get the id and name of the repo too. I&rsquo;m using
 <a href="https://stedolan.github.io/jq/"><code>jq</code></a> for this purpose like this</p>
-<pre tabindex="0"><code>$ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \
-&quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \
-'map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })'
+<pre tabindex="0"><code>$ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \
+&#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \
+&#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39;
 </code></pre><p>I have got both the urls - ssh and http. This way you could use whatever you
 want. Now, let&rsquo;s write this information into a JSON file!</p>
-<pre tabindex="0"><code>$ curl -H &quot;PRIVATE-TOKEN: $GITLAB_TOKEN&quot; \
-&quot;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&quot; | jq \
-'map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })' &gt; projects.json
+<pre tabindex="0"><code>$ curl -H &#34;PRIVATE-TOKEN: $GITLAB_TOKEN&#34; \
+&#34;https://&lt;gitlab-url&gt;/api/v4/groups/&lt;group-id&gt;/projects?per_page=100&#34; | jq \
+&#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; &gt; projects.json
 </code></pre><p>Note: You can also use <code>jq</code> to filter out possible repos you might not need, for
 example any repo with the word <code>test</code> in it. <code>jq</code> has exceptional processing
 capabilities for processing JSON! :) In my case I wanted to clone all, so I
@@ -210,9 +210,9 @@ didn&rsquo;t do anything of that sort here</p>
 <h3 id="cloned-the-repostories">Cloned the repostories</h3>
 <p>Now I just used some more automation to clone the repositories like this, since
 I used HTTP URL to clone git repositories</p>
-<pre tabindex="0"><code>$ cat projects.json | jq &quot;.[].http_url&quot; -r | xargs -I {} git clone {}
+<pre tabindex="0"><code>$ cat projects.json | jq &#34;.[].http_url&#34; -r | xargs -I {} git clone {}
 </code></pre><p>For SSH URL, you could do this</p>
-<pre tabindex="0"><code>$ cat projects.json | jq &quot;.[].ssh_url&quot; -r | xargs -I {} git clone {}
+<pre tabindex="0"><code>$ cat projects.json | jq &#34;.[].ssh_url&#34; -r | xargs -I {} git clone {}
 </code></pre><p>Also, note that <code>git clone</code> will not clone to an existing non-empty directory,
 so you don&rsquo;t have to worry about overwriting any existing files for that matter!</p>
 <hr>
@@ -225,7 +225,7 @@ my local machine! :) Have any questions? Shoot away! :D</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -261,7 +261,7 @@ my local machine! :) Have any questions? Shoot away! :D</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

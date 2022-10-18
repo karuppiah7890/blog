@@ -7,7 +7,7 @@
     <title>I Chose Simplicity. I Chose Empathy | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Recently I was writing this code for a JSON REST API. We were adding an extra field to our API structure, for a resource. For the sake of simplicity let&rsquo;s assume we were building an API to store rich text in our database. The size of this rich text was small, like 500 characters, that&rsquo;s it. And let&rsquo;s say we came up with some simple solutions on how to store the rich text.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -159,24 +159,24 @@ assume we were building an API to store rich text in our database. The size of
 this rich text was small, like 500 characters, that&rsquo;s it. And let&rsquo;s say we came
 up with some simple solutions on how to store the rich text. And finally, the
 below is what we decided the structure would look like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;textContents&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;PLAIN_TEXT&#34;</span>,
-            <span style="color:#f92672">&#34;plainText&#34;</span>: <span style="color:#e6db74">&#34;hi, what&#39;s up? check this link &#34;</span>
-        },
-        {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;LINK_TEXT&#34;</span>,
-            <span style="color:#f92672">&#34;linkInfo&#34;</span>: {
-                <span style="color:#f92672">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;https://distinguisheddevs.com/&#34;</span>,
-                <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;2148&#34;</span>,
-                <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Distinguished Devs&#34;</span>,
-                <span style="color:#f92672">&#34;previewImage&#34;</span>: <span style="color:#e6db74">&#34;https://distinguisheddevs.com/static/media/logo_transparent_bg.3ef148d2.png&#34;</span>
-            }
-        }
-    ]
-}
-</code></pre></div><p>So, if you notice, we have different kinds of text. For showing the text in the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;textContents&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;PLAIN_TEXT&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;plainText&#34;</span>: <span style="color:#e6db74">&#34;hi, what&#39;s up? check this link &#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;LINK_TEXT&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;linkInfo&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;link&#34;</span>: <span style="color:#e6db74">&#34;https://distinguisheddevs.com/&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;2148&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Distinguished Devs&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;previewImage&#34;</span>: <span style="color:#e6db74">&#34;https://distinguisheddevs.com/static/media/logo_transparent_bg.3ef148d2.png&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, if you notice, we have different kinds of text. For showing the text in the
 view, we need to concatenate them and then render it in our view.
 So, the above is kind of like a heterogeneous array. Since, the array elements
 have different keys. A plain text element will have <code>PLAIN_TEXT</code> type and have
@@ -197,21 +197,21 @@ it in a single line with <code>json.Unmarshal()</code> and nothing else. And the
 processing, used if statement to find the type of the element and then
 accordingly use the fields. To give a gist, based on the example, this is what
 the types looked like -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContent</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">ContentType</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;type&#34;`</span>
-	<span style="color:#a6e22e">PlainText</span>   <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">LinkInfo</span>    <span style="color:#a6e22e">LinkInfo</span>
-}
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">LinkInfo</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Link</span>         <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">ID</span>           <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;id&#34;`</span>
-	<span style="color:#a6e22e">Title</span>        <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">PreviewImage</span> <span style="color:#66d9ef">string</span>
-}
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContents</span> []<span style="color:#a6e22e">TextContent</span>
-</code></pre></div><p>I just had this one nagging thing. I wanted to make sure that the design is
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContent</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ContentType</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;type&#34;`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">PlainText</span>   <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LinkInfo</span>    <span style="color:#a6e22e">LinkInfo</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">LinkInfo</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Link</span>         <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ID</span>           <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;id&#34;`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Title</span>        <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">PreviewImage</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TextContents</span> []<span style="color:#a6e22e">TextContent</span>
+</span></span></code></pre></div><p>I just had this one nagging thing. I wanted to make sure that the design is
 such that one can only access fields based on the type. Or else it&rsquo;s just
 bringing in extra fields and mixing them up and possibly creating issues at the
 design level. As you can see above, <code>TextContent</code> has both the fields <code>LinkInfo</code>
@@ -274,7 +274,7 @@ possible if you put your energy into it! :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -310,7 +310,7 @@ possible if you put your energy into it! :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

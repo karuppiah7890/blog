@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="In my current project, we work with Spring Boot. Recently, I was writing a Data Transfer Object (DTO) and we also had to add validations to the fields. Usually, while doing this, we also add tests to ensure that in the future we don&rsquo;t remove or change the validations by mistake and instead it&rsquo;s more intentional as we have to also change the tests.
 Some more context - we are writing Web APIs.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -167,78 +167,78 @@ controller that was responsible for handling the API request. Invoking through
 method or by using Spring MockMvc and writing tests at API level. The method in
 the controller took care of validating the DTO. The code looked something like
 this -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserController.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.web.bind.annotation.PostMapping<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.web.bind.annotation.RequestBody<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.web.bind.annotation.RestController<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> javax.validation.Valid<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@RestController</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span>path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/users&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createUser</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Valid</span> <span style="color:#a6e22e">@RequestBody</span> UserDto userDto<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">// create a user using the UserService
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// UserDto.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> lombok.AllArgsConstructor<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> lombok.Data<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> lombok.NoArgsConstructor<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> javax.validation.constraints.NotNull<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@Data</span>
-<span style="color:#a6e22e">@NoArgsConstructor</span>
-<span style="color:#a6e22e">@AllArgsConstructor</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDto</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@NotNull</span>
-    <span style="color:#66d9ef">private</span> String username<span style="color:#f92672">;</span>
-    <span style="color:#a6e22e">@NotNull</span>
-    <span style="color:#66d9ef">private</span> String email<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> com.fasterxml.jackson.core.JsonProcessingException<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> com.fasterxml.jackson.databind.ObjectMapper<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.boot.test.context.SpringBootTest<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.http.MediaType<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.springframework.test.web.servlet.MockMvc<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post<span style="color:#f92672">;</span>
-<span style="color:#f92672">import static</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers.status<span style="color:#f92672">;</span>
-
-<span style="color:#a6e22e">@AutoConfigureMockMvc</span>
-<span style="color:#a6e22e">@SpringBootTest</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserControllerTest</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@Autowired</span>
-    <span style="color:#66d9ef">private</span> MockMvc mockMvc<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ObjectMapper objectMapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectMapper<span style="color:#f92672">();</span>
-
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">givenAnInvalidUserDtoShouldThrowError</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        UserDto userDto <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UserDto<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;something@gmail.com&#34;</span><span style="color:#f92672">);</span>
-        mockMvc<span style="color:#f92672">.</span><span style="color:#a6e22e">perform</span><span style="color:#f92672">(</span>post<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/users&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">contentType</span><span style="color:#f92672">(</span>MediaType<span style="color:#f92672">.</span><span style="color:#a6e22e">APPLICATION_JSON</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">content</span><span style="color:#f92672">(</span>toJson<span style="color:#f92672">(</span>userDto<span style="color:#f92672">)))</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">andExpect</span><span style="color:#f92672">(</span>status<span style="color:#f92672">().</span><span style="color:#a6e22e">isBadRequest</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">toJson</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> JsonProcessingException <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> objectMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">writeValueAsString</span><span style="color:#f92672">(</span>obj<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>I&rsquo;m not going to get too much into the controller test code. But if you see
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// UserController.java
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.PostMapping<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.RequestBody<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.RestController<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.Valid<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span>path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/users&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createUser</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Valid</span> <span style="color:#a6e22e">@RequestBody</span> UserDto userDto<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// create a user using the UserService
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// UserDto.java
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.AllArgsConstructor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.Data<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.NoArgsConstructor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.constraints.NotNull<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Data</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@NoArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@AllArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDto</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@NotNull</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String username<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@NotNull</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String email<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.dtovalidation.controllers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.dtovalidation.dtos.UserDto<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.fasterxml.jackson.core.JsonProcessingException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.fasterxml.jackson.databind.ObjectMapper<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.boot.test.context.SpringBootTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.http.MediaType<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.test.web.servlet.MockMvc<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers.status<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@AutoConfigureMockMvc</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootTest</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserControllerTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> MockMvc mockMvc<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ObjectMapper objectMapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectMapper<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">givenAnInvalidUserDtoShouldThrowError</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        UserDto userDto <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UserDto<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;something@gmail.com&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        mockMvc<span style="color:#f92672">.</span><span style="color:#a6e22e">perform</span><span style="color:#f92672">(</span>post<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/users&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">contentType</span><span style="color:#f92672">(</span>MediaType<span style="color:#f92672">.</span><span style="color:#a6e22e">APPLICATION_JSON</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">content</span><span style="color:#f92672">(</span>toJson<span style="color:#f92672">(</span>userDto<span style="color:#f92672">)))</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">andExpect</span><span style="color:#f92672">(</span>status<span style="color:#f92672">().</span><span style="color:#a6e22e">isBadRequest</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">toJson</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> JsonProcessingException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> objectMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">writeValueAsString</span><span style="color:#f92672">(</span>obj<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>I&rsquo;m not going to get too much into the controller test code. But if you see
 above, there&rsquo;s just one test with one scenario of invalid DTO - username
 missing. There could be more cases in your DTO. Here, there&rsquo;s one more - email
 missing, and then for valid DTO, we need one test. But you get the drill,
@@ -292,70 +292,70 @@ it&rsquo;s <a href="https://beanvalidation.org/2.0/">reference implementation</a
 <a href="https://hibernate.org/validator/">Hibernate Validator</a>. Specifically this
 guide about <a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-validating-bean-constraints">Validating Bean Constraints</a></p>
 <p>You can see the code below</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> lombok.SneakyThrows<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.params.ParameterizedTest<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.params.provider.Arguments<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.junit.jupiter.params.provider.MethodSource<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import</span> javax.validation.ConstraintViolation<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> javax.validation.Validation<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> javax.validation.Validator<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> javax.validation.ValidatorFactory<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.lang.reflect.Field<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.Set<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.stream.Stream<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">import static</span> org.assertj.core.api.Assertions.assertThat<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDtoValidationTest</span> <span style="color:#f92672">{</span>
-    <span style="color:#a6e22e">@Test</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">givenValidDto_whenValidated_thenNoValidationError</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        UserDto userDto <span style="color:#f92672">=</span> getValidUserDto<span style="color:#f92672">();</span>
-
-        ValidatorFactory factory <span style="color:#f92672">=</span> Validation<span style="color:#f92672">.</span><span style="color:#a6e22e">buildDefaultValidatorFactory</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">final</span> Validator validator <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getValidator</span><span style="color:#f92672">();</span>
-
-        Set<span style="color:#f92672">&lt;</span>ConstraintViolation<span style="color:#f92672">&lt;</span>UserDto<span style="color:#f92672">&gt;&gt;</span> constraintViolations <span style="color:#f92672">=</span>
-                validator<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">);</span>
-
-        assertThat<span style="color:#f92672">(</span>constraintViolations<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">isZero</span><span style="color:#f92672">();</span>
-
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Arguments<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">provideFieldAndInvalidValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>
-                Arguments<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">),</span>
-                Arguments<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;email&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
-        <span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@SneakyThrows</span>
-    <span style="color:#a6e22e">@ParameterizedTest</span>
-    <span style="color:#a6e22e">@MethodSource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;provideFieldAndInvalidValue&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testInvalidDto</span><span style="color:#f92672">(</span>String fieldName<span style="color:#f92672">,</span> Object invalidValue<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        UserDto userDto <span style="color:#f92672">=</span> getValidUserDto<span style="color:#f92672">();</span>
-
-        Field field <span style="color:#f92672">=</span> UserDto<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span>fieldName<span style="color:#f92672">);</span>
-        field<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-        field<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">,</span> invalidValue<span style="color:#f92672">);</span>
-
-        ValidatorFactory factory <span style="color:#f92672">=</span> Validation<span style="color:#f92672">.</span><span style="color:#a6e22e">buildDefaultValidatorFactory</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">final</span> Validator validator <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getValidator</span><span style="color:#f92672">();</span>
-
-        Set<span style="color:#f92672">&lt;</span>ConstraintViolation<span style="color:#f92672">&lt;</span>UserDto<span style="color:#f92672">&gt;&gt;</span> constraintViolations <span style="color:#f92672">=</span>
-                validator<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">);</span>
-
-        assertThat<span style="color:#f92672">(</span>constraintViolations<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">isOne</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">private</span> UserDto <span style="color:#a6e22e">getValidUserDto</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> UserDto<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;someName&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;something@gmail.com&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>So that&rsquo;s how I wrote DTO validation tests :) I was proud that they were unit
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.dtovalidation.dtos<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.SneakyThrows<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.api.Test<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.params.ParameterizedTest<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.params.provider.Arguments<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.junit.jupiter.params.provider.MethodSource<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.ConstraintViolation<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.Validation<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.Validator<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.validation.ValidatorFactory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.Field<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Set<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.stream.Stream<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.assertj.core.api.Assertions.assertThat<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDtoValidationTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">givenValidDto_whenValidated_thenNoValidationError</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        UserDto userDto <span style="color:#f92672">=</span> getValidUserDto<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ValidatorFactory factory <span style="color:#f92672">=</span> Validation<span style="color:#f92672">.</span><span style="color:#a6e22e">buildDefaultValidatorFactory</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> Validator validator <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getValidator</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>ConstraintViolation<span style="color:#f92672">&lt;</span>UserDto<span style="color:#f92672">&gt;&gt;</span> constraintViolations <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                validator<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        assertThat<span style="color:#f92672">(</span>constraintViolations<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">isZero</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Arguments<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">provideFieldAndInvalidValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>                Arguments<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">),</span>
+</span></span><span style="display:flex;"><span>                Arguments<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;email&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@SneakyThrows</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ParameterizedTest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MethodSource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;provideFieldAndInvalidValue&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testInvalidDto</span><span style="color:#f92672">(</span>String fieldName<span style="color:#f92672">,</span> Object invalidValue<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        UserDto userDto <span style="color:#f92672">=</span> getValidUserDto<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Field field <span style="color:#f92672">=</span> UserDto<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span>fieldName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        field<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        field<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">,</span> invalidValue<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ValidatorFactory factory <span style="color:#f92672">=</span> Validation<span style="color:#f92672">.</span><span style="color:#a6e22e">buildDefaultValidatorFactory</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> Validator validator <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getValidator</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>ConstraintViolation<span style="color:#f92672">&lt;</span>UserDto<span style="color:#f92672">&gt;&gt;</span> constraintViolations <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                validator<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>userDto<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        assertThat<span style="color:#f92672">(</span>constraintViolations<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">isOne</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> UserDto <span style="color:#a6e22e">getValidUserDto</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> UserDto<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;someName&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;something@gmail.com&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>So that&rsquo;s how I wrote DTO validation tests :) I was proud that they were unit
 tests and were pretty fast. Having worked with Spring Boot recently, I have
 come to realize that it&rsquo;s pretty important to write more of fast unit tests
 wherever possible and applicable, as writing integration tests, for example
@@ -376,7 +376,7 @@ So, a good balance of integration and unit tests is key.</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -412,7 +412,7 @@ So, a good balance of integration and unit tests is key.</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

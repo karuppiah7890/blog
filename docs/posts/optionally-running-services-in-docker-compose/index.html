@@ -9,7 +9,7 @@
     <meta name="description" content="Today I learned a new thing when someone asked something -
 &ldquo;We have two services in docker compose file. How to run one service optionally based on some feature toggle like environment variable or command line option? Is it possible to do this in a single Docker Compose file?&rdquo;
 TLDR One way is to control the replica count. If replica count is 0, then it means no instance of the service is running.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -223,145 +223,145 @@ had never used it. I started looking for that and found it</p>
 </blockquote>
 <p>I started meddling with a sample docker compose file. The below one runs a
 simple redis</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
-<span style="color:#f92672">services</span>:
-  <span style="color:#f92672">redis</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
-    <span style="color:#f92672">deploy</span>:
-      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REPLICAS</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-compose up
-WARNING: The REPLICAS variable is not set. Defaulting to a blank string.
-ERROR: Error <span style="color:#66d9ef">while</span> attempting to convert service.redis.deploy.replicas to appropriate type: <span style="color:#e6db74">&#34;&#34;</span> is not a valid integer
-</code></pre></div><p>Interesting. Now, with replica count as 0 using the <code>REPLICAS</code> environment
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REPLICAS</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-compose up
+</span></span><span style="display:flex;"><span>WARNING: The REPLICAS variable is not set. Defaulting to a blank string.
+</span></span><span style="display:flex;"><span>ERROR: Error <span style="color:#66d9ef">while</span> attempting to convert service.redis.deploy.replicas to appropriate type: <span style="color:#e6db74">&#34;&#34;</span> is not a valid integer
+</span></span></code></pre></div><p>Interesting. Now, with replica count as 0 using the <code>REPLICAS</code> environment
 variable</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
-Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
-Attaching to
-
-$ docker-compose ps
-ERROR: Error <span style="color:#66d9ef">while</span> attempting to convert service.redis.deploy.replicas to appropriate type: <span style="color:#e6db74">&#34;&#34;</span> is not a valid integer
-
-$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
-Name   Command   State   Ports
-------------------------------
-</code></pre></div><p>It worked! It didn&rsquo;t run the redis! Now let&rsquo;s try running the redis by
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Attaching to
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ docker-compose ps
+</span></span><span style="display:flex;"><span>ERROR: Error <span style="color:#66d9ef">while</span> attempting to convert service.redis.deploy.replicas to appropriate type: <span style="color:#e6db74">&#34;&#34;</span> is not a valid integer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
+</span></span><span style="display:flex;"><span>Name   Command   State   Ports
+</span></span><span style="display:flex;"><span>------------------------------
+</span></span></code></pre></div><p>It worked! It didn&rsquo;t run the redis! Now let&rsquo;s try running the redis by
 turning on the feature toggle, that is, the environment variable</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up
-Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
-Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
-Attaching to docker-compose-demo_redis_1
-redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
-redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started</span>
-redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
-redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.386 * Running mode<span style="color:#f92672">=</span>standalone, port<span style="color:#f92672">=</span>6379.
-redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.387 <span style="color:#75715e"># WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span>
-redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.387 <span style="color:#75715e"># Server initialized</span>
-redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.390 * Ready to accept connections
-</code></pre></div><p>So it worked! With one more example service, it would look like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
-<span style="color:#f92672">services</span>:
-  <span style="color:#f92672">redis</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
-    <span style="color:#f92672">deploy</span>:
-      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REDIS_REPLICAS</span>
-  <span style="color:#f92672">postgres</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:13-alpine</span>
-    <span style="color:#f92672">environment</span>:
-      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password</span>
-</code></pre></div><p>So, we are trying to run both postgres and redis</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
-Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Attaching to docker-compose-demo_postgres_1
-postgres_1  | The files belonging to this database system will be owned by user <span style="color:#e6db74">&#34;postgres&#34;</span>.
-postgres_1  | This user must also own the server process.
-postgres_1  |
-postgres_1  | The database cluster will be initialized with locale <span style="color:#e6db74">&#34;en_US.utf8&#34;</span>.
-postgres_1  | The default database encoding has accordingly been set to <span style="color:#e6db74">&#34;UTF8&#34;</span>.
-postgres_1  | The default text search configuration will be set to <span style="color:#e6db74">&#34;english&#34;</span>.
-postgres_1  |
-postgres_1  | Data page checksums are disabled.
-postgres_1  |
-postgres_1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
-postgres_1  | creating subdirectories ... ok
-postgres_1  | selecting dynamic shared memory implementation ... posix
-postgres_1  | selecting default max_connections ... <span style="color:#ae81ff">100</span>
-...
-...
-</code></pre></div><p>Let&rsquo;s try detached mode this time</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
-Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
-             Name                           Command              State    Ports
----------------------------------------------------------------------------------
-docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
-</code></pre></div><p>Let&rsquo;s try toggling on the redis service to run it</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
-Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Removing network docker-compose-demo_default
-
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up -d
-Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
-Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
-Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose ps
-             Name                           Command               State    Ports
-----------------------------------------------------------------------------------
-docker-compose-demo_postgres_1   docker-entrypoint.sh postgres    Up      5432/tcp
-docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp
-</code></pre></div><p>Interesting! It works ;)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Attaching to docker-compose-demo_redis_1
+</span></span><span style="display:flex;"><span>redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+</span></span><span style="display:flex;"><span>redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started</span>
+</span></span><span style="display:flex;"><span>redis_1  | 1:C <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.384 <span style="color:#75715e"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
+</span></span><span style="display:flex;"><span>redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.386 * Running mode<span style="color:#f92672">=</span>standalone, port<span style="color:#f92672">=</span>6379.
+</span></span><span style="display:flex;"><span>redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.387 <span style="color:#75715e"># WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span>
+</span></span><span style="display:flex;"><span>redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.387 <span style="color:#75715e"># Server initialized</span>
+</span></span><span style="display:flex;"><span>redis_1  | 1:M <span style="color:#ae81ff">23</span> Dec <span style="color:#ae81ff">2020</span> 10:10:53.390 * Ready to accept connections
+</span></span></code></pre></div><p>So it worked! With one more example service, it would look like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REDIS_REPLICAS</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:13-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password</span>
+</span></span></code></pre></div><p>So, we are trying to run both postgres and redis</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up
+</span></span><span style="display:flex;"><span>Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Attaching to docker-compose-demo_postgres_1
+</span></span><span style="display:flex;"><span>postgres_1  | The files belonging to this database system will be owned by user <span style="color:#e6db74">&#34;postgres&#34;</span>.
+</span></span><span style="display:flex;"><span>postgres_1  | This user must also own the server process.
+</span></span><span style="display:flex;"><span>postgres_1  |
+</span></span><span style="display:flex;"><span>postgres_1  | The database cluster will be initialized with locale <span style="color:#e6db74">&#34;en_US.utf8&#34;</span>.
+</span></span><span style="display:flex;"><span>postgres_1  | The default database encoding has accordingly been set to <span style="color:#e6db74">&#34;UTF8&#34;</span>.
+</span></span><span style="display:flex;"><span>postgres_1  | The default text search configuration will be set to <span style="color:#e6db74">&#34;english&#34;</span>.
+</span></span><span style="display:flex;"><span>postgres_1  |
+</span></span><span style="display:flex;"><span>postgres_1  | Data page checksums are disabled.
+</span></span><span style="display:flex;"><span>postgres_1  |
+</span></span><span style="display:flex;"><span>postgres_1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+</span></span><span style="display:flex;"><span>postgres_1  | creating subdirectories ... ok
+</span></span><span style="display:flex;"><span>postgres_1  | selecting dynamic shared memory implementation ... posix
+</span></span><span style="display:flex;"><span>postgres_1  | selecting default max_connections ... <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>Let&rsquo;s try detached mode this time</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
+</span></span><span style="display:flex;"><span>Recreating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
+</span></span><span style="display:flex;"><span>             Name                           Command              State    Ports
+</span></span><span style="display:flex;"><span>---------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
+</span></span></code></pre></div><p>Let&rsquo;s try toggling on the redis service to run it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
+</span></span><span style="display:flex;"><span>Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing network docker-compose-demo_default
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose ps
+</span></span><span style="display:flex;"><span>             Name                           Command               State    Ports
+</span></span><span style="display:flex;"><span>----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>docker-compose-demo_postgres_1   docker-entrypoint.sh postgres    Up      5432/tcp
+</span></span><span style="display:flex;"><span>docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span></code></pre></div><p>Interesting! It works ;)</p>
 <p>There was also another thing we wanted to try. What if we need to use
 <code>depends_on</code> feature based on the service that is being toggled on and off?
 That&rsquo;s possible too :)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
-<span style="color:#f92672">services</span>:
-  <span style="color:#f92672">redis</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
-    <span style="color:#f92672">deploy</span>:
-      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REDIS_REPLICAS</span>
-  <span style="color:#f92672">postgres</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:13-alpine</span>
-    <span style="color:#f92672">environment</span>:
-      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password</span>
-    <span style="color:#f92672">depends_on</span>:
-      - <span style="color:#ae81ff">redis</span>
-</code></pre></div><p>Cleaning up stuff first</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose down
-Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Stopping docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</span>
-Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Removing docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</span>
-Removing network docker-compose-demo_default
-</code></pre></div><p>Now bringing up postgres alone without redis. But postgres depends on redis
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">$REDIS_REPLICAS</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:13-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">redis</span>
+</span></span></code></pre></div><p>Cleaning up stuff first</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose down
+</span></span><span style="display:flex;"><span>Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Stopping docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing docker-compose-demo_redis_1    ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing network docker-compose-demo_default
+</span></span></code></pre></div><p>Now bringing up postgres alone without redis. But postgres depends on redis
 according to the spec file</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
-Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
-Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
-             Name                           Command              State    Ports
----------------------------------------------------------------------------------
-docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
-</code></pre></div><p>All good! It still works!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose ps
+</span></span><span style="display:flex;"><span>             Name                           Command              State    Ports
+</span></span><span style="display:flex;"><span>---------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>docker-compose-demo_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
+</span></span></code></pre></div><p>All good! It still works!</p>
 <p>Now let&rsquo;s cleanup</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
-Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-Removing network docker-compose-demo_default
-</code></pre></div><p>Let&rsquo;s try to toggle on the redis and try things out!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up -d
-Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
-Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
-Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
-$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose ps
-             Name                           Command               State    Ports
-----------------------------------------------------------------------------------
-docker-compose-demo_postgres_1   docker-entrypoint.sh postgres    Up      5432/tcp
-docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp
-</code></pre></div><p>All works! Final cleanup</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> docker-compose down
+</span></span><span style="display:flex;"><span>Stopping docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Removing network docker-compose-demo_default
+</span></span></code></pre></div><p>Let&rsquo;s try to toggle on the redis and try things out!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose up -d
+</span></span><span style="display:flex;"><span>Creating network <span style="color:#e6db74">&#34;docker-compose-demo_default&#34;</span> with the default driver
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_redis_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>Creating docker-compose-demo_postgres_1 ... <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>$ REDIS_REPLICAS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> docker-compose ps
+</span></span><span style="display:flex;"><span>             Name                           Command               State    Ports
+</span></span><span style="display:flex;"><span>----------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>docker-compose-demo_postgres_1   docker-entrypoint.sh postgres    Up      5432/tcp
+</span></span><span style="display:flex;"><span>docker-compose-demo_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp
+</span></span></code></pre></div><p>All works! Final cleanup</p>
 <pre tabindex="0"><code>$ REDIS_REPLICAS=1 docker-compose down
 Stopping docker-compose-demo_postgres_1 ... done
 Stopping docker-compose-demo_redis_1    ... done
@@ -378,7 +378,7 @@ a single Docker Compose file.</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -414,7 +414,7 @@ a single Docker Compose file.</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

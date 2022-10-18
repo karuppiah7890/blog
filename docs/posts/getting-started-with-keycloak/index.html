@@ -10,7 +10,7 @@
 Keycloak&rsquo;s basic setup would be a Keycloak server with a database. It supports many databases actually.
 The quickest way to get started with Keycloak would be to run Keycloak with H2 database, like this using docker
 $ docker run -d --name keycloak -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin jboss/keycloak It will take a few seconds or a minute to bootup.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -173,12 +173,12 @@ server side software, with other components (backend, proxy etc) is using
 with a database. It supports many databases actually.</p>
 <p>The quickest way to get started with Keycloak would be to run Keycloak with
 <a href="https://h2database.com/html/main.html">H2</a> database, like this using <code>docker</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d --name keycloak -p 8080:8080 -e KEYCLOAK_USER<span style="color:#f92672">=</span>admin -e KEYCLOAK_PASSWORD<span style="color:#f92672">=</span>admin jboss/keycloak
-</code></pre></div><p>It will take a few seconds or a minute to bootup. Check the logs using this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker logs -f keycloak
-</code></pre></div><p>Look for the log saying this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Admin console listening on http://127.0.0.1:9990
-</code></pre></div><p>Now you should be able to go to your browser and go to the link
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run -d --name keycloak -p 8080:8080 -e KEYCLOAK_USER<span style="color:#f92672">=</span>admin -e KEYCLOAK_PASSWORD<span style="color:#f92672">=</span>admin jboss/keycloak
+</span></span></code></pre></div><p>It will take a few seconds or a minute to bootup. Check the logs using this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker logs -f keycloak
+</span></span></code></pre></div><p>Look for the log saying this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Admin console listening on http://127.0.0.1:9990
+</span></span></code></pre></div><p>Now you should be able to go to your browser and go to the link
 http://localhost:8080</p>
 <p>It will take you to http://localhost:8080/auth</p>
 <p><img src="/blog/img/getting-started-with-keycloak/keycloak-home.png" alt="keycloak-home" title="keycloak-home"></p>
@@ -199,7 +199,7 @@ to assist the blog content or as video alternatives :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -235,7 +235,7 @@ to assist the blog content or as video alternatives :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

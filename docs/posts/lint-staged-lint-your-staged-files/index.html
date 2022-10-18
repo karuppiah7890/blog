@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="In my project, we use this tool called lint-staged which is pretty awesome! I wanted to write this blog post to talk a little bit about it and also mention some of the cool things I liked about it! :D
 To start off, I work on a React project with Typescript. We need to ensure we follow some good practices as much as possible, so we use ESLint in our project We also use Prettier for formatting, so that our code looks neat and the same always no matter who worked on it, letting us read code in a consistent manner and not fight about formatting rules.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -229,22 +229,22 @@ files and for each commit, usually people use it with another tool called
 <a href="https://github.com/typicode/husky"><code>husky</code></a> which helps with git hooks,
 including pre commit hook. But it&rsquo;s not mandatory though, you could still use
 <code>lint-staged</code> without <code>husky</code>. Now, moving on to the installation.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install --save-dev lint-staged
-</code></pre></div><p>If you are going to use <a href="https://github.com/typicode/husky"><code>husky</code></a>, check out
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ npm install --save-dev lint-staged
+</span></span></code></pre></div><p>If you are going to use <a href="https://github.com/typicode/husky"><code>husky</code></a>, check out
 which version you can use - v4 or v5 and then set it up.</p>
 <p>After the <code>lint-staged</code> installation is done, all you gotta do is, go to your
 <code>package.json</code> and put this in</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;lint-staged&#34;</span>: {
-    <span style="color:#f92672">&#34;*.js&#34;</span>: [
-      <span style="color:#e6db74">&#34;linter-command&#34;</span>,
-      <span style="color:#e6db74">&#34;formatter-command&#34;</span>,
-      <span style="color:#e6db74">&#34;test-command&#34;</span>,
-      <span style="color:#e6db74">&#34;any-command&#34;</span>
-    ]
-  }
-}
-</code></pre></div><p>If you are not comfortable using your <code>package.json</code> as a place for
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lint-staged&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;*.js&#34;</span>: [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;linter-command&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;formatter-command&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;test-command&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;any-command&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you are not comfortable using your <code>package.json</code> as a place for
 configuration for tools, there are other ways to configure too, checkout the
 tool&rsquo;s <a href="https://github.com/okonet/lint-staged#configuration">readme</a></p>
 <p>The above configuration means that &ldquo;hey lint-staged, when you run, check the
@@ -253,8 +253,8 @@ extension and run the following list of commands for those files&rdquo;</p>
 <p>Something to note is, each command needs to have certain properties and the
 <code>lint-staged</code> configuration also must be according to that. For example, if
 your lint command is like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ linter-command index.js
-</code></pre></div><p>Then you just use <code>linter-command</code> in your <code>lint-staged</code> configuration.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ linter-command index.js
+</span></span></code></pre></div><p>Then you just use <code>linter-command</code> in your <code>lint-staged</code> configuration.
 <code>lint-staged</code> will take care of passing the file path of the staged files as
 it&rsquo;s the one that knows which files are staged and it&rsquo;s a dynamic thing but your
 configuration is just static and not dependent on that. But your
@@ -267,102 +267,102 @@ committed in git.</p>
 Once that&rsquo;s done, all you gotta do is, run <code>npx lint-staged</code> in your git pre
 commit hook or any hook that you want to use. If you are using husky v4, then
 it would look like the below in your <code>package.json</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;husky&#34;</span>: {
-    <span style="color:#f92672">&#34;hooks&#34;</span>: {
-      <span style="color:#f92672">&#34;pre-commit&#34;</span>: <span style="color:#e6db74">&#34;lint-staged&#34;</span>
-    }
-  }
-}
-</code></pre></div><p>Follow the similar thing in case you are using some other tool or your own
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;husky&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;hooks&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pre-commit&#34;</span>: <span style="color:#e6db74">&#34;lint-staged&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Follow the similar thing in case you are using some other tool or your own
 script for git hooks, or husky v5. Just run the command <code>lint-staged</code> :)</p>
 <h2 id="seeing-lint-staged-in-action">Seeing lint-staged in action</h2>
 <p>I&rsquo;m trying out <code>lint-staged</code> in this project -</p>
 <p><a href="https://gitlab.com/snapping-shrimp/cocreate-remote-vscode">https://gitlab.com/snapping-shrimp/cocreate-remote-vscode</a></p>
 <p>I&rsquo;m making a change in a TypeScript file, where I change the word <code>Signed in</code> as
 <code>Logged in</code>. Look at what happens in my shell when I run the git commands</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git status
-On branch main
-Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
-
-Changes not staged <span style="color:#66d9ef">for</span> commit:
-  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span style="color:#f92672">)</span>
-  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span style="color:#f92672">)</span>
-        modified:   src/extension.ts
-
-no changes added to commit <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> and/or <span style="color:#e6db74">&#34;git commit -a&#34;</span><span style="color:#f92672">)</span>
-
-$ git diff
-diff --git a/src/extension.ts b/src/extension.ts
-index 273d95f..8c2041a <span style="color:#ae81ff">100644</span>
---- a/src/extension.ts
-+++ b/src/extension.ts
-@@ -11,9 +11,8 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
-           createIfNone: true,
-         <span style="color:#f92672">})</span>
-         .then<span style="color:#f92672">(</span>
--          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
--            vscode.window.showInformationMessage<span style="color:#f92672">(</span>
--              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
-+          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> vscode.window.showInformationMessage<span style="color:#f92672">(</span>
-+              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
-             <span style="color:#f92672">)</span>;
-           <span style="color:#f92672">}</span>,
-           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-
-$ git add .
-
-$ git status
-On branch main
-Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
-
-Changes to be committed:
-  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span style="color:#f92672">)</span>
-        modified:   src/extension.ts
-
-$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
-✔ Preparing...
-❯ Running tasks...
-  ❯ Running tasks <span style="color:#66d9ef">for</span> *.<span style="color:#f92672">{</span>js,ts<span style="color:#f92672">}</span>
-    ✔ eslint --fix
-    ⠙ prettier --write
-  ↓ No staged files match *.<span style="color:#f92672">{</span>json,yml,md<span style="color:#f92672">}</span> <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
-◼ Applying modifications...
-◼ Cleaning up...
-</code></pre></div><p>You can see how there are some set of tasks that are running when I run git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git status
+</span></span><span style="display:flex;"><span>On branch main
+</span></span><span style="display:flex;"><span>Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Changes not staged <span style="color:#66d9ef">for</span> commit:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        modified:   src/extension.ts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no changes added to commit <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> and/or <span style="color:#e6db74">&#34;git commit -a&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git diff
+</span></span><span style="display:flex;"><span>diff --git a/src/extension.ts b/src/extension.ts
+</span></span><span style="display:flex;"><span>index 273d95f..8c2041a <span style="color:#ae81ff">100644</span>
+</span></span><span style="display:flex;"><span>--- a/src/extension.ts
+</span></span><span style="display:flex;"><span>+++ b/src/extension.ts
+</span></span><span style="display:flex;"><span>@@ -11,9 +11,8 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>           createIfNone: true,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>         .then<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>-          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>-            vscode.window.showInformationMessage<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>-              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>+          <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> vscode.window.showInformationMessage<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>+              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git add .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git status
+</span></span><span style="display:flex;"><span>On branch main
+</span></span><span style="display:flex;"><span>Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Changes to be committed:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        modified:   src/extension.ts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+</span></span><span style="display:flex;"><span>✔ Preparing...
+</span></span><span style="display:flex;"><span>❯ Running tasks...
+</span></span><span style="display:flex;"><span>  ❯ Running tasks <span style="color:#66d9ef">for</span> *.<span style="color:#f92672">{</span>js,ts<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    ✔ eslint --fix
+</span></span><span style="display:flex;"><span>    ⠙ prettier --write
+</span></span><span style="display:flex;"><span>  ↓ No staged files match *.<span style="color:#f92672">{</span>json,yml,md<span style="color:#f92672">}</span> <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>◼ Applying modifications...
+</span></span><span style="display:flex;"><span>◼ Cleaning up...
+</span></span></code></pre></div><p>You can see how there are some set of tasks that are running when I run git
 commit command. This is because of the git pre commit hook that I have setup
 with husky v5 :)</p>
 <p>Finally it looks like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
-✔ Preparing...
-✔ Running tasks...
-✔ Applying modifications...
-✔ Cleaning up...
-<span style="color:#f92672">[</span>main 41afab4<span style="color:#f92672">]</span> dummy change
- <span style="color:#ae81ff">1</span> file changed, <span style="color:#ae81ff">1</span> insertion<span style="color:#f92672">(</span>+<span style="color:#f92672">)</span>, <span style="color:#ae81ff">1</span> deletion<span style="color:#f92672">(</span>-<span style="color:#f92672">)</span>
-
-$ git show
-$ git show
-commit 41afab43431cb2be65edac395577bf52fa13f3e4 <span style="color:#f92672">(</span>HEAD -&gt; main<span style="color:#f92672">)</span>
-Author: Karuppiah Natarajan &lt;karuppiah7890@gmail.com&gt;
-Date:   Mon Nov <span style="color:#ae81ff">16</span> 17:01:30 <span style="color:#ae81ff">2020</span> +0530
-
-    dummy change
-
-diff --git a/src/extension.ts b/src/extension.ts
-index 273d95f..2fc3d5c <span style="color:#ae81ff">100644</span>
---- a/src/extension.ts
-+++ b/src/extension.ts
-@@ -13,7 +13,7 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
-         .then<span style="color:#f92672">(</span>
-           <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-             vscode.window.showInformationMessage<span style="color:#f92672">(</span>
--              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
-+              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
-             <span style="color:#f92672">)</span>;
-           <span style="color:#f92672">}</span>,
-           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-</code></pre></div><p>You can see how the git commti changes are different from what we saw before.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+</span></span><span style="display:flex;"><span>✔ Preparing...
+</span></span><span style="display:flex;"><span>✔ Running tasks...
+</span></span><span style="display:flex;"><span>✔ Applying modifications...
+</span></span><span style="display:flex;"><span>✔ Cleaning up...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>main 41afab4<span style="color:#f92672">]</span> dummy change
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> file changed, <span style="color:#ae81ff">1</span> insertion<span style="color:#f92672">(</span>+<span style="color:#f92672">)</span>, <span style="color:#ae81ff">1</span> deletion<span style="color:#f92672">(</span>-<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git show
+</span></span><span style="display:flex;"><span>$ git show
+</span></span><span style="display:flex;"><span>commit 41afab43431cb2be65edac395577bf52fa13f3e4 <span style="color:#f92672">(</span>HEAD -&gt; main<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Author: Karuppiah Natarajan &lt;karuppiah7890@gmail.com&gt;
+</span></span><span style="display:flex;"><span>Date:   Mon Nov <span style="color:#ae81ff">16</span> 17:01:30 <span style="color:#ae81ff">2020</span> +0530
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dummy change
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>diff --git a/src/extension.ts b/src/extension.ts
+</span></span><span style="display:flex;"><span>index 273d95f..2fc3d5c <span style="color:#ae81ff">100644</span>
+</span></span><span style="display:flex;"><span>--- a/src/extension.ts
+</span></span><span style="display:flex;"><span>+++ b/src/extension.ts
+</span></span><span style="display:flex;"><span>@@ -13,7 +13,7 @@ export <span style="color:#66d9ef">function</span> activate<span style="color:#f92672">(</span>context: vscode.ExtensionContext<span style="color:#f92672">)</span>: void <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         .then<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">(</span>authSession<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>             vscode.window.showInformationMessage<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>-              <span style="color:#e6db74">`</span>Signed in as: <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>+              <span style="color:#e6db74">`</span>Logged in as     : <span style="color:#e6db74">${</span>authSession.account.label<span style="color:#e6db74">}</span> <span style="color:#f92672">(</span>github<span style="color:#f92672">)</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">(</span>err<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span></code></pre></div><p>You can see how the git commti changes are different from what we saw before.
 Prettier has formatted the code while doing the commit and it has also added
 the formatted code change and then did the commit.</p>
 <p>So, <code>lint-staged</code> can not just run commands on your staged files, if your
@@ -373,21 +373,21 @@ staged, and then it will commit it all together ;)</p>
 and it has worked well that time too :D Also, if you make changes that are
 reverted because of the commands that run during <code>lint-staged</code>&rsquo;s processing,
 then it can lead to an error like the below</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
-✔ Preparing...
-✔ Hiding unstaged changes to partially staged files...
-✔ Running tasks...
-✖ Prevented an empty git commit!
-↓
-  ✖ lint-staged failed due to a git error. <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
-✔ Reverting to original state because of errors...
-✔ Cleaning up...
-
-  ⚠ lint-staged prevented an empty git commit.
-  Use the --allow-empty option to <span style="color:#66d9ef">continue</span>, or check your task configuration
-
-husky - pre-commit hook exited with code <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span>
-</code></pre></div><p>As you can see, <code>lint-staged</code> errored out saying it was an empty git commit - a
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;dummy change&#34;</span>
+</span></span><span style="display:flex;"><span>✔ Preparing...
+</span></span><span style="display:flex;"><span>✔ Hiding unstaged changes to partially staged files...
+</span></span><span style="display:flex;"><span>✔ Running tasks...
+</span></span><span style="display:flex;"><span>✖ Prevented an empty git commit!
+</span></span><span style="display:flex;"><span>↓
+</span></span><span style="display:flex;"><span>  ✖ lint-staged failed due to a git error. <span style="color:#f92672">[</span>SKIPPED<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>✔ Reverting to original state because of errors...
+</span></span><span style="display:flex;"><span>✔ Cleaning up...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ⚠ lint-staged prevented an empty git commit.
+</span></span><span style="display:flex;"><span>  Use the --allow-empty option to <span style="color:#66d9ef">continue</span>, or check your task configuration
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>husky - pre-commit hook exited with code <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>As you can see, <code>lint-staged</code> errored out saying it was an empty git commit - a
 commit with no changes. No changes because all the changes I made were
 formatting changes, which were wrong according to prettier and it fixed it back
 and on doing so, there was no changes left to even be committed to git.</p>
@@ -405,7 +405,7 @@ below and I&rsquo;ll try to answer them :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -441,7 +441,7 @@ below and I&rsquo;ll try to answer them :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

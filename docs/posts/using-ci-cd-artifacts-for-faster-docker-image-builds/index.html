@@ -7,8 +7,8 @@
     <title>Using CI/CD Artifacts for Faster Docker Image Builds | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
- Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
-    <meta name="generator" content="Hugo 0.90.1" />
+Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.">
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -29,7 +29,7 @@
     
     <meta property="og:title" content="Using CI/CD Artifacts for Faster Docker Image Builds" />
 <meta property="og:description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
- Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server." />
+Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-19T08:29:02+05:30" />
@@ -37,13 +37,13 @@
 
 <meta itemprop="name" content="Using CI/CD Artifacts for Faster Docker Image Builds">
 <meta itemprop="description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
- Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server."><meta itemprop="datePublished" content="2020-09-19T08:29:02+05:30" />
+Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server."><meta itemprop="datePublished" content="2020-09-19T08:29:02+05:30" />
 <meta itemprop="dateModified" content="2020-09-19T08:29:02+05:30" />
-<meta itemprop="wordCount" content="2580">
+<meta itemprop="wordCount" content="2628">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Using CI/CD Artifacts for Faster Docker Image Builds"/>
 <meta name="twitter:description" content="Disclaimer: This blog post is very context specific, so please consider your application and it&rsquo;s context, and accordingly see if you can use this strategy.
- Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server."/>
+Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server."/>
 
       
     
@@ -166,24 +166,24 @@ for our React App. It didn&rsquo;t have any server side to it, just a static app
 We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.</p>
 <p>We followed the usual strategy to build Docker images. This is how our <code>Dockerfile</code>
 kind of looked like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package.json ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> yarn.lock ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn install<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> src ./src<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn build<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>It&rsquo;s a multi stage docker image build. I think you can find similar
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> yarn.lock ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> src ./src<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>It&rsquo;s a multi stage docker image build. I think you can find similar
 <code>Dockerfile</code>s in many blog posts and GitHub repos too. This is actually a pretty
 good <code>Dockerfile</code> actually. Anyone can get your repo and need not install
 anything except Docker and be able to build the Docker image.</p>
@@ -227,12 +227,12 @@ just use the output/artifact of <code>yarn build</code> from the build stage in 
 pipeline in our <code>Dockerfile</code></p>
 <p>So, in short, we can get rid of almost everything in our <code>Dockerfile</code> and it
 boils down to this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h2 id="benefits">Benefits</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="benefits">Benefits</h2>
 <p>That&rsquo;s like very small and the Docker image build is very very fast! If you
 notice, we are simply copying the <code>build</code> directory that was the output/artifact
 of the Build stage.</p>
@@ -268,8 +268,8 @@ the build to even start. This is a common problem for anyone starting out new in
 Docker and build Docker images.</p>
 <p>The key here is the build context. This is the input that&rsquo;s passed as the
 last argument in the Docker build command</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
-</code></pre></div><p>The <code>.</code> is the build context and it can be anything based on your app and use
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker build -t local-image .
+</span></span></code></pre></div><p>The <code>.</code> is the build context and it can be anything based on your app and use
 case and from where you are running your build command in the shell. Now the
 important thing to note is - by default all the contents of the directory
 mentioned as build context is sent to the Docker daemon (Docker engine). In our
@@ -314,14 +314,14 @@ named it <code>Dockerfile.ci</code> as it will be mainly used in the CI/CD pipel
 still, why? Why not just use one <code>Dockerfile</code> - get rid of the long one, and
 just have the small one. Well, if you notice, anyone who uses this
 <code>Dockerfile.ci</code> cannot simply run this command directly</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -f Dockefile.ci -t local-image .
-</code></pre></div><p>Instead, because of the need/pre-requisite of the <code>Dockerfile.ci</code> - which is a
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker build -f Dockefile.ci -t local-image .
+</span></span></code></pre></div><p>Instead, because of the need/pre-requisite of the <code>Dockerfile.ci</code> - which is a
 <code>build</code> directory with proper <code>build</code> content for it to work properly at
 runtime, the user has to first run <code>yarn install</code> and <code>yarn build</code> and then only
 can run <code>docker build</code>. Ideally people would expect to easily run the Docker
 image build with just the standard command and nothing else, which is</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t local-image .
-</code></pre></div><p>And that command uses <code>Dockerfile</code> by default, as the file to read. So, for a
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker build -t local-image .
+</span></span></code></pre></div><p>And that command uses <code>Dockerfile</code> by default, as the file to read. So, for a
 good user experience, we just named things appropriately. One thing to note
 is - for that good user experience, we also need to maintain and update our
 <code>Dockerfile</code>. I think documentation and good developer experience is important.</p>
@@ -345,29 +345,29 @@ variable configuration, to enable the feature to use multiple Docker ignore file
 <p>Now, another thing to note is - the environment in which you run the stages of
 your pipeline.</p>
 <p>If you compare the two <code>Dockerfile</code>s</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package.json ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> yarn.lock ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn install<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> src ./src<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn build<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>In the first one, the <code>yarn build</code> runs in <a href="https://alpinelinux.org/">alpine</a> linux OS,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:12.12.0-alpine AS build-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> yarn.lock ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> src ./src<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.19-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/ /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> conf/nginx-default.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>In the first one, the <code>yarn build</code> runs in <a href="https://alpinelinux.org/">alpine</a> linux OS,
 with <code>node</code> version <code>12.12.0</code> installed and it&rsquo;s running in amd64 architecture.
 But in the second one, the <code>yarn build</code> ran in a previous stage in the Jenkins
 Build Stage&rsquo;s environment - which is what? We&rsquo;ll come to that. Ideally, things
@@ -403,12 +403,12 @@ application - a Spring Boot microservice.</p>
 </ul>
 <p>For this, again we use the build artifact - the jar file of our microservice, in
 the <code>Dockerfile.ci</code>. It looks kind of like this</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> adoptopenjdk:14-jre-hotspot</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/libs/app.jar /app.jar<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;java&#34;</span>, <span style="color:#e6db74">&#34;-jar&#34;</span>, <span style="color:#e6db74">&#34;/app.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>So, we are not redoing the <code>./gradlew build</code> or any other <code>gradle</code> task to
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> adoptopenjdk:14-jre-hotspot</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./build/libs/app.jar /app.jar<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;java&#34;</span>, <span style="color:#e6db74">&#34;-jar&#34;</span>, <span style="color:#e6db74">&#34;/app.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>So, we are not redoing the <code>./gradlew build</code> or any other <code>gradle</code> task to
 compile or anything. All that is done before hand in our CI/CD pipeline in our
 case and we just copy the build artifact into our <code>Dockerfile.ci</code>. So, it&rsquo;s
 very fast and a very simple <code>Dockerfile</code></p>
@@ -463,7 +463,7 @@ have in the comments! :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -499,7 +499,7 @@ have in the comments! :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

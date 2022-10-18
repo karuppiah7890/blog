@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="TLDR; shellcheck is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -
 $ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#34;; do echo $file done $ shellcheck list-special-files.sh In list-special-files.sh line 5: for file in &#34;$dir/special-*&#34;; do ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -159,33 +159,33 @@ $ cat list-special-files.sh #!/bin/bash dir=$1 for file in &#34;$dir/special-*&#
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="tldr">TLDR;</h2>
 <p><a href="https://www.shellcheck.net/"><code>shellcheck</code></a> is a open source linter for your shell (sh/bash/dash/ksh) scripts! The official website calls it as - &ldquo;a static analysis tool for shell scripts&rdquo;. A small example usage -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat list-special-files.sh
-<span style="color:#75715e">#!/bin/bash</span>
-
-dir<span style="color:#f92672">=</span>$1
-
-<span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
-  echo $file
-<span style="color:#66d9ef">done</span>
-
-$ shellcheck list-special-files.sh
-
-In list-special-files.sh line 5:
-<span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
-            ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
-
-
-In list-special-files.sh line 6:
-  echo $file
-       ^---^ SC2086: Double quote to prevent globbing and word splitting.
-
-Did you mean:
-  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2066 -- Since you double quoted this, it ...
-  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
-</code></pre></div><h2 id="longer-version">Longer version</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat list-special-files.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo $file
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ shellcheck list-special-files.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In list-special-files.sh line 5:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>            ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In list-special-files.sh line 6:
+</span></span><span style="display:flex;"><span>  echo $file
+</span></span><span style="display:flex;"><span>       ^---^ SC2086: Double quote to prevent globbing and word splitting.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Did you mean:
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2066 -- Since you double quoted this, it ...
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
+</span></span></code></pre></div><h2 id="longer-version">Longer version</h2>
 <h3 id="discovery">Discovery</h3>
 <p>Recently me and my colleague started writing some bash scripts to automate the running of some commands. We were doing this to do initial automated setup for running automated End to End (E2E) tests</p>
 <p>When I was writing these scripts, I was just running them manually to check if all is working good and then finally raised a Pull Request for review. During the review, one of the comments requested me to run some checks manually as the automated checks (Continuous Integration) wasn&rsquo;t working for some reason</p>
@@ -204,130 +204,130 @@ For more information:
 <p>Now let&rsquo;s see some code examples to understand how <code>shellcheck</code> looks like in action and how it helps developers writing shell scripts!</p>
 <p>Below is an example code -</p>
 <p><code>list-special-files.sh</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-dir<span style="color:#f92672">=</span>$1
-
-<span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
-  echo $file
-<span style="color:#66d9ef">done</span>
-</code></pre></div><p>I&rsquo;m trying to list some special files or even directories in a directory, which have the prefix <code>special-</code>. Let&rsquo;s look at how it works</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi list-special-files.sh
-$ chmod +x list-special-files.sh
-
-$ mkdir special-directory
-$ cd special-directory/
-$ touch special-pluginA
-$ touch special-fileB
-$ cd ..
-$ ./list-special-files.sh special-directory
-special-directory/special-fileB
-special-directory/special-pluginA
-</code></pre></div><p>Though this script worked in the above case, it may have problems in some cases, let&rsquo;s see one example where it can have problems</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir <span style="color:#e6db74">&#34;cool directory&#34;</span>
-$ cd <span style="color:#e6db74">&#34;cool directory&#34;</span>
-$ touch meh
-$ touch special-pluginA
-$ touch special-fileB
-$ cd ..
-$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
-cool
-directory/special-*
-</code></pre></div><p>Notice how the output is not what we expected? The <code>cool directory</code> also has the same <code>special-pluginA</code> and <code>special-fileB</code> files as <code>special-directory</code>, but the output is different</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo $file
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>I&rsquo;m trying to list some special files or even directories in a directory, which have the prefix <code>special-</code>. Let&rsquo;s look at how it works</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ vi list-special-files.sh
+</span></span><span style="display:flex;"><span>$ chmod +x list-special-files.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ mkdir special-directory
+</span></span><span style="display:flex;"><span>$ cd special-directory/
+</span></span><span style="display:flex;"><span>$ touch special-pluginA
+</span></span><span style="display:flex;"><span>$ touch special-fileB
+</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ ./list-special-files.sh special-directory
+</span></span><span style="display:flex;"><span>special-directory/special-fileB
+</span></span><span style="display:flex;"><span>special-directory/special-pluginA
+</span></span></code></pre></div><p>Though this script worked in the above case, it may have problems in some cases, let&rsquo;s see one example where it can have problems</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir <span style="color:#e6db74">&#34;cool directory&#34;</span>
+</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">&#34;cool directory&#34;</span>
+</span></span><span style="display:flex;"><span>$ touch meh
+</span></span><span style="display:flex;"><span>$ touch special-pluginA
+</span></span><span style="display:flex;"><span>$ touch special-fileB
+</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
+</span></span><span style="display:flex;"><span>cool
+</span></span><span style="display:flex;"><span>directory/special-*
+</span></span></code></pre></div><p>Notice how the output is not what we expected? The <code>cool directory</code> also has the same <code>special-pluginA</code> and <code>special-fileB</code> files as <code>special-directory</code>, but the output is different</p>
 <p>But it&rsquo;s hard to keep checking different outputs for different inputs manually. If you prefer to write tests, sure, go ahead :) I think that&rsquo;s also a good way to automatically verify and ensure that your code works in different possible cases. Or if you think you can write this same code in a different programming language and then write tests for that, sure! But in this case, I&rsquo;m going to check if <code>shellcheck</code> can help and provide some insight as to how good the code is</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ shellcheck list-special-files.sh
-
-In list-special-files.sh line 5:
-<span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
-            ^--^ SC2231: Quote expansions in this <span style="color:#66d9ef">for</span> loop glob to prevent wordsplitting, e.g. <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/*.txt .
-
-
-In list-special-files.sh line 6:
-  echo $file
-       ^---^ SC2086: Double quote to prevent globbing and word splitting.
-
-Did you mean:
-  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
-  https://www.shellcheck.net/wiki/SC2231 -- Quote expansions in this <span style="color:#66d9ef">for</span> loop...
-</code></pre></div><p>Cool right? 😁 If someone looked at the script code, at first sight it would have looked good. But as we saw, it has problems in some cases. And <code>shellcheck</code> gives some errors and says that there might be some problems in this code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ shellcheck list-special-files.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In list-special-files.sh line 5:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>            ^--^ SC2231: Quote expansions in this <span style="color:#66d9ef">for</span> loop glob to prevent wordsplitting, e.g. <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/*.txt .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In list-special-files.sh line 6:
+</span></span><span style="display:flex;"><span>  echo $file
+</span></span><span style="display:flex;"><span>       ^---^ SC2086: Double quote to prevent globbing and word splitting.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Did you mean:
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2231 -- Quote expansions in this <span style="color:#66d9ef">for</span> loop...
+</span></span></code></pre></div><p>Cool right? 😁 If someone looked at the script code, at first sight it would have looked good. But as we saw, it has problems in some cases. And <code>shellcheck</code> gives some errors and says that there might be some problems in this code.</p>
 <p>Notice how I said &ldquo;might be&rdquo;. I believe that any linting or analysis tool gives errors / warnings too, but it&rsquo;s up to the author to check it and decide how to act upon it. I have also noticed people disable linting errors or warnings in some cases, for various reasons.</p>
 <p>Now let&rsquo;s look at what the errors in the <code>shellcheck</code> output mean.</p>
 <p>I see two codes and links for the two codes, and also a short description, and even a suggestion on how to fix it</p>
 <p>First code is - SC2231 - <a href="https://github.com/koalaman/shellcheck/wiki/SC2231">https://github.com/koalaman/shellcheck/wiki/SC2231</a></p>
 <p>This one tells me that it&rsquo;s better to use double quotes for variables in such a case where I&rsquo;m looping through a glob. This is to prevent splitting of words, for example when the variable contains a space. And this also handles other special characters in the word</p>
 <p>Notice how <code>shellcheck</code> shows exactly what parts of the code I need to put double quotes, using arrows / carrot symbol (^) and hyphen (-)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
-            ^--^ SC2231: Quote expansions in this <span style="color:#66d9ef">for</span> loop glob to prevent wordsplitting, e.g. <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/*.txt .
-</code></pre></div><p>The other code is  - SC2086 - <a href="https://github.com/koalaman/shellcheck/wiki/SC2086">https://github.com/koalaman/shellcheck/wiki/SC2086</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in $dir/special-*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>            ^--^ SC2231: Quote expansions in this <span style="color:#66d9ef">for</span> loop glob to prevent wordsplitting, e.g. <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/*.txt .
+</span></span></code></pre></div><p>The other code is  - SC2086 - <a href="https://github.com/koalaman/shellcheck/wiki/SC2086">https://github.com/koalaman/shellcheck/wiki/SC2086</a></p>
 <p>This mentions how a double quote can again avoid globbing and word splitting and also shows other examples apart from usage in <code>echo</code></p>
 <p>We never noticed any issues with the <code>echo</code>, right? Let&rsquo;s look at how our current code can be problematic when using <code>echo $file</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd special-directory/
-$ touch <span style="color:#e6db74">&#34;special-*&#34;</span>
-$ ls -al
-total <span style="color:#ae81ff">0</span>
-drwxr-xr-x    <span style="color:#ae81ff">5</span> karuppiahn  staff    <span style="color:#ae81ff">160</span> May <span style="color:#ae81ff">22</span> 16:36 .
-drwxr-xr-x+ <span style="color:#ae81ff">319</span> karuppiahn  staff  <span style="color:#ae81ff">10208</span> May <span style="color:#ae81ff">22</span> 16:31 ..
--rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:36 special-*
--rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:35 special-fileB
--rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:35 special-pluginA
-$ cd ..
-$ ./list-special-files.sh special-directory
-special-directory/special-* special-directory/special-fileB special-directory/special-pluginA
-special-directory/special-fileB
-special-directory/special-pluginA
-</code></pre></div><p>Notice how it uses the glob pattern and shows all files because the file name has a special character <code>*</code> which is used for glob / as wildcard character</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd special-directory/
+</span></span><span style="display:flex;"><span>$ touch <span style="color:#e6db74">&#34;special-*&#34;</span>
+</span></span><span style="display:flex;"><span>$ ls -al
+</span></span><span style="display:flex;"><span>total <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x    <span style="color:#ae81ff">5</span> karuppiahn  staff    <span style="color:#ae81ff">160</span> May <span style="color:#ae81ff">22</span> 16:36 .
+</span></span><span style="display:flex;"><span>drwxr-xr-x+ <span style="color:#ae81ff">319</span> karuppiahn  staff  <span style="color:#ae81ff">10208</span> May <span style="color:#ae81ff">22</span> 16:31 ..
+</span></span><span style="display:flex;"><span>-rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:36 special-*
+</span></span><span style="display:flex;"><span>-rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:35 special-fileB
+</span></span><span style="display:flex;"><span>-rw-r--r--    <span style="color:#ae81ff">1</span> karuppiahn  staff      <span style="color:#ae81ff">0</span> May <span style="color:#ae81ff">22</span> 16:35 special-pluginA
+</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ ./list-special-files.sh special-directory
+</span></span><span style="display:flex;"><span>special-directory/special-* special-directory/special-fileB special-directory/special-pluginA
+</span></span><span style="display:flex;"><span>special-directory/special-fileB
+</span></span><span style="display:flex;"><span>special-directory/special-pluginA
+</span></span></code></pre></div><p>Notice how it uses the glob pattern and shows all files because the file name has a special character <code>*</code> which is used for glob / as wildcard character</p>
 <p>Now let&rsquo;s fix all these issues in our code and try the <code>shellcheck</code> tool again and also do some manual testing with the same old examples</p>
 <p><code>list-special-files.sh</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-dir<span style="color:#f92672">=</span>$1
-
-<span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/special-*; <span style="color:#66d9ef">do</span>
-  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
-<span style="color:#66d9ef">done</span>
-</code></pre></div><p>Let&rsquo;s run <code>shellcheck</code> now</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ shellcheck list-special-files.sh
-$ echo $?
-<span style="color:#ae81ff">0</span>
-</code></pre></div><p>Cool !! No errors ! 😁</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">&#34;</span>/special-*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Let&rsquo;s run <code>shellcheck</code> now</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ shellcheck list-special-files.sh
+</span></span><span style="display:flex;"><span>$ echo $?
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>Cool !! No errors ! 😁</p>
 <p>Let&rsquo;s do some manual testing the <code>bash</code> shell</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
-cool directory/special-fileB
-cool directory/special-pluginA
-
-$ ./list-special-files.sh special-directory
-special-directory/special-*
-special-directory/special-fileB
-special-directory/special-pluginA
-</code></pre></div><p>Notice how the script works like a charm now? It can handle spaces in the directory name and also work with showing files which have special characters in their name, like <code>*</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
+</span></span><span style="display:flex;"><span>cool directory/special-fileB
+</span></span><span style="display:flex;"><span>cool directory/special-pluginA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./list-special-files.sh special-directory
+</span></span><span style="display:flex;"><span>special-directory/special-*
+</span></span><span style="display:flex;"><span>special-directory/special-fileB
+</span></span><span style="display:flex;"><span>special-directory/special-pluginA
+</span></span></code></pre></div><p>Notice how the script works like a charm now? It can handle spaces in the directory name and also work with showing files which have special characters in their name, like <code>*</code></p>
 <p>Note, this is what I expected from my script. It&rsquo;s possible that you expected files with names containing <code>*</code> and wanted to expand the glob, due to some reason. I&rsquo;ll leave that to you to decide how you want to manage the errors from <code>shellcheck</code> in such cases. <code>shellcheck</code> wiki has information on how to ignore errors - <a href="https://github.com/koalaman/shellcheck/wiki/Ignore">https://github.com/koalaman/shellcheck/wiki/Ignore</a></p>
 <p>Just one more example with the same code. Remember how I mentioned that it&rsquo;s cool that <code>shellcheck</code> mentions exactly what part of the code / variable to quote? If it hadn&rsquo;t done that, I could have quoted the code like this -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-dir<span style="color:#f92672">=</span>$1
-
-<span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
-  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
-<span style="color:#66d9ef">done</span>
-</code></pre></div><p>Notice the <code>&quot;$dir/special-*&quot;</code> and that&rsquo;s actually a blunder mistake 😅 But I&rsquo;m no expert in bash script and might overlook that too, LOL! But some manual testing, or just running <code>shellcheck</code> can help find issues</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
-cool directory/special-*
-
-$ ./list-special-files.sh special-directory
-special-directory/special-*
-</code></pre></div><p>Notice how it gives only one output? Exactly, there&rsquo;s a problem 😅</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ shellcheck list-special-files.sh
-
-In list-special-files.sh line 5:
-<span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
-            ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2066 -- Since you double quoted this, it ...
-</code></pre></div><p><code>shellcheck</code> clearly mentions that I have double quoted the whole thing, so basically, there&rsquo;s only one element to loop through for the <code>for</code> loop and I&rsquo;ll only have one output, the exact string <code>&quot;$dir/special-*&quot;</code> after variable substitution 😅</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Notice the <code>&quot;$dir/special-*&quot;</code> and that&rsquo;s actually a blunder mistake 😅 But I&rsquo;m no expert in bash script and might overlook that too, LOL! But some manual testing, or just running <code>shellcheck</code> can help find issues</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./list-special-files.sh <span style="color:#e6db74">&#34;cool directory&#34;</span>
+</span></span><span style="display:flex;"><span>cool directory/special-*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ./list-special-files.sh special-directory
+</span></span><span style="display:flex;"><span>special-directory/special-*
+</span></span></code></pre></div><p>Notice how it gives only one output? Exactly, there&rsquo;s a problem 😅</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ shellcheck list-special-files.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In list-special-files.sh line 5:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$dir<span style="color:#e6db74">/special-*&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>            ^--------------^ SC2066: Since you double quoted this, it will not word split, and the loop will only run once.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2066 -- Since you double quoted this, it ...
+</span></span></code></pre></div><p><code>shellcheck</code> clearly mentions that I have double quoted the whole thing, so basically, there&rsquo;s only one element to loop through for the <code>for</code> loop and I&rsquo;ll only have one output, the exact string <code>&quot;$dir/special-*&quot;</code> after variable substitution 😅</p>
 <p>Need to be careful to not use the double quotes in the wrong place(s) and also try to use <code>shellcheck</code> to check for errors! :)</p>
 <p>These are just some examples by the way. Looks like <code>shellcheck</code> has many rules / checks to find issues / bugs in shell scripts. You can find all of these rules in the <code>shellcheck</code> wiki - <a href="https://github.com/koalaman/shellcheck/wiki">https://github.com/koalaman/shellcheck/wiki</a> in the <code>Pages</code></p>
 <h2 id="shellcheck-interfaces">Shellcheck interfaces</h2>
@@ -340,23 +340,23 @@ For more information:
 <p>The official wiki about usage is here - <a href="https://github.com/koalaman/shellcheck/#how-to-use">https://github.com/koalaman/shellcheck/#how-to-use</a></p>
 <h2 id="shellcheck-support-for-different-shells">Shellcheck support for different shells</h2>
 <p>Initially I didn&rsquo;t check too much on what kind of shell scripts <code>shellcheck</code> supports. But looking at one of the errors, I realized that it supports only a few shell scripts. Below is a sample <code>zsh</code> based shell script</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi shell-check-support.sh
-$ cat shell-check-support.sh
-<span style="color:#75715e">#!/bin/zsh</span>
-
-echo <span style="color:#e6db74">&#34;ok&#34;</span>
-$ chmod +x shell-check-support.sh
-$ ./shell-check-support.sh
-ok
-$ shellcheck shell-check-support.sh
-
-In shell-check-support.sh line 1:
-<span style="color:#75715e">#!/bin/zsh</span>
-^-- SC1071: ShellCheck only supports sh/bash/dash/ksh scripts. Sorry!
-
-For more information:
-  https://www.shellcheck.net/wiki/SC1071 -- ShellCheck only supports sh/bash/...
-</code></pre></div><p>You can read more about it here - <a href="https://github.com/koalaman/shellcheck/wiki/SC1071">https://github.com/koalaman/shellcheck/wiki/SC1071</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ vi shell-check-support.sh
+</span></span><span style="display:flex;"><span>$ cat shell-check-support.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/bin/zsh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;ok&#34;</span>
+</span></span><span style="display:flex;"><span>$ chmod +x shell-check-support.sh
+</span></span><span style="display:flex;"><span>$ ./shell-check-support.sh
+</span></span><span style="display:flex;"><span>ok
+</span></span><span style="display:flex;"><span>$ shellcheck shell-check-support.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In shell-check-support.sh line 1:
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/bin/zsh</span>
+</span></span><span style="display:flex;"><span>^-- SC1071: ShellCheck only supports sh/bash/dash/ksh scripts. Sorry!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC1071 -- ShellCheck only supports sh/bash/...
+</span></span></code></pre></div><p>You can read more about it here - <a href="https://github.com/koalaman/shellcheck/wiki/SC1071">https://github.com/koalaman/shellcheck/wiki/SC1071</a></p>
 <p>In short, it supports only - bash, ksh, dash and POSIX sh, according to the wiki</p>
 <p>I think it&rsquo;s a good enough support. I mean, as someone who writes scripts, I usually just use <code>bash</code> which has good enough features. Also, you can find <code>bash</code> in most environments, if not all. So, I&rsquo;m okay with no support for <code>zsh</code>, <code>fish</code> and any other shells. I think they are probably more helpful for interactive usage, but for automation, maybe <code>bash</code>, <code>sh</code> is enough? But I don&rsquo;t know much about the other shells, so I guess I&rsquo;ll not comment more on it 🙈</p>
 <p><code>shellcheck</code> wiki also mentions how it doesn&rsquo;t support other scripting languages like python, php etc. I guess you can simply look for linters specific to those programming languages :)</p>
@@ -381,7 +381,7 @@ For more information:
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -417,7 +417,7 @@ For more information:
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

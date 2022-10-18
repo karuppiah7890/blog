@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="This is one of the posts in a series where I&rsquo;m going to write about openfaas and containerd working together. If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
 In this first post, I&rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -188,16 +188,16 @@ $ curl -sLSf https://github.com/containerd/containerd/releases/download/v$VER/co
 containerd github.com/containerd/containerd v1.3.2 ff48f57fc83a8c44cf4ad5d672424a98ba37ded6
 </code></pre><p>Now enable portfowarding and made the setting permanent</p>
 <pre tabindex="0"><code>$ sudo /sbin/sysctl -w net.ipv4.conf.all.forwarding=1
-$ echo &quot;net.ipv4.conf.all.forwarding=1&quot; | sudo tee -a /etc/sysctl.conf
+$ echo &#34;net.ipv4.conf.all.forwarding=1&#34; | sudo tee -a /etc/sysctl.conf
 </code></pre><p>Next install <code>runc</code> and check the installation</p>
 <pre tabindex="0"><code>$ sudo apt update &amp;&amp; \
   sudo apt install -qy runc \
 $ runc --version
 runc version spec: 1.0.1-dev
 </code></pre><p>Next install <code>netns</code></p>
-<pre tabindex="0"><code>$ sudo curl -fSLs &quot;https://github.com/genuinetools/netns/releases/download/v0.5.3/netns-linux-amd64&quot; \
-   -o &quot;/usr/local/bin/netns&quot; \
-   &amp;&amp; sudo chmod a+x &quot;/usr/local/bin/netns&quot;
+<pre tabindex="0"><code>$ sudo curl -fSLs &#34;https://github.com/genuinetools/netns/releases/download/v0.5.3/netns-linux-amd64&#34; \
+   -o &#34;/usr/local/bin/netns&#34; \
+   &amp;&amp; sudo chmod a+x &#34;/usr/local/bin/netns&#34;
 </code></pre><p>Check if it works</p>
 <pre tabindex="0"><code>$ netns version
 netns:
@@ -207,25 +207,25 @@ netns:
  go compiler : gc
  platform    : linux/amd64
 </code></pre><p>And then install <code>faas-containerd</code></p>
-<pre tabindex="0"><code>$ sudo curl -fSLs &quot;https://github.com/alexellis/faas-containerd/releases/download/0.3.0/faas-containerd&quot; \
-   -o &quot;/usr/local/bin/faas-containerd&quot; \
-   &amp;&amp; sudo chmod a+x &quot;/usr/local/bin/faas-containerd&quot;
+<pre tabindex="0"><code>$ sudo curl -fSLs &#34;https://github.com/alexellis/faas-containerd/releases/download/0.3.0/faas-containerd&#34; \
+   -o &#34;/usr/local/bin/faas-containerd&#34; \
+   &amp;&amp; sudo chmod a+x &#34;/usr/local/bin/faas-containerd&#34;
 </code></pre><p>Next put some configuration in some files</p>
 <pre tabindex="0"><code>$ sudo mkdir -p /etc/cni/net.d
 $ sudo vi /etc/cni/net.d/10-mynet.conf
 </code></pre><p>Put the below content and write it into the file</p>
 <pre tabindex="0"><code>{
-    &quot;cniVersion&quot;: &quot;0.3.0&quot;,
-    &quot;name&quot;: &quot;mynet&quot;,
-    &quot;type&quot;: &quot;bridge&quot;,
-    &quot;bridge&quot;: &quot;cni0&quot;,
-    &quot;isGateway&quot;: true,
-    &quot;ipMasq&quot;: true,
-    &quot;ipam&quot;: {
-        &quot;type&quot;: &quot;host-local&quot;,
-        &quot;subnet&quot;: &quot;10.244.1.0/24&quot;,
-        &quot;routes&quot;: [
-            { &quot;dst&quot;: &quot;0.0.0.0/0&quot;  }
+    &#34;cniVersion&#34;: &#34;0.3.0&#34;,
+    &#34;name&#34;: &#34;mynet&#34;,
+    &#34;type&#34;: &#34;bridge&#34;,
+    &#34;bridge&#34;: &#34;cni0&#34;,
+    &#34;isGateway&#34;: true,
+    &#34;ipMasq&#34;: true,
+    &#34;ipam&#34;: {
+        &#34;type&#34;: &#34;host-local&#34;,
+        &#34;subnet&#34;: &#34;10.244.1.0/24&#34;,
+        &#34;routes&#34;: [
+            { &#34;dst&#34;: &#34;0.0.0.0/0&#34;  }
         ]
     }
 }
@@ -254,10 +254,10 @@ everything is working fine and the deployment went through. Now that
 out function is deployed, let&rsquo;s see if it&rsquo;s running and what&rsquo;s the
 output it gives</p>
 <p>Invoke it using this</p>
-<pre tabindex="0"><code>$ echo &quot;openfaas&quot; | faas invoke figlet -g 127.0.0.1:8081
+<pre tabindex="0"><code>$ echo &#34;openfaas&#34; | faas invoke figlet -g 127.0.0.1:8081
                          __
   ___  _ __   ___ _ __  / _| __ _  __ _ ___
- / _ \| '_ \ / _ \ '_ \| |_ / _` |/ _` / __|
+ / _ \| &#39;_ \ / _ \ &#39;_ \| |_ / _` |/ _` / __|
 | (_) | |_) |  __/ | | |  _| (_| | (_| \__ \
  \___/| .__/ \___|_| |_|_|  \__,_|\__,_|___/
       |_|
@@ -273,7 +273,7 @@ figlet                          0               0
 <pre tabindex="0"><code>$ faas deploy --image alexellis2/ping:0.1 \
   -g 127.0.0.1:8081 --update=true --replace=false --name ping
 </code></pre><p>Let&rsquo;s invoke the function</p>
-<pre tabindex="0"><code>$ echo &quot;-c 1 8.8.8.8&quot; | faas invoke ping -g 127.0.0.1:8081
+<pre tabindex="0"><code>$ echo &#34;-c 1 8.8.8.8&#34; | faas invoke ping -g 127.0.0.1:8081
 
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 64 bytes from 8.8.8.8: icmp_seq=1 ttl=52 time=5.10 ms
@@ -297,7 +297,7 @@ information</p>
 <pre tabindex="0"><code>$ faas store deploy nodeinfo \
   -g 127.0.0.1:8081 --update=true --replace=false
 </code></pre><p>Let&rsquo;s invoke it!</p>
-<pre tabindex="0"><code>$ echo &quot;&quot; | faas-cli invoke nodeinfo -g 127.0.0.1:8081
+<pre tabindex="0"><code>$ echo &#34;&#34; | faas-cli invoke nodeinfo -g 127.0.0.1:8081
 
 Hostname: localhost
 
@@ -314,38 +314,38 @@ Platform: linux
 Arch: x64
 CPU count: 1
 Uptime: 4158
-[ { model: 'Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz',
+[ { model: &#39;Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz&#39;,
     speed: 2193,
     times:
      { user: 230300, nice: 15800, sys: 127800, idle: 40662100, irq: 0 } } ]
 { lo:
-   [ { address: '127.0.0.1',
-       netmask: '255.0.0.0',
-       family: 'IPv4',
-       mac: '00:00:00:00:00:00',
+   [ { address: &#39;127.0.0.1&#39;,
+       netmask: &#39;255.0.0.0&#39;,
+       family: &#39;IPv4&#39;,
+       mac: &#39;00:00:00:00:00:00&#39;,
        internal: true,
-       cidr: '127.0.0.1/8' },
-     { address: '::1',
-       netmask: 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
-       family: 'IPv6',
-       mac: '00:00:00:00:00:00',
+       cidr: &#39;127.0.0.1/8&#39; },
+     { address: &#39;::1&#39;,
+       netmask: &#39;ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff&#39;,
+       family: &#39;IPv6&#39;,
+       mac: &#39;00:00:00:00:00:00&#39;,
        scopeid: 0,
        internal: true,
-       cidr: '::1/128' } ],
+       cidr: &#39;::1/128&#39; } ],
   eth0:
-   [ { address: '172.19.0.5',
-       netmask: '255.255.0.0',
-       family: 'IPv4',
-       mac: 'c6:43:d5:16:c3:9a',
+   [ { address: &#39;172.19.0.5&#39;,
+       netmask: &#39;255.255.0.0&#39;,
+       family: &#39;IPv4&#39;,
+       mac: &#39;c6:43:d5:16:c3:9a&#39;,
        internal: false,
-       cidr: '172.19.0.5/16' },
-     { address: 'fe80::c443:d5ff:fe16:c39a',
-       netmask: 'ffff:ffff:ffff:ffff::',
-       family: 'IPv6',
-       mac: 'c6:43:d5:16:c3:9a',
+       cidr: &#39;172.19.0.5/16&#39; },
+     { address: &#39;fe80::c443:d5ff:fe16:c39a&#39;,
+       netmask: &#39;ffff:ffff:ffff:ffff::&#39;,
+       family: &#39;IPv6&#39;,
+       mac: &#39;c6:43:d5:16:c3:9a&#39;,
        scopeid: 10,
        internal: false,
-       cidr: 'fe80::c443:d5ff:fe16:c39a/64' } ] }
+       cidr: &#39;fe80::c443:d5ff:fe16:c39a/64&#39; } ] }
 </code></pre><p>Now that we have many functions, let&rsquo;s see how it runs as containers</p>
 <p>So, we have three functions</p>
 <pre tabindex="0"><code>$ faas list -g 127.0.0.1:8081
@@ -375,7 +375,7 @@ openfaas, like running it on Kubernetes.</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -411,7 +411,7 @@ openfaas, like running it on Kubernetes.</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

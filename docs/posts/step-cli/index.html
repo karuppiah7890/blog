@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="tldr; step GitHub repo - https://github.com/smallstep/cli
 $ # Reading from keyboard / standard input after running command. $ # Run command and then paste the JWT token as input and press Enter. $ step crypto jwt inspect --insecure eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from file $ cat jwt-token.txt | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } $ # Reading from environment variables $ echo $JWT_TOKEN | step crypto jwt inspect --insecure { &#34;header&#34;: { &#34;alg&#34;: &#34;HS256&#34;, &#34;typ&#34;: &#34;JWT&#34; }, &#34;payload&#34;: { &#34;sub&#34;: &#34;1234567890&#34;, &#34;name&#34;: &#34;John Doe&#34;, &#34;iat&#34;: 1516239022 }, &#34;signature&#34;: &#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34; } Recently I was trying to decode the information present in a JWT token to understand what&rsquo;s the information in it.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -159,53 +159,53 @@ $ # Reading from keyboard / standard input after running command. $ # Run comman
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="tldr">tldr;</h1>
 <p><code>step</code> GitHub repo - <a href="https://github.com/smallstep/cli">https://github.com/smallstep/cli</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># Reading from keyboard / standard input after running command.</span>
-$ <span style="color:#75715e"># Run command and then paste the JWT token as input and press Enter.</span>
-$ step crypto jwt inspect --insecure
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-
-$ <span style="color:#75715e"># Reading from file</span>
-$ cat jwt-token.txt | step crypto jwt inspect --insecure
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-
-$ <span style="color:#75715e"># Reading from environment variables</span>
-$ echo $JWT_TOKEN | step crypto jwt inspect --insecure
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Recently I was trying to decode the information present in a JWT token to
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># Reading from keyboard / standard input after running command.</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Run command and then paste the JWT token as input and press Enter.</span>
+</span></span><span style="display:flex;"><span>$ step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Reading from file</span>
+</span></span><span style="display:flex;"><span>$ cat jwt-token.txt | step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Reading from environment variables</span>
+</span></span><span style="display:flex;"><span>$ echo $JWT_TOKEN | step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Recently I was trying to decode the information present in a JWT token to
 understand what&rsquo;s the information in it.</p>
 <p>Initially I forgot the concept of JWT and thought I would need the secret key
 it was signed with to even read the info in it. I realized that wasn&rsquo;t the case
@@ -252,52 +252,52 @@ I think <code>jq</code> was used too, I&rsquo;m unable to recall now. But yeah, 
 it, with bash and external tools.</p>
 <p>Compared to that, <code>step</code> tool was just cool when I saw it. I could easily
 install it with <code>brew</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install step
-</code></pre></div><p>And I was easily able to decode my JWT token with just this -</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># Run command and then paste the JWT token as input and press Enter.</span>
-$ step crypto jwt inspect --insecure
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>To use it with files and environment variables, just do some bash tricks!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat jwt-token.txt | step crypto jwt inspect --insecure
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-
-$ echo $JWT_TOKEN | step crypto jwt inspect --insecure
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
-    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
-  <span style="color:#f92672">}</span>,
-  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>The <code>--insecure</code> is because we are trying to avoid verification of the token.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ brew install step
+</span></span></code></pre></div><p>And I was easily able to decode my JWT token with just this -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># Run command and then paste the JWT token as input and press Enter.</span>
+</span></span><span style="display:flex;"><span>$ step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>To use it with files and environment variables, just do some bash tricks!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat jwt-token.txt | step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ echo $JWT_TOKEN | step crypto jwt inspect --insecure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;header&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;payload&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516239022</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;signature&#34;</span>: <span style="color:#e6db74">&#34;SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The <code>--insecure</code> is because we are trying to avoid verification of the token.
 <a href="https://smallstep.com/docs/cli/crypto/jwt/inspect/">https://smallstep.com/docs/cli/crypto/jwt/inspect/</a></p>
 <p>I think it&rsquo;s a really cool tool! :)</p>
 <p>The above example is from the jwt.io website. You can try with your own JWT
@@ -312,7 +312,7 @@ token.</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -348,7 +348,7 @@ token.</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">

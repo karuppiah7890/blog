@@ -100,8 +100,8 @@ Let&amp;rsquo;s start with an example. I&amp;rsquo;m sure many of us would have 
       
       <guid>https://karuppiah7890.github.io/blog/posts/avoid-rookie-mistakes/</guid>
       <description>This is a short post about how one can try to avoid rookie mistakes. This is just me jotting down lessons for myself :)
- Note: Rookie mistakes are common and can happen anytime. It&amp;rsquo;s good to learn from them and create processes and tools that help you succeed :)
- Recently I made a rookie mistake where I created a temporary git branch in a git repository, but I couldn&amp;rsquo;t delete it and this lead to problematic things that I won&amp;rsquo;t get into</description>
+Note: Rookie mistakes are common and can happen anytime. It&amp;rsquo;s good to learn from them and create processes and tools that help you succeed :)
+Recently I made a rookie mistake where I created a temporary git branch in a git repository, but I couldn&amp;rsquo;t delete it and this lead to problematic things that I won&amp;rsquo;t get into</description>
     </item>
     
     <item>
@@ -141,7 +141,7 @@ $ cat sample.template.yaml shell: ${SHELL} # notice how we can use ${} format to
       
       <guid>https://karuppiah7890.github.io/blog/posts/async-communications-gone-wrong/</guid>
       <description>⚠️ This is kind of a rant post too. You have been warned! 😅 Also, it&amp;rsquo;s a lot of scattered thoughts too. I&amp;rsquo;m sorry if you feel lost somewhere 🙈
- Given that a lot of modern and tech based companies have moved from an office setup to a remote working setup - working out of homes or multiple scattered very small offices etc, the mindset of the companies doesn&amp;rsquo;t seem to have changed much.</description>
+Given that a lot of modern and tech based companies have moved from an office setup to a remote working setup - working out of homes or multiple scattered very small offices etc, the mindset of the companies doesn&amp;rsquo;t seem to have changed much.</description>
     </item>
     
     <item>
@@ -349,7 +349,7 @@ You might be writing and running integration tests against actual components to 
       
       <guid>https://karuppiah7890.github.io/blog/posts/kubernetes-daemonset-do-you-need-them-why/</guid>
       <description>Note: This article assumes you know about Kubernetes basics like Pods and that Pods run on nodes, and that Kubernetes works in a cluster architecture with usually more than one node.
- TLDR; DaemonSet is a specific name of a resource in Kubernetes in case you haven&amp;rsquo;t heard of it. I like to call it as &amp;ldquo;run everywhere thing&amp;rdquo; when I introduce it to newbies. If you need to run a program / software in every node of the Kubernetes cluster, then this article might be of interest to you.</description>
+TLDR; DaemonSet is a specific name of a resource in Kubernetes in case you haven&amp;rsquo;t heard of it. I like to call it as &amp;ldquo;run everywhere thing&amp;rdquo; when I introduce it to newbies. If you need to run a program / software in every node of the Kubernetes cluster, then this article might be of interest to you.</description>
     </item>
     
     <item>
@@ -380,7 +380,7 @@ Longer version Disclaimer - I have read very few things about writing blogs. I h
       <guid>https://karuppiah7890.github.io/blog/posts/jabba-a-java-version-manager/</guid>
       <description>TLDR; Try Jabba, an Open Source Tool for managing multiple Java versions in your system. It&amp;rsquo;s written in Golang. It has been inspired by nvm which manages Node versions
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :)</description>
+This blog post will be mostly the text version of the video :)</description>
     </item>
     
     <item>
@@ -401,7 +401,7 @@ Some more context - we are writing Web APIs.</description>
       <guid>https://karuppiah7890.github.io/blog/posts/drawing-tools-part1-excalidraw/</guid>
       <description>TLDR; Try Excalidraw an Open Source Online drawing tool which has enough features for most of your basic needs! It also supports live collaboration for people working remotely! :)
 Video Version Before going into the post, if you prefer videos over blogs, you can checkout this YouTube video, which has the same information as this blog post.
-  This blog post will be mostly the text version of the video :) There might be a thing or two extra in this blog post.</description>
+This blog post will be mostly the text version of the video :) There might be a thing or two extra in this blog post.</description>
     </item>
     
     <item>
@@ -441,7 +441,7 @@ If you haven&amp;rsquo;t already heard about Authentication and Authorization, i
       <pubDate>Sun, 11 Oct 2020 09:13:50 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/aim-for-https/</guid>
-      <description>TLDR;  Be aware of the benefits of HTTPS. Always try to use HTTPS when using a website Always try to use HTTPS when building / developing a website, even if your site does not get any sensitive or confidential input from the user at all, or store or serve any user data.  Longer version If you have not heard of HTTPS before but have heard of HTTP, I would recommend reading about it.</description>
+      <description>TLDR; Be aware of the benefits of HTTPS. Always try to use HTTPS when using a website Always try to use HTTPS when building / developing a website, even if your site does not get any sensitive or confidential input from the user at all, or store or serve any user data. Longer version If you have not heard of HTTPS before but have heard of HTTP, I would recommend reading about it.</description>
     </item>
     
     <item>
@@ -515,7 +515,7 @@ I kind of knew that my implementation would involve Keycloak, a software we use 
       
       <guid>https://karuppiah7890.github.io/blog/posts/intro-one-time-passwords/</guid>
       <description>Disclaimer: I&amp;rsquo;m no security expert. The post is more from a techy user&amp;rsquo;s perspective, with little research.
- I&amp;rsquo;m usually always into guessing what goes on behind the scenes of some technology and then checking online more about it and then understanding how it&amp;rsquo;s actually done.
+I&amp;rsquo;m usually always into guessing what goes on behind the scenes of some technology and then checking online more about it and then understanding how it&amp;rsquo;s actually done.
 So, in this post, I&amp;rsquo;m going to be talking about One Time Passwords (OTPs) and going to try to take a crack at how it is probably implemented behind the scenes.</description>
     </item>
     
@@ -548,7 +548,7 @@ Now, I am pretty new to almost every technology in the project. So I&amp;rsquo;m
       
       <guid>https://karuppiah7890.github.io/blog/posts/using-ci-cd-artifacts-for-faster-docker-image-builds/</guid>
       <description>Disclaimer: This blog post is very context specific, so please consider your application and it&amp;rsquo;s context, and accordingly see if you can use this strategy.
- Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&amp;rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.</description>
+Story and the Problem Recently in our project, we were writing a Dockerfile to build a Docker image for our React App. It didn&amp;rsquo;t have any server side to it, just a static app. We decided to serve the frontend files (HTML, CSS, Js) using Nginx web server.</description>
     </item>
     
     <item>
@@ -559,7 +559,7 @@ Now, I am pretty new to almost every technology in the project. So I&amp;rsquo;m
       <guid>https://karuppiah7890.github.io/blog/posts/nginx-as-gateway/</guid>
       <description>In our project, we are building a web app, with backend. We use a separate service called Keycloak for Identity and Access Management.
 Given we have all this, initially we were exposing these through the same URL but with different ports
- Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak  The user experience for the user accessing the web app looked something like this -</description>
+Port 80 for our web app Port 8080 for the backend Port 80890 for Keycloak The user experience for the user accessing the web app looked something like this -</description>
     </item>
     
     <item>
@@ -597,7 +597,7 @@ $ # Reading from keyboard / standard input after running command. $ # Run comman
       
       <guid>https://karuppiah7890.github.io/blog/posts/why-blog-why-share-knowledge/</guid>
       <description>Disclaimer: I&amp;rsquo;m not some genius. The below are just my thoughts / opinions based on experience. I&amp;rsquo;m not basing it off of any facts really.
- I&amp;rsquo;ll be pretty straight forward on this. We live in a very crazy competitive world. Almost everything seems to be a race. Even if you don&amp;rsquo;t want to be in it, you are kind of in it, or at least affected by it. Atleast that&amp;rsquo;s my opinion.</description>
+I&amp;rsquo;ll be pretty straight forward on this. We live in a very crazy competitive world. Almost everything seems to be a race. Even if you don&amp;rsquo;t want to be in it, you are kind of in it, or at least affected by it. Atleast that&amp;rsquo;s my opinion.</description>
     </item>
     
     <item>
@@ -674,7 +674,7 @@ In a moment I got the answer - yeah. You got it right. Prettifying the JSON with
       <pubDate>Sun, 19 Apr 2020 07:35:13 +0530</pubDate>
       
       <guid>https://karuppiah7890.github.io/blog/posts/cloning-all-git-repos-from-gitlab-group/</guid>
-      <description>tldr; $ curl -H &amp;quot;PRIVATE-TOKEN: $GITLAB_TOKEN&amp;quot; \ &amp;quot;https://&amp;lt;gitlab-url&amp;gt;/api/v4/groups/&amp;lt;group-id&amp;gt;/projects?per_page=100&amp;quot; | jq \ &#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&#39; $ cat projects.json | jq &amp;quot;.[].http_url&amp;quot; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &amp;quot;.[].ssh_url&amp;quot; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&amp;rsquo;s GitLab group.</description>
+      <description>tldr; $ curl -H &amp;#34;PRIVATE-TOKEN: $GITLAB_TOKEN&amp;#34; \ &amp;#34;https://&amp;lt;gitlab-url&amp;gt;/api/v4/groups/&amp;lt;group-id&amp;gt;/projects?per_page=100&amp;#34; | jq \ &amp;#39;map({ id: .id, name: .name, ssh_url: .ssh_url_to_repo, http_url: .http_url_to_repo })&amp;#39; $ cat projects.json | jq &amp;#34;.[].http_url&amp;#34; -r | xargs -I {} git clone {} $ # OR $ cat projects.json | jq &amp;#34;.[].ssh_url&amp;#34; -r | xargs -I {} git clone {} Longer version I have joined a new project. My use case was to clone all the repositories in our team&amp;rsquo;s GitLab group.</description>
     </item>
     
     <item>
@@ -684,7 +684,7 @@ In a moment I got the answer - yeah. You got it right. Prettifying the JSON with
       
       <guid>https://karuppiah7890.github.io/blog/posts/the-pot/</guid>
       <description>Found this on my Tumblr blog. Migrating it here
- Started off to write a poem. It turned out to be something else. :P
+Started off to write a poem. It turned out to be something else. :P
 The Pot Everyone&amp;rsquo;s born with a pot.
 A very special kind of pot,
 which is very much connected
@@ -703,7 +703,7 @@ People always break it.</description>
       
       <guid>https://karuppiah7890.github.io/blog/posts/walking-alone/</guid>
       <description>Found this on my Tumblr blog. Migrating it here
- A friend said, what I write comes under &amp;ldquo;freestyle poem&amp;rdquo; category&amp;hellip;This time, this one, comes under &amp;ldquo;freestyle essay&amp;rdquo; category I guess ;) :D
+A friend said, what I write comes under &amp;ldquo;freestyle poem&amp;rdquo; category&amp;hellip;This time, this one, comes under &amp;ldquo;freestyle essay&amp;rdquo; category I guess ;) :D
 Walking Alone I don&amp;rsquo;t know when I
 started walking alone.
 I just know, I have
@@ -721,7 +721,7 @@ And each time, it has</description>
       
       <guid>https://karuppiah7890.github.io/blog/posts/shadow-and-friendship/</guid>
       <description>Found this on my Tumblr blog. Migrating it here
- This is a poem that I wrote long long ago, as far as I remember. Probably during 12th Std or may be during 1st sem college. My Google Drive details say I uploaded this poem in Dec 2013. Now, I am posting it here. Thank God I got this :P
+This is a poem that I wrote long long ago, as far as I remember. Probably during 12th Std or may be during 1st sem college. My Google Drive details say I uploaded this poem in Dec 2013. Now, I am posting it here. Thank God I got this :P
 Shadow and Friendship My shadow has always been a good companion.</description>
     </item>
     
@@ -742,7 +742,7 @@ The water was flowing happily fast. It was so hard for me to cross the river, bu
       
       <guid>https://karuppiah7890.github.io/blog/posts/i-imagine/</guid>
       <description>This is a small writing
- I&amp;rsquo;m watching my series and some funny scenes come and I&amp;rsquo;m laughing and I imagine how it will be funny for you too
+I&amp;rsquo;m watching my series and some funny scenes come and I&amp;rsquo;m laughing and I imagine how it will be funny for you too
 I imagine about how you would laugh at it if you had been sitting near me
 I imagine how you would just slowly lean your head on my shoulders while laughing and then sit straight smiling
 I imagine how your hair, eyes and smile would look</description>
@@ -755,7 +755,7 @@ I imagine how your hair, eyes and smile would look</description>
       
       <guid>https://karuppiah7890.github.io/blog/posts/the-dress/</guid>
       <description>This is a small writing
- I go to her place imagining what she&amp;rsquo;s probably wearing
+I go to her place imagining what she&amp;rsquo;s probably wearing
 I see her waiting for me outside with the big basket of clothes
 As I approach her, I see her. There she is. In pure white. And she isn&amp;rsquo;t smiling. I wonder why
 I finally reach her. She hands the basket and gives me some shillings and then some extra and says &amp;ldquo;Just make sure it goes away.</description>
@@ -799,7 +799,7 @@ In this post I&amp;rsquo;m going to tell the story behind the tool.</description
       <guid>https://karuppiah7890.github.io/blog/posts/installing-prometheus-operator-prometheus-alertmanager-and-grafana/</guid>
       <description>In this blog post I&amp;rsquo;m going to teach about how to install Prometheus Operator, Prometheus, Alertmanager and Grafana
 If you want to checkout the video version of this blog which shows a demo, you can see the below video
-  This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&amp;rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?</description>
+This blog post has written in response to a message here - https://lists.cncf.io/g/cncf-helm/message/293 . Usually I don&amp;rsquo;t like to give away answers easily, but sometimes it feels like - why do things have to be hard?</description>
     </item>
     
     <item>
@@ -959,8 +959,8 @@ Now, let&amp;rsquo;s say, I&amp;rsquo;m going to use slack / zoom to just do aud
       <description>So, today I found something funny and interesting. Someone in our slack #tech-reads channel shared a tech read by antirez, the creator of redis software. This is the link that they shared -
 http://antirez.com/news/123
 I immediately tried out the command in my terminal and it was cool! See the recording here -
- The commands used in the recording are below
-$ redis-cli 127.0.0.1:6379&amp;gt; lolwut 127.0.0.1:6379&amp;gt; lolwut 10 1 4 127.</description>
+The commands used in the recording are below
+$ redis-cli 127.0.0.1:6379&amp;gt; lolwut 127.0.0.1:6379&amp;gt; lolwut 10 1 4 127.0.0.1:6379&amp;gt; lolwut 1 1 4 127.</description>
     </item>
     
     <item>
@@ -1015,7 +1015,7 @@ I think the first inspiration for me is my friend Nimalan. Who started cycling a
       
       <guid>https://karuppiah7890.github.io/blog/posts/in-a-class/</guid>
       <description>This is a story by me :)
- We are in a grade 10 class in AllCool School. Students are studying chemistry and their professor has asked them to solve a problem
+We are in a grade 10 class in AllCool School. Students are studying chemistry and their professor has asked them to solve a problem
 Aman has finished the problem and he is acting as though he&amp;rsquo;s not done and is pretending he&amp;rsquo;s thinking about the problem and is looking around to pretend he wants help. While looking around he is thinking &amp;ldquo;Damn, I wish I could keep looking at Rahul.</description>
     </item>
     
@@ -1026,7 +1026,7 @@ Aman has finished the problem and he is acting as though he&amp;rsquo;s not done
       
       <guid>https://karuppiah7890.github.io/blog/posts/different-ways-to-contribute-to-open-source/</guid>
       <description>This is not an exhaustive list
- Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&amp;rsquo;s an issue with the software.</description>
+Donate Money Write code - bug fixes, features, security issue fixes, performance improvements Write docs, Fix docs Simply use the software and provide UI/UX feedback and propose different UI/UX by filing an issue Report bugs that you notice while using the software Check existing bugs in issues and help by reproducing the issue if no one has confirmed that it&amp;rsquo;s an issue with the software.</description>
     </item>
     
     <item>
@@ -1082,7 +1082,7 @@ After some talks, it&amp;rsquo;s break time.</description>
       <guid>https://karuppiah7890.github.io/blog/posts/helm-3-charts-and-oci-registries/</guid>
       <description>Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
 With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
- The commands being used in the video:
+The commands being used in the video:
 $ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.</description>
     </item>
     
@@ -1106,7 +1106,7 @@ My previous blogs that I hosted using Blogger during college -
 https://semlabs.blogspot.com/
 https://semlectures.blogspot.com/
 And now I have created this blog. I use these to create and host it:
- Hugo static site generator GitHub Pages Visual Studio Code Editor Markdown Emoji to put the awesome emojis in markdown 😁  Hoping to write tons of posts 😉 Stay tuned!</description>
+Hugo static site generator GitHub Pages Visual Studio Code Editor Markdown Emoji to put the awesome emojis in markdown 😁 Hoping to write tons of posts 😉 Stay tuned!</description>
     </item>
     
   </channel>

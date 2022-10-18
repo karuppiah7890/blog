@@ -9,7 +9,7 @@
     <meta name="description" content="If you don&rsquo;t know what a digital signature is, in layman terms you may think of this, a photo of your physical signature
 Photo by Lewis Keegan - Skillscouter.com on Unsplash May be you could say that&rsquo;s true, but only if it&rsquo;s layman slang. Officially, in computer science, the concept of digital signature has a different meaning.
 It does denote someone&rsquo;s or some entity&rsquo;s signature, in a digital world. Yes. So, that&rsquo;s not wrong.">
-    <meta name="generator" content="Hugo 0.90.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -257,7 +257,7 @@ For compatibility:
   the proper format.
 
 For integrity:
-  Without the hash function, the text &quot;to be signed&quot; may have to be split
+  Without the hash function, the text &#34;to be signed&#34; may have to be split
   (separated) in blocks small enough for the signature scheme to act on them
   directly. However, the receiver of the signed blocks is not able to
   recognize if all the blocks are present and in the appropriate order.
@@ -279,20 +279,20 @@ Gnu PG - Gnu Privacy Guard -</p>
 <p><a href="https://www.gnupg.org/gph/en/manual/x135.html">https://www.gnupg.org/gph/en/manual/x135.html</a></p>
 <p>Below is an example of trying out <code>gpg</code>. I try to create a detached digital
 signature based on the concept we just spoke about in the above sections</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#75715e"># Create a digital signature</span>
-$ gpg --output README.md.sign --detach-sign README.md
-$ <span style="color:#75715e"># Check the digital signature that has been created</span>
-$ ls README.md*
-README.md       README.md.sign
-$ <span style="color:#75715e"># Verify the digital signature</span>
-$ gpg --verify README.md.sign README.md
-gpg: Signature made Tue Nov <span style="color:#ae81ff">17</span> 22:09:52 <span style="color:#ae81ff">2020</span> IST
-gpg:                using RSA key D92E92C12F3E7D3C0BABA73BC674A28337662A96
-gpg: Good signature from <span style="color:#e6db74">&#34;Karuppiah Natarajan &lt;karuppiah7890@gmail.com&gt;&#34;</span> <span style="color:#f92672">[</span>unknown<span style="color:#f92672">]</span>
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: D92E 92C1 2F3E 7D3C 0BAB  A73B C674 A283 <span style="color:#ae81ff">3766</span> 2A96
-</code></pre></div><p>There are also grahical (GUI) applications to help with signing digital files,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#75715e"># Create a digital signature</span>
+</span></span><span style="display:flex;"><span>$ gpg --output README.md.sign --detach-sign README.md
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Check the digital signature that has been created</span>
+</span></span><span style="display:flex;"><span>$ ls README.md*
+</span></span><span style="display:flex;"><span>README.md       README.md.sign
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Verify the digital signature</span>
+</span></span><span style="display:flex;"><span>$ gpg --verify README.md.sign README.md
+</span></span><span style="display:flex;"><span>gpg: Signature made Tue Nov <span style="color:#ae81ff">17</span> 22:09:52 <span style="color:#ae81ff">2020</span> IST
+</span></span><span style="display:flex;"><span>gpg:                using RSA key D92E92C12F3E7D3C0BABA73BC674A28337662A96
+</span></span><span style="display:flex;"><span>gpg: Good signature from <span style="color:#e6db74">&#34;Karuppiah Natarajan &lt;karuppiah7890@gmail.com&gt;&#34;</span> <span style="color:#f92672">[</span>unknown<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>gpg: WARNING: This key is not certified with a trusted signature!
+</span></span><span style="display:flex;"><span>gpg:          There is no indication that the signature belongs to the owner.
+</span></span><span style="display:flex;"><span>Primary key fingerprint: D92E 92C1 2F3E 7D3C 0BAB  A73B C674 A283 <span style="color:#ae81ff">3766</span> 2A96
+</span></span></code></pre></div><p>There are also grahical (GUI) applications to help with signing digital files,
 you could check those out too :)</p>
 <p>Some reference links for you to check out:
 <a href="https://en.wikipedia.org/wiki/Digital_signature">https://en.wikipedia.org/wiki/Digital_signature</a>
@@ -306,7 +306,7 @@ you could check those out too :)</p>
       
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -342,7 +342,7 @@ you could check those out too :)</p>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://karuppiah7890.github.io/blog" >
-    &copy;  Karuppiah's Blog 2021 
+    &copy;  Karuppiah's Blog 2022 
   </a>
     <div>
 <div class="ananke-socials">
