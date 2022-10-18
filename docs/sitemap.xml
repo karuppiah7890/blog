@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://karuppiah7890.github.io/blog/posts/buildinfo-golang-std-lib-package/</loc>
-    <lastmod>2021-12-15T17:07:00+05:30</lastmod>
-  </url><url>
     <loc>https://karuppiah7890.github.io/blog/</loc>
-    <lastmod>2021-12-15T17:07:00+05:30</lastmod>
+    <lastmod>2022-10-18T19:30:30+05:30</lastmod>
   </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/</loc>
+    <lastmod>2022-10-18T19:30:30+05:30</lastmod>
+  </url><url>
+    <loc>https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/</loc>
+    <lastmod>2022-10-18T19:30:30+05:30</lastmod>
+  </url><url>
+    <loc>https://karuppiah7890.github.io/blog/posts/buildinfo-golang-std-lib-package/</loc>
     <lastmod>2021-12-15T17:07:00+05:30</lastmod>
   </url><url>
     <loc>https://karuppiah7890.github.io/blog/posts/code-snippets-on-internet/</loc>

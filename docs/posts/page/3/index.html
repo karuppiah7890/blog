@@ -128,6 +128,30 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/" class="link black dim">
+        Bytes #4: Please don&#39;t use plain text files to store secrets!
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Based on some recent experience, I have noticed how one can easily store secrets in plain text files and things could go very wrong.
+First off, some people store secrets in plain text files in their git repositories by mistake
+Only for example purposes, below are some links
+https://github.com/UnravelAI/unravel-api/commit/c0599c4d798c8333b8a1c643d1e02dbec4a7cc1d
+https://github.com/steppingcloudlabs/single-tenant-alumniportal/commit/f99e126fd1d8e486ac81e2e3d77aa14424ad525f
+I just had to do a GitHub search
+https://github.com/search?q=aws+credentials+env&amp;type=commits
+And I found the above. Fortunately the people who removed the keys from their git repository knew that the git history would contain it and hence revoked the keys and rotated it to get new keys.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/blog/posts/bytes-3-dont-have-unnecessary-high-access/" class="link black dim">
         Bytes #3: Please don&#39;t have unnecessary high access!
       </a>
@@ -287,25 +311,6 @@ TLDR One way is to control the replica count. If replica count is 0, then it mea
 In this blog post we will see what&rsquo;s the use case for Kubernetes Jobs and CronJobs. We try to solve the same use case without these resources, and then see how it compares to Kubernetes Jobs and CronJobs.
 Longer Version Let&rsquo;s start with a requirement first
 &ldquo;I want to be able to run a task and know if it was successfully completed or not&rdquo;
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/testcontainers-part-2-testcontainers-in-java-for-your-tests-with-junit-5/" class="link black dim">
-        Testcontainers Part 2: Testcontainers in Java for your tests with Junit 5
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Testcontainers is a library that helps you run Docker containers to run components for your integration tests. There&rsquo;s a Java library and there are libraries in other languages too.
-I wrote a part 1 blog post about integration tests and an introduction to Testcontainers. It didn&rsquo;t have any code examples though.
-A lot of the docs on the websites are really good for you to get started. I&rsquo;m still writing this and upcoming posts to give a bit more details based on the experience from using Testcontainers in our project.
     </div>
   </div>
 </div>

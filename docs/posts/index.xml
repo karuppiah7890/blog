@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Dec 2021 17:07:00 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Oct 2022 19:30:30 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trying out PostgreSQL v15</title>
+      <link>https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/</link>
+      <pubDate>Tue, 18 Oct 2022 19:30:30 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/</guid>
+      <description>Recently the PostgreSQL community released PostgreSQL v15, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps
+# Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries wget https://sbp.enterprisedb.com/getfile.jsp?fileid=1258215 -O pg-15-osx-binaries.zip unzip pg-15-osx-binaries.zip sudo xattr -r -d com.apple.quarantine pgsql ./pgsql/bin/postgres --version ./pgsql/bin/psql --version .</description>
+    </item>
+    
     <item>
       <title>debug/buildinfo golang standard library package</title>
       <link>https://karuppiah7890.github.io/blog/posts/buildinfo-golang-std-lib-package/</link>

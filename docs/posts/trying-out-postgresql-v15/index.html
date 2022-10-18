@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog</title>
+    <title>Trying out PostgreSQL v15 | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Recently the PostgreSQL community released PostgreSQL v15, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps
+# Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries wget https://sbp.enterprisedb.com/getfile.jsp?fileid=1258215 -O pg-15-osx-binaries.zip unzip pg-15-osx-binaries.zip sudo xattr -r -d com.apple.quarantine pgsql ./pgsql/bin/postgres --version ./pgsql/bin/psql --version .">
     <meta name="generator" content="Hugo 0.104.3" />
     
     
@@ -29,20 +30,23 @@
 
     
     
-      <link href="/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      
-    
-    
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
+    <meta property="og:title" content="Trying out PostgreSQL v15" />
+<meta property="og:description" content="Recently the PostgreSQL community released PostgreSQL v15, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps
+# Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries wget https://sbp.enterprisedb.com/getfile.jsp?fileid=1258215 -O pg-15-osx-binaries.zip unzip pg-15-osx-binaries.zip sudo xattr -r -d com.apple.quarantine pgsql ./pgsql/bin/postgres --version ./pgsql/bin/psql --version ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-18T19:30:30+05:30" />
+<meta property="article:modified_time" content="2022-10-18T19:30:30+05:30" />
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta itemprop="name" content="Trying out PostgreSQL v15">
+<meta itemprop="description" content="Recently the PostgreSQL community released PostgreSQL v15, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps
+# Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries wget https://sbp.enterprisedb.com/getfile.jsp?fileid=1258215 -O pg-15-osx-binaries.zip unzip pg-15-osx-binaries.zip sudo xattr -r -d com.apple.quarantine pgsql ./pgsql/bin/postgres --version ./pgsql/bin/psql --version ."><meta itemprop="datePublished" content="2022-10-18T19:30:30+05:30" />
+<meta itemprop="dateModified" content="2022-10-18T19:30:30+05:30" />
+<meta itemprop="wordCount" content="162">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Trying out PostgreSQL v15"/>
+<meta name="twitter:description" content="Recently the PostgreSQL community released PostgreSQL v15, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps
+# Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries wget https://sbp.enterprisedb.com/getfile.jsp?fileid=1258215 -O pg-15-osx-binaries.zip unzip pg-15-osx-binaries.zip sudo xattr -r -d com.apple.quarantine pgsql ./pgsql/bin/postgres --version ./pgsql/bin/psql --version ."/>
 
       
     
@@ -52,9 +56,11 @@
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -107,232 +113,142 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/test-test-test-code/" class="link black dim">
-        Test Test Test Code
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I have contributed to a few open source repositories. One good thing I learned is - tests are very important and that we need to make sure that the software is robust. And when software breaks, it means that some test for a scenario is missing - add it, and the test will fail, as there&rsquo;s a bug and then it can be fixed. Now, that&rsquo;s a fix being done after the bug has been discovered.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/spinning-up-vms-in-my-local/" class="link black dim">
-        Spinning up VMs in my local
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This post is about how I spin up VMs in my local machine. This is considering I have already chosen to run something in a VM and not in a container like Docker container or any other tech like unikernels and others that I don&rsquo;t know about :p
-Now, back to VMs. Now, usually I used to use Virtual Box to run VMs in my local. It&rsquo;s open source and I can run it in my Mac.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/i-like-to-write-things-down/" class="link black dim">
-        I Like to Write Things Down
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I consider myself a bit forgetful. I&rsquo;m not going to tell the reasons for that, but I think I know some reasons 🤔 anyways, now, I don&rsquo;t know if I can solve the problem and remember more things. And even if I do, it will take time and till then, I need some mechanism to help me remember things. So, what do I do? Other than my brain, what can store lots of information and not forget it very easily?
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/no-cash-and-digital-transactions/" class="link black dim">
-        No Cash and Digital Transactions
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      So today I was planning to travel in a van to a metro station and then in metro, go to the metro station near my house and then walk to my house which is close by
-Unfortunately my van didn&rsquo;t come. I then walked to a bus station and got a bus to the metro station. Now I had to pay, in cash for the bus fare. And I realized that I might not have cash in my wallet.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/kubectl-commands/" class="link black dim">
-        kubectl commands
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Some of the commands that I use in my day to day work when interacting with kubernetes clusters
-Exec / execute into a pod If you have kube-fzf, you can use execpod which is an interactive way to exec into a pod&rsquo;s container
-$ # exec into a pod in the default namespace $ execpod $ # exec into a pod in a particular namespace $ execpod -n &lt;namespace-name&gt; $ # exec into a pod in any namespace by seeing all namespace pods $ execpod -a Or if you don&rsquo;t have kube-fzf, you can use the below
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/oss-stories-part-1-write-tests-to-fix-that-bug/" class="link black dim">
-        OSS Stories Part 1: Write Tests to Fix That Bug!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I recently thought I should share some of my Open Source Stories! Stories about how I contributed, what happened, some learnings, swags and what not. Anything that happened with respect to Open Source for me. I think I&rsquo;ll try to write as much stories as possible! Not all of them will have technical stuff. It&rsquo;s a story :P It could have anything. So, today I have one story to tell ;)
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/asciinema-to-record-your-terminal/" class="link black dim">
-        asciinema to record your terminal
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Have you ever tried to record your terminal? Or seen anyone&rsquo;s recording of their terminal? Usually people record to show how a tool works and put it in the tool&rsquo;s README in the git repo. You can also record to do tutorial videos and more :)
-So, my first thought to record my terminal would have been to just record my screen or terminal window using some screen recording / screen capture tool like Kap.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/trying-to-make-my-life-easier-while-coding/" class="link black dim">
-        Trying to Make My Life Easier While Coding
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Disclaimer: These are just my thoughts. Or rants. :P
-Every day I code. I face problems. Usually I get immersed in the problem. These days I try to be lazy. I try. I think of how to go past the problem, get rid of it, not face it in the future, make my life easier.
-I also don&rsquo;t like to sit idle, waiting for my tests and build. I have a macbook pro 2017 version and even that&rsquo;s not enough sometimes 🙈 we really need to work on better software folks.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/running-is-tough/" class="link black dim">
-        Running 🏃‍♂️🏃‍♀️ is Tough
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      So I&rsquo;ve planned to run a bit. To practice for a marathon - 5km one. I have run crazily once for 7.5 km. Almost killed myself in the process 😂
-Yesterday I ran okay. I ran twice yesterday. Both times quite slowly, atleast that&rsquo;s what I believe. It looked like I was running very slowly. But you should have seen the amount of energy that I was spending to do that.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/tmate-share-your-terminal/" class="link black dim">
-        tmate: Share Your Terminal!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Have you ever done remote pair programming over the Internet? Or tried to share your screen over the Internet to show someone something on your screen? Using slack, team viewer, zoom, and what not. How was the experience?
-Being a programmer, I&rsquo;m sure a lot of you spend your time in the terminal, editor / IDE and the browser? And probably more! Like slack :P
-Now, let&rsquo;s say, I&rsquo;m going to use slack / zoom to just do audio call over the Internet, or use something like Google Meet or even just a phone call using my mobile network or over the Internet using WhatsApp
-    </div>
-  </div>
-</div>
 
-        </div>
+  <div id="sharing" class="mt3 ananke-socials">
+    
       
-    </section>
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/blog/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/8/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/7/" aria-label="Page 7" class="page-link" role="button">7</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/8/" aria-label="Page 8" class="page-link" role="button">8</a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 9" class="page-link" role="button">9</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Page 10" class="page-link" role="button">10</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/11/" aria-label="Page 11" class="page-link" role="button">11</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/11/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul></article>
+      <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/&amp;text=Trying%20out%20PostgreSQL%20v15" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Trying out PostgreSQL v15</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-10-18T19:30:30+05:30">October 18, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Recently the PostgreSQL community <a href="https://www.postgresql.org/about/news/postgresql-15-released-2526/">released PostgreSQL v15</a>, which is the latest version as of this writing. I thought I could try out and experiment with the latest and greatest of PostgreSQL so I got my hands on this version with some basic steps</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get prebuilt binary links from a trusted source. For example https://www.enterprisedb.com/download-postgresql-binaries</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wget https://sbp.enterprisedb.com/getfile.jsp?fileid<span style="color:#f92672">=</span><span style="color:#ae81ff">1258215</span> -O pg-15-osx-binaries.zip
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>unzip pg-15-osx-binaries.zip
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo xattr -r -d com.apple.quarantine pgsql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/postgres --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/psql --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/initdb --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mkdir test-data-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/initdb -D test-data-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/postgres -D test-data-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/pg_ctl -D test-data-dir -l logfile status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/pg_ctl -D test-data-dir -l logfile start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat logfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/pg_ctl -D test-data-dir -l logfile status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ps aux | rg postgres
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ps aux | grep postgres
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/psql -h localhost -d postgres
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls test-data-dir/postmaster.pid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat test-data-dir/postmaster.pid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/pg_ctl -D test-data-dir -l logfile stop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls test-data-dir/postmaster.pid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./pgsql/bin/pg_ctl -D test-data-dir -l logfile status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls test-data-dir/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat test-data-dir/PG_VERSION
+</span></span></code></pre></div><p>Given below is the demo of how I do the above given steps and what output / logs show up when running the commands</p>
+<script id="asciicast-529793" src="https://asciinema.org/a/529793.js" async></script>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
