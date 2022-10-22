@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/karuppiahn/oss/github.com/karuppiah7890/blog",
+	"sourceRoot": "/Users/karuppiah/projects/github.com/karuppiah7890/blog",
 	"sources": [
 		"ananke/css/main.css"
 	],

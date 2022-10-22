@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog</title>
+    <title>Mocking APIs and embedding code snippets for API usage | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Recently I was checking out Kong&rsquo;s Open Source Kong API Gateway and Kong&rsquo;s documentation on services and routes when I stumbled upon Mockbin, an interesting service by Kong, and it&rsquo;s open source! mockbin source code is here - https://github.com/Kong/mockbin . According to their website, in short what Mockbin does is - Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp; responses between libraries, sockets and APIs.">
     <meta name="generator" content="Hugo 0.104.3" />
     
     
@@ -29,20 +29,20 @@
 
     
     
-      <link href="/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      
-    
-    
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
+    <meta property="og:title" content="Mocking APIs and embedding code snippets for API usage" />
+<meta property="og:description" content="Recently I was checking out Kong&rsquo;s Open Source Kong API Gateway and Kong&rsquo;s documentation on services and routes when I stumbled upon Mockbin, an interesting service by Kong, and it&rsquo;s open source! mockbin source code is here - https://github.com/Kong/mockbin . According to their website, in short what Mockbin does is - Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp; responses between libraries, sockets and APIs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/mocking-apis-and-embedding-code-snippets-for-api-usage/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-23T00:39:30+05:30" />
+<meta property="article:modified_time" content="2022-10-23T00:39:30+05:30" />
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta itemprop="name" content="Mocking APIs and embedding code snippets for API usage">
+<meta itemprop="description" content="Recently I was checking out Kong&rsquo;s Open Source Kong API Gateway and Kong&rsquo;s documentation on services and routes when I stumbled upon Mockbin, an interesting service by Kong, and it&rsquo;s open source! mockbin source code is here - https://github.com/Kong/mockbin . According to their website, in short what Mockbin does is - Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp; responses between libraries, sockets and APIs."><meta itemprop="datePublished" content="2022-10-23T00:39:30+05:30" />
+<meta itemprop="dateModified" content="2022-10-23T00:39:30+05:30" />
+<meta itemprop="wordCount" content="341">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mocking APIs and embedding code snippets for API usage"/>
+<meta name="twitter:description" content="Recently I was checking out Kong&rsquo;s Open Source Kong API Gateway and Kong&rsquo;s documentation on services and routes when I stumbled upon Mockbin, an interesting service by Kong, and it&rsquo;s open source! mockbin source code is here - https://github.com/Kong/mockbin . According to their website, in short what Mockbin does is - Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp; responses between libraries, sockets and APIs."/>
 
       
     
@@ -52,9 +52,11 @@
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -107,244 +109,96 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/how-ci-cd-systems-work-with-source-code-hosting-services/" class="link black dim">
-        How CI/CD systems work with source code hosting services
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I have always been curious about internals of some systems, if not all. One of them is the CI/CD system and how it works with source code hosting services. Apparently it&rsquo;s not too complicated. So, let&rsquo;s dive and see what are the different ways CI/CD systems work with source code hosting services
-So, what&rsquo;s actually the thing that I was curious about? I was to curious to understand how a CI/CD pipeline runs for exactly a given commit especially when there are pushes to the source code immediately in a matter of a few moments / seconds, but pipeline for both runs only after a few moments but at the same time but with correct commit in each.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/bytes-4-dont-use-plain-text-files-to-store-secrets/" class="link black dim">
-        Bytes #4: Please don&#39;t use plain text files to store secrets!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Based on some recent experience, I have noticed how one can easily store secrets in plain text files and things could go very wrong.
-First off, some people store secrets in plain text files in their git repositories by mistake
-Only for example purposes, below are some links
-https://github.com/UnravelAI/unravel-api/commit/c0599c4d798c8333b8a1c643d1e02dbec4a7cc1d
-https://github.com/steppingcloudlabs/single-tenant-alumniportal/commit/f99e126fd1d8e486ac81e2e3d77aa14424ad525f
-I just had to do a GitHub search
-https://github.com/search?q=aws+credentials+env&amp;type=commits
-And I found the above. Fortunately the people who removed the keys from their git repository knew that the git history would contain it and hence revoked the keys and rotated it to get new keys.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/bytes-3-dont-have-unnecessary-high-access/" class="link black dim">
-        Bytes #3: Please don&#39;t have unnecessary high access!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      A lot of times it good to have a lot of access in the systems we interact with. This could be any system - external systems or internal systems. For example, git / source code repository access is a pretty common thing. Let&rsquo;s say your team has a private repository on GitHub. You can have any kind of access to this repository - read access, write access, or even admin access, for example to change settings and what not.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/money-stuff-part-1/" class="link black dim">
-        Money Stuff Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In our world, money is something that has become essential to buy things and live life.
-A lot of us work for hours and hours every day, every week. We get paid very little or maybe a lot.
-And then after this, many of us don&rsquo;t think much about money. Very few people talk about savings, investments, money.
-Everyone&rsquo;s talking about physical fitness and physical health, mental health, career stuff. I have rarely seen people talk about money.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/bytes-2-consul-kv-store/" class="link black dim">
-        Bytes #2: An introduction to Consul as a Key Value (KV) Store
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      If you have not heard of Hashicorp Consul before, then this bytes (short) post is going to be interesting!
-Consul is an interesting software that has a lot of features, which is a boon and a bane I guess. One of the features it has is - it has a Key Value (KV) store
-A Key Value (KV) store is a kind of data storage software that helps you store data in the form of key value pairs.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/open-source-business-models/" class="link black dim">
-        Open Source Business Models
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Note that this is completely based on my experience and research from a user perspective, having used some open source for a cost and seen cost for open source software
-Open source and money is an interesting topic. Many who are new to open source might wonder what&rsquo;s powering open source software. It is true that many open source projects, especially the small ones, probably are written and maintained by one person or a few people, at no cost.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/mailcatcher-dummy-email-server-to-catch-your-emails/" class="link black dim">
-        Bytes #1: Mail Catcher: Dummy Email Server to catch your emails!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      MailCatcher is a nice little tool to help you run a dummy email server
-It&rsquo;s open source - https://github.com/sj26/mailcatcher
-Why would one use it? There are two use cases for which I personally used it for.
-One is - trying out a program in local which needs an email server as part of setup. I couldn&rsquo;t setup an email server like the ones people do in production environments or use email services like AWS Simple Email Service, as I was only simply trying out the program and not doing a production deployment.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/please-get-your-assertions-right/" class="link black dim">
-        Please get your assertions right!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      TLDR Assertions in programming generally have &ldquo;expected&rdquo; and &ldquo;actual&rdquo; value to check if the &ldquo;actual&rdquo; value is equal to the &ldquo;expected&rdquo; value. When the programmer provides the two values in the wrong order to the assertion library then when errors occur, they are confusing to read. Getting the order of &ldquo;expected&rdquo; and &ldquo;actual&rdquo; value can be helpful to get a sensible error message which one can read and understand the issue when errors occur in assertion.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/an-introduction-to-gitlab-ci-cd-services-feature/" class="link black dim">
-        An Introduction to GitLab CI/CD Services feature
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      All the code for this blog post is present in the demo GitLab repo.
-It has GitLab CI Config and also a demo pipeline which shows how it runs.
-Recently I wrote a blog post about integration tests and some ways to do it. One of the ways talks about using GitLab CI/CD&rsquo;s Services feature. I realized it deserves a separate blog post, so here it is :D
-This blog post is meant to create awareness around this feature of GitLab CI/CD and also give a basic introduction.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/optionally-running-services-in-docker-compose/" class="link black dim">
-        Optionally Running Services in Docker Compose (v3 and v2)
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Today I learned a new thing when someone asked something -
-&ldquo;We have two services in docker compose file. How to run one service optionally based on some feature toggle like environment variable or command line option? Is it possible to do this in a single Docker Compose file?&rdquo;
-TLDR One way is to control the replica count. If replica count is 0, then it means no instance of the service is running.
-    </div>
-  </div>
-</div>
 
-        </div>
+  <div id="sharing" class="mt3 ananke-socials">
+    
       
-    </section>
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/blog/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/11/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul></article>
+      <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/mocking-apis-and-embedding-code-snippets-for-api-usage/&amp;text=Mocking%20APIs%20and%20embedding%20code%20snippets%20for%20API%20usage" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Mocking APIs and embedding code snippets for API usage</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-10-23T00:39:30+05:30">October 23, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Recently I was checking out <a href="https://konghq.com">Kong</a>&rsquo;s Open Source Kong API Gateway and <a href="https://docs.konghq.com/gateway/3.0.x/get-started/services-and-routes/#managing-services-and-routes">Kong&rsquo;s documentation on services and routes</a> when I stumbled upon <a href="https://mockbin.org" title="Mockbin">Mockbin</a>, an interesting service by Kong, and it&rsquo;s open source! mockbin source code is here - <a href="https://github.com/Kong/mockbin">https://github.com/Kong/mockbin</a> . According to their website, in short what <a href="https://mockbin.org" title="Mockbin">Mockbin</a> does is - <code>Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp; responses between libraries, sockets and APIs.</code> . You can read more about <a href="https://mockbin.org" title="Mockbin">Mockbin</a> on their website :D</p>
+<p>By the way, my exploration didn&rsquo;t end there, I found another service on Mockbin website when I noticed code snippets to use the mock API in the <code>Send Some Requests</code> section in a bin web page. It said <code>Powered by APIembed</code> at the bottom and it got me curious. I followed the link and found a service called <a href="https://apiembed.com" title="APIembed">APIembed</a>. It&rsquo;s a service for embedding code in different languages for API usage :D You just need to give an example request in the form of HAR (<code>HTTP Archive</code>) and it gives you embedded code for the API usage in different languages :D According to their website, what <a href="https://apiembed.com" title="APIembed">APIembed</a> helps with is - <code>Embeddable API Code snippets. Auto-generated code snippets in many programming languages for your website, blog or API documentation</code> and it&rsquo;s clearly <code>Made with ♥ at Kong</code> :D</p>
+<p>I loved these small services. By the way, <a href="https://apiembed.com" title="APIembed">APIembed</a> is open source too! <a href="https://apiembed.com" title="APIembed">APIembed</a> source code is here - <a href="https://github.com/Kong/apiembed">https://github.com/Kong/apiembed</a> , and it uses <a href="https://github.com/Kong/httpsnippet">https://github.com/Kong/httpsnippet</a> under the hood to auto generate code in different languages</p>
+<p>I would recommend checking out these services if you work in the area of APIs and would be interested in using these services for your testing, docs etc. Btw, you can self host these services too with the source code that&rsquo;s available :D That&rsquo;s the best part!! I&rsquo;m sure there are many such services and tools out there, including many open source ones. This one just caught my eye and captured my heart so I&rsquo;m writing about it. Both Mockbin and <a href="https://apiembed.com" title="APIembed">APIembed</a> are beautiful :)</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

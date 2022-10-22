@@ -6,7 +6,16 @@
     <description>Recent content on Karuppiah&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Oct 2022 19:30:30 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Oct 2022 00:39:30 +0530</lastBuildDate><atom:link href="https://karuppiah7890.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mocking APIs and embedding code snippets for API usage</title>
+      <link>https://karuppiah7890.github.io/blog/posts/mocking-apis-and-embedding-code-snippets-for-api-usage/</link>
+      <pubDate>Sun, 23 Oct 2022 00:39:30 +0530</pubDate>
+      
+      <guid>https://karuppiah7890.github.io/blog/posts/mocking-apis-and-embedding-code-snippets-for-api-usage/</guid>
+      <description>Recently I was checking out Kong&amp;rsquo;s Open Source Kong API Gateway and Kong&amp;rsquo;s documentation on services and routes when I stumbled upon Mockbin, an interesting service by Kong, and it&amp;rsquo;s open source! mockbin source code is here - https://github.com/Kong/mockbin . According to their website, in short what Mockbin does is - Mockbin allows you to generate custom endpoints to test, mock, and track HTTP requests &amp;amp; responses between libraries, sockets and APIs.</description>
+    </item>
+    
     <item>
       <title>Trying out PostgreSQL v15</title>
       <link>https://karuppiah7890.github.io/blog/posts/trying-out-postgresql-v15/</link>
