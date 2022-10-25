@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Karuppiah&#39;s Blog</title>
+    <title>Rate Limiting Basics | Karuppiah&#39;s Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="In this post, I wanna jot down my thoughts on rate limiting while I ponder about it and learn more about it and understand the why, what, how
+So, what&rsquo;s rate limiting? Before going there to answer that question, let&rsquo;s see a scenario that can happen in the realy world
+Let&rsquo;s say you build a service. It&rsquo;s a long running service that responds to network requests, for example HTTP requests to an HTTP API served by your service">
     <meta name="generator" content="Hugo 0.104.3" />
     
     
@@ -29,20 +31,26 @@
 
     
     
-      <link href="/blog/posts/index.xml" rel="alternate" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      <link href="/blog/posts/index.xml" rel="feed" type="application/rss+xml" title="Karuppiah&#39;s Blog" />
-      
-    
-    
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/" />
+    <meta property="og:title" content="Rate Limiting Basics" />
+<meta property="og:description" content="In this post, I wanna jot down my thoughts on rate limiting while I ponder about it and learn more about it and understand the why, what, how
+So, what&rsquo;s rate limiting? Before going there to answer that question, let&rsquo;s see a scenario that can happen in the realy world
+Let&rsquo;s say you build a service. It&rsquo;s a long running service that responds to network requests, for example HTTP requests to an HTTP API served by your service" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karuppiah7890.github.io/blog/posts/rate-limiting-basics/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-25T10:44:30+05:30" />
+<meta property="article:modified_time" content="2022-10-25T10:44:30+05:30" />
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta itemprop="name" content="Rate Limiting Basics">
+<meta itemprop="description" content="In this post, I wanna jot down my thoughts on rate limiting while I ponder about it and learn more about it and understand the why, what, how
+So, what&rsquo;s rate limiting? Before going there to answer that question, let&rsquo;s see a scenario that can happen in the realy world
+Let&rsquo;s say you build a service. It&rsquo;s a long running service that responds to network requests, for example HTTP requests to an HTTP API served by your service"><meta itemprop="datePublished" content="2022-10-25T10:44:30+05:30" />
+<meta itemprop="dateModified" content="2022-10-25T10:44:30+05:30" />
+<meta itemprop="wordCount" content="1256">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rate Limiting Basics"/>
+<meta name="twitter:description" content="In this post, I wanna jot down my thoughts on rate limiting while I ponder about it and learn more about it and understand the why, what, how
+So, what&rsquo;s rate limiting? Before going there to answer that question, let&rsquo;s see a scenario that can happen in the realy world
+Let&rsquo;s say you build a service. It&rsquo;s a long running service that responds to network requests, for example HTTP requests to an HTTP API served by your service"/>
 
       
     
@@ -52,9 +60,11 @@
   <body class="ma0 avenir bg-near-white production">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -107,168 +117,114 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          Posts
-        </h1>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
-    <section class="flex-ns flex-wrap justify-around mt5">
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/openfaas-containerd-series-part1/" class="link black dim">
-        OpenFaaS with containerd Series Part 1
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This is one of the posts in a series where I&rsquo;m going to write about openfaas and containerd working together. If you haven&rsquo;t tried openfaas before, it&rsquo;s interesting, give it a try! This is one of the posts which you can use to try openfaas!
-In this first post, I&rsquo;ll just show you what I tried out recently. This is me showing you how to just run openfaas along with containerd in one VM.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/a-conference-story/" class="link black dim">
-        A Conference Story
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Arvind is attending KubeCon for the first time. He&rsquo;s on his own.
-Arvind: Wow, this is all so grand! Let&rsquo;s find a place to sit and enjoy the day and find new friends maybe!
-Arvind finds his place. He finds himself surrounded by a lot of people.
-There&rsquo;s a constant buzz around him. People talking about life and work.
-The Conference starts with the keynote and the talks follow.
-After some talks, it&rsquo;s break time.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/debugging-go-in-intellij-idea-or-goland/" class="link black dim">
-        Debugging Go in Intellij IDEA / GoLand
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently me and a friend were trying to debug a stackoverflow error in helm. We used a lot of print statements in the code and were reading the code and seeing the flow and checking where it just blew up. At some point I realized we were putting lot of print statements and it was just becoming tedious to follow along the big code - it was some parsing code 😓 to parse the command line values.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/helm-3-charts-and-oci-registries/" class="link black dim">
-        Helm 3 Charts and OCI registries
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently Helm 3 alpha version was released https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1 🎉. There are lot of new things in this release, I wanted to write about one of these things - Pushing Charts to OCI Registries!
-With helm 3, you can push your charts to container registries similar to pushing container images! TLDR; Show me your terminal!
-The commands being used in the video:
-$ docker run -dp 5000:5000 --restart=always --name registry registry $ helm create my-chart $ ls $ helm chart save my-chart localhost:5000/my-chart:0.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-open-source-journey/" class="link black dim">
-        My Open Source Journey
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      I think the first time I heard the term &ldquo;Open Source&rdquo; was when we were taught about different kinds of software in 12th grade. I still remember how we had so many defintions to remember, for terms like - proprietary, freeware, shareware, open source software. I&rsquo;m able to recall only these terms. Also, the definitions had some similarities and I also remember getting confused about the differences and similarities between the terms.
-    </div>
-  </div>
-</div>
 
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/blog/posts/my-first-post/" class="link black dim">
-        My First Post!
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Now that you are reading this post, it means I finally created another blog and hosted it too 😛 Yay! 🎉
-My previous blogs that I hosted using Blogger during college -
-https://semlabs.blogspot.com/
-https://semlectures.blogspot.com/
-And now I have created this blog. I use these to create and host it:
-Hugo static site generator GitHub Pages Visual Studio Code Editor Markdown Emoji to put the awesome emojis in markdown 😁 Hoping to write tons of posts 😉 Stay tuned!
-    </div>
-  </div>
-</div>
 
-        </div>
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
       
-    </section>
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/blog/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/7/" aria-label="Page 7" class="page-link" role="button">7</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/8/" aria-label="Page 8" class="page-link" role="button">8</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/9/" aria-label="Page 9" class="page-link" role="button">9</a>
-      </li>
-      <li class="page-item">
-        <a href="/blog/posts/page/10/" aria-label="Page 10" class="page-link" role="button">10</a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 11" class="page-link" role="button">11</a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul></article>
+      <a href="https://twitter.com/share?url=https://karuppiah7890.github.io/blog/posts/rate-limiting-basics/&amp;text=Rate%20Limiting%20Basics" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Rate Limiting Basics</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-10-25T10:44:30+05:30">October 25, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>In this post, I wanna jot down my thoughts on rate limiting while I ponder about it and learn more about it and understand the why, what, how</p>
+<p>So, what&rsquo;s rate limiting? Before going there to answer that question, let&rsquo;s see a scenario that can happen in the realy world</p>
+<p>Let&rsquo;s say you build a service. It&rsquo;s a long running service that responds to network requests, for example HTTP requests to an HTTP API served by your service</p>
+<p>Let&rsquo;s say your service gets lot of requests from different users, through various HTTP clients (CLI tool, Browser, another service)</p>
+<p>Now, in this scenario, it&rsquo;s possible that your service is getting lot of requests in a given day, or even at a given hour, or minute or second. Now, your service is running on a small machine (in terms of resources and size), which has only some amount of resources (CPU, RAM, Disk, Network bandwidth). It&rsquo;s clearly not infinite, it can only serve some amount of requests at a given period of time. Which means, due to this, the service cannot serve many users at once / at a given time period, depending on it&rsquo;s performance, limitations, implementation (number of CPU cores in machine, usage of different cores etc), available resources. What this means is, the service cannot scale and serve as many users as possible when more users come in. Let&rsquo;s say the scale of requests increases gradually. at some point the service and the users of the service are going to struggle -</p>
+<ul>
+<li>The machine could become slow</li>
+<li>The service could become slow to respond to some or many requests</li>
+<li>The user might see high response times - for example, in orders of seconds, which is not great</li>
+<li>Key metrics of the service might show bad values. For example, 99th percentile value of response time might be really high than the usual values, when there are a lot of requests / unmanageable number of requests</li>
+</ul>
+<p>Now, in this case, you could do some things. Of course you can scale the service - run it on bigger machines (vertical scaling - scaling up), or run it on many machines (horizontal scaling - scaling up). Also, if the infrastructure is elastic - when number of requests are high, you could scale up, when the number of requests drop down, then you could scale down to smaller machines (vertical scaling - scaling down), or lesser machines (horizontal scaling - scaling down)</p>
+<p>One thing to note here when talking about scaling is - what&rsquo;s a reasonable and real scale vs unreasonable / unreal / unacceptable scale. Like, I can&rsquo;t say &ldquo;Hey, this service of mine should be able to scale and handle infinite number of requests. It should be able to scale as much possible, using as much compute available in the world in different data centers around the world&rdquo;. I mean, I could say, but is it feasible to implement is a question to ponder about and also, do people design for such use cases is also a good queston to ponder about, where people use terms like &ldquo;infinite&rdquo; without proper and finite numbers like &ldquo;10K requests per second&rdquo; etc</p>
+<p>Also, another thing to note is, there are lot of &ldquo;bad entities&rdquo; in the world. Like bots, scripts, programs, that simply hit (send requests to) services and try to spam them, to make them unavailable to genuine users / to corrupt their internal data etc. For spamming, &ldquo;Denial of Service&rdquo; attacks (DoS) and &ldquo;Distributed Denial of Service&rdquo; (DDoS) attacks, people do many things to detect spammy requests and block them - block the IPs for a period of time etc. For such cases, it&rsquo;s important to prevent the service from getting spammed / misused by some clients/users, by detecting spam - for example based on service usage - like number of requests per second, kind of requests / behaviour etc</p>
+<p>Also, some folks open up their APIs and provide their APIs for a fixed cost (paid services) which has a corresponding fixed API limit given a time period. For more limits, you pay more etc. Some other services expect genuine people to use their API but only to a good level, so that it doesn&rsquo;t get abused, affecting other genuine users using the API. For example, GitHub has a limit on the number of API calls done per second to the GitHub REST APIs for authenticated and unauthenticated users. GitHub refers to the rate limiting details in it&rsquo;s Rate Limiting API docs - <a href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting">https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting</a> , <a href="https://docs.github.com/en/rest/rate-limit">https://docs.github.com/en/rest/rate-limit</a></p>
+<p>Now, how does one implement rate limiting, for ensuring fair usage? Let&rsquo;s say a Service S can take 1000 requests per second. Let&rsquo;s say User A sends 1000 requests at 10:01:30 am and User B also sends 1000 requests at 10:01:30 am. Now, it&rsquo;s very possible that 700 requests of User A went through and got a response in that second and 300 requests of User B went through and got a response. The remaining requests went through later and got a response later. This might be all dependent on the timing at which the requests came (at nanosecond or picosecond level) and the speed of the users and the service. Now, let&rsquo;s assume there are around 100 users for this service. Now, how would one go about allowing fair usage of this service?</p>
+<p>One idea is to allow 10 requests per second per user so that even if all 100 users use the service, the service can handle 1000 requests per second. You ask how? A rough calculation is -</p>
+<p>(10 requests per second per user x 100 users) = 1000 requests per second overall at system / service level</p>
+<p>This calculation is based on the idea that - all users are equal and we know the exact number of users and how much requests the service can handle. When all users are not equal according the system - say some users are using trial / free tier of the API, some users pay a small cost, some users pay a very high cost, then the service can have different rate limits for different users - whoever pays more can have higher rate limits considering they are &ldquo;premium&rdquo; / &ldquo;paid&rdquo; users</p>
+<p>Now, how does one go about implementing this? Say in an HTTP API. How will the service stop the 11th request from a User A in a given second? In HTTP APIs, there is no state, as it&rsquo;s a stateless protocol and when there&rsquo;s a request, how will you know who sent the request to keep the count of requests per user / client in this case? There are two ways - one is - get the IP address of the user / client. Another is - have authentication features in the API and ask the user / client to authenticate with the API using a secret (API token, private key etc) and then use the API, this way the service can then identify and differentiate users / clients by using the authentication information in the HTTP request</p>
+<p>So, now you have an idea of how one would go about implementing rate limiting at a basic level and how to differentiate between users / clients of the API and how basic rate limiting strategies can be implemented at a high level</p>
+<p>I&rsquo;m writing this blog post to improve my own understanding of rate limiting and also explore rate limiting in web servers / systems online, for example Kong API Gateway (Open Source) rate limiting plugin, and advanced rate limiting Kong plugin</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "karuppiah-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
